@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             targetNamespace="http://bpmn.io/schema/bpmn">
+  <process id="RecruitmentProcess" name="AS IS Recruitment Process" isExecutable="false">
+    <startEvent id="StartEvent_1" name="Start Recruitment Process"/>
+    <sequenceFlow id="flow1" sourceRef="StartEvent_1" targetRef="Task_1"/>
+    <task id="Task_1" name="Publish Job Listing"/>
+    <sequenceFlow id="flow2" sourceRef="Task_1" targetRef="Task_2"/>
+    <task id="Task_2" name="Receive Applications"/>
+    <sequenceFlow id="flow3" sourceRef="Task_2" targetRef="Task_3"/>
+    <task id="Task_3" name="Manual Review of Resumes"/>
+    <sequenceFlow id="flow4" sourceRef="Task_3" targetRef="Gateway_1"/>
+    <exclusiveGateway id="Gateway_1" name="Decision: Accept or Reject"/>
+    <sequenceFlow id="flow5" sourceRef="Gateway_1" targetRef="Task_4" name="Accept"/>
+    <task id="Task_4" name="Invite Candidate"/>
+    <sequenceFlow id="flow6" sourceRef="Gateway_1" targetRef="Task_5" name="Reject"/>
+    <task id="Task_5" name="Send Rejection Notification"/>
+    <sequenceFlow id="flow7" sourceRef="Task_4" targetRef="EndEvent_1"/>
+    <sequenceFlow id="flow8" sourceRef="Task_5" targetRef="EndEvent_1"/>
+    <endEvent id="EndEvent_1" name="Process Completed"/>
+  </process>
+  <bpmndi:BPMNDiagram id="Diagram_1">
+    <bpmndi:BPMNPlane id="Plane_1" bpmnElement="RecruitmentProcess">
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <omgdc:Bounds x="100" y="100" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1_di" bpmnElement="Task_1">
+        <omgdc:Bounds x="200" y="100" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_2_di" bpmnElement="Task_2">
+        <omgdc:Bounds x="350" y="100" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_3_di" bpmnElement="Task_3">
+        <omgdc:Bounds x="500" y="100" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1_di" bpmnElement="Gateway_1">
+        <omgdc:Bounds x="650" y="115" width="50" height="50"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_4_di" bpmnElement="Task_4">
+        <omgdc:Bounds x="750" y="50" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_5_di" bpmnElement="Task_5">
+        <omgdc:Bounds x="750" y="200" width="100" height="80"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="EndEvent_1">
+        <omgdc:Bounds x="900" y="100" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="flow1_di" bpmnElement="flow1">
+        <omgdi:waypoint x="136" y="118"/>
+        <omgdi:waypoint x="200" y="118"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="flow2_di" bpmnElement="flow2">
+        <omgdi:waypoint x="300" y="140"/>
+        <omgdi:waypoint x="350" y="140"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="flow3_di" bpmnElement="flow3">
+        <omgdi:waypoint x="450" y="140"/>
+        <omgdi:waypoint x="500" y="140"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="flow4_di" bpmnElement="flow4">
+        <omgdi:waypoint x="600" y="140"/>
+        <omgdi:waypoint x="650" y="140"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="flow5_di" bpmnElement="flow5">
+        <omgdi:waypoint x="700" y="140"/>
+        <omgdi:waypoint x="750" y="90"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="flow6_di" bpmnElement="flow6">
+        <omgdi:waypoint x="700" y="140"/>
+        <omgdi:waypoint x="750" y="240"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="flow7_di" bpmnElement="flow7">
+        <omgdi:waypoint x="850" y="90"/>
+        <omgdi:waypoint x="900" y="118"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="flow8_di" bpmnElement="flow8">
+        <omgdi:waypoint x="850" y="240"/>
+        <omgdi:waypoint x="900" y="118"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
