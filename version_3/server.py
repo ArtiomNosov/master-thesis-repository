@@ -64,6 +64,7 @@ kaggle.api.dataset_download_files('nir-18-01-2025-dataset', path='models', unzip
 
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
+import os
 
 def load_bert_model():
 
