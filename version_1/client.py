@@ -1,7 +1,7 @@
 import requests
 
 # Define the base URL of the server
-BASE_URL = "http://127.0.0.1:8000"
+BASE_URL = "http://158.160.145.201:8000"
 
 # Test data for the /submit endpoint
 job_description = "Software Engineer with experience in Python and machine learning."
