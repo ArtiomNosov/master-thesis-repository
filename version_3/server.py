@@ -68,7 +68,7 @@ from transformers import AutoModelForSequenceClassification, AutoTokenizer
 def load_bert_model():
 
     # Директория, где сохранена модель
-    output_dir = "./models/"
+    output_dir = "./models/model_save/"
 
     # Загрузка модели и токенайзера
     model_load = AutoModelForSequenceClassification.from_pretrained(output_dir)
