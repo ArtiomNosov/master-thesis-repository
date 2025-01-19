@@ -60,7 +60,8 @@ else:
 # Загружаем модель BERT
 import kaggle
 kaggle.api.authenticate()
-kaggle.api.dataset_download_files('nir-18-01-2025-dataset', path='models', unzip=True)
+# TODO добавить условие на скачивание чтобы каждый раз не скачивать
+# kaggle.api.dataset_download_files('nir-18-01-2025-dataset', path='models', unzip=True)
 
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -102,26 +103,27 @@ def load_bert_model():
 
 bert_model, bert_tokenizer = load_bert_model()
 MAX_SENTENCE_LEN = 20
-def bert_predict(model, tokenizer, vacancy, resumes):
+async def bert_predict(model, tokenizer, vacancy, resumes):
     predictions = None
     vacancy_cleaned = ' '.join(vacancy.split()[0:MAX_SENTENCE_LEN])
     resumes_cleaned = [' '.join(resume.split()[0:MAX_SENTENCE_LEN]) for resume in resumes]
     sentences = [resume_cleaned + ' ' + vacancy_cleaned for resume_cleaned in resumes_cleaned]
-    inputs = tokenizer.encode_plus(
-                        sentences,                      # Sentence to encode.
+    inputs = [tokenizer.encode_plus(
+                        sentence,                      # Sentence to encode.
                         add_special_tokens = True, # Add '[CLS]' and '[SEP]'
                         max_length = 512,           # Pad & truncate all sentences.
                         pad_to_max_length = True,
                         return_attention_mask = True,   # Construct attn. masks.
                         return_tensors = 'pt',     # Return pytorch tensors.
-                   )
+                   )['input_ids'] for sentence in sentences]
     # Переместить данные на устройство (CPU/GPU)
-    inputs = {key: value.to(device) for key, value in inputs.items()}
+    inputs = torch.cat(inputs, dim=0)
+    # inputs = {key: value.to(device) for key, value in inputs.items()}
     model = model.to(device)
     # Получение предсказаний
     model.eval()
     with torch.no_grad():
-        outputs = model(**inputs)
+        outputs = model(inputs)
         logits = outputs.logits
 
     # Преобразование логитов в вероятности
@@ -130,7 +132,8 @@ def bert_predict(model, tokenizer, vacancy, resumes):
 
 # Async function for BERT model processing
 async def process_with_model(job_description: str, resumes: List[str]):
-    results = bert_predict(bert_model, bert_tokenizer, job_description, resumes)
+    results = await bert_predict(bert_model, bert_tokenizer, job_description, resumes)
+    results = [x[1] - x[0] for x in results.numpy()]
     return results
 
 # API Endpoints
@@ -152,8 +155,10 @@ async def submit_job_and_resumes(data: JobAndResumes):
 
     # Process data with the BERT model asynchronously
     results = await process_with_model(data.job_description, data.resumes)
-
-    return {"job_id": job_id, "results": results}
+    result_of_response = []
+    for i in range(len(results)):
+        result_of_response += [{data.resumes[i]: results[i]}]
+    return {"job_id": job_id, "results": str(result_of_response)}
 
 @app.post("/retrain")
 async def retrain_model(request: RetrainRequest):
@@ -165,3 +170,9 @@ async def retrain_model(request: RetrainRequest):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
+# {'job_id': 2, 'results': [{'sequence': 'Experienced Python developer with a focus on web applications.', 'labels': ['Software Engineer
+# with experience in Python and machine learning.'], 'scores': [0.6094723343849182]}, {'sequence': 'Machine learning expert with strong Python skil
+# ls and deployment experience.', 'labels': ['Software Engineer with experience in Python and machine learning.'], 'scores': [0.33050838112831116]}
+# , {'sequence': 'Data analyst with SQL and visualization expertise.', 'labels': ['Software Engineer with experience in Python and machine learning
+# .'], 'scores': [0.0014800283825024962]}]}
