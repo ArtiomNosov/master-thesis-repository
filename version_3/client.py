@@ -1,7 +1,7 @@
 import requests
 
 # Define the base URL of the server
-BASE_URL = "http://158.160.145.201:8000"
+BASE_URL = "http://127.0.0.1:8000"
 
 # Test data for the /submit endpoint
 # https://www.superjob.ru/vakansii/starshij-analitik-dannyh-v-crm-46759846.html?search_id=1134bd22-d5be-11ef-89c9-9af82df56e4c&vacancyshouldhighlight=true
