@@ -1,6 +1,9 @@
 # unknown
 .DS_Store
 
+# venv: virtual enviroments
+*venv*
+
 # Obsidian
 .obsidian/
 
