@@ -1,6 +1,10 @@
 # unknown
 .DS_Store
 
+# MongoDB
+/mongodb-quickstart/db
+/mongodb-quickstart/log
+
 # venv: virtual enviroments
 *venv*
 
