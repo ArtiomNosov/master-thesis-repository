@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+.env
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data and Models
+data/*
+!data/.gitkeep
+experiments/artifacts/
+
+# Docs Compilations
+docs/*.aux
+docs/*.log
+docs/*.out
+docs/*.toc
+docs/*.bbl
+docs/*.blg
+docs/*.pdf
+docs/*.synctex.gz
+
+# OS Local
+.DS_Store
+Thumbs.db
