@@ -1,0 +1,59 @@
+МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ  
+ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ  
+**Национальный исследовательский ядерный университет «МИФИ»**  
+![][image1]  
+                    **Институт интеллектуальных кибернетических систем**
+
+                     		                 **КАФЕДРА КИБЕРНЕТИКИ**
+
+                  **ЗАДАНИЕ НА ВЫПОЛНЕНИЕ МАГИСТЕРСКОЙ ДИССЕРТАЦИИ**
+
+| Студенту гр. | М24-534    |  | Носов Артём Иванович |
+| :---- | :---: | :---- | :---: |
+|  | (группа) |  | (фио) |
+
+**ТЕМА ДИССЕРТАЦИИ**
+
+|  «Разработка и внедрение интеллектуального модуля ранжирования кандидатов на основе семантического анализа резюме и вакансий в систему автоматизированного подбора персонала» |
+| :---- |
+
+**ЗАДАНИЕ** 
+
+| № п/п | Содержание работы | Форма  отчетности | Срок исполнения  | Отметка о выполнении Дата, подпись рук. |
+| ----- | ----- | ----- | :---: | ----- |
+|  | **Аналитическая часть. Анализ предметной области и обзоры** |  |  |  |
+|  | Системный анализ предметной области рекрутмента, процессов найма и ATS-систем | Аналитический обзор | 1 |  |
+|  | Аналитический обзор методов обработки естественного языка (NLP) и алгоритмов машинного обучения (Learning to Rank) | Аналитический обзор | 2 |  |
+|  | Обоснование выбора архитектуры нейросетевых моделей (BERT, Sentence-BERT) и методов векторизации | Аналитический отчет, список литературы | 3 |  |
+|  | **Теоретическая часть. Проектирование и подготовка данных** |  |  |  |
+|  | Выполнение сбора, профилирования, очистки и разметки исходных данных (вакансии и резюме) | Набор данных (Dataset) | 4 |  |
+|  | Проектирование архитектуры пайплайна предварительной обработки и модуля семантического анализа | Описание архитектуры | 4 |  |
+|  | Спецификация программного интерфейса (API) и модулей интеграции с ядром ATS | Описание архитектуры (UML/Спецификация) | 5 |  |
+|  | **Инженерная часть. Результаты разработки** |  |  |  |
+|  | Разработка программного кода подготовки данных и ML-пайплайна | Программный код | 5 |  |
+|  | Реализация и дообучение (fine-tuning) модели сопоставления «вакансия-резюме» | Обученная модель, отчет | 6 |  |
+|  | Программная реализация модуля ранжирования кандидатов | Программный код | 6 |  |
+|  | **Технологическая и практическая часть. Результаты интеграции и оценки** |  |  |  |
+|  | Проведение экспериментальной оценки качества алгоритма ранжирования по метрикам NDCG, Precision@K и др. | Отчет о тестировании | 7 |  |
+|  | Выполнение интеграции созданного модуля в целевую ATS-систему (или её тестовый контур) | Отчет об интеграции, программный код | 7 |  |
+|  | Оценка экономической и практической эффективности внедрения в бизнес-процесс | Расчет эффективности | 8 |  |
+|  | **Оформление диссертации и материалов к защите** |  |  |  |
+|  | Оформление текста пояснительной записки (ПЗ) и иллюстративного материала для доклада | Текст ПЗ, презентация | 9 |  |
+
+**ЛИТЕРАТУРА**
+
+|  | Devlin J., Chang M. W., Lee K., Toutanova K. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding // Proceedings of NAACL-HLT 2019. — 2019. — P. 4171-4186. |
+| ----: | :---- |
+|  | Reimers N., Gurevych I. Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks // Proceedings of EMNLP-IJCNLP 2019. — 2019. — P. 3982-3992. |
+|  | Liu T. Y. Learning to Rank for Information Retrieval // Foundations and Trends in Information Retrieval. — 2009. — Vol. 3. — No. 3. — P. 225-331. |
+|  | Jurafsky D., Martin J. H. Speech and Language Processing // 3rd ed. draft. — Stanford University, 2024. |
+|  | Vaswani A., Shazeer N., Parmar N. et al. Attention is all you need // Advances in Neural Information Processing Systems (NIPS 2017). — 2017. — P. 5998-6008. |
+|  | Bianchi F., Terragni S., Hovy D. Pre-training is a Hot Topic: Contextualized Document Embeddings Improve Topic Coherence // Proceedings of ACL-IJCNLP 2021. — 2021. — P. 759-766. |
+
+| Дата выдачи задания:   |  |  |  |  |  | Руководитель |  |  | Киреев Василий Сергеевич |
+| ----- | :---: | :---: | :---: | :---: | :---- | :---- | :---- | ----- | ----- |
+|  |  |  |  |  |  |  |  |  | (ФИО) |
+| « |    | » |          | 2025 г. |  | Студент |  |  | Носов Артём Иванович |
+|  |  |  |  |  |  |  |  |  | (ФИО) |
+
+[image1]: <data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIYAAABICAMAAAAERX1nAAADAFBMVEUAAABjGDFrGDF7GDljITFzITl7ITmEIUJzKTmEKUKEKUqMKUKMKUprMUJ7MUqEMUqMMUqMMVKUMUprOUpzOUqEOUqMOVJzQkp7QlKUQlqcQlqlQlKlQlpzSlJ7SlKESlqMSlqUSlqcSlqcSmOlSlqlSmO1SmPGSmuEUmOMUmOcUmOlUmOlUmu1UmO9Umt7Wlp7WmOMWmOcWmulWmulWnOtWnO1WnPGWnPOWnOEY2uUY2ulY3utY3OtY3u1Y3vGY3vOY3vWY3t7a2OMa3OUa2Oca3Ola3u1a3vGa3vOa3vOa4R7c2N7c3N7c3uEc2OUc3ucc3ulc3ulc4Stc4S1c4S9c4TGc4zOc4zec4x7e3uEe2OEe2uEe3uMe2uMe4Sce4Sle4S1e4y9e4zGe4zOe5SEhISMhGuMhIychIythIzGhJTOhJTWhJTnhJSMjISMjIyUjHOUjJScjHOcjHucjJStjIS1jJS9jJTGjJTGjJzOjJzWjJzejJzejKXnjKWUlJSclHuclJyllHullIStlJy1lJy9lJzOlJzWlKXelKXelK2cnJylnISlnIylnJytnIStnIytnJy9nJzOnKXWnKXenK2lpaWtpYStpYytpZytpaW1pYy9pa3GpaXGpa3OpbXWpa3epbXnpbWtraWtra21rZS9rZTGraXGrbXWraXWrbXerbXerb3nrb3vrb21ta21tbW9tZS9taXGtZzGtaXGta3Gtb3Otb3eta3etb3vtca9vb3GvZzGva3GvcbOvZzOva3Ovcbnvcb3vcbGxsbOxqXOxq3Oxr3Wxq3WxrXexs7nxs73xtbOzs7WzsbWzs7ezq3ezrXezr3eztbvzs73zt7W1sbW1tbe1tbn1rXn1r3n1t7v1r3v1s7v1t731t7e3s7e3t7n3s7n3tbv3rXv3r3v3sb33r333uf/3ufn5+fv59b3587359b/58b/5+fv7+/379b3797/787/79b/797/7+/39/f/99b/9+f/9+//9/f//+////f///8AAAB+VKMvAAAQ+0lEQVR4Xu1ZfXAc5Xl/dk93+70n3Z10tyeMhYQFNp8GhxSDC2lIMpmhDZQWMhM8TZM/GkiHfqTTTmc8YUiHaZvSlpQ/SjsM8ZAE24VSpqW2KdQRAkOojcGAJetOMjLy3d637vb2U6d9t897d7KFsGUncqf9o8/Zd7vv7vs8v/f5fl8xBP4vELty4H+H/h/GcvqfgWGsHDgf9awc+IWpXM4cyZ6cD5j2J8bfqt3JKgDqyvfOShcLRnnq1ded+QCvgoCvxt0q80/8c/f8GkSNCwJykWAYzz/v2MDhlceJdhx4ANGuPfnkjyEKxgXgCD28cuQXofLkY0bLBdYxHDHwRZZrxZwW57PybnnI4z2P4luVLoo2ygf3+P583yZy2+TGn2Z8oycWgRgJSf3F0BO3AAiR8yrkYmhjYt++4skbfv9rn7tKvI5c8pXL5VkhaRPN7C+n4o3KDXaEh/Pp4yLAmHztuWJjx/awU2mZFnAt8dLryHuXqsV+Vi4q/NGB2OJ87Hw41g6jvHe8WXl4k1FpAUSQ+pg+fuRzVrjfSdhD9qbKSzeFhPPiWDOM8sF9cPLBz5YXEQVIkWgc4iBK7HBG7akkQFy4oqSva+NYFcZaXXRyTM/D3tmCBRIIgiiC0B4mpw788tC6RhQa0m/87F/uLm6cSayaP9aazKdgnvxZJWThZSyeiAvRiKJEFGAm+n790q2DBKKWvLH4BkxCBbyVc5fRWmHo5tFvy04ZJCkmikJE4XDNqicfbF4j8PJnVVnWYFADXa4lgFul0qwRhguE2epUGBMQRTRC7c9xJPKOrm105FfT1wIokNjgmHkrs2o2XSOMpnLku7MOgIxuIaAXchTIwuEywHVQ1A7cqGmgeNoJsMxYY+Xc5bQ2GG6G0yPoGCYIoqBwnWhw36kQrbVQBN04fIsugsgO5NGXobGKUdYYKeXSvfKkbMoS+kU3JN3Ds9AEEgNDg5oCRRA11jONdGVEPbdZ1gajaeq+I5tYNkQE0c5Q7n4dIFnUQ2BB2qxe+36imAQGrZJorBKyazKKe7CZ3UA9A3NGpOMXsJ9AAlVwyLJQapLEkhUo3hCgVSrYDpzTLKtqw21C5f2vLGAELqXAcubUfYa3EFkwYOoyrfWur68voqqFeKQDwt2fY3OQC+UcE5IgxSqXzIilgRlxy53EN/ipo9s/2Y6hgId20omrwShXJtmXNpsQMZYysXvwJ7cb3txEU4Hmi09Vg1TOponrNJXezJUGgLADEyOFFN4nIBB1TR+Y/8KbaCoY24Z5dVk7Vq5M7VpsL3EVGOXKLsLO/ZYDDrZQbTJyh43bF4KPx0dy0MgBHNchblJFC2IbZ+7Quz7o9EMaQ2irGPZheKM9s53X8XWY/ZJti8ir66rlg4dBv7d9fW7fcBEFJOvZSgXN2jGqN1mqqlXQR5oA0Ssy8aME6ga6ouS0H5eLh/3u5HI/eoMEIkRmMNNak5CjTyyoVqmLnEEB9nXt63PCMD5CFMD2rp+rZaDRxjH5/JHG9RWo5hAFjI9Y4PvgoyuC1a5npam3S1RYyS/N1CAtU2ERGPFnfOmmqVKoAG+M8rNOjVqH0uTYXsiCu619c04Yud0EeY5B0SxCDRUMxuTYeINsdUpBCbIFsAfNFlQhVAS6bKRS9YN341VE1gjFySDkaWZFeDMnRqbhS68MZLHslnQD00hnTcbYCwNZdkl754Ix+U6tATMFPa3jpFgF82RubGIoipVyKBMvDaegehyKpXgJjppgWGiURvUn441QIxTKbsiGZgiMtrGBSzZki9f8zM9Gray9wSwaRbSKaqCbjZHsMHlzsCPuHDBy77wty7MjKa/fzFpFLI+R3NRE5UQWeNPQTzRmsxAnOt880RiirgdtFNkhQD1lUdPgDhbaOS3CVYezSm0zySoNMuxi+rAwetA5yu/vAkUpK25X3tlhlA+Nl07MkmzWauZloKnHOLS3NAQsgh8Y2wBDyjgyYMgwKPxHKBDszK43oIyNl6IMK0qW1FKgojow5bylND25iDUQTmBoIrNKFNS5g/vHoYnkpzsCzxqwxkOLCA89tKAR1kyikQ+81IQCDqWzQ89DlpQb9haYlqMnSPOywyCb68tPQD80WLzHb5jpQ2fCWVE5906yceyR6x8ppDLJyQFHAEkWF7xX9xQx3yd1rVD9YUfi2bRhnCIdFMRq/wD0HW4ASQHRh/JbckXCIiZMFCcHoFRgY/81sy6MhaQIZVJg9WIRiq6oUbcVG6apFyeV+Zqe0jW2jh6LmhOLh/YUSRJdm9GZTst4dm3kdiNSFsGWGmmgWotmXmcA74tQSDNZYHWGwWhMBZiZQGeVa9zHj3I6gzhSOgNMkdSHIa1KAma96p4A7r/1n6HAFHhsU1lM8M13/xFZ6vQfkxvoijyLNiZ2jxNdCwpsgVkEyMtqH7uTCeIF5AWODEWis3TLnM7XtkChwBDuwFPHOYZJBYQU6E46gLCG8Up9ce4DUrUkNCeOzuIosdTIs095zJxHqy4wi2JX5qdhTP7bTwnD6AGaI4AYakNWd71NoBowQWqO6zuGVgpgegvk09MJyp6Bj2epdJyBDxBEMI/Nb1oWbMGd2uPpjw40j3rYD4fRAKOQZF5xYGb0wSs81/OIsWSUT8HITe2jTBlAsYFQQy+9/IWxPox/CDzdgA2vgOcF0MnecKXnITvsNJBs+oXfqMBNXV6V56rhLcnoKz54lmdhlJl93DNgl3ofTpc4zoJ57l+7b66EYRz6G4c5lqRYA88bhHTqqt37UQKV5AOXTmTwx6vRRC1rmc2WRblhNuAs0QeL80MWvpvWWZo1crs/CE3+MTCvYZsoWfMasLfGnnjTym/+kTPQmK/h0FL/sBKGceCpechv2YQcLc/mBC3/Ky+8XGvUfLvXAlfvlServgeWNC94owDrk5KE3ERLsmzGw0ziebTCkLqWwk6o+cLL0gJA0cH3rZqEUfGZxq4jUv3Kb8+d/GB2AZa3CCtgHNg1y9VqOzJWm31Ng/s/3G9BRfPEWQnH0n1F1wNfstLAZTSA/n6L8RmUAs2gztt8DY1p1XvRLhJYzz5r1fS/ApjOQQ2hIy/ve0e40tD3MGyzNYLqdbrJ60zAOiFaZf58D4FTn//tHFZg6lX6DeQBtIC2093hYn2r+yOj38GtCS77KkZWp0fDjOnRO/QHzEwFYV6oC+CEhXU3SuHfq4MVPDKiHN/0g/kUuhIXSj5QBzh14/YPoXH1TgfCLTAProSBm2qA2i5HqHz+jz5UHIGiQGm/WxcqQ/ccvRn5CJwj5Eu1jnOm8mk1KnlPT4dbghOmu2gnjFAWqe+25Mozda4ersNfDwTH4cMaXw+3wvXeXdhAkcu2F6ONJOiu0lRaS3GyBIMshvyQ/9Gzi1DpfWiCMLDY7MNJ6ncaWE7uhiQ2GGEHyttC+1EmSg1TYyb7njgSNvC6RVcGON5eYrjpHsSXoA6PDZQw9U3U1FYLn+pYWAn/VUQRjR5xgh7FsK9cAQPrfqgFr72yaMFOg7hpR+DBVVqtHDjsbxrQfyTcaoUdVvYbwnzfvNJTyKVliOzI1ZjvNp90QG05AgJyVIP+YpQ7gmHG/wQKxBUv+wu13bo5aqtpbrobr6Oy/V7YqYFgn0ZBV0XwE0LXeGbntO0+hnMbrlALO0qPGw47ZCt2sPx4jxNuOpw/eKwWLAZNcEMMXP30dI0sprRvXUqaqDlDRXswKv1ViVo1tzzYNG2XZ4/7dVAJUZm61dy2Pm9CVBzoPVlQCUbU+uUw8IuAT17+h2mw/046Ttxohq7LwJ6rbg5hH2Xz3iIYARFDMtUs+DU2BVsff8si5AHTVO65ahHFkDpDmn6TMHWm7hbIlpsJaQAP0kwemHoImr5rb6M9g8qn1KN1vklr5ounYfS0kXghePMv59T6vaM6q/fxh0iThHw2aOLMQirNTsz4NJCSWGMBnwD+u/ppzOr2bVuxdpDt5cOvFUDyQ7TU+DaEelPrUyqwCt8zoD6JnIBOJ5sESGFtiEIp02SWur8zMGhVhzeeniZ195tTYGtEzeAsHjMCG5dTWCesanuSvT73RWjHNVb+gxhr9sg3LFiU+TT7zS8/ET1p4SP6dIsgDGKNYwU+KoNXBYt3ed8l2xCFGI2KQ3Je93gMc9zmLodBE+/E0y/yoabQkjA3qXM6eiz23WDeksxroYHIPuSD/pDEnsLicdwemf0PrDLp74OhsBoRh+WBR4//uIriXN6OxZjeYDMjaSpZB2xsGtrDC5zYK2gg9ycVdVInLo8Zu+8TMHBgx49w/uL3b5ozVDUJ//5xe6Yhfx3SaVlLPjrJukRc+CXoGXeJi8pj9Y/I4rX3q6dAlZMxeuDlRP72FHED+tnCaGlZUpMxiKgQfZ+AGzjE/pqA5ZWOJqLw2MeoSSaAiRUwfucNZB/cdX0NNzLJCJjEZmywuduA1q+kQ9CFWTcUh9I8XrJYy20I5JvAkOjZHz1rwv1I3WYJQ7uDdoKm8uj2Wj2KvQnm+/tG8oNmUpNxVM15ILos3+nrlsN4vciy/uCOj7HYSIJg6qSHVvk7NOwaNFk4paNoTGlphs2ztKfAL7/nD+XMZro/FHE3iIWyybHInHcx4dAdviwkhAgHnFHEBEQSf1rLp4NkWoohZKOh8vRoHzeWZ4i6599XWXYh/sKchTruFxLlSA+P6/rGjbgwSU7E7TDLMyIjaOQKwoMoCDzPidvzmVEL0lIXBdRsvi+E7EMabW7SUrxzEIY1QmDSjyxgqFIUCdz5q7V5GMS9FHvZMhiojRcfJyzDPVoLDJyO7fSRU6iw0PYNGbSInBDE8Rx1FWYwPzoPshcSTAg1vw4UI/ab9MSLysOeuF1t/EvxS5Paxy44fmos4gw/ahkmhUb9ggPjAxdyghniT9e1Doy3r73Whz+Q5ywVUGtxSN3BLha/ePnroyYgikT0lkWfaVrzN41GgDWHa0pA7E6oqbIQFxTg6NHAhvtKBIoBzI82RjUQ2sdx+Errmpvf+sEcSJKlJdqQETR3Q5wpgDy9DAVueYB2K3nM8ZaJFkAdqx6UKrX3NB20IWpimjhn3o1PQ2LvsQYWpjqBX6UtqtZ+vXvuhgW5aZ9s6IYpgwYbxbjS7ayMRqVG97nyuo63nJb8CWonc2+BoYfMSYmi4LDGBzW4HrQNHUfjvAXWuRLbls/osAmi2NTcQRt26jaiwHVOedrtiRMSJCmpURRi1zOQNWalpCQnE6uhWOo3aKMuYPtIjYc4mEuqThIg1p4KEHEFJ2ldH7CxOh9y1b66MAptt0FVdQknIZNqMmkyUgz9eOkvBjgudlivhqIDg2sf5eHLSvuagyi9xZLctTDAOgcqA28nlWahfHuAdpSow32SMQcRnGVTqWfm0WFtgfZmq4FY0gYqvruu7howHy1E6PjSaGRhXVDclrtm751Nugk5GwqkyAJtqOgJ6bIHHs1up1mdnTra8Ki7e6cn00tPWXbf+YlVLtl9FyQz2PJ8CkX3PcqpfXX67HDpalUUS9poi1y+NE/1zhxDtt9Q3bDMP2BYmVFTUmk6XImCo+0rR52EWy6Vo38U7fw/N3U3CJ9E8ekBDsP4hMI/L9O0lVSTovYpFPQtGjdLsbN8vPv/3NSNlAugAOb2fdnEsKZ1K76gnIfxz0cXDmPh+OsPyZOqatAKtZQWLhat3MOem7z//NYQPTSidSdODbDyhbXQhWvjwFc3NkDCT4zmyIsK4ueAcewuzMsixCBBs9NFRnHhMK4CTEO2CGf+fnMx6YJhYOB3y8NZInXNdOEwgGbpFYn6otF/A7fC5j69/bUgAAAAAElFTkSuQmCC>
