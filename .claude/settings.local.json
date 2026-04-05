@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//z//**)",
+      "Read(///vmware-host/Shared Folders//**)",
+      "Bash(mkdir -p /z/mcp-test-server)",
+      "Bash(cmd.exe //c \"mkdir Z:\\\\mcp-test-server\")",
+      "Bash(net use:*)",
+      "Bash(cmd.exe //c \"dir Z:\\\\\")",
+      "mcp__docker-mcp__mcp-find",
+      "mcp__mcp-registry__search_mcp_registry",
+      "mcp__docker-mcp__mcp-add",
+      "Bash(node -e \":*)"
+    ]
+  }
+}
