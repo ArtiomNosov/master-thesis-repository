@@ -3,6 +3,7 @@ __pycache__/
 *.py[cod]
 .env
 venv/
+*venv*/
 env/
 
 # Jupyter
@@ -12,6 +13,7 @@ env/
 data/*
 !data/.gitkeep
 experiments/artifacts/
+experiments/models/bi_encoder_rubert_tiny2/model.safetensors
 
 # Docs Compilations
 docs/*.aux

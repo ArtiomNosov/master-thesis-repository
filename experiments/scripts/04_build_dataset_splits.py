@@ -1,17 +1,66 @@
 import csv
 import os
 import random
+from collections import Counter, defaultdict
+from pathlib import Path
 
 csv.field_size_limit(2147483647)
 
+
+def repo_root():
+    return Path(__file__).resolve().parents[2]
+
+
+def classify_event(row):
+    if row.get("label") in ("0", "1"):
+        return int(row["label"])
+    text = (row.get("text") or "").lower()
+    has_negative = "отклон" in text or "отказ" in text
+    has_positive = any(token in text for token in ("на рассмотр", "рассмотрено", "приглаш", "собесед", "принят"))
+    if has_negative and not has_positive:
+        return 0
+    if has_positive and not has_negative:
+        return 1
+    return None
+
+
+def stratified_split(dataset):
+    grouped = defaultdict(list)
+    for item in dataset:
+        grouped[item[2]].append(item)
+
+    rng = random.Random(42)
+    splits = {"train.tsv": [], "val.tsv": [], "test.tsv": []}
+    for label, items in grouped.items():
+        rng.shuffle(items)
+        n = len(items)
+        if n >= 10:
+            test_n = max(1, int(n * 0.1))
+            val_n = max(1, int(n * 0.1))
+        elif n >= 3:
+            test_n = 1
+            val_n = 1
+        else:
+            test_n = 0
+            val_n = 0
+        train_n = max(0, n - val_n - test_n)
+        splits["train.tsv"].extend(items[:train_n])
+        splits["val.tsv"].extend(items[train_n:train_n + val_n])
+        splits["test.tsv"].extend(items[train_n + val_n:])
+
+    for pairs in splits.values():
+        rng.shuffle(pairs)
+    return splits
+
 def build_splits():
-    sample_dir = r"z:\repositories\master-thesis-repository\data\clean"
-    # Fallback to sample if clean doesn't exist for events
-    events_path = r"z:\repositories\master-thesis-repository\data\sample\events_sample.tsv"
-    resumes_path = os.path.join(sample_dir, "resumes_cleaned.tsv")
-    vacs_path = os.path.join(sample_dir, "vacancies_cleaned.tsv")
-    
-    out_dir = r"z:\repositories\master-thesis-repository\data\splits"
+    root = repo_root()
+    clean_dir = root / "data" / "clean"
+    sample_dir = root / "data" / "sample"
+    events_path = sample_dir / "events_sample.tsv"
+    resumes_path = clean_dir / "resumes_cleaned.tsv"
+    vacs_path = clean_dir / "vacancies_cleaned.tsv"
+
+    out_dir = root / "data" / "splits"
     os.makedirs(out_dir, exist_ok=True)
     
     print("Loading valid IDs...")
@@ -41,11 +90,10 @@ def build_splits():
             for row in reader:
                 r_id = row.get('id_resume')
                 v_id = row.get('id_vac')
-                hr_status = row.get('type')
-                if r_id and v_id and hr_status:
-                    # We map HR status to binary labels based on a threshold or defined types.
-                    # Assuming status codes >= 100 generally correlate to negative events (e.g. rejections)
-                    label = 1 if int(hr_status) < 100 else 0
+                if r_id and v_id and v_id != "0":
+                    label = classify_event(row)
+                    if label is None:
+                        continue
                     labeled_pairs.append((r_id, v_id, label))
     
     print(f"Found {len(labeled_pairs)} raw HR interactions.")
@@ -61,26 +109,15 @@ def build_splits():
         if r_id in r_set and v_id in v_set:
             dataset.append((r_id, v_id, label))
             
-    # Optionally, we enforce creating at least some dummy pairs for the pipeline structural testing 
-    # strictly IF there's absolutely 0 intersection found purely due to sampling limitations.
-    if len(dataset) == 0 and valid_resumes and valid_vacs:
-        print("WARNING: Sample intersection evaluated to 0. Yielding technical dummy pairs for structural testing.")
-        dataset = [
-            (valid_resumes[0], valid_vacs[0], 1),
-            (valid_resumes[-1], valid_vacs[-1], 0)
-        ]
+    if len(dataset) == 0:
+        raise RuntimeError("No real HR-labeled pairs intersect with cleaned resumes and vacancies. Refusing to create dummy train/val/test splits.")
 
-    random.shuffle(dataset)
-    
-    n = len(dataset)
-    train_end = int(n * 0.8)
-    val_end = int(n * 0.9)
-    
-    splits = {
-        "train.tsv": dataset[:train_end],
-        "val.tsv": dataset[train_end:val_end],
-        "test.tsv": dataset[val_end:]
-    }
+    label_counts = Counter(label for _, _, label in dataset)
+    print(f"Matched labeled pairs: {len(dataset)} | labels={dict(label_counts)}")
+    if len(label_counts) < 2:
+        raise RuntimeError(f"Need both labels for training; got label distribution {dict(label_counts)}")
+
+    splits = stratified_split(dataset)
     
     print("Writing splits...")
     for split_name, pairs in splits.items():

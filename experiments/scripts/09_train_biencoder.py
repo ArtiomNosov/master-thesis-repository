@@ -3,6 +3,7 @@ import argparse
 import sys
 import importlib
 from datetime import datetime
+from pathlib import Path
 
 try:
     from torch.utils.data import DataLoader
@@ -81,10 +82,11 @@ def train(args):
 
 
 if __name__ == "__main__":
+    root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(description="Memory-Safe Semantic Ranking Training")
     parser.add_argument("--model_name", type=str, default="cointegrated/rubert-tiny2", help="Base HuggingFace model")
-    parser.add_argument("--data_dir", type=str, default=r"z:\repositories\master-thesis-repository\data", help="Root data dir")
-    parser.add_argument("--output_dir", type=str, default=r"z:\repositories\master-thesis-repository\experiments\models", help="Model saving dir")
+    parser.add_argument("--data_dir", type=str, default=str(root / "data"), help="Root data dir")
+    parser.add_argument("--output_dir", type=str, default=str(root / "experiments" / "models"), help="Model saving dir")
     parser.add_argument("--batch_size", type=int, default=8, help="Mini-batch size (Streamed)")
     parser.add_argument("--epochs", type=int, default=3, help="Training epochs")
     parser.add_argument("--warmup_steps", type=int, default=100, help="LR Warmup steps")

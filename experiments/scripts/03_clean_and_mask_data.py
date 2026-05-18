@@ -2,8 +2,13 @@ import csv
 import re
 import os
 import sys
+from pathlib import Path
 
 csv.field_size_limit(2147483647)
+
+
+def repo_root():
+    return Path(__file__).resolve().parents[2]
 
 def clean_html(raw_html):
     if not isinstance(raw_html, str):
@@ -25,6 +30,19 @@ def mask_pii(text):
     
     return text
 
+def repair_mojibake(text):
+    if not isinstance(text, str) or not text:
+        return text
+    if any(marker in text for marker in ("Ð", "Ñ", "ð", "Рљ", "Рџ")):
+        for source_encoding in ("latin1", "cp1251"):
+            try:
+                candidate = text.encode(source_encoding).decode("utf-8")
+            except (UnicodeEncodeError, UnicodeDecodeError):
+                continue
+            if candidate.count("Ð") + candidate.count("Ñ") + candidate.count("ð") < text.count("Ð") + text.count("Ñ") + text.count("ð"):
+                return candidate
+    return text
+
 def clean_dataset(input_path, output_path, text_cols):
     print(f"Cleaning {input_path} (Zero Dependency Mode)...")
     
@@ -34,7 +52,7 @@ def clean_dataset(input_path, output_path, text_cols):
 
     processed = 0
 
-    with open(input_path, 'r', encoding='utf-8') as fin, open(output_path, 'w', encoding='utf-8', newline='') as fout:
+    with open(input_path, 'r', encoding='utf-8-sig') as fin, open(output_path, 'w', encoding='utf-8-sig', newline='') as fout:
         reader = csv.DictReader(fin, delimiter='\t')
         writer = csv.DictWriter(fout, fieldnames=reader.fieldnames, delimiter='\t')
         writer.writeheader()
@@ -50,6 +68,7 @@ def clean_dataset(input_path, output_path, text_cols):
                 for col in text_cols:
                     if col in row and row[col]:
                         text = row[col]
+                        text = repair_mojibake(text)
                         text = clean_html(text)
                         
                         # Apply PII masking heavily on names/contacts/info
@@ -66,8 +85,9 @@ def clean_dataset(input_path, output_path, text_cols):
     print("-" * 50)
 
 if __name__ == "__main__":
-    sample_dir = r"z:\repositories\master-thesis-repository\data\sample"
-    clean_dir = r"z:\repositories\master-thesis-repository\data\clean"
+    root = repo_root()
+    sample_dir = root / "data" / "sample"
+    clean_dir = root / "data" / "clean"
     os.makedirs(clean_dir, exist_ok=True)
     
     # 1. Resumes
@@ -75,7 +95,7 @@ if __name__ == "__main__":
     resumes_out = os.path.join(clean_dir, "resumes_cleaned.tsv")
     clean_dataset(
         resumes_in, resumes_out, 
-        text_cols=["firstname", "lastname", "middlname", "phone1", "phone2", "email1", "desired_profession", "address"]
+        text_cols=["firstname", "lastname", "middlname", "phone1", "phone2", "email1", "desired_profession", "best", "dop", "computer", "address"]
     )
     
     # 2. Vacancies
@@ -83,5 +103,5 @@ if __name__ == "__main__":
     vacs_out = os.path.join(clean_dir, "vacancies_cleaned.tsv")
     clean_dataset(
         vacs_in, vacs_out, 
-        text_cols=["name", "profession", "info", "contact", "address"]
+        text_cols=["name", "profession", "candidat", "company", "contact", "address"]
     )

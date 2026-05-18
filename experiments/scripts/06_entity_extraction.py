@@ -2,8 +2,13 @@ import csv
 import re
 import os
 import json
+from pathlib import Path
 
 csv.field_size_limit(2147483647)
+
+
+def repo_root():
+    return Path(__file__).resolve().parents[2]
 
 SENIORITY_MAP = {
     'intern/junior': [r'\b(junior|джуниор|младший|начинающий|стажер|intern)\b'],
@@ -74,14 +79,15 @@ def process_features(input_path, output_path, extract_cols):
     print(f"Extraction complete for {processed} rows. Saved to {output_path}")
 
 if __name__ == "__main__":
-    preprocessed_dir = r"z:\repositories\master-thesis-repository\data\preprocessed"
-    features_dir = r"z:\repositories\master-thesis-repository\data\features"
+    root = repo_root()
+    preprocessed_dir = root / "data" / "preprocessed"
+    features_dir = root / "data" / "features"
     os.makedirs(features_dir, exist_ok=True)
     
     resumes_in = os.path.join(preprocessed_dir, "resumes_normalized.tsv")
     resumes_out = os.path.join(features_dir, "resumes_features.tsv")
-    process_features(resumes_in, resumes_out, extract_cols=["desired_profession", "info"])
+    process_features(resumes_in, resumes_out, extract_cols=["desired_profession", "best", "dop", "computer"])
     
     vacs_in = os.path.join(preprocessed_dir, "vacancies_normalized.tsv")
     vacs_out = os.path.join(features_dir, "vacancies_features.tsv")
-    process_features(vacs_in, vacs_out, extract_cols=["name", "profession", "info"])
+    process_features(vacs_in, vacs_out, extract_cols=["name", "profession", "candidat", "company"])

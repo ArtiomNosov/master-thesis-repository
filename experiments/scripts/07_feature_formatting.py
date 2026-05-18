@@ -1,8 +1,17 @@
 import csv
 import os
 import json
+from pathlib import Path
 
 csv.field_size_limit(2147483647)
+
+
+def repo_root():
+    return Path(__file__).resolve().parents[2]
+
+
+def join_non_empty(parts):
+    return " ".join(part.strip() for part in parts if part and part.strip())
 
 def format_features(input_path, output_path, is_resume=True):
     print(f"Formatting {input_path} into Unified Model Format...")
@@ -34,12 +43,19 @@ def format_features(input_path, output_path, is_resume=True):
             
             if is_resume:
                 role = row.get('desired_profession', '').strip()
-                text = row.get('info', '').strip()
+                text = join_non_empty([
+                    row.get('best', ''),
+                    row.get('dop', ''),
+                    row.get('computer', '')
+                ])
             else:
                 prof = row.get('profession', '').strip()
                 name = row.get('name', '').strip()
                 role = f"{prof} {name}".strip()
-                text = row.get('info', '').strip()
+                text = join_non_empty([
+                    row.get('candidat', ''),
+                    row.get('company', '')
+                ])
             
             # Construct unified input
             model_input = f"Role: {role} | Seniority: {seniority} | Skills: {skills_str} | Text: {text}"
@@ -53,8 +69,9 @@ def format_features(input_path, output_path, is_resume=True):
     print(f"Formatted {processed} rows. Saved to {output_path}")
 
 if __name__ == "__main__":
-    features_dir = r"z:\repositories\master-thesis-repository\data\features"
-    unified_dir = r"z:\repositories\master-thesis-repository\data\unified"
+    root = repo_root()
+    features_dir = root / "data" / "features"
+    unified_dir = root / "data" / "unified"
     os.makedirs(unified_dir, exist_ok=True)
     
     resumes_in = os.path.join(features_dir, "resumes_features.tsv")
