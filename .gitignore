@@ -28,3 +28,6 @@ docs/*.synctex.gz
 # OS Local
 .DS_Store
 Thumbs.db
+
+# Local vendored app / tooling trees (not thesis sources)
+ats/
