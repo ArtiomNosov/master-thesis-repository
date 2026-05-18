@@ -3,6 +3,9 @@ import sys
 
 # Append path to import the server
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+repo_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+default_model_path = os.path.join(repo_root, "experiments", "models", "bi_encoder_rubert_tiny2")
+os.environ.setdefault("MODEL_PATH", default_model_path)
 
 # Fix stdout for Cyrillic on Windows
 sys.stdout.reconfigure(encoding='utf-8')
@@ -66,12 +69,25 @@ def run_integration_test():
             latency_val = r_search.headers.get('X-Processing-Time-Ms', 'N/A')
             print(f"  -> Network success! Top matched candidate: {top_ans['candidate_id']} (Score: {top_ans['match_score']})")
             print(f"  -> Telemetry Headers Captured: Latency={latency_val}ms | Model={r_search.headers.get('X-Model-Version', 'Unknown')}")
+
+            print("\n[5] Firing POST to /score (Reqcore biencoder single-pair scoring)")
+            r_score = client.post("/score", json={
+                "vacancy_text": "Role: Senior Backend Dev | Skills: docker, k8s",
+                "candidate_text": "Role: Backend Golang | Seniority: senior | Skills: go, docker, k8s",
+            })
+            assert r_score.status_code == 200, f"Single score endpoint FAILED! {r_score.text}"
+            score_payload = r_score.json()
+            assert score_payload["status"] == "ok"
+            assert isinstance(score_payload["match_score"], float)
+            assert "X-Model-Version" in r_score.headers
+            print(f"  -> /score success! match_score={score_payload['match_score']} | Model={r_score.headers.get('X-Model-Version')}")
+
             print("\n[SYSTEM CHECK: PASS] The ATS microservice correctly processed End-to-End JSON pipelines inside the API Contour.")
     
         except Exception as e:
             print(f"\n[SYSTEM CHECK: FAIL] Integration crash: {str(e)}")
             
-        print("\n[5] Terminating Evaluation TestClient Contour")
+        print("\n[6] Terminating Evaluation TestClient Contour")
         print("Integration Harness complete.")
 
 

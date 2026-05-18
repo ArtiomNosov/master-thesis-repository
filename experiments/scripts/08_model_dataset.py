@@ -26,7 +26,9 @@ def build_sqlite_index(cache_dir, resumes_tsv, vacs_tsv):
     so we don't have to load 44 GB of data into RAM.
     """
     db_path = os.path.join(cache_dir, "model_features.db")
-    # If it exists, we just connect to it to save time
+    if os.path.exists(db_path):
+        os.remove(db_path)
+
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
     
@@ -38,12 +40,6 @@ def build_sqlite_index(cache_dir, resumes_tsv, vacs_tsv):
         )
     ''')
     
-    # Check if empty
-    cur.execute('SELECT COUNT(*) FROM features')
-    if cur.fetchone()[0] > 0:
-        print("SQLite feature index already built.")
-        return db_path
-        
     print("Building SQLite feature memory-safe index (this runs once)...")
     
     for tsv_file, doc_type in [(resumes_tsv, 'resume'), (vacs_tsv, 'vacancy')]:
