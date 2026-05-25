@@ -1,0 +1,166 @@
+{
+  "baseUrl": "http://127.0.0.1:4173",
+  "checkedAt": "2026-05-25T14:08:56.585Z",
+  "routes": [
+    {
+      "route": "#/login",
+      "url": "http://127.0.0.1:4173/#/login",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/login.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/register",
+      "url": "http://127.0.0.1:4173/#/register",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/register.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/onboarding",
+      "url": "http://127.0.0.1:4173/#/onboarding",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/onboarding.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/dashboard",
+      "url": "http://127.0.0.1:4173/#/dashboard",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/dashboard.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/vacancies",
+      "url": "http://127.0.0.1:4173/#/vacancies",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/vacancies.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/vacancies/vacancy-analytics-crm",
+      "url": "http://127.0.0.1:4173/#/vacancies/vacancy-analytics-crm",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/vacancy-detail.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/candidates",
+      "url": "http://127.0.0.1:4173/#/candidates",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/candidates.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/candidates/candidate-irina-volkova",
+      "url": "http://127.0.0.1:4173/#/candidates/candidate-irina-volkova",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/candidate-detail.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/resumes",
+      "url": "http://127.0.0.1:4173/#/resumes",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/resumes.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/scoring",
+      "url": "http://127.0.0.1:4173/#/scoring",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/scoring.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/criteria",
+      "url": "http://127.0.0.1:4173/#/criteria",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/criteria.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/ranking",
+      "url": "http://127.0.0.1:4173/#/ranking",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/ranking.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/settings",
+      "url": "http://127.0.0.1:4173/#/settings",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/settings.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/profile",
+      "url": "http://127.0.0.1:4173/#/profile",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/profile.png",
+      "unexpectedLatin": []
+    },
+    {
+      "route": "#/admin",
+      "url": "http://127.0.0.1:4173/#/admin",
+      "screenshot": "/workspace/artifacts/i18n-ru-screenshots/admin.png",
+      "unexpectedLatin": []
+    }
+  ],
+  "technicalLatinAllowed": [
+    "AI",
+    "AI-",
+    "API",
+    "API-",
+    "ATS",
+    "ATSRanker",
+    "BI",
+    "Bi",
+    "Bi-Encoder",
+    "Boolean",
+    "CRM",
+    "CRM-",
+    "DOCX",
+    "Docker",
+    "Engine",
+    "FastAPI",
+    "HR",
+    "ID",
+    "IT",
+    "JSON",
+    "JSON-",
+    "LinkedIn",
+    "MODEL",
+    "MODEL_PATH",
+    "PDF",
+    "POST",
+    "PostgreSQL",
+    "Power",
+    "Python",
+    "REQCORE",
+    "Reqcore",
+    "SQL",
+    "Top",
+    "Top-K",
+    "URL",
+    "X-Model-Version",
+    "X-Processing-Time-Ms",
+    "anna",
+    "anton",
+    "candidate",
+    "candidate_id",
+    "demo-password",
+    "elena",
+    "endpoint",
+    "example",
+    "index",
+    "irina",
+    "job_description",
+    "kim",
+    "maria",
+    "match_score",
+    "ms",
+    "pavel",
+    "rank",
+    "recruiter",
+    "resume-101",
+    "resume-102",
+    "resume-103",
+    "resumes",
+    "ru",
+    "rubert-tiny2",
+    "score",
+    "search",
+    "sokolova",
+    "submit",
+    "top-k",
+    "vacancy_id",
+    "volkova"
+  ]
+}

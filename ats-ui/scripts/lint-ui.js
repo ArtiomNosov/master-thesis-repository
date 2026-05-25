@@ -6,6 +6,7 @@ const allowedLatin = new Set([
   "ATS",
   "ATSRanker",
   "Bi-Encoder",
+  "CRM",
   "DOCX",
   "Engine",
   "FastAPI",
@@ -20,6 +21,7 @@ const allowedLatin = new Set([
   "demo-password",
   "endpoint",
   "example",
+  "http",
   "job",
   "k",
   "password",
@@ -65,7 +67,9 @@ for (const [locale, dictionary] of Object.entries(messages)) {
 
   for (const [key, value] of flatten(dictionary)) {
     const latinWords = value.match(/[A-Za-z][A-Za-z0-9-]*/g) ?? [];
-    const unexpectedWords = latinWords.filter((word) => !allowedLatin.has(word));
+    const unexpectedWords = latinWords
+      .map((word) => word.replace(/^-+|-+$/g, ""))
+      .filter((word) => !allowedLatin.has(word));
     if (unexpectedWords.length > 0) {
       failures.push(`${locale}.${key}: проверьте латиницу "${unexpectedWords.join(", ")}"`);
     }

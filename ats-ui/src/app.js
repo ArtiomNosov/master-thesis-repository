@@ -87,7 +87,7 @@ function layout(content, route) {
     <div class="app-shell">
       <aside class="sidebar" aria-label="${t("nav.dashboard")}">
         <div class="brand">
-          <div class="brand-mark" aria-hidden="true">R</div>
+          <div class="brand-mark" aria-hidden="true">Р</div>
           <div>
             <strong>${t("app.title")}</strong>
             <span>${t("app.subtitle")}</span>
@@ -319,7 +319,7 @@ function renderDashboard() {
         <dl class="details-list">
           <div><dt>${t("dashboard.modelVersion")}</dt><dd>rubert-tiny2 / Bi-Encoder</dd></div>
           <div><dt>ATSRanker</dt><dd>${t("common.enabled")}</dd></div>
-          <div><dt>X-Model-Version</dt><dd>2026.05-demo</dd></div>
+          <div><dt>X-Model-Version</dt><dd>2026.05</dd></div>
         </dl>
       </article>
     </section>

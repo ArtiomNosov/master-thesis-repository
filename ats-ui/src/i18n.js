@@ -83,7 +83,7 @@ export const messages = {
       stepCandidates: "Кандидаты и резюме",
       teamSizeLabel: "Размер команды рекрутинга",
       specializationLabel: "Основной профиль вакансий",
-      specializationPlaceholder: "Например: аналитика данных, backend, продажи",
+      specializationPlaceholder: "Например: аналитика данных, бэкенд, продажи",
       importDemoData: "Добавить демо-данные",
       completed: "Настройка завершена. Можно перейти к вакансиям.",
     },

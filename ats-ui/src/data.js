@@ -22,7 +22,7 @@ export const vacancies = [
   },
   {
     id: "vacancy-backend-python",
-    title: "Backend-разработчик Python",
+    title: "Бэкенд-разработчик Python",
     department: "Платформа AI Engine",
     location: "Удалённо",
     status: "active",
@@ -44,7 +44,7 @@ export const vacancies = [
   {
     id: "vacancy-recruiter-it",
     title: "IT-рекрутер",
-    department: "People",
+    department: "HR-команда",
     location: "Санкт-Петербург",
     status: "paused",
     candidates: 12,
@@ -84,14 +84,14 @@ export const candidates = [
       "Сильный опыт CRM-кампаний и продуктовой аналитики. Хорошо объясняет бизнес-эффект решений.",
     timeline: [
       "Резюме загружено и распознано",
-      "AI scoring показал высокий match score",
+      "AI-оценка показала высокую оценку соответствия",
       "Назначен технический скрининг",
     ],
   },
   {
     id: "candidate-anton-kim",
     name: "Антон Ким",
-    desiredRole: "Backend-разработчик Python",
+    desiredRole: "Бэкенд-разработчик Python",
     stage: "interviewStage",
     vacancyId: "vacancy-backend-python",
     matchScore: 89,
@@ -168,7 +168,7 @@ export const criteria = [
 
 export const activity = [
   "Ирина Волкова перемещена на этап скрининга",
-  "Для вакансии «Backend-разработчик Python» обновлены критерии оценки",
+  "Для вакансии «Бэкенд-разработчик Python» обновлены критерии оценки",
   "Загружено резюме Марии Соколовой",
   "Ранжирование по вакансии «Старший аналитик данных в CRM» завершено",
 ];
