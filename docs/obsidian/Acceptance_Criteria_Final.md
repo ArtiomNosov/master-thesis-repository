@@ -66,13 +66,13 @@
 
 **✅ ВЫПОЛНЕН**
 
-Скрипт `12_baseline_comparison.py` сравнил три подхода:
+Скрипт `12_baseline_comparison.py` зафиксировал протокол сравнения ровно трех подходов:
 
-| Подход | Оценка релевантного резюме |
+| Подход | Роль в эксперименте |
 |---|---|
-| TF-IDF (Simple Baseline) | 0.000 |
-| rubert-tiny2 base (Strong Baseline) | 0.815 |
-| Fine-Tuned Bi-Encoder (Наш метод) | 0.865 |
+| BM25 lexical ranking baseline | Классическая лексическая нижняя граница без обучения |
+| Fine-tuned Cross-Encoder `cointegrated/rubert-tiny2` | Верхняя граница качества при дорогом pairwise scoring |
+| Fine-tuned Bi-Encoder `experiments/models/bi_encoder_rubert_tiny2` | Масштабируемый proposed approach для ATS |
 
 Результаты и выводы: `docs/obsidian/Baseline_Comparison_Report.md`.
 
