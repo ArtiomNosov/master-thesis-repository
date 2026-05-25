@@ -136,6 +136,66 @@ def check_tables(document: Document, config: dict[str, Any], errors: list[str]) 
                             )
 
 
+def iter_body_blocks(document: Document) -> list[tuple[str, Any]]:
+    paragraph_by_id = {id(paragraph._p): paragraph for paragraph in document.paragraphs}
+    table_by_id = {id(table._tbl): table for table in document.tables}
+    blocks: list[tuple[str, Any]] = []
+    for child in document.element.body.iterchildren():
+        tag = child.tag.rsplit('}', 1)[-1]
+        if tag == "p" and id(child) in paragraph_by_id:
+            blocks.append(("paragraph", paragraph_by_id[id(child)]))
+        elif tag == "tbl" and id(child) in table_by_id:
+            blocks.append(("table", table_by_id[id(child)]))
+    return blocks
+
+
+def is_table_caption_text(text: str, config: dict[str, Any]) -> bool:
+    prefix = config["captions"]["table"]["prefix"]
+    stripped = text.strip()
+    return bool(re.match(rf"^{prefix}\s+[\w.]+\s+[-–]\s+\S+", stripped, re.IGNORECASE))
+
+
+def is_figure_caption_text(text: str, config: dict[str, Any]) -> bool:
+    prefix = config["captions"]["figure"]["prefix"]
+    stripped = text.strip()
+    return bool(re.match(rf"^{prefix}\s+[\w.]+\s+[-–]\s+\S+", stripped, re.IGNORECASE))
+
+
+def previous_nonempty_paragraph(blocks: list[tuple[str, Any]], start_index: int) -> Any | None:
+    for kind, block in reversed(blocks[:start_index]):
+        if kind == "paragraph" and block.text.strip():
+            return block
+    return None
+
+
+def next_nonempty_paragraph(blocks: list[tuple[str, Any]], start_index: int) -> Any | None:
+    for kind, block in blocks[start_index + 1:]:
+        if kind == "paragraph" and block.text.strip():
+            return block
+    return None
+
+
+def paragraph_has_drawing(paragraph: Any) -> bool:
+    return "<w:drawing" in paragraph._p.xml or "<w:pict" in paragraph._p.xml
+
+
+def check_required_captions(document: Document, config: dict[str, Any], errors: list[str]) -> None:
+    blocks = iter_body_blocks(document)
+    table_number = 0
+    figure_number = 0
+    for index, (kind, block) in enumerate(blocks):
+        if kind == "table":
+            table_number += 1
+            caption = previous_nonempty_paragraph(blocks, index)
+            if caption is None or caption.style.name != "VKR Table Caption" or not is_table_caption_text(caption.text, config):
+                fail(errors, f"Table {table_number}: missing required caption above the table")
+        elif kind == "paragraph" and paragraph_has_drawing(block):
+            figure_number += 1
+            caption = next_nonempty_paragraph(blocks, index)
+            if caption is None or caption.style.name != "VKR Figure Caption" or not is_figure_caption_text(caption.text, config):
+                fail(errors, f"Figure {figure_number}: missing required caption below the figure")
+
+
 def check_page_number(document: Document, config: dict[str, Any], errors: list[str]) -> None:
     if not config["document"]["page_numbers"]["enabled"]:
         return
@@ -168,6 +228,7 @@ def run_checks(docx_path: Path, config: dict[str, Any], strict_content_checks: b
     check_styles(document, config, errors)
     check_paragraphs(document, config, errors)
     check_tables(document, config, errors)
+    check_required_captions(document, config, errors)
     check_page_number(document, config, errors)
     check_reference_counts(document, config, warnings, strict_content_checks, errors)
     return errors, warnings

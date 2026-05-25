@@ -318,7 +318,42 @@ def set_repeat_table_header(row: Any) -> None:
     tr_pr.append(tbl_header)
 
 
-def consume_table(document: Document, tokens: list[Token], start: int, config: dict[str, Any]) -> int:
+def is_table_caption_text(text: str, config: dict[str, Any]) -> bool:
+    table_caption_prefix = config["captions"]["table"]["prefix"]
+    stripped = text.strip()
+    return bool(
+        re.match(rf"^{table_caption_prefix}\s+[\w.]+\s+[-–]\s+\S+", stripped, re.IGNORECASE)
+        or re.match(rf"^(Продолжение|Окончание)\s+{table_caption_prefix}\b", stripped, re.IGNORECASE)
+    )
+
+
+def document_ends_with_table_caption(document: Document, config: dict[str, Any]) -> bool:
+    for paragraph in reversed(document.paragraphs):
+        if paragraph.text.strip():
+            return paragraph.style.name == "VKR Table Caption" and is_table_caption_text(paragraph.text, config)
+    return False
+
+
+def table_caption_from_header(rows: list[list[str]], table_number: int, config: dict[str, Any]) -> str:
+    prefix = config["captions"]["table"]["prefix"]
+    separator = config["captions"]["table"]["separator"]
+    header = [cell.strip(" `") for cell in rows[0] if cell.strip()] if rows else []
+    title = ", ".join(header[:3])
+    if len(header) > 3:
+        title += " и другие параметры"
+    if not title:
+        title = "Сводные данные"
+    return f"{prefix} {table_number} {separator} {title}"
+
+
+def add_auto_table_caption(document: Document, rows: list[list[str]], table_number: int, config: dict[str, Any]) -> None:
+    if document_ends_with_table_caption(document, config):
+        return
+    paragraph = document.add_paragraph(style="VKR Table Caption")
+    paragraph.text = table_caption_from_header(rows, table_number, config)
+
+
+def consume_table(document: Document, tokens: list[Token], start: int, config: dict[str, Any], table_number: int) -> int:
     rows: list[list[str]] = []
     current_row: list[str] | None = None
     in_cell = False
@@ -341,6 +376,7 @@ def consume_table(document: Document, tokens: list[Token], start: int, config: d
         i += 1
 
     if rows:
+        add_auto_table_caption(document, rows, table_number, config)
         table = document.add_table(rows=len(rows), cols=max(len(row) for row in rows))
         table.style = "Table Grid"
         for row_index, row in enumerate(rows):
@@ -379,6 +415,7 @@ def convert_markdown(input_path: Path, output_path: Path, config: dict[str, Any]
     configure_document(document, config)
 
     list_stack: list[str] = []
+    table_number = 1
     i = 0
     while i < len(tokens):
         token = tokens[i]
@@ -402,7 +439,8 @@ def convert_markdown(input_path: Path, output_path: Path, config: dict[str, Any]
         elif token.type == "fence":
             add_code_block(document, token.content, config, is_formula=token.info.strip().lower() in {"math", "formula"})
         elif token.type == "table_open":
-            i = consume_table(document, tokens, i, config)
+            i = consume_table(document, tokens, i, config, table_number)
+            table_number += 1
             continue
         elif token.type == "hr":
             document.add_page_break()
