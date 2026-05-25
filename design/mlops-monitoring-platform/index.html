@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MLOps Monitoring Platform - High Fidelity UI Mockup</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="board">
+      <section class="frame" id="dashboard">
+        <div class="app">
+          <aside class="sidebar">
+            <div class="brand">
+              <div class="brand-mark">ML</div>
+              <div>
+                <div class="brand-title">ModelPulse</div>
+                <div class="brand-caption">Production ML Control</div>
+              </div>
+            </div>
+            <div class="nav-section">
+              <div class="nav-label">Monitor</div>
+              <div class="nav-item active"><span class="nav-icon">D</span>Dashboard</div>
+              <div class="nav-item"><span class="nav-icon">M</span>Models</div>
+              <div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div>
+              <div class="nav-item"><span class="nav-icon">P</span>Performance</div>
+              <div class="nav-item"><span class="nav-icon">A</span>Alerts</div>
+              <div class="nav-item"><span class="nav-icon">R</span>Registry</div>
+            </div>
+            <div class="nav-section">
+              <div class="nav-label">Workspace</div>
+              <div class="nav-item"><span class="nav-icon">S</span>Settings</div>
+            </div>
+            <div class="sidebar-card">
+              <strong>Production health</strong>
+              <span>1 critical alert requires action in fraud detection pipeline.</span>
+            </div>
+          </aside>
+
+          <div class="content">
+            <header class="topbar">
+              <div class="search">Search models, features, alerts...</div>
+              <div class="top-actions">
+                <div class="select-pill">Last 7 days</div>
+                <div class="select-pill">Production</div>
+                <div class="icon-button">N</div>
+                <div class="profile"><div class="avatar">AK</div><strong>Anna Kim</strong></div>
+              </div>
+            </header>
+
+            <section class="page">
+              <div class="page-header">
+                <div>
+                  <p class="eyebrow">MLOps Dashboard</p>
+                  <h1>Production model health overview</h1>
+                  <p class="subtle">Track quality, data drift, model drift, incidents, and operational readiness across ML systems.</p>
+                </div>
+                <div class="filter-row">
+                  <button class="filter-chip primary">Project: Growth ML</button>
+                  <button class="filter-chip">Model: All</button>
+                  <button class="filter-chip">Env: Production</button>
+                  <button class="filter-chip">Period: 7D</button>
+                </div>
+              </div>
+
+              <div class="grid grid-4">
+                <div class="card metric-card">
+                  <div class="metric-head"><span class="metric-label">System status</span><span class="badge warning">Warning</span></div>
+                  <div class="metric-value">92.4%</div>
+                  <div class="metric-delta">SLO compliance, <span class="delta-down">-2.1%</span> vs previous week</div>
+                </div>
+                <div class="card metric-card">
+                  <div class="metric-head"><span class="metric-label">Healthy models</span><span class="status-dot healthy"></span></div>
+                  <div class="metric-value">8</div>
+                  <div class="metric-delta">Stable quality and drift levels</div>
+                </div>
+                <div class="card metric-card">
+                  <div class="metric-head"><span class="metric-label">Warning models</span><span class="status-dot warning"></span></div>
+                  <div class="metric-value">3</div>
+                  <div class="metric-delta">Quality or drift should be reviewed</div>
+                </div>
+                <div class="card metric-card">
+                  <div class="metric-head"><span class="metric-label">Critical models</span><span class="status-dot critical"></span></div>
+                  <div class="metric-value">1</div>
+                  <div class="metric-delta">Immediate response recommended</div>
+                </div>
+              </div>
+
+              <div class="grid grid-main" style="margin-top:18px">
+                <div class="card card-pad">
+                  <div class="card-title-row">
+                    <div>
+                      <h2>Model quality trend</h2>
+                      <p class="subtle">Average F1-score and ROC-AUC across active production models.</p>
+                    </div>
+                    <div class="legend"><span><i style="background:#2563eb"></i>F1-score</span><span><i style="background:#16a34a"></i>ROC-AUC</span></div>
+                  </div>
+                  <svg class="chart" viewBox="0 0 740 260" role="img" aria-label="Model quality trend">
+                    <rect class="chart-bg" x="0" y="0" width="740" height="260" rx="18"></rect>
+                    <line class="grid-line" x1="46" y1="46" x2="704" y2="46"></line>
+                    <line class="grid-line" x1="46" y1="98" x2="704" y2="98"></line>
+                    <line class="grid-line" x1="46" y1="150" x2="704" y2="150"></line>
+                    <line class="grid-line" x1="46" y1="202" x2="704" y2="202"></line>
+                    <text class="axis-label" x="46" y="235">Mon</text><text class="axis-label" x="156" y="235">Tue</text>
+                    <text class="axis-label" x="266" y="235">Wed</text><text class="axis-label" x="376" y="235">Thu</text>
+                    <text class="axis-label" x="486" y="235">Fri</text><text class="axis-label" x="596" y="235">Sat</text>
+                    <text class="axis-label" x="676" y="235">Sun</text>
+                    <path class="area-blue" d="M52 94 C144 82 178 104 250 92 C334 78 398 86 470 112 C550 141 628 135 694 122 L694 214 L52 214 Z"></path>
+                    <path class="line-blue" d="M52 94 C144 82 178 104 250 92 C334 78 398 86 470 112 C550 141 628 135 694 122"></path>
+                    <path class="line-green" d="M52 74 C142 68 180 80 250 76 C330 66 394 70 470 82 C550 95 628 91 694 86"></path>
+                    <circle cx="470" cy="112" r="5" fill="#2563eb"></circle>
+                    <circle cx="694" cy="122" r="5" fill="#2563eb"></circle>
+                  </svg>
+                </div>
+
+                <div class="card card-pad">
+                  <div class="card-title-row">
+                    <h2>Drift and model alerts</h2>
+                    <span class="link">View all</span>
+                  </div>
+                  <div class="alert-list">
+                    <div class="incident">
+                      <div class="incident-top">
+                        <span class="incident-title">High data drift in transaction_amount</span>
+                        <span class="badge critical">Critical</span>
+                      </div>
+                      <div class="incident-meta">fraud_detection_v2 - drift score 0.81 - 12 min ago</div>
+                    </div>
+                    <div class="incident">
+                      <div class="incident-top">
+                        <span class="incident-title">F1-score below baseline</span>
+                        <span class="badge warning">Warning</span>
+                      </div>
+                      <div class="incident-meta">churn_prediction_v3 - current 0.872 vs baseline 0.914</div>
+                    </div>
+                    <div class="incident">
+                      <div class="incident-top">
+                        <span class="incident-title">Latency p95 increased</span>
+                        <span class="badge warning">Warning</span>
+                      </div>
+                      <div class="incident-meta">demand_forecast_v1 - p95 184 ms - 34 min ago</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-main" style="margin-top:18px">
+                <div class="card card-pad">
+                  <div class="table-title-row">
+                    <h2>Active models</h2>
+                    <span class="link">Export CSV</span>
+                  </div>
+                  <table class="table">
+                    <thead>
+                      <tr><th>Model</th><th>Project</th><th>Status</th><th>F1-score</th><th>Drift</th><th>Latency</th><th>Owner</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><div class="model-name"><span class="model-icon">CP</span>churn_prediction_v3</div></td>
+                        <td>Growth ML</td><td><span class="badge warning">Warning</span></td><td>0.872</td><td>0.43</td><td>96 ms</td><td>N. Orlova</td>
+                      </tr>
+                      <tr>
+                        <td><div class="model-name"><span class="model-icon">FD</span>fraud_detection_v2</div></td>
+                        <td>Risk</td><td><span class="badge critical">Critical</span></td><td>0.781</td><td>0.81</td><td>142 ms</td><td>M. Petrov</td>
+                      </tr>
+                      <tr>
+                        <td><div class="model-name"><span class="model-icon">DF</span>demand_forecast_v1</div></td>
+                        <td>Supply</td><td><span class="badge healthy">Healthy</span></td><td>0.914</td><td>0.18</td><td>184 ms</td><td>A. Kim</td>
+                      </tr>
+                      <tr>
+                        <td><div class="model-name"><span class="model-icon">CR</span>credit_risk_v4</div></td>
+                        <td>Risk</td><td><span class="badge healthy">Healthy</span></td><td>0.928</td><td>0.12</td><td>88 ms</td><td>D. Ivanov</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="card card-pad">
+                  <div class="card-title-row">
+                    <h2>Latest incidents</h2>
+                    <span class="link">Incident log</span>
+                  </div>
+                  <div class="incident-list">
+                    <div class="incident">
+                      <div class="incident-top"><span class="incident-title">Feature schema mismatch</span><span class="badge critical">Open</span></div>
+                      <div class="incident-meta">fraud_detection_v2 - assigned to Risk ML - 14:02 UTC</div>
+                    </div>
+                    <div class="incident">
+                      <div class="incident-top"><span class="incident-title">Baseline degradation confirmed</span><span class="badge warning">Investigating</span></div>
+                      <div class="incident-meta">churn_prediction_v3 - data quality check running</div>
+                    </div>
+                    <div class="incident">
+                      <div class="incident-top"><span class="incident-title">Autoscaling recovered</span><span class="badge healthy">Resolved</span></div>
+                      <div class="incident-meta">demand_forecast_v1 - throughput back to normal</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="component-strip" style="margin-top:18px">
+                <strong>Reusable components:</strong>
+                <span class="badge healthy">Healthy</span>
+                <span class="badge warning">Warning</span>
+                <span class="badge critical">Critical</span>
+                <button class="button primary">Investigate</button>
+                <button class="button">Assign</button>
+                <button class="button">Resolve</button>
+                <span class="filter-chip">Model filter</span>
+                <span class="filter-chip primary">Selected filter</span>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="frame" id="model-detail">
+        <div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
+            <div class="nav-section">
+              <div class="nav-label">Monitor</div>
+              <div class="nav-item"><span class="nav-icon">D</span>Dashboard</div>
+              <div class="nav-item active"><span class="nav-icon">M</span>Models</div>
+              <div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div>
+              <div class="nav-item"><span class="nav-icon">P</span>Performance</div>
+              <div class="nav-item"><span class="nav-icon">A</span>Alerts</div>
+              <div class="nav-item"><span class="nav-icon">R</span>Registry</div>
+            </div>
+            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
+            <div class="sidebar-card"><strong>Recommended next step</strong><span>Retrain with latest 30-day labeled sample and review acquisition_channel drift.</span></div>
+          </aside>
+          <div class="content">
+            <header class="topbar">
+              <div class="search">Search in churn_prediction_v3...</div>
+              <div class="top-actions"><div class="select-pill">Last 30 days</div><div class="select-pill">Production</div><div class="icon-button">N</div><div class="profile"><div class="avatar">NO</div><strong>Nina Orlova</strong></div></div>
+            </header>
+            <section class="page">
+              <div class="page-header">
+                <div><p class="eyebrow">Model Detail</p><h1>churn_prediction_v3</h1><p class="subtle">Customer churn classifier for retention campaigns, currently monitored in production.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Version 3.8.2</button><button class="filter-chip">Baseline 3.7.0</button><button class="filter-chip">Prod</button></div>
+              </div>
+
+              <div class="model-hero">
+                <div class="hero-card card">
+                  <div class="card-title-row"><div><h2>Model status</h2><p class="subtle">Quality degradation detected in the last 48 hours.</p></div><span class="badge warning">Warning</span></div>
+                  <div class="hero-meta">
+                    <div class="meta-box"><span>Version</span><strong>3.8.2</strong></div>
+                    <div class="meta-box"><span>Environment</span><strong>Production</strong></div>
+                    <div class="meta-box"><span>Last deploy</span><strong>May 21, 2026</strong></div>
+                    <div class="meta-box"><span>Dataset</span><strong>retention_2026_05</strong></div>
+                    <div class="meta-box"><span>Owner</span><strong>Growth ML Team</strong></div>
+                  </div>
+                </div>
+                <div class="card card-pad">
+                  <h2>Actions recommended</h2>
+                  <div class="recommendation-list">
+                    <div class="recommendation"><strong>Retrain</strong><p>Use latest labeled retention outcomes and rebalance high-risk segment.</p><div class="button-row"><button class="button primary">Start retrain</button><button class="button">Schedule</button></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid grid-4" style="margin-top:18px">
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Accuracy</span><span class="badge warning">-1.8%</span></div><div class="metric-value">0.918</div><div class="metric-delta">Baseline 0.936</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Precision</span><span class="badge healthy">OK</span></div><div class="metric-value">0.904</div><div class="metric-delta">Baseline 0.908</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Recall</span><span class="badge warning">-4.2%</span></div><div class="metric-value">0.842</div><div class="metric-delta">Baseline 0.884</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">ROC-AUC</span><span class="badge warning">Drift</span></div><div class="metric-value">0.931</div><div class="metric-delta">Baseline 0.951</div></div>
+              </div>
+
+              <div class="grid grid-main" style="margin-top:18px">
+                <div class="card card-pad">
+                  <div class="card-title-row"><div><h2>Quality over time</h2><p class="subtle">Daily F1-score with baseline guardrail.</p></div><span class="badge warning">Below guardrail</span></div>
+                  <svg class="chart" viewBox="0 0 740 272" role="img" aria-label="Quality over time">
+                    <rect class="chart-bg" x="0" y="0" width="740" height="272" rx="18"></rect>
+                    <line class="grid-line" x1="46" y1="52" x2="704" y2="52"></line><line class="grid-line" x1="46" y1="112" x2="704" y2="112"></line><line class="grid-line" x1="46" y1="172" x2="704" y2="172"></line><line class="grid-line" x1="46" y1="226" x2="704" y2="226"></line>
+                    <path d="M52 86 L704 86" stroke="#d97706" stroke-width="2" stroke-dasharray="7 7"></path>
+                    <path class="line-blue" d="M52 72 C120 76 160 70 226 78 C300 86 360 92 430 118 C498 138 560 154 626 142 C660 136 684 130 704 128"></path>
+                    <path class="line-red" d="M52 114 C130 110 198 108 260 118 C340 126 418 136 488 160 C568 184 634 192 704 188"></path>
+                    <text class="axis-label" x="58" y="248">Apr 26</text><text class="axis-label" x="342" y="248">May 10</text><text class="axis-label" x="644" y="248">May 24</text>
+                  </svg>
+                </div>
+                <div class="card card-pad">
+                  <h2>Current vs baseline</h2>
+                  <div class="baseline-row"><span>Accuracy</span><div class="baseline-values"><span>0.918 / 0.936</span><div class="mini-progress"><span style="width:84%"></span></div></div></div>
+                  <div class="baseline-row"><span>Precision</span><div class="baseline-values"><span>0.904 / 0.908</span><div class="mini-progress"><span style="width:92%"></span></div></div></div>
+                  <div class="baseline-row"><span>Recall</span><div class="baseline-values"><span>0.842 / 0.884</span><div class="mini-progress"><span style="width:72%;background:#d97706"></span></div></div></div>
+                  <div class="baseline-row"><span>F1-score</span><div class="baseline-values"><span>0.872 / 0.914</span><div class="mini-progress"><span style="width:76%;background:#d97706"></span></div></div></div>
+                  <div class="baseline-row"><span>ROC-AUC</span><div class="baseline-values"><span>0.931 / 0.951</span><div class="mini-progress"><span style="width:86%"></span></div></div></div>
+                </div>
+              </div>
+
+              <div class="grid grid-3" style="margin-top:18px">
+                <div class="recommendation"><strong>Investigate</strong><p>Review acquisition_channel and plan_type distribution shift since May 19.</p><button class="button primary">Open drift analysis</button></div>
+                <div class="recommendation"><strong>Rollback</strong><p>Fallback version 3.7.0 remains stable and deployable if recall drops below 0.82.</p><button class="button">Prepare rollback</button></div>
+                <div class="recommendation"><strong>Monitor</strong><p>Increase evaluation cadence to hourly until drift score returns below 0.30.</p><button class="button">Create watch rule</button></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="frame" id="data-drift">
+        <div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
+            <div class="nav-section">
+              <div class="nav-label">Monitor</div>
+              <div class="nav-item"><span class="nav-icon">D</span>Dashboard</div><div class="nav-item"><span class="nav-icon">M</span>Models</div><div class="nav-item active"><span class="nav-icon">DD</span>Data Drift</div><div class="nav-item"><span class="nav-icon">P</span>Performance</div><div class="nav-item"><span class="nav-icon">A</span>Alerts</div><div class="nav-item"><span class="nav-icon">R</span>Registry</div>
+            </div>
+            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
+            <div class="sidebar-card"><strong>Dataset comparison</strong><span>Train: 2026 Q1 cohort. Production: last 24h scored traffic.</span></div>
+          </aside>
+          <div class="content">
+            <header class="topbar"><div class="search">Search feature drift...</div><div class="top-actions"><div class="select-pill">Last 24 hours</div><div class="select-pill">fraud_detection_v2</div><div class="icon-button">N</div><div class="profile"><div class="avatar">MP</div><strong>Max Petrov</strong></div></div></header>
+            <section class="page">
+              <div class="page-header">
+                <div><p class="eyebrow">Data Drift Monitoring</p><h1>Train vs production distribution shift</h1><p class="subtle">Feature-level drift scores with visual severity and latest checks.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Model: fraud_detection_v2</button><button class="filter-chip">Dataset: prod last 24h</button><button class="filter-chip">Method: PSI + KS</button></div>
+              </div>
+              <div class="grid grid-4">
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Overall drift</span><span class="badge critical">Critical</span></div><div class="metric-value">0.62</div><div class="metric-delta">Threshold 0.50</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">High drift features</span><span class="status-dot critical"></span></div><div class="metric-value">4</div><div class="metric-delta">Need investigation</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Warning features</span><span class="status-dot warning"></span></div><div class="metric-value">7</div><div class="metric-delta">Monitor trend</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Last check</span><span class="badge info">Fresh</span></div><div class="metric-value">5m</div><div class="metric-delta">Next run in 10 minutes</div></div>
+              </div>
+
+              <div class="grid drift-layout" style="margin-top:18px">
+                <div class="card card-pad">
+                  <h2>Highest drift features</h2>
+                  <div class="feature-list">
+                    <div class="feature-item"><strong>transaction_amount</strong><span class="badge critical">0.81</span><span>numeric - KS test</span><span>Critical</span></div>
+                    <div class="feature-item"><strong>merchant_category</strong><span class="badge critical">0.74</span><span>categorical - PSI</span><span>Critical</span></div>
+                    <div class="feature-item"><strong>device_risk_score</strong><span class="badge critical">0.66</span><span>numeric - KS test</span><span>Critical</span></div>
+                    <div class="feature-item"><strong>geo_distance_km</strong><span class="badge warning">0.49</span><span>numeric - PSI</span><span>Warning</span></div>
+                  </div>
+                </div>
+                <div class="card card-pad">
+                  <div class="card-title-row"><h2>Feature distributions</h2><div class="legend"><span><i style="background:#b9c8dd"></i>Train</span><span><i style="background:#2563eb"></i>Production</span></div></div>
+                  <div class="dist-grid">
+                    <div class="dist-card"><h3>transaction_amount</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="34" y="88" width="24" height="48" rx="5"></rect><rect class="bar-prod" x="62" y="62" width="24" height="74" rx="5"></rect><rect class="bar-train" x="108" y="54" width="24" height="82" rx="5"></rect><rect class="bar-prod" x="136" y="38" width="24" height="98" rx="5"></rect><rect class="bar-train" x="182" y="82" width="24" height="54" rx="5"></rect><rect class="bar-critical" x="210" y="24" width="24" height="112" rx="5"></rect><rect class="bar-train" x="256" y="106" width="24" height="30" rx="5"></rect><rect class="bar-critical" x="284" y="70" width="24" height="66" rx="5"></rect></svg></div>
+                    <div class="dist-card"><h3>merchant_category</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="34" y="42" width="26" height="94" rx="5"></rect><rect class="bar-prod" x="64" y="78" width="26" height="58" rx="5"></rect><rect class="bar-train" x="112" y="80" width="26" height="56" rx="5"></rect><rect class="bar-critical" x="142" y="28" width="26" height="108" rx="5"></rect><rect class="bar-train" x="190" y="96" width="26" height="40" rx="5"></rect><rect class="bar-prod" x="220" y="86" width="26" height="50" rx="5"></rect><rect class="bar-train" x="268" y="112" width="26" height="24" rx="5"></rect></svg></div>
+                    <div class="dist-card"><h3>device_risk_score</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><path class="line-blue" d="M28 118 C70 108 92 100 120 72 C154 38 188 34 220 66 C250 94 270 112 296 116"></path><path d="M28 126 C70 98 94 84 124 74 C162 62 192 64 222 78 C250 92 274 104 296 110" fill="none" stroke="#b9c8dd" stroke-width="3"></path></svg></div>
+                    <div class="dist-card"><h3>geo_distance_km</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="46" y="54" width="32" height="82" rx="6"></rect><rect class="bar-prod" x="84" y="68" width="32" height="68" rx="6"></rect><rect class="bar-train" x="146" y="84" width="32" height="52" rx="6"></rect><rect class="bar-warn" x="184" y="44" width="32" height="92" rx="6"></rect><rect class="bar-train" x="246" y="104" width="32" height="32" rx="6"></rect></svg></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card card-pad" style="margin-top:18px">
+                <div class="table-title-row"><h2>Feature drift table</h2><span class="link">Download report</span></div>
+                <table class="table">
+                  <thead><tr><th>Feature name</th><th>Type</th><th>Drift score</th><th>Status</th><th>Last checked</th></tr></thead>
+                  <tbody>
+                    <tr><td>transaction_amount</td><td>numeric</td><td>0.81</td><td><span class="badge critical">Critical</span></td><td>May 25, 14:12</td></tr>
+                    <tr><td>merchant_category</td><td>categorical</td><td>0.74</td><td><span class="badge critical">Critical</span></td><td>May 25, 14:12</td></tr>
+                    <tr><td>device_risk_score</td><td>numeric</td><td>0.66</td><td><span class="badge critical">Critical</span></td><td>May 25, 14:12</td></tr>
+                    <tr><td>geo_distance_km</td><td>numeric</td><td>0.49</td><td><span class="badge warning">Warning</span></td><td>May 25, 14:12</td></tr>
+                    <tr><td>customer_age</td><td>numeric</td><td>0.18</td><td><span class="badge healthy">Healthy</span></td><td>May 25, 14:12</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="frame" id="model-performance">
+        <div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
+            <div class="nav-section"><div class="nav-label">Monitor</div><div class="nav-item"><span class="nav-icon">D</span>Dashboard</div><div class="nav-item"><span class="nav-icon">M</span>Models</div><div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div><div class="nav-item active"><span class="nav-icon">P</span>Performance</div><div class="nav-item"><span class="nav-icon">A</span>Alerts</div><div class="nav-item"><span class="nav-icon">R</span>Registry</div></div>
+            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
+            <div class="sidebar-card"><strong>Performance target</strong><span>p95 latency below 150 ms and model error rate below 2.5%.</span></div>
+          </aside>
+          <div class="content">
+            <header class="topbar"><div class="search">Search performance metrics...</div><div class="top-actions"><div class="select-pill">Last 14 days</div><div class="select-pill">fraud_detection_v2</div><div class="icon-button">N</div><div class="profile"><div class="avatar">MP</div><strong>Max Petrov</strong></div></div></header>
+            <section class="page">
+              <div class="page-header">
+                <div><p class="eyebrow">Model Performance</p><h1>fraud_detection_v2 operational and business performance</h1><p class="subtle">Metric dynamics, version comparison, confusion matrix, latency, throughput, error rate, and business impact.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Production</button><button class="filter-chip">Compare: v2.4.1 vs v2.3.8</button></div>
+              </div>
+              <div class="kpi-strip">
+                <div class="kpi"><span>ROC-AUC</span><strong>0.902</strong></div>
+                <div class="kpi"><span>Latency p95</span><strong>142 ms</strong></div>
+                <div class="kpi"><span>Throughput</span><strong>1.8k/min</strong></div>
+                <div class="kpi"><span>Error rate</span><strong>3.4%</strong></div>
+                <div class="kpi"><span>Business impact</span><strong>-$42k</strong></div>
+              </div>
+              <div class="grid grid-main" style="margin-top:18px">
+                <div class="card card-pad">
+                  <div class="card-title-row"><h2>Metric dynamics over time</h2><div class="legend"><span><i style="background:#2563eb"></i>ROC-AUC</span><span><i style="background:#dc2626"></i>Error rate</span></div></div>
+                  <svg class="chart" viewBox="0 0 740 260">
+                    <rect class="chart-bg" width="740" height="260" rx="18"></rect>
+                    <line class="grid-line" x1="46" y1="46" x2="704" y2="46"></line><line class="grid-line" x1="46" y1="98" x2="704" y2="98"></line><line class="grid-line" x1="46" y1="150" x2="704" y2="150"></line><line class="grid-line" x1="46" y1="202" x2="704" y2="202"></line>
+                    <path class="line-blue" d="M54 68 C120 64 190 72 260 82 C336 92 400 90 474 106 C540 120 620 132 694 148"></path>
+                    <path class="line-red" d="M54 188 C128 184 198 176 268 168 C338 156 410 146 486 130 C560 112 626 96 694 84"></path>
+                    <text class="axis-label" x="54" y="232">May 12</text><text class="axis-label" x="330" y="232">May 18</text><text class="axis-label" x="640" y="232">May 25</text>
+                  </svg>
+                </div>
+                <div class="card card-pad">
+                  <h2>Confusion matrix</h2>
+                  <div class="matrix">
+                    <div class="head"></div><div class="head">Pred no fraud</div><div class="head">Pred fraud</div>
+                    <div class="head">Actual no fraud</div><div class="cell good">18,420<small>TN</small></div><div class="cell mid">384<small>FP</small></div>
+                    <div class="head">Actual fraud</div><div class="cell danger">261<small>FN</small></div><div class="cell bad">1,942<small>TP</small></div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid grid-3" style="margin-top:18px">
+                <div class="card card-pad">
+                  <h2>Version comparison</h2>
+                  <table class="table"><thead><tr><th>Metric</th><th>v2.4.1</th><th>v2.3.8</th></tr></thead><tbody><tr><td>Precision</td><td>0.835</td><td>0.861</td></tr><tr><td>Recall</td><td>0.881</td><td>0.842</td></tr><tr><td>F1-score</td><td>0.857</td><td>0.851</td></tr><tr><td>False positives</td><td>384</td><td>311</td></tr></tbody></table>
+                </div>
+                <div class="card card-pad">
+                  <h2>Latency and throughput</h2>
+                  <svg class="chart" viewBox="0 0 320 210"><rect class="chart-bg" width="320" height="210" rx="18"></rect><rect class="bar-blue" x="38" y="92" width="28" height="84" rx="6"></rect><rect class="bar-blue" x="86" y="78" width="28" height="98" rx="6"></rect><rect class="bar-warn" x="134" y="58" width="28" height="118" rx="6"></rect><rect class="bar-critical" x="182" y="42" width="28" height="134" rx="6"></rect><rect class="bar-warn" x="230" y="70" width="28" height="106" rx="6"></rect><path class="line-green" d="M36 68 C90 72 126 86 166 80 C210 72 250 84 286 76"></path></svg>
+                </div>
+                <div class="card card-pad">
+                  <h2>Business metric impact</h2>
+                  <div class="baseline-row"><span>Fraud blocked</span><strong>$318k</strong></div>
+                  <div class="baseline-row"><span>False-positive cost</span><strong class="delta-down">$71k</strong></div>
+                  <div class="baseline-row"><span>Missed fraud estimate</span><strong class="delta-down">$42k</strong></div>
+                  <div class="baseline-row"><span>Net impact vs baseline</span><span class="badge critical">-$42k</span></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="frame" id="alerts-incidents">
+        <div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
+            <div class="nav-section"><div class="nav-label">Monitor</div><div class="nav-item"><span class="nav-icon">D</span>Dashboard</div><div class="nav-item"><span class="nav-icon">M</span>Models</div><div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div><div class="nav-item"><span class="nav-icon">P</span>Performance</div><div class="nav-item active"><span class="nav-icon">A</span>Alerts</div><div class="nav-item"><span class="nav-icon">R</span>Registry</div></div>
+            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
+            <div class="sidebar-card"><strong>Critical queue</strong><span>1 new critical alert is unassigned for 12 minutes.</span></div>
+          </aside>
+          <div class="content">
+            <header class="topbar"><div class="search">Search alerts by model, owner, cause...</div><div class="top-actions"><div class="select-pill">Open alerts</div><div class="select-pill">All severities</div><div class="icon-button">N</div><div class="profile"><div class="avatar">IR</div><strong>Incident Room</strong></div></div></header>
+            <section class="page">
+              <div class="page-header">
+                <div><p class="eyebrow">Alerts and Incidents</p><h1>Prioritized response queue</h1><p class="subtle">Severity, root cause, impacted model, status, timestamps, and quick actions for ML operations.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Status: New + Investigating</button><button class="filter-chip">Owner: All</button><button class="filter-chip">SLA risk</button></div>
+              </div>
+              <div class="grid grid-4">
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">New</span><span class="badge info">Queue</span></div><div class="metric-value">7</div><div class="metric-delta">3 require assignment</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Investigating</span><span class="badge warning">Active</span></div><div class="metric-value">5</div><div class="metric-delta">Avg age 38 min</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Critical</span><span class="badge critical">SLA risk</span></div><div class="metric-value">1</div><div class="metric-delta">fraud_detection_v2</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Resolved today</span><span class="badge healthy">Done</span></div><div class="metric-value">12</div><div class="metric-delta">MTTR 26 min</div></div>
+              </div>
+              <div class="card card-pad" style="margin-top:18px">
+                <div class="table-title-row"><h2>Alert list</h2><span class="link">Create rule</span></div>
+                <div class="alert-list">
+                  <div class="alert-card">
+                    <div><div class="alert-top"><span class="alert-title">High data drift in transaction_amount</span><span class="badge severity-critical">Critical</span></div><div class="alert-meta">Cause: production distribution deviates from train baseline. Model: fraud_detection_v2. Time: May 25, 14:00 UTC. Status: new.</div></div>
+                    <div class="alert-actions"><button class="button">Assign</button><button class="button primary">Investigate</button><button class="button">Mute</button><button class="button">Resolve</button></div>
+                  </div>
+                  <div class="alert-card">
+                    <div><div class="alert-top"><span class="alert-title">Recall below baseline guardrail</span><span class="badge severity-high">High</span></div><div class="alert-meta">Cause: model drift detected after campaign traffic change. Model: churn_prediction_v3. Time: May 25, 13:48 UTC. Status: investigating.</div></div>
+                    <div class="alert-actions"><button class="button">Assign</button><button class="button primary">Investigate</button><button class="button">Mute</button><button class="button">Resolve</button></div>
+                  </div>
+                  <div class="alert-card">
+                    <div><div class="alert-top"><span class="alert-title">Latency p95 exceeded warning threshold</span><span class="badge severity-medium">Medium</span></div><div class="alert-meta">Cause: prediction service saturation during batch scoring. Model: demand_forecast_v1. Time: May 25, 13:21 UTC. Status: investigating.</div></div>
+                    <div class="alert-actions"><button class="button">Assign</button><button class="button primary">Investigate</button><button class="button">Mute</button><button class="button">Resolve</button></div>
+                  </div>
+                  <div class="alert-card">
+                    <div><div class="alert-top"><span class="alert-title">Dataset freshness delayed</span><span class="badge severity-low">Low</span></div><div class="alert-meta">Cause: upstream ETL finished 18 minutes later than expected. Model: credit_risk_v4. Time: May 25, 12:44 UTC. Status: resolved.</div></div>
+                    <div class="alert-actions"><button class="button">Assign</button><button class="button">Investigate</button><button class="button">Mute</button><button class="button primary">Resolve</button></div>
+                  </div>
+                </div>
+              </div>
+              <div class="card card-pad" style="margin-top:18px">
+                <div class="table-title-row"><h2>Recent incidents</h2><span class="link">Postmortems</span></div>
+                <table class="table">
+                  <thead><tr><th>Incident</th><th>Model</th><th>Severity</th><th>Status</th><th>Owner</th><th>Updated</th></tr></thead>
+                  <tbody><tr><td>Feature schema mismatch</td><td>fraud_detection_v2</td><td><span class="badge severity-critical">Critical</span></td><td>New</td><td>Unassigned</td><td>12 min ago</td></tr><tr><td>Quality guardrail breach</td><td>churn_prediction_v3</td><td><span class="badge severity-high">High</span></td><td>Investigating</td><td>N. Orlova</td><td>21 min ago</td></tr><tr><td>Prediction service saturation</td><td>demand_forecast_v1</td><td><span class="badge severity-medium">Medium</span></td><td>Investigating</td><td>A. Kim</td><td>34 min ago</td></tr></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="frame" id="model-registry">
+        <div class="app">
+          <aside class="sidebar">
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
+            <div class="nav-section"><div class="nav-label">Monitor</div><div class="nav-item"><span class="nav-icon">D</span>Dashboard</div><div class="nav-item"><span class="nav-icon">M</span>Models</div><div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div><div class="nav-item"><span class="nav-icon">P</span>Performance</div><div class="nav-item"><span class="nav-icon">A</span>Alerts</div><div class="nav-item active"><span class="nav-icon">R</span>Registry</div></div>
+            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
+            <div class="sidebar-card"><strong>Deployment gate</strong><span>2 versions are approved for production, 1 rollback is ready.</span></div>
+          </aside>
+          <div class="content">
+            <header class="topbar"><div class="search">Search registry by model, version, dataset...</div><div class="top-actions"><div class="select-pill">All projects</div><div class="select-pill">Production-ready</div><div class="icon-button">N</div><div class="profile"><div class="avatar">MR</div><strong>Model Registry</strong></div></div></header>
+            <section class="page">
+              <div class="page-header">
+                <div><p class="eyebrow">Model Registry</p><h1>Models, versions, datasets, owners, and deployment actions</h1><p class="subtle">Govern model lifecycle from training to deployment, rollback, and version comparison.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Environment: All</button><button class="filter-chip">Status: Active + Approved</button><button class="filter-chip">Owner: All</button></div>
+              </div>
+              <div class="grid grid-4">
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Registered models</span><span class="badge info">Catalog</span></div><div class="metric-value">28</div><div class="metric-delta">12 active in production</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Approved versions</span><span class="badge healthy">Ready</span></div><div class="metric-value">9</div><div class="metric-delta">Passing validation</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Rollback-ready</span><span class="badge warning">Prepared</span></div><div class="metric-value">4</div><div class="metric-delta">Across critical workflows</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Blocked</span><span class="badge critical">Needs review</span></div><div class="metric-value">2</div><div class="metric-delta">Failed drift validation</div></div>
+              </div>
+              <div class="card card-pad" style="margin-top:18px">
+                <div class="table-title-row"><h2>Model versions</h2><span class="link">Register new model</span></div>
+                <table class="table">
+                  <thead><tr><th>Model and version</th><th>Status</th><th>Training date</th><th>Deploy date</th><th>Dataset</th><th>Owner</th><th>Actions</th></tr></thead>
+                  <tbody>
+                    <tr><td><div class="model-name"><span class="model-icon">CP</span>churn_prediction_v3 / v3.8.2</div></td><td><span class="badge warning">Production warning</span></td><td>May 18, 2026</td><td>May 21, 2026</td><td>retention_2026_05</td><td>N. Orlova</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button">Deploy</button><button class="button primary">Rollback</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">FD</span>fraud_detection_v2 / v2.4.1</div></td><td><span class="badge critical">Production critical</span></td><td>May 12, 2026</td><td>May 19, 2026</td><td>fraud_txn_v9</td><td>M. Petrov</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button">Deploy</button><button class="button primary">Rollback</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">DF</span>demand_forecast_v1 / v1.9.0</div></td><td><span class="badge healthy">Production healthy</span></td><td>May 03, 2026</td><td>May 09, 2026</td><td>demand_weekly_v14</td><td>A. Kim</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button primary">Deploy</button><button class="button">Rollback</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">CR</span>credit_risk_v4 / v4.2.5</div></td><td><span class="badge healthy">Approved</span></td><td>May 22, 2026</td><td>Not deployed</td><td>credit_app_2026_q2</td><td>D. Ivanov</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button primary">Deploy</button><button class="button">Rollback</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">PE</span>price_elasticity_v1 / v1.3.4</div></td><td><span class="badge neutral">Archived</span></td><td>Mar 12, 2026</td><td>Apr 01, 2026</td><td>pricing_history_v7</td><td>S. Lee</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button">Deploy</button><button class="button">Rollback</button></div></td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="grid grid-3" style="margin-top:18px">
+                <div class="recommendation"><strong>Compare versions</strong><p>Side-by-side validation results, performance curves, feature drift, and approval history.</p><button class="button primary">Open comparison</button></div>
+                <div class="recommendation"><strong>Deploy gate</strong><p>Requires approved validation suite, owner sign-off, and rollback target before production.</p><button class="button">Review checklist</button></div>
+                <div class="recommendation"><strong>Rollback plan</strong><p>fraud_detection_v2 can roll back to v2.3.8 with validated schema compatibility.</p><button class="button">Inspect plan</button></div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
