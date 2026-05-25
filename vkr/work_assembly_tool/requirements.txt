@@ -1,0 +1,6 @@
+python-docx
+markdown-it-py
+pypdf
+jsonschema
+beautifulsoup4
+lxml

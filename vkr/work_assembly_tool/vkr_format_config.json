@@ -1,0 +1,125 @@
+{
+  "document": {
+    "page": {
+      "size": "A4",
+      "orientation": "portrait",
+      "width_mm": 210,
+      "height_mm": 297,
+      "margins_mm": {
+        "top": 20,
+        "bottom": 20,
+        "left": 30,
+        "right": 15
+      }
+    },
+    "default_text": {
+      "font_family": "Times New Roman",
+      "font_size_pt": 12,
+      "font_color": "000000",
+      "alignment": "justify",
+      "line_spacing": 1.5,
+      "first_line_indent_cm": 1.25,
+      "space_before_pt": 0,
+      "space_after_pt": 0
+    },
+    "page_numbers": {
+      "enabled": true,
+      "footer_alignment": "center"
+    }
+  },
+  "headings": {
+    "max_level_in_toc": 3,
+    "level_1_starts_new_page": true,
+    "levels": {
+      "1": {
+        "font_size_pt": 14,
+        "bold": true,
+        "line_spacing": 1.5,
+        "space_before_pt": 0,
+        "space_after_pt": 0,
+        "first_line_indent_cm": 0,
+        "keep_with_next": true
+      },
+      "2": {
+        "font_size_pt": 13,
+        "bold": true,
+        "line_spacing": 1.5,
+        "space_before_pt": 12,
+        "space_after_pt": 0,
+        "first_line_indent_cm": 0,
+        "keep_with_next": true
+      },
+      "3": {
+        "font_size_pt": 12,
+        "bold": true,
+        "line_spacing": 1.5,
+        "space_before_pt": 0,
+        "space_after_pt": 0,
+        "first_line_indent_cm": 0,
+        "keep_with_next": true
+      }
+    }
+  },
+  "captions": {
+    "table": {
+      "prefix": "Таблица",
+      "position": "above",
+      "font_size_pt": 12,
+      "alignment": "left",
+      "first_line_indent_cm": 0,
+      "separator": "–",
+      "line_spacing": 1.5
+    },
+    "figure": {
+      "prefix": "Рисунок",
+      "position": "below",
+      "font_size_pt": 12,
+      "alignment": "center",
+      "first_line_indent_cm": 0,
+      "separator": "–",
+      "line_spacing": 1.5
+    }
+  },
+  "tables": {
+    "cell_line_spacing": 1.0,
+    "cell_space_before_pt": 0,
+    "cell_space_after_pt": 0,
+    "repeat_header_rows": true
+  },
+  "formulas": {
+    "alignment": "center",
+    "number_alignment": "right",
+    "number_enclosure": "parentheses"
+  },
+  "code_blocks": {
+    "line_spacing": 1.0,
+    "space_before_pt": 0,
+    "space_after_pt": 0,
+    "first_line_indent_cm": 0
+  },
+  "markdown": {
+    "encoding": "utf-8",
+    "promote_full_strong_paragraphs_to_headings": true,
+    "supported_block_types": [
+      "heading",
+      "paragraph",
+      "ordered_list",
+      "bullet_list",
+      "table",
+      "fence",
+      "image",
+      "thematic_break",
+      "blockquote"
+    ]
+  },
+  "quality_checks": {
+    "empty_paragraphs_allowed": false,
+    "double_spaces_allowed": false,
+    "references": {
+      "min_total": 35,
+      "recommended_min_total": 35,
+      "recommended_max_total": 50,
+      "magister_min_total": 51
+    }
+  }
+}
