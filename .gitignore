@@ -31,3 +31,7 @@ Thumbs.db
 
 # Local vendored app / tooling trees (not thesis sources)
 ats/
+
+# Summer practice temp / unpack artifacts
+summer-practice/artifacts/_tmp_docx/
+summer-practice/artifacts/_zadanie.zip
