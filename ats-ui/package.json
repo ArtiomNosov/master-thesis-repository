@@ -1,0 +1,17 @@
+{
+  "name": "ats-ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Static ATS / Reqcore interface localized for Russian recruiters.",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "lint": "node scripts/lint-ui.js",
+    "test": "node scripts/test-ui.js",
+    "start": "node scripts/serve.js",
+    "screenshots": "node scripts/capture-screenshots.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
