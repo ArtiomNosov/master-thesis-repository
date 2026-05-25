@@ -1,0 +1,195 @@
+/* Start modal content */
+.ehd-scroll .nicescroll-rails{
+  opacity: 0 !important;
+}
+.extp-hidden-scroll{ overflow:hidden; height:auto;margin-right: 15px;}
+.ex-hidden .nicescroll-rails{ border-radius:5px; width:6px !important;}
+.ex-hidden .nicescroll-cursors{ border:0 !important}
+.ex-hidden {
+  position: fixed;
+  top: 0px;
+  right: 0;
+  background: #fff;
+  z-index: -1;
+  left: auto;
+  transition: all .3s linear .2s;
+  transform: translateX(100%);
+  width: 600px;
+  height: 100%;
+  padding: 3px 2px;
+  opacity:0;
+}
+.ex-hidden-active{
+  transition: all .3s linear .2s;
+  transform: translateX(0);
+  z-index: 999999;
+  opacity:1;
+}
+.ex-hidden-active .extp-mdbutton{
+  transition: all .3s linear .2s;
+  right: 30px;
+  bottom: 20px;
+  opacity: 1;
+}
+.ex-hidden .exp-modal-info{ overflow: scroll; height: calc(100vh - 6px ); padding: 20px 30px 20px 25px; margin-bottom: 6px;}
+.item-modl{ display:none; overflow:hidden;}
+.ex-hidden .exp-modal-info > div{
+  display: inline-block;
+  width: 100%;
+}
+.ex-hidden .exp-modal-info .exp-modal-image img{}
+.ex-hidden .exp-modal-info h3,
+.ex-hidden .exp-modal-info h5{
+  margin: 0;
+  padding: 0;
+}
+.ex-hidden .exp-modal-info h5 span{ padding:0; margin:0; margin-right:5px;}
+.ex-hidden .exp-modal-info h3{
+  text-transform: uppercase;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 7px 0;
+}
+.ex-hidden .exp-modal-info h3 a{
+  box-shadow: none;
+  color:#00bcd4;
+}
+.ex-hidden .exp-modal-info h5{
+  font-weight: 400;
+  margin: 0;
+  font-size: 13px;
+  text-transform: initial;
+  color: #888;
+  letter-spacing: 1px;
+  margin-top:3px;
+  display: inline-block;
+  margin-right: 15px;
+  border-right: 2px solid #ddd;
+  padding-right: 15px;
+}
+.ex-hidden .exp-modal-info h5:last-of-type {border: 0;}
+.ex-hidden .ex-social-account li a{
+  background: none;
+  color: inherit;
+  border: 1px solid #ddd;
+  line-height: 33px;
+  transition: all .2s;
+}
+.ex-hidden .ex-social-account li a:hover{background: #00BCD4; color: #fff; border-color: #00BCD4;}
+.ex-hidden .gslide-description.description-right p {
+    font-size: 13px;
+    margin: 10px 0px;
+    line-height: 1.6;
+}
+.ex-hidden .exp-modal-info .exp-modal-meta{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
+  margin-bottom: 10px
+}
+.ex-hidden .exp-modal-info .exp-modal-meta h5:first-child{
+  color: inherit;
+  text-transform: uppercase;
+}
+.ex-hidden .exp-modal-info .exp-modal-meta .exp-modal-social{
+    color: #888;
+}
+.ex-hidden .ex-social-account {
+    margin:0;
+	margin-bottom:5px;
+}
+.exp-expand .expand-social ul li a { color: #d6d6d6;}
+.ex-overlay{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: transparent;
+  transition: all .3s linear .2s;
+  z-index: -1;
+}
+.ex-overlay-active{
+  background: rgba(0,0,0,.7);
+  z-index: 999;
+  transition: all .3s linear .2s;
+}
+.extp-mdbutton {
+  transition: all .3s linear .2s;
+  position: fixed;
+  bottom: 20px;
+  right: 0px;
+  opacity: 0;
+}
+.extp-mdbutton > div{
+	width: 35px;
+    height: 35px;
+	display:inline-block;
+	text-align: center;
+	border: 1px solid transparent;
+    background: rgba(0,0,0,.7);
+	line-height: 33px;
+	position:relative;
+	cursor:pointer;
+	transition: all .2s;
+}
+.extp-mdbutton > div:after {
+	content:"";
+    border: solid rgb(255, 255, 255);
+    border-width: 0 1px 1px 0;
+    display: inline-block;
+    padding: 4px;
+}
+.extp-mdbutton > div.extp-mdleft:after {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+	margin-right:-4px;
+}
+.extp-mdbutton > div.extp-mdright:after {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+	margin-left:-4px;
+}
+.extp-mdbutton > div.extp-mdclose:before,
+.extp-mdbutton > div.extp-mdclose:after{
+	position: absolute;
+    top: 50%;
+	padding:0;
+	border:0;
+	content:"";
+	background-color: rgba(255,255,255,1);
+}
+.extp-mdbutton > div.extp-mdclose:before {
+    left: 50%;
+    display: block;
+    height: 1px;
+    width: 19px;
+    margin-left: -10px;
+    margin-top: -1px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+}
+.extp-mdbutton > div.extp-mdclose:after {
+    display: block;
+    height: 19px;
+    width: 1px;
+    margin-left: 15px;
+    margin-top: -10px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+}
+.extp-mdbutton > div:hover{background: #00BCD4; color: #fff; border-color: #00BCD4;}
+.extp-mdbutton > div:hover:after{ border-color:#fff;}
+.extp-mdbutton > div.extp-mdclose:hover:before,
+.extp-mdbutton > div.extp-mdclose:hover:after{background:#fff;}
+@media screen and (max-width: 768px){
+  .ex-hidden {
+    width: 450px;
+  }
+}
+@media screen and (max-width: 450px){
+  .ex-hidden{width: 330px; }
+}
+/* End modal content */
