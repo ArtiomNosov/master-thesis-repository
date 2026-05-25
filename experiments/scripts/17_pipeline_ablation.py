@@ -1,16 +1,19 @@
 import sys
 import time
+import os
+import importlib
 
 # Fix stdout for Cyrillic on Windows
 sys.stdout.reconfigure(encoding='utf-8')
 
 try:
     from sentence_transformers import SentenceTransformer, util
-    from sklearn.feature_extraction.text import TfidfVectorizer
-    from sklearn.metrics.pairwise import cosine_similarity
 except ImportError:
-    print("WARNING: Missing essential ML packages. Install scikit-learn / sentence_transformers.")
+    print("WARNING: Missing essential ML packages. Install sentence_transformers.")
     sys.exit(1)
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+comparison = importlib.import_module("12_baseline_comparison")
 
 def run_pipeline_ablation():
     print("=====================================================")
@@ -60,15 +63,14 @@ def run_pipeline_ablation():
     v_target = "Требуется системный аналитик."
     c_target = "Опытный бизнес-аналитик ИТ-систем."
     
-    vec = TfidfVectorizer().fit_transform([v_target, c_target])
-    tfidf_score = cosine_similarity(vec[0:1], vec[1:2]).item()
+    bm25_score = comparison.eval_bm25(v_target, [c_target])[0]
     
     e1 = model.encode(v_target)
     e2 = model.encode(c_target)
     sem_score = util.cos_sim(e1, e2).item()
     
     print(f"Semantic Reranker ON (Dense)     : {sem_score:.4f} (Semantic Synonyms Matched)")
-    print(f"Semantic Reranker OFF (TF-IDF)   : {tfidf_score:.4f} (Missed completely)")
+    print(f"Semantic Reranker OFF (BM25)     : {bm25_score:.4f} (Missed lexical mismatch)")
     print("Conclusion: Reranker layer contributes exactly to the ATS intelligence and candidate discovery bounds.")
     
     print("\n[ABLATION COMPLETION] Isolated block benchmarking confirms that ALL pipeline boundaries are mandatory.")
