@@ -107,6 +107,17 @@ def apply_paragraph_format(paragraph_format: Any, values: dict[str, Any]) -> Non
         paragraph_format.keep_with_next = bool(values["keep_with_next"])
 
 
+def force_text_styles_black(document: Document, color: str) -> None:
+    rgb = RGBColor.from_string(color)
+    for style in document.styles:
+        if style.type in (WD_STYLE_TYPE.PARAGRAPH, WD_STYLE_TYPE.CHARACTER):
+            style.font.color.rgb = rgb
+
+
+def set_run_text_black(run: Any, config: dict[str, Any]) -> None:
+    run.font.color.rgb = RGBColor.from_string(config["document"]["default_text"]["font_color"])
+
+
 def configure_document(document: Document, config: dict[str, Any]) -> None:
     page = config["document"]["page"]
     section = document.sections[0]
@@ -147,6 +158,7 @@ def configure_document(document: Document, config: dict[str, Any]) -> None:
     create_or_update_caption_style(document, "VKR Table Caption", config["captions"]["table"], default)
     create_or_update_caption_style(document, "VKR Figure Caption", config["captions"]["figure"], default)
     create_or_update_code_style(document, config["code_blocks"], default)
+    force_text_styles_black(document, default["font_color"])
 
     if config["document"]["page_numbers"]["enabled"]:
         add_page_number(section.footer, config["document"]["page_numbers"]["footer_alignment"])
@@ -233,7 +245,8 @@ def promoted_heading_level(text: str) -> int | None:
 
 def add_inline_runs(paragraph: Any, token: Token, config: dict[str, Any]) -> None:
     if not token.children:
-        paragraph.add_run(normalize_text(token.content, config))
+        run = paragraph.add_run(normalize_text(token.content, config))
+        set_run_text_black(run, config)
         return
 
     active = {"bold": False, "italic": False, "code": False}
@@ -252,8 +265,10 @@ def add_inline_runs(paragraph: Any, token: Token, config: dict[str, Any]) -> Non
             run.bold = active["bold"]
             run.italic = active["italic"]
             run.font.name = "Courier New"
+            set_run_text_black(run, config)
         elif child.type == "softbreak":
-            paragraph.add_run(" ")
+            run = paragraph.add_run(" ")
+            set_run_text_black(run, config)
         elif child.type == "hardbreak":
             paragraph.add_run().add_break()
         elif child.type == "link_open":
@@ -265,11 +280,13 @@ def add_inline_runs(paragraph: Any, token: Token, config: dict[str, Any]) -> Non
             if src and Path(src).exists():
                 paragraph._parent.add_picture(src)
             elif child.content:
-                paragraph.add_run(normalize_text(child.content, config))
+                run = paragraph.add_run(normalize_text(child.content, config))
+                set_run_text_black(run, config)
         elif child.type == "text":
             run = paragraph.add_run(normalize_text(child.content, config))
             run.bold = active["bold"]
             run.italic = active["italic"]
+            set_run_text_black(run, config)
             if link_depth:
                 run.underline = True
 
@@ -351,6 +368,8 @@ def add_auto_table_caption(document: Document, rows: list[list[str]], table_numb
         return
     paragraph = document.add_paragraph(style="VKR Table Caption")
     paragraph.text = table_caption_from_header(rows, table_number, config)
+    for run in paragraph.runs:
+        set_run_text_black(run, config)
 
 
 def consume_table(document: Document, tokens: list[Token], start: int, config: dict[str, Any], table_number: int) -> int:
@@ -400,7 +419,8 @@ def add_code_block(document: Document, content: str, config: dict[str, Any], is_
     for line_index, line in enumerate(content.rstrip("\n").splitlines()):
         if line_index:
             paragraph.add_run().add_break()
-        paragraph.add_run(line)
+        run = paragraph.add_run(line)
+        set_run_text_black(run, config)
 
 
 def convert_markdown(input_path: Path, output_path: Path, config: dict[str, Any]) -> None:

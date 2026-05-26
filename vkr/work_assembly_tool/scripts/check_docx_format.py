@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any
 
 from docx import Document
+from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 
@@ -90,6 +91,39 @@ def check_styles(document: Document, config: dict[str, Any], errors: list[str]) 
     check_style(document, "VKR Table Caption", config["captions"]["table"], errors)
     check_style(document, "VKR Figure Caption", config["captions"]["figure"], errors)
     check_style(document, "VKR Code Block", config["code_blocks"], errors)
+
+
+def color_to_hex(color: Any) -> str | None:
+    return str(color.rgb) if color is not None and color.rgb is not None else None
+
+
+def check_text_color(document: Document, config: dict[str, Any], errors: list[str]) -> None:
+    expected = config["document"]["default_text"]["font_color"].upper()
+    for style in document.styles:
+        if style.type in (WD_STYLE_TYPE.PARAGRAPH, WD_STYLE_TYPE.CHARACTER):
+            color = color_to_hex(style.font.color)
+            if color is not None and color.upper() != expected:
+                fail(errors, f"Style {style.name}: text color expected {expected}, got {color}")
+    for paragraph_index, paragraph in enumerate(document.paragraphs, 1):
+        for run_index, run in enumerate(paragraph.runs, 1):
+            if not run.text.strip():
+                continue
+            color = color_to_hex(run.font.color)
+            if color is not None and color.upper() != expected:
+                fail(errors, f"Paragraph {paragraph_index} run {run_index}: text color expected {expected}, got {color}")
+    for table_index, table in enumerate(document.tables, 1):
+        for row_index, row in enumerate(table.rows, 1):
+            for cell_index, cell in enumerate(row.cells, 1):
+                for paragraph_index, paragraph in enumerate(cell.paragraphs, 1):
+                    for run_index, run in enumerate(paragraph.runs, 1):
+                        if not run.text.strip():
+                            continue
+                        color = color_to_hex(run.font.color)
+                        if color is not None and color.upper() != expected:
+                            fail(
+                                errors,
+                                f"Table {table_index} row {row_index} cell {cell_index} paragraph {paragraph_index} run {run_index}: text color expected {expected}, got {color}",
+                            )
 
 
 def paragraph_effective_alignment(paragraph: Any) -> str | None:
@@ -226,6 +260,7 @@ def run_checks(docx_path: Path, config: dict[str, Any], strict_content_checks: b
     warnings: list[str] = []
     check_section(document, config, errors)
     check_styles(document, config, errors)
+    check_text_color(document, config, errors)
     check_paragraphs(document, config, errors)
     check_tables(document, config, errors)
     check_required_captions(document, config, errors)
