@@ -1,37 +1,103 @@
 # MLOps Monitoring Platform UI Mockup
 
-High-fidelity desktop mockup for a production MLOps monitoring platform.
+Документация к high-fidelity макету MLOps-платформы для мониторинга качества ML-моделей, data drift, model drift, алертов и состояния моделей в production.
 
-## Open the mockup
+## Что находится в директории
 
-Open `index.html` in a browser. The page contains six 1440px desktop frames:
+- `index.html` — интерактивный HTML-board с шестью desktop-экранами 1440px.
+- `styles.css` — дизайн-токены и reusable UI-компоненты.
+- `exports/png/` — PNG-картинки всех экранов 1440x1024.
+- `figma-plugin/` — локальный Figma plugin generator для создания редактируемых фреймов внутри Figma.
+- `scripts/export-png.sh` — скрипт экспорта HTML-экранов в PNG через headless Chrome.
 
-1. Main MLOps Dashboard
-2. Model Detail
-3. Data Drift Monitoring
-4. Model Performance
-5. Alerts and Incidents
-6. Model Registry
+## Экраны макета
 
-## Included UI system
+1. `01-main-mlops-dashboard.png` — главный MLOps Dashboard.
+2. `02-model-detail.png` — страница конкретной модели.
+3. `03-data-drift-monitoring.png` — Data Drift Monitoring.
+4. `04-model-performance.png` — Model Performance.
+5. `05-alerts-incidents.png` — Alerts and Incidents.
+6. `06-model-registry.png` — Model Registry.
 
-- Light enterprise SaaS visual style.
-- Reusable CSS tokens and components for cards, tables, status badges, alert cards, metric cards, buttons, charts, sidebar navigation, and topbar controls.
-- Realistic ML operations data for `churn_prediction_v3`, `fraud_detection_v2`, `demand_forecast_v1`, `credit_risk_v4`, and related alerts, drift scores, registry entries, and quality metrics.
+## Состав интерфейса
 
-## Figma handoff note
+Макет выполнен в стиле clean enterprise SaaS, light mode:
 
-This repository artifact is structured as a Figma-ready design reference, but it is not a live Figma file. Creating or editing a Figma project requires authenticated Figma access or a Figma MCP/API token in the agent environment.
+- левая навигация: Dashboard, Models, Data Drift, Performance, Alerts, Registry, Settings;
+- верхняя панель: поиск, период, окружение, уведомления, профиль;
+- карточки метрик и системного статуса;
+- таблицы активных моделей, features, incidents и registry versions;
+- графики качества, drift distributions, latency/throughput и business impact;
+- status badges: Healthy, Warning, Critical, Info, Archived;
+- alert cards с severity, причиной, затронутой моделью, временем, статусом и быстрыми действиями;
+- realistic MLOps data для `churn_prediction_v3`, `fraud_detection_v2`, `demand_forecast_v1`, `credit_risk_v4`.
 
-## Generate editable Figma frames
+## Как открыть HTML-макет
 
-The `figma-plugin/` folder contains a local Figma plugin generator.
+Откройте файл `index.html` в браузере:
 
-To create an editable Figma board:
+```bash
+xdg-open design/mlops-monitoring-platform/index.html
+```
 
-1. Open Figma.
-2. Go to `Plugins -> Development -> Import plugin from manifest...`.
-3. Select `design/mlops-monitoring-platform/figma-plugin/manifest.json`.
-4. Run `ModelPulse MLOps Dashboard Generator`.
+Можно открыть отдельный экран в export-режиме:
 
-The plugin creates six editable 1440px frames with reusable visual primitives, realistic data, charts, tables, status badges, alert cards, sidebar navigation, and topbar controls.
+```text
+index.html?screen=dashboard
+index.html?screen=model-detail
+index.html?screen=data-drift
+index.html?screen=model-performance
+index.html?screen=alerts-incidents
+index.html?screen=model-registry
+```
+
+## Как пересобрать PNG-картинки
+
+```bash
+design/mlops-monitoring-platform/scripts/export-png.sh
+```
+
+Скрипт сохраняет PNG в:
+
+```text
+design/mlops-monitoring-platform/exports/png/
+```
+
+Каждый файл экспортируется в размере 1440x1024.
+
+## Figma API: что реально можно сделать
+
+Проверенные API Figma:
+
+- REST API: `https://api.figma.com`
+- REST API документация: `https://developers.figma.com/docs/rest-api/`
+- Plugin API `figma.createFrame()`: `https://developers.figma.com/docs/plugins/api/properties/figma-createframe/`
+
+Важное ограничение: Figma REST API позволяет читать существующие файлы, получать JSON-дерево слоёв, экспортировать изображения, работать с комментариями, компонентами, стилями, проектами и webhooks. Он не предоставляет endpoint для создания нового дизайн-файла или программного добавления фреймов на canvas.
+
+Для создания редактируемых фреймов используется Figma Plugin API внутри авторизованной Figma-сессии. Поэтому в репозитории добавлен локальный plugin generator, который создаёт макет через методы Plugin API, включая `figma.createFrame()`, `figma.createRectangle()` и `figma.createText()`.
+
+## Как создать редактируемый Figma-файл
+
+1. Откройте Figma в браузере или desktop app.
+2. Создайте новый пустой файл или откройте существующий проект.
+3. Перейдите в `Plugins -> Development -> Import plugin from manifest...`.
+4. Выберите файл:
+
+```text
+design/mlops-monitoring-platform/figma-plugin/manifest.json
+```
+
+5. Запустите plugin `ModelPulse MLOps Dashboard Generator`.
+
+После запуска plugin создаст шесть редактируемых 1440px Figma-фреймов с компонентами, таблицами, графиками, бейджами, карточками алертов, sidebar navigation и topbar controls.
+
+## Почему здесь нет live Figma-ссылки
+
+Cursor Web/Cloud Agent не имеет авторизованной Figma-сессии, Figma MCP и `FIGMA_TOKEN`. Без такого доступа нельзя создать live Figma-проект и получить публичную редактируемую ссылку из среды агента.
+
+Вместо этого подготовлены:
+
+- готовый HTML high-fidelity макет;
+- PNG-экспорты всех экранов;
+- Figma plugin generator для создания редактируемого файла уже внутри Figma.

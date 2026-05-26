@@ -932,3 +932,23 @@ h3 {
   border-radius: 18px;
   background: #f9fbfe;
 }
+
+body.export-mode {
+  background: var(--bg);
+}
+
+body.export-mode .board {
+  display: block;
+  padding: 0;
+}
+
+body.export-mode .frame {
+  display: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+body.export-mode .frame.export-target {
+  display: block;
+}
