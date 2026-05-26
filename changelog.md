@@ -9,3 +9,10 @@
 - Added reusable UI components and styles for sidebar navigation, topbar controls, metric cards, status badges, alert cards, tables, charts, recommendations, and registry actions.
 - Populated the mockup with realistic MLOps data for `churn_prediction_v3`, `fraud_detection_v2`, `demand_forecast_v1`, and related model quality, drift, incident, and registry scenarios.
 - Added a local Figma plugin generator that creates editable 1440px MLOps dashboard frames inside Figma when run with authenticated Figma desktop/web access.
+
+## 2026-05-26
+
+- Reworked the MLOps dashboard artifact documentation in Russian.
+- Added Russian Figma API notes explaining the REST API limitations and the Plugin API path for creating editable Figma frames.
+- Added PNG exports for all six required 1440x1024 screens under `design/mlops-monitoring-platform/exports/png/`.
+- Added a headless Chrome export script for regenerating the PNG screen images from the HTML mockup.

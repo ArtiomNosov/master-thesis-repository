@@ -524,5 +524,19 @@
         </div>
       </section>
     </main>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const screen = params.get("screen");
+
+      if (screen) {
+        const target = document.getElementById(screen);
+        document.body.classList.add("export-mode");
+
+        if (target) {
+          target.classList.add("export-target");
+          document.title = `ModelPulse - ${screen}`;
+        }
+      }
+    </script>
   </body>
 </html>
