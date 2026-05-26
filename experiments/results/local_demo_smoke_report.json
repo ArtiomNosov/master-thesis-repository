@@ -1,0 +1,49 @@
+﻿{
+  "reqcoreUrl": "http://localhost:3000",
+  "minioConsoleUrl": "http://localhost:9001",
+  "biencoderUrl": "http://localhost:8000",
+  "demoLogin": {
+    "email": "demo@reqcore.com",
+    "password": "demo1234"
+  },
+  "wiring": {
+    "reqcoreEnvBiencoderUrl": "http://host.docker.internal:8000",
+    "pythonModelPathBasename": "bi_encoder_rubert_tiny2"
+  },
+  "job": {
+    "id": "483c8e0e-ab8f-424d-b0cb-c7625addd73c",
+    "title": "Senior Full-Stack Engineer"
+  },
+  "control": {
+    "applicationId": "fedab3bf-fb1d-4dae-808a-553dc9aec509",
+    "candidate": "Emma Schmidt",
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "compositeScore": 96,
+    "promptTokens": 1541,
+    "completionTokens": 935,
+    "supportsBreakdown": true,
+    "criterionCount": 5,
+    "source": "seeded historical analysis_run + criterion_score"
+  },
+  "treatment": {
+    "applicationId": "7484b87d-1e9a-4116-a427-f4e2dee60a4e",
+    "candidate": "Priya Sharma",
+    "provider": "biencoder",
+    "model": "cointegrated/rubert-tiny2",
+    "compositeScore": 93,
+    "promptTokens": 0,
+    "completionTokens": 0,
+    "supportsBreakdown": false,
+    "summary": "Bi-encoder cosine match score: 0.8669",
+    "source": "live POST /api/applications/:id/analyze"
+  },
+  "screenshots": [
+    "experiments/results/reqcore_after_login.png",
+    "experiments/results/ai_settings_biencoder.png",
+    "experiments/results/job_page_priya_biencoder.png",
+    "experiments/results/job_ai_analysis_page.png",
+    "experiments/results/job_page_fullstack.png",
+    "experiments/results/control_application_page.png"
+  ]
+}

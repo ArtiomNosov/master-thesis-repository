@@ -1,0 +1,16 @@
+Launching ATS Mock Integration Framework on Port 8000
+Loading Integration Engine Model: C:\Users\MSI-Vector\Documents\repositories\master-thesis-repository\experiments\models\bi_encoder_rubert_tiny2
+Loading Semantic Matcher from: C:\Users\MSI-Vector\Documents\repositories\master-thesis-repository\experiments\models\bi_encoder_rubert_tiny2
+Model loaded successfully.
+INFO:     127.0.0.1:61958 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53108 - "POST /index/candidate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53109 - "POST /score HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53108 - "POST /search/rank HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53146 - "POST /score HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:53147 - "POST /index/candidate HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:53149 - "POST /search/rank HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:53179 - "POST /score HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53178 - "POST /index/candidate HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53181 - "POST /search/rank HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49402 - "POST /score HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55708 - "POST /score HTTP/1.1" 200 OK

@@ -1,7 +1,13 @@
-# master-thesis-repository
+# Master Thesis Repository
 
-## I. Important Links
+Репозиторий для магистерской дипломной работы.
 
-### 1. [Google Drive](https://drive.google.com/drive/folders/14wGy7ov1FCh4fVoLwjFcMb3xYfXxYsLm?usp=drive_link)
+## Структура репозитория
 
-### 2. [Figma](https://www.figma.com/design/43z63QWcWMAaGqowHk1Yp1/master-thesis-design?node-id=11-1833&t=uW62QYp3NzVyESvQ-1)
+- `docs/`: Текст диплома (.tex, .md, презентации) и скомпилированные PDF.
+- `code/`: Основной переиспользуемый код (алгоритмы, классы, утилиты).
+- `data/`: Датасеты и загруженные файлы (игнорируются git).
+- `experiments/`: Скрипты для запуска, логи тренировок и ноутбуки (.ipynb).
+- `docs/references/`: Статьи в PDF (литобзор) и .bib файлы.
+- `prompts/`: Набор промптов для работы с ИИ ассистентами.
+- `archive/`: Архивные материалы из прошлых семестров.
