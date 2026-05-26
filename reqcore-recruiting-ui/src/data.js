@@ -29,7 +29,7 @@ export const vacancies = [
     candidates: 19,
     matchScore: 87,
     description:
-      "Разработка API для скоринга, интеграции с ATS и сервисов обработки резюме.",
+      "Разработка API для скоринга, интеграции с системой подбора и сервисов обработки резюме.",
     requirements: [
       "Python, FastAPI, PostgreSQL",
       "Опыт проектирования API",
@@ -57,7 +57,7 @@ export const vacancies = [
       "Навыки коммуникации с техническими командами",
     ],
     responsibilities: [
-      "Вести вакансии в ATS",
+      "Вести вакансии в системе подбора",
       "Проводить первичные интервью",
       "Поддерживать кандидатов на всех этапах",
     ],
@@ -120,7 +120,7 @@ export const candidates = [
     matchScore: 81,
     experience: "4 года",
     education: "РГГУ, управление персоналом",
-    skills: ["Boolean search", "Интервью", "ATS", "Коммуникации"],
+    skills: ["Поиск кандидатов", "Интервью", "Системы подбора", "Коммуникации"],
     salaryExpectations: "от 180 000 ₽",
     source: "LinkedIn",
     lastContact: "3 дня назад",

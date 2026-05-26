@@ -3,7 +3,7 @@ export const defaultLocale = "ru-RU";
 export const messages = {
   "ru-RU": {
     app: {
-      title: "Reqcore ATS",
+      title: "Reqcore Подбор",
       subtitle: "AI-платформа подбора кандидатов",
       skipToContent: "Перейти к содержимому",
       currentLocale: "Русский интерфейс",
@@ -55,7 +55,7 @@ export const messages = {
       priority: "Приоритет",
     },
     auth: {
-      loginTitle: "Вход в Reqcore ATS",
+      loginTitle: "Вход в Reqcore Подбор",
       loginLead: "Войдите в рабочее пространство рекрутера, чтобы продолжить подбор кандидатов.",
       registerTitle: "Создать рабочее пространство",
       registerLead: "Подготовьте командный доступ к вакансиям, резюме и оценке соответствия.",
@@ -267,7 +267,7 @@ export const messages = {
     },
     errorPage: {
       title: "Страница не найдена",
-      lead: "Такой страницы нет в интерфейсе ATS.",
+      lead: "Такой страницы нет в интерфейсе подбора.",
       action: "Вернуться на панель управления",
     },
     toast: {

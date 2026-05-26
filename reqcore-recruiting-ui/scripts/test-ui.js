@@ -52,4 +52,4 @@ for (const text of smokeStrings) {
   }
 }
 
-console.log("Smoke-test ATS UI пройден: сборка и ключевые маршруты доступны.");
+console.log("Smoke-test интерфейса подбора пройден: сборка и ключевые маршруты доступны.");

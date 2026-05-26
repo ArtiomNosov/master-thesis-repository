@@ -3,8 +3,6 @@ import { messages } from "../src/i18n.js";
 const allowedLatin = new Set([
   "AI",
   "API",
-  "ATS",
-  "ATSRanker",
   "Bi-Encoder",
   "CRM",
   "DOCX",
@@ -81,7 +79,7 @@ if (failures.length > 0) {
   process.exit(1);
 }
 
-console.log("Локализация ATS UI проверена: обязательные русские строки на месте.");
+console.log("Локализация интерфейса подбора проверена: обязательные русские строки на месте.");
 
 function getValue(dictionary, key) {
   return key.split(".").reduce((entry, part) => entry?.[part], dictionary);

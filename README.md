@@ -6,15 +6,15 @@
 
 ### 2. [Figma](https://www.figma.com/design/43z63QWcWMAaGqowHk1Yp1/master-thesis-design?node-id=11-1833&t=uW62QYp3NzVyESvQ-1)
 
-## II. Reqcore ATS UI
+## II. Интерфейс Reqcore для подбора персонала
 
-В репозитории добавлен минимальный статический интерфейс ATS / Reqcore на русском языке.
+В репозитории добавлен минимальный статический интерфейс Reqcore для подбора персонала на русском языке.
 Он не меняет ML-логику, API-контракты и Python-прототипы ранжирования.
 
 ### Запуск
 
 ```bash
-cd ats-ui
+cd reqcore-recruiting-ui
 npm run build
 npm run start
 ```
@@ -24,7 +24,7 @@ npm run start
 ### Проверки
 
 ```bash
-cd ats-ui
+cd reqcore-recruiting-ui
 npm run lint
 npm run build
 npm run test

@@ -34,8 +34,6 @@ const allowedLatin = new Set([
   "AI-",
   "API",
   "API-",
-  "ATS",
-  "ATSRanker",
   "Bi",
   "Bi-Encoder",
   "Boolean",
@@ -113,7 +111,7 @@ const chrome = spawn(chromePath, [
   "--no-sandbox",
   "--hide-scrollbars",
   `--remote-debugging-port=${debugPort}`,
-  `--user-data-dir=/tmp/ats-ui-chrome-${Date.now()}`,
+  `--user-data-dir=/tmp/reqcore-recruiting-ui-chrome-${Date.now()}`,
   "about:blank",
 ], {
   stdio: ["ignore", "pipe", "pipe"],

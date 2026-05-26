@@ -50,6 +50,6 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, host, () => {
-  console.log(`Reqcore ATS UI запущен: http://${host}:${port}`);
+  console.log(`Интерфейс Reqcore Подбор запущен: http://${host}:${port}`);
   console.log(`Статические файлы: ${staticRoot}`);
 });

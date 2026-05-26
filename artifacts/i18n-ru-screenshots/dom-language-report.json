@@ -1,6 +1,6 @@
 {
   "baseUrl": "http://127.0.0.1:4173",
-  "checkedAt": "2026-05-25T14:08:56.585Z",
+  "checkedAt": "2026-05-26T07:56:11.083Z",
   "routes": [
     {
       "route": "#/login",
@@ -98,8 +98,6 @@
     "AI-",
     "API",
     "API-",
-    "ATS",
-    "ATSRanker",
     "BI",
     "Bi",
     "Bi-Encoder",

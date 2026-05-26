@@ -318,7 +318,7 @@ function renderDashboard() {
         <p>${t("dashboard.modelReady")}</p>
         <dl class="details-list">
           <div><dt>${t("dashboard.modelVersion")}</dt><dd>rubert-tiny2 / Bi-Encoder</dd></div>
-          <div><dt>ATSRanker</dt><dd>${t("common.enabled")}</dd></div>
+          <div><dt>${t("ranking.title")}</dt><dd>${t("common.enabled")}</dd></div>
           <div><dt>X-Model-Version</dt><dd>2026.05</dd></div>
         </dl>
       </article>
@@ -755,7 +755,7 @@ function renderSettings() {
       <section class="nested-card">
         <h2>${t("settings.modelSettings")}</h2>
         <code>MODEL_PATH</code>
-        <code>ATSRanker</code>
+        <code>${t("ranking.title")}</code>
         <code>rubert-tiny2</code>
         <code>Bi-Encoder</code>
       </section>

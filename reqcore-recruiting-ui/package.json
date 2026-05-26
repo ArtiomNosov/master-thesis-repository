@@ -1,9 +1,9 @@
 {
-  "name": "ats-ui",
+  "name": "reqcore-recruiting-ui",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Static ATS / Reqcore interface localized for Russian recruiters.",
+  "description": "Static Reqcore recruiting interface localized for Russian recruiters.",
   "scripts": {
     "build": "node scripts/build.js",
     "lint": "node scripts/lint-ui.js",
