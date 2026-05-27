@@ -1,122 +1,130 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
-  <title id="title">C4 Container диаграмма с разграничением архитектурных допущений и результатов работы</title>
-  <desc id="desc">Диаграмма показывает фактически реализованные контейнеры Reqcore и ML-сервиса, экспериментально проверенные блоки и проектные компоненты будущего развития.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="980" viewBox="0 0 1500 980" role="img" aria-labelledby="title desc">
+  <title id="title">Диаграмма контейнеров C4 с разграничением статусов компонентов</title>
+  <desc id="desc">C4 Container диаграмма Reqcore и ML-сервиса. Статусы компонентов кодируются цветом рамки по легенде SAT.</desc>
   <defs>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
       <path d="M2,2 L10,6 L2,10 Z" fill="#263238"/>
     </marker>
     <style>
       text { font-family: Arial, sans-serif; fill: #1f2933; }
-      .title { font-size: 25px; font-weight: 700; }
-      .boundary-title { font-size: 18px; font-weight: 700; fill: #0d47a1; }
-      .box-title { font-size: 16px; font-weight: 700; }
-      .box-text { font-size: 13px; }
-      .tag { font-size: 12px; font-weight: 700; }
+      .hdr-title { font-size: 22px; font-weight: 700; }
+      .hdr-sub { font-size: 13px; }
+      .hdr-note { font-size: 12px; fill: #546e7a; }
+      .boundary-title { font-size: 16px; font-weight: 700; fill: #0d47a1; }
+      .box-title { font-size: 15px; font-weight: 700; }
+      .box-text { font-size: 12px; }
+      .box-code { font-size: 11px; fill: #455a64; }
       .arrow { stroke: #263238; stroke-width: 2.3; fill: none; marker-end: url(#arrow); }
       .implemented { fill: #e8f5e9; stroke: #2e7d32; stroke-width: 3; }
       .studied { fill: #f1f8e9; stroke: #558b2f; stroke-width: 3; }
       .experimental { fill: #e0f2f1; stroke: #00695c; stroke-width: 3; }
-      .approach { fill: #e3f2fd; stroke: #1565c0; stroke-width: 3; }
+      .approach-boundary { fill: #e3f2fd; fill-opacity: 0.15; stroke: #1565c0; stroke-width: 3; }
       .assumption { fill: #fff8e1; stroke: #f57f17; stroke-width: 3; stroke-dasharray: 9 6; }
-      .concept { fill: #f3e5f5; stroke: #6a1b9a; stroke-width: 3; stroke-dasharray: 3 5; }
-      .legend-box { rx: 8; ry: 8; }
+      .concept { fill: #f3e5f5; stroke: #6a1b9a; stroke-width: 3; stroke-dasharray: 4 4; }
+      .legend-box { rx: 6; ry: 6; }
     </style>
   </defs>
 
-  <rect x="0" y="0" width="1400" height="900" fill="#ffffff"/>
-  <text x="42" y="42" class="title">Диаграмма контейнеров C4: Reqcore и модуль семантического ранжирования</text>
-  <text x="42" y="68" class="box-text">Цвет и тип рамки отделяют проектные архитектурные решения от компонентов, реализованных и проверенных в рамках работы.</text>
+  <rect x="0" y="0" width="1500" height="980" fill="#ffffff"/>
+  <rect x="28" y="18" width="1444" height="86" rx="12" fill="#f8fafc" stroke="#cfd8dc" stroke-width="1.5"/>
+  <text x="48" y="48" class="hdr-title">Диаграмма контейнеров C4: Reqcore и модуль семантического ранжирования</text>
+  <text x="48" y="70" class="hdr-sub">Нотация C4 Container (уровень контейнеров) + надстройка SAT: цвет рамки показывает статус утверждения о компоненте.</text>
+  <text x="48" y="90" class="hdr-note">Стрелки — связи контейнеров; подписи маршрутов и полей БД даны в скобках после русских названий.</text>
 
-  <rect x="40" y="100" width="1320" height="590" rx="22" class="approach" fill-opacity="0.20"/>
-  <text x="65" y="130" class="boundary-title">Архитектурный подход: ATS Reqcore + модуль семантического ранжирования</text>
+  <rect x="36" y="118" width="1428" height="560" rx="20" class="approach-boundary"/>
+  <rect x="52" y="128" width="1396" height="40" rx="10" fill="#ffffff" fill-opacity="0.95" stroke="none"/>
+  <text x="68" y="155" class="boundary-title">Граница системы: ATS Reqcore + модуль семантического ранжирования (архитектурный подход)</text>
 
-  <rect x="70" y="165" width="210" height="95" rx="14" class="implemented"/>
-  <text x="90" y="193" class="box-title">Веб-приложение Reqcore</text>
-  <text x="90" y="215" class="box-text">UI вакансий, откликов и анализа</text>
-  <text x="90" y="238" class="tag">Реализовано в работе</text>
+  <!-- Top row -->
+  <rect x="68" y="188" width="220" height="100" rx="14" class="implemented"/>
+  <text x="88" y="216" class="box-title">Веб-приложение Reqcore</text>
+  <text x="88" y="238" class="box-text">UI вакансий, откликов,</text>
+  <text x="88" y="254" class="box-text">результатов анализа</text>
 
-  <rect x="350" y="165" width="240" height="95" rx="14" class="implemented"/>
-  <text x="370" y="193" class="box-title">Бэкенд Reqcore</text>
-  <text x="370" y="215" class="box-text">Выбор LLM- или bi-encoder scoring</text>
-  <text x="370" y="238" class="tag">Реализовано в работе</text>
+  <rect x="328" y="188" width="250" height="100" rx="14" class="implemented"/>
+  <text x="348" y="216" class="box-title">Бэкенд Reqcore</text>
+  <text x="348" y="238" class="box-text">Выбор LLM- или</text>
+  <text x="348" y="254" class="box-text">bi-encoder scoring</text>
 
-  <rect x="660" y="165" width="230" height="95" rx="14" class="implemented"/>
-  <text x="680" y="193" class="box-title">Основная БД Reqcore</text>
-  <text x="680" y="210" class="box-text">оценка (application.score),</text>
-  <text x="680" y="226" class="box-text">аудит (analysis_run)</text>
-  <text x="680" y="238" class="tag">Реализовано в работе</text>
+  <rect x="618" y="188" width="250" height="100" rx="14" class="implemented"/>
+  <text x="638" y="216" class="box-title">Основная БД Reqcore</text>
+  <text x="638" y="238" class="box-code">оценка (application.score)</text>
+  <text x="638" y="256" class="box-code">аудит (analysis_run)</text>
 
-  <line x1="280" y1="212" x2="350" y2="212" class="arrow"/>
-  <line x1="590" y1="212" x2="660" y2="212" class="arrow"/>
+  <rect x="928" y="178" width="300" height="120" rx="14" class="implemented"/>
+  <text x="948" y="206" class="box-title">Внешние LLM-провайдеры</text>
+  <text x="948" y="228" class="box-text">OpenAI / Anthropic / Google</text>
+  <text x="948" y="248" class="box-text">Критериальный scoring</text>
+  <text x="948" y="266" class="box-text">в контуре Reqcore</text>
 
-  <rect x="970" y="145" width="270" height="115" rx="14" class="implemented"/>
-  <text x="990" y="173" class="box-title">Внешние LLM-провайдеры</text>
-  <text x="990" y="195" class="box-text">OpenAI / Anthropic / Google</text>
-  <text x="990" y="217" class="box-text">Критериальный scoring в Reqcore</text>
-  <text x="990" y="240" class="tag">Реализовано в работе</text>
-  <line x1="590" y1="190" x2="970" y2="190" class="arrow"/>
+  <line x1="288" y1="238" x2="328" y2="238" class="arrow"/>
+  <line x1="578" y1="238" x2="618" y2="238" class="arrow"/>
+  <line x1="578" y1="218" x2="928" y2="218" class="arrow"/>
 
-  <rect x="350" y="340" width="260" height="118" rx="14" class="implemented"/>
-  <text x="370" y="362" class="box-title">API ранжирования</text>
-  <text x="370" y="378" class="box-text">(ATS Semantic Ranking Engine API)</text>
-  <text x="370" y="396" class="box-text">FastAPI: индекс, ранг, оценка</text>
-  <text x="370" y="412" class="box-text">(/index/candidate, /search/rank, /score)</text>
-  <text x="370" y="432" class="tag">Реализовано в работе</text>
-  <line x1="470" y1="260" x2="470" y2="340" class="arrow"/>
+  <!-- Middle row -->
+  <rect x="328" y="328" width="290" height="128" rx="14" class="implemented"/>
+  <text x="348" y="356" class="box-title">API ранжирования</text>
+  <text x="348" y="376" class="box-code">(ATS Semantic Ranking Engine API)</text>
+  <text x="348" y="396" class="box-text">FastAPI: индекс, ранг, оценка</text>
+  <text x="348" y="414" class="box-code">(/index/candidate, /search/rank, /score)</text>
 
-  <rect x="700" y="340" width="245" height="110" rx="14" class="experimental"/>
-  <text x="720" y="369" class="box-title">Среда выполнения bi-encoder</text>
-  <text x="720" y="391" class="box-text">cointegrated/rubert-tiny2</text>
-  <text x="720" y="409" class="box-text">косинусное сходство</text>
-  <text x="720" y="432" class="tag">Экспериментально исследовано</text>
-  <line x1="610" y1="395" x2="700" y2="395" class="arrow"/>
+  <rect x="668" y="328" width="260" height="110" rx="14" class="experimental"/>
+  <text x="688" y="356" class="box-title">Среда bi-encoder</text>
+  <text x="688" y="376" class="box-code">(cointegrated/rubert-tiny2)</text>
+  <text x="688" y="396" class="box-text">Косинусное сходство</text>
 
-  <rect x="1015" y="340" width="220" height="110" rx="14" class="implemented"/>
-  <text x="1035" y="369" class="box-title">Индекс кандидатов</text>
-  <text x="1035" y="391" class="box-text">индекс в памяти (CANDIDATE_INDEX)</text>
-  <text x="1035" y="409" class="box-text">для API ранжирования</text>
-  <text x="1035" y="432" class="tag">Реализовано в работе</text>
-  <line x1="610" y1="415" x2="1015" y2="415" class="arrow"/>
+  <rect x="978" y="328" width="250" height="110" rx="14" class="implemented"/>
+  <text x="998" y="356" class="box-title">Индекс кандидатов</text>
+  <text x="998" y="376" class="box-code">индекс в памяти (CANDIDATE_INDEX)</text>
+  <text x="998" y="396" class="box-text">для API ранжирования</text>
 
-  <rect x="95" y="510" width="260" height="115" rx="14" class="implemented"/>
-  <text x="115" y="539" class="box-title">Офлайн-пайплайн данных и обучения</text>
-  <text x="115" y="561" class="box-text">Подготовка пар, split, fine-tuning</text>
-  <text x="115" y="583" class="box-text">скрипты Python 01–17</text>
-  <text x="115" y="607" class="tag">Реализовано в работе</text>
+  <line x1="453" y1="288" x2="453" y2="328" class="arrow"/>
+  <line x1="618" y1="383" x2="668" y2="383" class="arrow"/>
+  <line x1="618" y1="400" x2="978" y2="400" class="arrow"/>
 
-  <rect x="445" y="510" width="240" height="115" rx="14" class="studied"/>
-  <text x="465" y="539" class="box-title">Артефакты обучающих данных</text>
-  <text x="465" y="561" class="box-text">TSV / SQLite / local files</text>
-  <text x="465" y="583" class="box-text">train / val / test</text>
-  <text x="465" y="607" class="tag">Исследовано в работе</text>
-  <line x1="355" y1="567" x2="445" y2="567" class="arrow"/>
+  <!-- Bottom row inside boundary -->
+  <rect x="88" y="488" width="280" height="118" rx="14" class="implemented"/>
+  <text x="108" y="516" class="box-title">Офлайн-пайплайн</text>
+  <text x="108" y="536" class="box-text">Подготовка пар, split,</text>
+  <text x="108" y="552" class="box-text">fine-tuning</text>
+  <text x="108" y="570" class="box-code">скрипты Python 01–17</text>
 
-  <rect x="775" y="510" width="260" height="115" rx="14" class="experimental"/>
-  <text x="795" y="539" class="box-title">Офлайн-метрики ранжирования</text>
-  <text x="795" y="552" class="box-text">NDCG на K (NDCG@K),</text>
-  <text x="795" y="568" class="box-text">Precision@K, Recall@K, MRR</text>
-  <text x="795" y="583" class="box-text">val/test split</text>
-  <text x="795" y="607" class="tag">Экспериментально исследовано</text>
-  <line x1="685" y1="567" x2="775" y2="567" class="arrow"/>
-  <line x1="822" y1="510" x2="822" y2="450" class="arrow"/>
+  <rect x="418" y="488" width="260" height="118" rx="14" class="studied"/>
+  <text x="438" y="516" class="box-title">Артефакты данных</text>
+  <text x="438" y="536" class="box-text">TSV / SQLite / local files</text>
+  <text x="438" y="556" class="box-text">train / val / test</text>
 
-  <rect x="1085" y="510" width="230" height="115" rx="14" class="assumption"/>
-  <text x="1105" y="539" class="box-title">Векторная БД (ANN / Vector DB)</text>
-  <text x="1105" y="561" class="box-text">Milvus, DiskANN, SPANN</text>
-  <text x="1105" y="583" class="box-text">масштабирование поиска</text>
-  <text x="1105" y="607" class="tag">Архитектурное допущение</text>
+  <rect x="728" y="488" width="300" height="118" rx="14" class="experimental"/>
+  <text x="748" y="516" class="box-title">Офлайн-метрики ранжирования</text>
+  <text x="748" y="536" class="box-code">NDCG на K (NDCG@K)</text>
+  <text x="748" y="554" class="box-code">Precision@K, Recall@K, MRR</text>
+  <text x="748" y="572" class="box-text">val/test split</text>
 
-  <rect x="1085" y="710" width="230" height="95" rx="14" class="concept"/>
-  <text x="1105" y="738" class="box-title">Слой LTR / fair ranking</text>
-  <text x="1105" y="760" class="box-text">Переранжирование и аудит fairness</text>
-  <text x="1105" y="783" class="tag">Концептуальный компонент</text>
+  <line x1="368" y1="547" x2="418" y2="547" class="arrow"/>
+  <line x1="678" y1="547" x2="728" y2="547" class="arrow"/>
+  <line x1="878" y1="488" x2="878" y2="438" class="arrow"/>
 
-  <rect x="40" y="720" width="980" height="130" rx="16" fill="#fafafa" stroke="#cfd8dc" stroke-width="2"/>
-  <text x="62" y="750" class="box-title">Легенда единой системы обозначений</text>
-  <rect x="62" y="770" width="22" height="22" class="assumption legend-box"/><text x="92" y="787" class="box-text">Архитектурное допущение</text>
-  <rect x="285" y="770" width="22" height="22" class="approach legend-box"/><text x="315" y="787" class="box-text">Архитектурный подход</text>
-  <rect x="500" y="770" width="22" height="22" class="concept legend-box"/><text x="530" y="787" class="box-text">Концептуальный компонент</text>
-  <rect x="740" y="770" width="22" height="22" class="studied legend-box"/><text x="770" y="787" class="box-text">Исследовано в работе</text>
-  <rect x="62" y="810" width="22" height="22" class="implemented legend-box"/><text x="92" y="827" class="box-text">Реализовано в работе</text>
-  <rect x="285" y="810" width="22" height="22" class="experimental legend-box"/><text x="315" y="827" class="box-text">Экспериментально исследовано</text>
+  <!-- Outside boundary -->
+  <rect x="1088" y="488" width="260" height="118" rx="14" class="assumption"/>
+  <text x="1108" y="516" class="box-title">Векторная БД</text>
+  <text x="1108" y="536" class="box-code">(ANN / Vector DB)</text>
+  <text x="1108" y="556" class="box-text">Milvus, DiskANN, SPANN</text>
+  <text x="1108" y="574" class="box-text">масштабирование поиска</text>
+
+  <rect x="1088" y="648" width="280" height="100" rx="14" class="concept"/>
+  <text x="1108" y="676" class="box-title">Слой переранжирования</text>
+  <text x="1108" y="696" class="box-code">(LTR / fair ranking)</text>
+  <text x="1108" y="716" class="box-text">Переранжирование и аудит</text>
+
+  <!-- Legend -->
+  <rect x="28" y="700" width="1020" height="250" rx="16" fill="#fafafa" stroke="#cfd8dc" stroke-width="2"/>
+  <text x="48" y="732" class="box-title">Легенда SAT поверх нотации C4 Container</text>
+  <text x="48" y="754" class="hdr-note">C4 задаёт тип элемента (контейнер, БД, внешняя система); SAT задаёт, насколько утверждение о нём подтверждено в диссертации.</text>
+  <rect x="48" y="772" width="20" height="20" class="assumption legend-box"/><text x="76" y="787" class="box-text">Архитектурное допущение</text>
+  <rect x="48" y="802" width="20" height="20" fill="#e3f2fd" stroke="#1565c0" stroke-width="2" class="legend-box"/><text x="76" y="817" class="box-text">Архитектурный подход (граница системы, синяя рамка)</text>
+  <rect x="48" y="832" width="20" height="20" class="concept legend-box"/><text x="76" y="847" class="box-text">Концептуальный компонент</text>
+  <rect x="520" y="772" width="20" height="20" class="studied legend-box"/><text x="548" y="787" class="box-text">Исследовано (корпус, артефакты)</text>
+  <rect x="520" y="802" width="20" height="20" class="implemented legend-box"/><text x="548" y="817" class="box-text">Реализовано (код прототипа)</text>
+  <rect x="520" y="832" width="20" height="20" class="experimental legend-box"/><text x="548" y="847" class="box-text">Экспериментально проверено (метрики, E2E)</text>
+  <text x="48" y="918" class="hdr-note">Светло-зелёная заливка = исследованные данные; тёмно-зелёная = реализованные контейнеры; бирюзовая = экспериментальный блок.</text>
 </svg>
