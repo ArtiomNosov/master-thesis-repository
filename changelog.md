@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-05-27
+
+- Подключён git submodule `reqcore` → https://github.com/ArtiomNosov/reqcore, ветка `thesis/ru-localization`.
+- В форке Reqcore: русская локаль `i18n/locales/ru.json`, язык по умолчанию `ru`, плагин `app/plugins/russian-ui.client.ts`, навигация через `$t('nav.*')`, убраны пользовательские формулировки с «ATS».
+
 ## 2026-05-25
 
 - Добавлен расчет экономического обоснования внедрения в текст ВКР: исходные метрики времени и качества, денежные показатели, срок окупаемости и ROI.
