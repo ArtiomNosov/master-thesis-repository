@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Patch VKR docx/pptx: neutral data source naming, Russian ML terms, objective metrics table."""
+"""One-off agent helper: patch VKR docx/pptx (not part of thesis deliverables)."""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ import zipfile
 from io import BytesIO
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 ARTIFACTS = ROOT / "vkr" / "artifacts"
 BASELINE_REF = "origin/cursor/objective-baseline-comparison-35bc"
 
@@ -23,16 +23,13 @@ COMMON_REPLACEMENTS = [
 ]
 
 DOCX_REPLACEMENTS = COMMON_REPLACEMENTS + [
-    # Cyrillic anglicism -> official Russian (English term already in parentheses where present)
     ("би-энкодера", "независимого энкодера"),
     ("би-энкодере", "независимом энкодере"),
     ("би-энкодеру", "независимому энкодеру"),
     ("би-энкодером", "независимым энкодером"),
     ("би-энкодер", "независимый энкодер"),
-    # Bare English tokens inside Russian prose
     ("bi-encoder архитектуры", "архитектуры независимого энкодера (bi-encoder)"),
     ("bi-encoder подхода", "подхода независимого энкодера (bi-encoder)"),
-    ("bi-encoder архитектуры", "архитектуры независимого энкодера (bi-encoder)"),
     ("bi-encoder модель", "модель независимого энкодера (bi-encoder)"),
     ("bi-encoder модели", "модели независимого энкодера (bi-encoder)"),
     ("bi-encoder путь", "путь независимого энкодера (bi-encoder)"),
@@ -41,14 +38,12 @@ DOCX_REPLACEMENTS = COMMON_REPLACEMENTS + [
     ("bi-encoder сервис", "сервис независимого энкодера (bi-encoder)"),
     ("bi-encoder микросервисом", "микросервисом независимого энкодера (bi-encoder)"),
     ("bi-encoder ranking request", "запроса ранжирования независимым энкодером (bi-encoder)"),
-    ("bi-encoder scoring", "скоринга независимым энкодером (bi-encoder)"),
     ("bi-encoder зависит", "стоимость независимого энкодера (bi-encoder) зависит"),
     ("для bi-encoder", "для независимого энкодера (bi-encoder)"),
     ("Для bi-encoder", "Для независимого энкодера (bi-encoder)"),
     ("Если bi-encoder", "Если независимый энкодер (bi-encoder)"),
     ("bi-encoder как", "независимого энкодера (bi-encoder) как"),
     ("bi-encoder в разделе", "независимого энкодера (bi-encoder) в разделе"),
-    ("bi-encoder подхода", "подхода независимого энкодера (bi-encoder)"),
     ("выбор bi-encoder", "выбор архитектуры независимого энкодера (bi-encoder)"),
     ("использования bi-encoder", "использования независимого энкодера (bi-encoder)"),
     ("адаптации bi-encoder", "адаптации независимого энкодера (bi-encoder)"),
@@ -80,7 +75,6 @@ MARKDOWN_FILES = [
     ROOT / "docs/obsidian/Data_Preparation_and_Profiling_Plan.md",
     ROOT / "docs/obsidian/Data_Preparation_Final_Report.md",
     ROOT / "docs/obsidian/Baseline_Comparison_Report.md",
-    ROOT / "docs/obsidian/Model_Implementation_Final_Report.md",
     ROOT / "changelog.md",
 ]
 
