@@ -333,12 +333,18 @@ def evaluate_split(args) -> None:
     }
 
     if args.cross_model:
-        model_scores["cross_encoder"] = eval_cross_encoder_pairs(
-            args.cross_model, vacancy_texts, resume_texts, batch_size=args.batch_size
-        )
+        try:
+            model_scores["cross_encoder"] = eval_cross_encoder_pairs(
+                args.cross_model, vacancy_texts, resume_texts, batch_size=args.batch_size
+            )
+        except FileNotFoundError:
+            print(f"Cross-encoder model not found at {args.cross_model}; skipping.")
 
     if args.bi_model:
-        model_scores["bi_encoder"] = eval_biencoder_pairs(args.bi_model, vacancy_texts, resume_texts)
+        try:
+            model_scores["bi_encoder"] = eval_biencoder_pairs(args.bi_model, vacancy_texts, resume_texts)
+        except FileNotFoundError:
+            print(f"Bi-encoder model not found at {args.bi_model}; skipping.")
 
     for model_name, scores in model_scores.items():
         results["models"][model_name] = compute_metrics(examples, scores)
