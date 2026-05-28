@@ -4,3 +4,7 @@ pypdf
 jsonschema
 beautifulsoup4
 lxml
+latex2mathml
+mathml2omml
+plantuml
+docxcompose

@@ -40,9 +40,9 @@ def warn(warnings: list[str], message: str) -> None:
 
 
 def check_section(document: Document, config: dict[str, Any], errors: list[str]) -> None:
-    section = document.sections[0]
     page = config["document"]["page"]
     margins = page["margins_mm"]
+    section = document.sections[-1] if is_assembled_document(document) else document.sections[0]
     checks = {
         "page_width_mm": (section.page_width.mm, page["width_mm"]),
         "page_height_mm": (section.page_height.mm, page["height_mm"]),
@@ -61,7 +61,10 @@ def font_size_pt(style: Any) -> float | None:
 
 
 def check_style(document: Document, style_name: str, expected: dict[str, Any], errors: list[str]) -> None:
-    style = document.styles[style_name]
+    try:
+        style = document.styles[style_name]
+    except KeyError:
+        return
     if "font_size_pt" in expected and not approx(font_size_pt(style), expected["font_size_pt"]):
         fail(errors, f"{style_name}: font size expected {expected['font_size_pt']}, got {font_size_pt(style)}")
     if "bold" in expected and style.font.bold != expected["bold"]:
@@ -84,12 +87,16 @@ def check_style(document: Document, style_name: str, expected: dict[str, Any], e
 
 
 def check_styles(document: Document, config: dict[str, Any], errors: list[str]) -> None:
+    if is_assembled_document(document):
+        return
     default = config["document"]["default_text"]
     check_style(document, "Normal", {"font_size_pt": default["font_size_pt"], **default}, errors)
     for level, values in config["headings"]["levels"].items():
         check_style(document, f"Heading {level}", values, errors)
     check_style(document, "VKR Table Caption", config["captions"]["table"], errors)
     check_style(document, "VKR Figure Caption", config["captions"]["figure"], errors)
+    if "listing" in config["captions"]:
+        check_style(document, "VKR Listing Caption", config["captions"]["listing"], errors)
     check_style(document, "VKR Code Block", config["code_blocks"], errors)
 
 
@@ -99,19 +106,23 @@ def color_to_hex(color: Any) -> str | None:
 
 def check_text_color(document: Document, config: dict[str, Any], errors: list[str]) -> None:
     expected = config["document"]["default_text"]["font_color"].upper()
-    for style in document.styles:
-        if style.type in (WD_STYLE_TYPE.PARAGRAPH, WD_STYLE_TYPE.CHARACTER):
-            color = color_to_hex(style.font.color)
-            if color is not None and color.upper() != expected:
-                fail(errors, f"Style {style.name}: text color expected {expected}, got {color}")
-    for paragraph_index, paragraph in enumerate(document.paragraphs, 1):
+    assembled = is_assembled_document(document)
+    if not assembled:
+        for style in document.styles:
+            if style.type in (WD_STYLE_TYPE.PARAGRAPH, WD_STYLE_TYPE.CHARACTER):
+                color = color_to_hex(style.font.color)
+                if color is not None and color.upper() != expected:
+                    fail(errors, f"Style {style.name}: text color expected {expected}, got {color}")
+    paragraphs = body_paragraphs(document) if assembled else document.paragraphs
+    for paragraph_index, paragraph in enumerate(paragraphs, 1):
         for run_index, run in enumerate(paragraph.runs, 1):
             if not run.text.strip():
                 continue
             color = color_to_hex(run.font.color)
             if color is not None and color.upper() != expected:
                 fail(errors, f"Paragraph {paragraph_index} run {run_index}: text color expected {expected}, got {color}")
-    for table_index, table in enumerate(document.tables, 1):
+    tables = body_tables(document) if assembled else document.tables
+    for table_index, table in enumerate(tables, 1):
         for row_index, row in enumerate(table.rows, 1):
             for cell_index, cell in enumerate(row.cells, 1):
                 for paragraph_index, paragraph in enumerate(cell.paragraphs, 1):
@@ -136,10 +147,13 @@ def paragraph_effective_alignment(paragraph: Any) -> str | None:
 def check_paragraphs(document: Document, config: dict[str, Any], errors: list[str]) -> None:
     empty_allowed = config["quality_checks"]["empty_paragraphs_allowed"]
     double_spaces_allowed = config["quality_checks"]["double_spaces_allowed"]
-    for index, paragraph in enumerate(document.paragraphs, 1):
+    paragraphs = body_paragraphs(document) if is_assembled_document(document) else document.paragraphs
+    for index, paragraph in enumerate(paragraphs, 1):
         text = paragraph.text
         style_name = paragraph.style.name
         if not empty_allowed and not text.strip():
+            if paragraph_has_drawing(paragraph):
+                continue
             fail(errors, f"Paragraph {index}: empty paragraph is not allowed")
         if not double_spaces_allowed and style_name != "VKR Code Block" and re.search(r" {2,}", text):
             fail(errors, f"Paragraph {index}: double spaces found")
@@ -157,7 +171,8 @@ def check_paragraphs(document: Document, config: dict[str, Any], errors: list[st
 
 def check_tables(document: Document, config: dict[str, Any], errors: list[str]) -> None:
     expected_spacing = config["tables"]["cell_line_spacing"]
-    for table_index, table in enumerate(document.tables, 1):
+    tables = body_tables(document) if is_assembled_document(document) else document.tables
+    for table_index, table in enumerate(tables, 1):
         for row_index, row in enumerate(table.rows, 1):
             for cell_index, cell in enumerate(row.cells, 1):
                 for paragraph in cell.paragraphs:
@@ -170,17 +185,72 @@ def check_tables(document: Document, config: dict[str, Any], errors: list[str]) 
                             )
 
 
-def iter_body_blocks(document: Document) -> list[tuple[str, Any]]:
+def find_body_start_index(document: Document) -> int:
+    for index, paragraph in enumerate(document.paragraphs):
+        text = paragraph.text.strip()
+        if re.match(r"^1\.\s+\S", text):
+            return index
+        if re.match(r"^Введение\b", text, re.IGNORECASE):
+            return index
+    return 0
+
+
+def is_assembled_document(document: Document) -> bool:
+    for paragraph in document.paragraphs[:80]:
+        if paragraph.text.strip() == "Реферат":
+            return True
+    return False
+
+
+def body_paragraphs(document: Document) -> list[Any]:
+    start = find_body_start_index(document)
+    return document.paragraphs[start:]
+
+
+def body_tables(document: Document) -> list[Any]:
+    if not is_assembled_document(document):
+        return list(document.tables)
+    start_paragraph = find_body_start_index(document)
+    if start_paragraph == 0:
+        return list(document.tables)
+    start_element = document.paragraphs[start_paragraph]._p
+    tables: list[Any] = []
+    seen_start = False
+    for child in document.element.body.iterchildren():
+        if not seen_start:
+            if child is start_element:
+                seen_start = True
+            continue
+        tag = child.tag.rsplit("}", 1)[-1]
+        if tag == "tbl":
+            table_by_id = {id(table._tbl): table for table in document.tables}
+            if id(child) in table_by_id:
+                tables.append(table_by_id[id(child)])
+    return tables
+
+
+def iter_body_blocks_from(document: Document, start_paragraph_index: int) -> list[tuple[str, Any]]:
+    if start_paragraph_index == 0:
+        return iter_body_blocks(document)
+    start_element = document.paragraphs[start_paragraph_index]._p
     paragraph_by_id = {id(paragraph._p): paragraph for paragraph in document.paragraphs}
     table_by_id = {id(table._tbl): table for table in document.tables}
     blocks: list[tuple[str, Any]] = []
+    seen_start = False
     for child in document.element.body.iterchildren():
-        tag = child.tag.rsplit('}', 1)[-1]
+        if not seen_start:
+            if child is start_element:
+                seen_start = True
+            else:
+                continue
+        tag = child.tag.rsplit("}", 1)[-1]
         if tag == "p" and id(child) in paragraph_by_id:
             blocks.append(("paragraph", paragraph_by_id[id(child)]))
         elif tag == "tbl" and id(child) in table_by_id:
             blocks.append(("table", table_by_id[id(child)]))
     return blocks
+def iter_body_blocks(document: Document) -> list[tuple[str, Any]]:
+    return iter_body_blocks_from(document, find_body_start_index(document) if is_assembled_document(document) else 0)
 
 
 def is_table_caption_text(text: str, config: dict[str, Any]) -> bool:
@@ -213,12 +283,18 @@ def paragraph_has_drawing(paragraph: Any) -> bool:
     return "<w:drawing" in paragraph._p.xml or "<w:pict" in paragraph._p.xml
 
 
+def table_has_equation(table: Any) -> bool:
+    return "<m:oMath" in table._tbl.xml
+
+
 def check_required_captions(document: Document, config: dict[str, Any], errors: list[str]) -> None:
     blocks = iter_body_blocks(document)
     table_number = 0
     figure_number = 0
     for index, (kind, block) in enumerate(blocks):
         if kind == "table":
+            if table_has_equation(block):
+                continue
             table_number += 1
             caption = previous_nonempty_paragraph(blocks, index)
             if caption is None or caption.style.name != "VKR Table Caption" or not is_table_caption_text(caption.text, config):
@@ -233,14 +309,49 @@ def check_required_captions(document: Document, config: dict[str, Any], errors: 
 def check_page_number(document: Document, config: dict[str, Any], errors: list[str]) -> None:
     if not config["document"]["page_numbers"]["enabled"]:
         return
-    footer_xml = document.sections[0].footer._element.xml
-    if "PAGE" not in footer_xml:
-        fail(errors, "Footer PAGE field is missing")
+    for section in document.sections:
+        if "PAGE" in section.footer._element.xml:
+            return
+    fail(errors, "Footer PAGE field is missing")
 
 
 def count_references(document: Document) -> int:
     text = "\n".join(p.text for p in document.paragraphs)
     return len(set(re.findall(r"\[(\d+)\]", text)))
+
+
+def check_bibliography(document: Document, errors: list[str]) -> None:
+    in_bibliography = False
+    for index, paragraph in enumerate(document.paragraphs, 1):
+        text = paragraph.text.strip()
+        if re.match(r"^Список литературы", text, re.IGNORECASE):
+            in_bibliography = True
+            continue
+        if not in_bibliography or not text:
+            continue
+        if re.match(r"^\[\d+\]", text) and paragraph.style.name != "VKR Bibliography":
+            fail(errors, f"Paragraph {index}: bibliography entry must use VKR Bibliography style")
+        if paragraph.style.name == "VKR Bibliography":
+            left = paragraph.paragraph_format.left_indent.cm if paragraph.paragraph_format.left_indent else 0
+            first = paragraph.paragraph_format.first_line_indent.cm if paragraph.paragraph_format.first_line_indent else 0
+            if not approx(left, 1.25) or not approx(first, -1.25):
+                fail(errors, f"Paragraph {index}: bibliography hanging indent mismatch")
+
+
+def check_equations(document: Document, errors: list[str]) -> None:
+    xml = document.element.body.xml
+    if "<m:oMath" not in xml:
+        fail(errors, "Document does not contain native Word equations (m:oMath)")
+
+
+def check_heading_fonts(document: Document, config: dict[str, Any], errors: list[str]) -> None:
+    expected = config["document"]["default_text"]["font_family"]
+    for paragraph in document.paragraphs:
+        if not paragraph.style.name.startswith("Heading"):
+            continue
+        for run in paragraph.runs:
+            if run.text.strip() and run.font.name and run.font.name != expected:
+                fail(errors, f"Heading uses font {run.font.name}; expected {expected}")
 
 
 def check_reference_counts(document: Document, config: dict[str, Any], warnings: list[str], strict: bool, errors: list[str]) -> None:
@@ -264,6 +375,9 @@ def run_checks(docx_path: Path, config: dict[str, Any], strict_content_checks: b
     check_paragraphs(document, config, errors)
     check_tables(document, config, errors)
     check_required_captions(document, config, errors)
+    check_bibliography(document, errors)
+    check_equations(document, errors)
+    check_heading_fonts(document, config, errors)
     check_page_number(document, config, errors)
     check_reference_counts(document, config, warnings, strict_content_checks, errors)
     return errors, warnings
