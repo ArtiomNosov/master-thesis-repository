@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MLOps Monitoring Platform - High Fidelity UI Mockup</title>
+    <title>ModelPulse — MLOps-платформа мониторинга</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -15,74 +15,74 @@
               <div class="brand-mark">ML</div>
               <div>
                 <div class="brand-title">ModelPulse</div>
-                <div class="brand-caption">Production ML Control</div>
+                <div class="brand-caption">Управление ML в продакшене</div>
               </div>
             </div>
             <div class="nav-section">
-              <div class="nav-label">Monitor</div>
-              <div class="nav-item active"><span class="nav-icon">D</span>Dashboard</div>
-              <div class="nav-item"><span class="nav-icon">M</span>Models</div>
-              <div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div>
-              <div class="nav-item"><span class="nav-icon">P</span>Performance</div>
-              <div class="nav-item"><span class="nav-icon">A</span>Alerts</div>
-              <div class="nav-item"><span class="nav-icon">R</span>Registry</div>
+              <div class="nav-label">Мониторинг</div>
+              <div class="nav-item active"><span class="nav-icon">Д</span>Дашборд</div>
+              <div class="nav-item"><span class="nav-icon">М</span>Модели</div>
+              <div class="nav-item"><span class="nav-icon">ДД</span>Дрейф данных</div>
+              <div class="nav-item"><span class="nav-icon">П</span>Производительность</div>
+              <div class="nav-item"><span class="nav-icon">О</span>Оповещения</div>
+              <div class="nav-item"><span class="nav-icon">Р</span>Реестр</div>
             </div>
             <div class="nav-section">
-              <div class="nav-label">Workspace</div>
-              <div class="nav-item"><span class="nav-icon">S</span>Settings</div>
+              <div class="nav-label">Рабочая область</div>
+              <div class="nav-item"><span class="nav-icon">Н</span>Настройки</div>
             </div>
             <div class="sidebar-card">
-              <strong>Production health</strong>
-              <span>1 critical alert requires action in fraud detection pipeline.</span>
+              <strong>Состояние продакшена</strong>
+              <span>1 критичное оповещение требует реакции в пайплайне обнаружения мошенничества.</span>
             </div>
           </aside>
 
           <div class="content">
             <header class="topbar">
-              <div class="search">Search models, features, alerts...</div>
+              <div class="search">Поиск моделей, признаков, оповещений...</div>
               <div class="top-actions">
-                <div class="select-pill">Last 7 days</div>
-                <div class="select-pill">Production</div>
+                <div class="select-pill">Последние 7 дней</div>
+                <div class="select-pill">Продакшен</div>
                 <div class="icon-button">N</div>
-                <div class="profile"><div class="avatar">AK</div><strong>Anna Kim</strong></div>
+                <div class="profile"><div class="avatar">АК</div><strong>Анна Ким</strong></div>
               </div>
             </header>
 
             <section class="page">
               <div class="page-header">
                 <div>
-                  <p class="eyebrow">MLOps Dashboard</p>
-                  <h1>Production model health overview</h1>
-                  <p class="subtle">Track quality, data drift, model drift, incidents, and operational readiness across ML systems.</p>
+                  <p class="eyebrow">MLOps-дашборд</p>
+                  <h1>Обзор состояния моделей в продакшене</h1>
+                  <p class="subtle">Отслеживание качества, дрейфа данных, дрейфа модели, инцидентов и операционной готовности ML-систем.</p>
                 </div>
                 <div class="filter-row">
-                  <button class="filter-chip primary">Project: Growth ML</button>
-                  <button class="filter-chip">Model: All</button>
-                  <button class="filter-chip">Env: Production</button>
-                  <button class="filter-chip">Period: 7D</button>
+                  <button class="filter-chip primary">Проект: Growth ML</button>
+                  <button class="filter-chip">Модель: все</button>
+                  <button class="filter-chip">Среда: продакшен</button>
+                  <button class="filter-chip">Период: 7Д</button>
                 </div>
               </div>
 
               <div class="grid grid-4">
                 <div class="card metric-card">
-                  <div class="metric-head"><span class="metric-label">System status</span><span class="badge warning">Warning</span></div>
-                  <div class="metric-value">92.4%</div>
-                  <div class="metric-delta">SLO compliance, <span class="delta-down">-2.1%</span> vs previous week</div>
+                  <div class="metric-head"><span class="metric-label">Статус системы</span><span class="badge warning">Предупреждение</span></div>
+                  <div class="metric-value">92,4%</div>
+                  <div class="metric-delta">Соответствие SLO, <span class="delta-down">−2,1%</span> к прошлой неделе</div>
                 </div>
                 <div class="card metric-card">
-                  <div class="metric-head"><span class="metric-label">Healthy models</span><span class="status-dot healthy"></span></div>
+                  <div class="metric-head"><span class="metric-label">Модели в норме</span><span class="status-dot healthy"></span></div>
                   <div class="metric-value">8</div>
-                  <div class="metric-delta">Stable quality and drift levels</div>
+                  <div class="metric-delta">Стабильное качество и уровень дрейфа</div>
                 </div>
                 <div class="card metric-card">
-                  <div class="metric-head"><span class="metric-label">Warning models</span><span class="status-dot warning"></span></div>
+                  <div class="metric-head"><span class="metric-label">Модели с предупреждением</span><span class="status-dot warning"></span></div>
                   <div class="metric-value">3</div>
-                  <div class="metric-delta">Quality or drift should be reviewed</div>
+                  <div class="metric-delta">Требуется проверка качества или дрейфа</div>
                 </div>
                 <div class="card metric-card">
-                  <div class="metric-head"><span class="metric-label">Critical models</span><span class="status-dot critical"></span></div>
+                  <div class="metric-head"><span class="metric-label">Критичные модели</span><span class="status-dot critical"></span></div>
                   <div class="metric-value">1</div>
-                  <div class="metric-delta">Immediate response recommended</div>
+                  <div class="metric-delta">Рекомендуется немедленная реакция</div>
                 </div>
               </div>
 
@@ -90,21 +90,21 @@
                 <div class="card card-pad">
                   <div class="card-title-row">
                     <div>
-                      <h2>Model quality trend</h2>
-                      <p class="subtle">Average F1-score and ROC-AUC across active production models.</p>
+                      <h2>Тренд качества моделей</h2>
+                      <p class="subtle">Средний F1-score и ROC-AUC по активным моделям в продакшене.</p>
                     </div>
                     <div class="legend"><span><i style="background:#2563eb"></i>F1-score</span><span><i style="background:#16a34a"></i>ROC-AUC</span></div>
                   </div>
-                  <svg class="chart" viewBox="0 0 740 260" role="img" aria-label="Model quality trend">
+                  <svg class="chart" viewBox="0 0 740 260" role="img" aria-label="Тренд качества моделей">
                     <rect class="chart-bg" x="0" y="0" width="740" height="260" rx="18"></rect>
                     <line class="grid-line" x1="46" y1="46" x2="704" y2="46"></line>
                     <line class="grid-line" x1="46" y1="98" x2="704" y2="98"></line>
                     <line class="grid-line" x1="46" y1="150" x2="704" y2="150"></line>
                     <line class="grid-line" x1="46" y1="202" x2="704" y2="202"></line>
-                    <text class="axis-label" x="46" y="235">Mon</text><text class="axis-label" x="156" y="235">Tue</text>
-                    <text class="axis-label" x="266" y="235">Wed</text><text class="axis-label" x="376" y="235">Thu</text>
-                    <text class="axis-label" x="486" y="235">Fri</text><text class="axis-label" x="596" y="235">Sat</text>
-                    <text class="axis-label" x="676" y="235">Sun</text>
+                    <text class="axis-label" x="46" y="235">Пн</text><text class="axis-label" x="156" y="235">Вт</text>
+                    <text class="axis-label" x="266" y="235">Ср</text><text class="axis-label" x="376" y="235">Чт</text>
+                    <text class="axis-label" x="486" y="235">Пт</text><text class="axis-label" x="596" y="235">Сб</text>
+                    <text class="axis-label" x="676" y="235">Вс</text>
                     <path class="area-blue" d="M52 94 C144 82 178 104 250 92 C334 78 398 86 470 112 C550 141 628 135 694 122 L694 214 L52 214 Z"></path>
                     <path class="line-blue" d="M52 94 C144 82 178 104 250 92 C334 78 398 86 470 112 C550 141 628 135 694 122"></path>
                     <path class="line-green" d="M52 74 C142 68 180 80 250 76 C330 66 394 70 470 82 C550 95 628 91 694 86"></path>
@@ -115,30 +115,30 @@
 
                 <div class="card card-pad">
                   <div class="card-title-row">
-                    <h2>Drift and model alerts</h2>
-                    <span class="link">View all</span>
+                    <h2>Дрейф и оповещения по моделям</h2>
+                    <span class="link">Смотреть все</span>
                   </div>
                   <div class="alert-list">
                     <div class="incident">
                       <div class="incident-top">
-                        <span class="incident-title">High data drift in transaction_amount</span>
-                        <span class="badge critical">Critical</span>
+                        <span class="incident-title">Высокий дрейф данных в transaction_amount</span>
+                        <span class="badge critical">Критично</span>
                       </div>
-                      <div class="incident-meta">fraud_detection_v2 - drift score 0.81 - 12 min ago</div>
+                      <div class="incident-meta">fraud_detection_v2 — оценка дрейфа 0,81 — 12 мин назад</div>
                     </div>
                     <div class="incident">
                       <div class="incident-top">
-                        <span class="incident-title">F1-score below baseline</span>
-                        <span class="badge warning">Warning</span>
+                        <span class="incident-title">F1-score ниже базового уровня</span>
+                        <span class="badge warning">Предупреждение</span>
                       </div>
-                      <div class="incident-meta">churn_prediction_v3 - current 0.872 vs baseline 0.914</div>
+                      <div class="incident-meta">churn_prediction_v3 — текущий 0,872 против базового 0,914</div>
                     </div>
                     <div class="incident">
                       <div class="incident-top">
-                        <span class="incident-title">Latency p95 increased</span>
-                        <span class="badge warning">Warning</span>
+                        <span class="incident-title">Рост задержки p95</span>
+                        <span class="badge warning">Предупреждение</span>
                       </div>
-                      <div class="incident-meta">demand_forecast_v1 - p95 184 ms - 34 min ago</div>
+                      <div class="incident-meta">demand_forecast_v1 — p95 184 мс — 34 мин назад</div>
                     </div>
                   </div>
                 </div>
@@ -147,29 +147,29 @@
               <div class="grid grid-main" style="margin-top:18px">
                 <div class="card card-pad">
                   <div class="table-title-row">
-                    <h2>Active models</h2>
-                    <span class="link">Export CSV</span>
+                    <h2>Активные модели</h2>
+                    <span class="link">Экспорт CSV</span>
                   </div>
                   <table class="table">
                     <thead>
-                      <tr><th>Model</th><th>Project</th><th>Status</th><th>F1-score</th><th>Drift</th><th>Latency</th><th>Owner</th></tr>
+                      <tr><th>Модель</th><th>Проект</th><th>Статус</th><th>F1-score</th><th>Дрейф</th><th>Задержка</th><th>Владелец</th></tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td><div class="model-name"><span class="model-icon">CP</span>churn_prediction_v3</div></td>
-                        <td>Growth ML</td><td><span class="badge warning">Warning</span></td><td>0.872</td><td>0.43</td><td>96 ms</td><td>N. Orlova</td>
+                        <td>Growth ML</td><td><span class="badge warning">Предупреждение</span></td><td>0,872</td><td>0,43</td><td>96 мс</td><td>Н. Орлова</td>
                       </tr>
                       <tr>
                         <td><div class="model-name"><span class="model-icon">FD</span>fraud_detection_v2</div></td>
-                        <td>Risk</td><td><span class="badge critical">Critical</span></td><td>0.781</td><td>0.81</td><td>142 ms</td><td>M. Petrov</td>
+                        <td>Risk</td><td><span class="badge critical">Критично</span></td><td>0,781</td><td>0,81</td><td>142 мс</td><td>М. Петров</td>
                       </tr>
                       <tr>
                         <td><div class="model-name"><span class="model-icon">DF</span>demand_forecast_v1</div></td>
-                        <td>Supply</td><td><span class="badge healthy">Healthy</span></td><td>0.914</td><td>0.18</td><td>184 ms</td><td>A. Kim</td>
+                        <td>Supply</td><td><span class="badge healthy">Норма</span></td><td>0,914</td><td>0,18</td><td>184 мс</td><td>А. Ким</td>
                       </tr>
                       <tr>
                         <td><div class="model-name"><span class="model-icon">CR</span>credit_risk_v4</div></td>
-                        <td>Risk</td><td><span class="badge healthy">Healthy</span></td><td>0.928</td><td>0.12</td><td>88 ms</td><td>D. Ivanov</td>
+                        <td>Risk</td><td><span class="badge healthy">Норма</span></td><td>0,928</td><td>0,12</td><td>88 мс</td><td>Д. Иванов</td>
                       </tr>
                     </tbody>
                   </table>
@@ -177,36 +177,36 @@
 
                 <div class="card card-pad">
                   <div class="card-title-row">
-                    <h2>Latest incidents</h2>
-                    <span class="link">Incident log</span>
+                    <h2>Последние инциденты</h2>
+                    <span class="link">Журнал инцидентов</span>
                   </div>
                   <div class="incident-list">
                     <div class="incident">
-                      <div class="incident-top"><span class="incident-title">Feature schema mismatch</span><span class="badge critical">Open</span></div>
-                      <div class="incident-meta">fraud_detection_v2 - assigned to Risk ML - 14:02 UTC</div>
+                      <div class="incident-top"><span class="incident-title">Несоответствие схемы признаков</span><span class="badge critical">Открыт</span></div>
+                      <div class="incident-meta">fraud_detection_v2 — назначена команда Risk ML — 14:02 UTC</div>
                     </div>
                     <div class="incident">
-                      <div class="incident-top"><span class="incident-title">Baseline degradation confirmed</span><span class="badge warning">Investigating</span></div>
-                      <div class="incident-meta">churn_prediction_v3 - data quality check running</div>
+                      <div class="incident-top"><span class="incident-title">Подтверждена деградация относительно базы</span><span class="badge warning">Расследуется</span></div>
+                      <div class="incident-meta">churn_prediction_v3 — выполняется проверка качества данных</div>
                     </div>
                     <div class="incident">
-                      <div class="incident-top"><span class="incident-title">Autoscaling recovered</span><span class="badge healthy">Resolved</span></div>
-                      <div class="incident-meta">demand_forecast_v1 - throughput back to normal</div>
+                      <div class="incident-top"><span class="incident-title">Автомасштабирование восстановлено</span><span class="badge healthy">Решён</span></div>
+                      <div class="incident-meta">demand_forecast_v1 — пропускная способность в норме</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="component-strip" style="margin-top:18px">
-                <strong>Reusable components:</strong>
-                <span class="badge healthy">Healthy</span>
-                <span class="badge warning">Warning</span>
-                <span class="badge critical">Critical</span>
-                <button class="button primary">Investigate</button>
-                <button class="button">Assign</button>
-                <button class="button">Resolve</button>
-                <span class="filter-chip">Model filter</span>
-                <span class="filter-chip primary">Selected filter</span>
+                <strong>Переиспользуемые компоненты:</strong>
+                <span class="badge healthy">Норма</span>
+                <span class="badge warning">Предупреждение</span>
+                <span class="badge critical">Критично</span>
+                <button class="button primary">Исследовать</button>
+                <button class="button">Назначить</button>
+                <button class="button">Закрыть</button>
+                <span class="filter-chip">Фильтр моделей</span>
+                <span class="filter-chip primary">Выбранный фильтр</span>
               </div>
             </section>
           </div>
@@ -216,82 +216,82 @@
       <section class="frame" id="model-detail">
         <div class="app">
           <aside class="sidebar">
-            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Управление ML в продакшене</div></div></div>
             <div class="nav-section">
-              <div class="nav-label">Monitor</div>
-              <div class="nav-item"><span class="nav-icon">D</span>Dashboard</div>
-              <div class="nav-item active"><span class="nav-icon">M</span>Models</div>
-              <div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div>
-              <div class="nav-item"><span class="nav-icon">P</span>Performance</div>
-              <div class="nav-item"><span class="nav-icon">A</span>Alerts</div>
-              <div class="nav-item"><span class="nav-icon">R</span>Registry</div>
+              <div class="nav-label">Мониторинг</div>
+              <div class="nav-item"><span class="nav-icon">Д</span>Дашборд</div>
+              <div class="nav-item active"><span class="nav-icon">М</span>Модели</div>
+              <div class="nav-item"><span class="nav-icon">ДД</span>Дрейф данных</div>
+              <div class="nav-item"><span class="nav-icon">П</span>Производительность</div>
+              <div class="nav-item"><span class="nav-icon">О</span>Оповещения</div>
+              <div class="nav-item"><span class="nav-icon">Р</span>Реестр</div>
             </div>
-            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
-            <div class="sidebar-card"><strong>Recommended next step</strong><span>Retrain with latest 30-day labeled sample and review acquisition_channel drift.</span></div>
+            <div class="nav-section"><div class="nav-label">Рабочая область</div><div class="nav-item"><span class="nav-icon">Н</span>Настройки</div></div>
+            <div class="sidebar-card"><strong>Рекомендуемый следующий шаг</strong><span>Переобучить на последней 30-дневной размеченной выборке и проверить дрейф признака acquisition_channel.</span></div>
           </aside>
           <div class="content">
             <header class="topbar">
-              <div class="search">Search in churn_prediction_v3...</div>
-              <div class="top-actions"><div class="select-pill">Last 30 days</div><div class="select-pill">Production</div><div class="icon-button">N</div><div class="profile"><div class="avatar">NO</div><strong>Nina Orlova</strong></div></div>
+              <div class="search">Поиск в churn_prediction_v3...</div>
+              <div class="top-actions"><div class="select-pill">Последние 30 дней</div><div class="select-pill">Продакшен</div><div class="icon-button">N</div><div class="profile"><div class="avatar">НО</div><strong>Нина Орлова</strong></div></div>
             </header>
             <section class="page">
               <div class="page-header">
-                <div><p class="eyebrow">Model Detail</p><h1>churn_prediction_v3</h1><p class="subtle">Customer churn classifier for retention campaigns, currently monitored in production.</p></div>
-                <div class="filter-row"><button class="filter-chip primary">Version 3.8.2</button><button class="filter-chip">Baseline 3.7.0</button><button class="filter-chip">Prod</button></div>
+                <div><p class="eyebrow">Карточка модели</p><h1>churn_prediction_v3</h1><p class="subtle">Классификатор оттока клиентов для кампаний удержания, мониторится в продакшене.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Версия 3.8.2</button><button class="filter-chip">База 3.7.0</button><button class="filter-chip">Прод</button></div>
               </div>
 
               <div class="model-hero">
                 <div class="hero-card card">
-                  <div class="card-title-row"><div><h2>Model status</h2><p class="subtle">Quality degradation detected in the last 48 hours.</p></div><span class="badge warning">Warning</span></div>
+                  <div class="card-title-row"><div><h2>Статус модели</h2><p class="subtle">Деградация качества зафиксирована за последние 48 часов.</p></div><span class="badge warning">Предупреждение</span></div>
                   <div class="hero-meta">
-                    <div class="meta-box"><span>Version</span><strong>3.8.2</strong></div>
-                    <div class="meta-box"><span>Environment</span><strong>Production</strong></div>
-                    <div class="meta-box"><span>Last deploy</span><strong>May 21, 2026</strong></div>
-                    <div class="meta-box"><span>Dataset</span><strong>retention_2026_05</strong></div>
-                    <div class="meta-box"><span>Owner</span><strong>Growth ML Team</strong></div>
+                    <div class="meta-box"><span>Версия</span><strong>3.8.2</strong></div>
+                    <div class="meta-box"><span>Среда</span><strong>Продакшен</strong></div>
+                    <div class="meta-box"><span>Последний деплой</span><strong>21 мая 2026</strong></div>
+                    <div class="meta-box"><span>Датасет</span><strong>retention_2026_05</strong></div>
+                    <div class="meta-box"><span>Владелец</span><strong>Команда Growth ML</strong></div>
                   </div>
                 </div>
                 <div class="card card-pad">
-                  <h2>Actions recommended</h2>
+                  <h2>Рекомендуемые действия</h2>
                   <div class="recommendation-list">
-                    <div class="recommendation"><strong>Retrain</strong><p>Use latest labeled retention outcomes and rebalance high-risk segment.</p><div class="button-row"><button class="button primary">Start retrain</button><button class="button">Schedule</button></div></div>
+                    <div class="recommendation"><strong>Переобучение</strong><p>Использовать последние размеченные исходы retention и перебалансировать высокорисковый сегмент.</p><div class="button-row"><button class="button primary">Запустить переобучение</button><button class="button">Запланировать</button></div></div>
                   </div>
                 </div>
               </div>
 
               <div class="grid grid-4" style="margin-top:18px">
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Accuracy</span><span class="badge warning">-1.8%</span></div><div class="metric-value">0.918</div><div class="metric-delta">Baseline 0.936</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Precision</span><span class="badge healthy">OK</span></div><div class="metric-value">0.904</div><div class="metric-delta">Baseline 0.908</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Recall</span><span class="badge warning">-4.2%</span></div><div class="metric-value">0.842</div><div class="metric-delta">Baseline 0.884</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">ROC-AUC</span><span class="badge warning">Drift</span></div><div class="metric-value">0.931</div><div class="metric-delta">Baseline 0.951</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Точность</span><span class="badge warning">−1,8%</span></div><div class="metric-value">0,918</div><div class="metric-delta">База 0,936</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Точность (P)</span><span class="badge healthy">ОК</span></div><div class="metric-value">0,904</div><div class="metric-delta">База 0,908</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Полнота</span><span class="badge warning">−4,2%</span></div><div class="metric-value">0,842</div><div class="metric-delta">База 0,884</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">ROC-AUC</span><span class="badge warning">Дрейф</span></div><div class="metric-value">0,931</div><div class="metric-delta">База 0,951</div></div>
               </div>
 
               <div class="grid grid-main" style="margin-top:18px">
                 <div class="card card-pad">
-                  <div class="card-title-row"><div><h2>Quality over time</h2><p class="subtle">Daily F1-score with baseline guardrail.</p></div><span class="badge warning">Below guardrail</span></div>
-                  <svg class="chart" viewBox="0 0 740 272" role="img" aria-label="Quality over time">
+                  <div class="card-title-row"><div><h2>Качество во времени</h2><p class="subtle">Ежедневный F1-score с контрольным порогом базовой линии.</p></div><span class="badge warning">Ниже порога</span></div>
+                  <svg class="chart" viewBox="0 0 740 272" role="img" aria-label="Качество во времени">
                     <rect class="chart-bg" x="0" y="0" width="740" height="272" rx="18"></rect>
                     <line class="grid-line" x1="46" y1="52" x2="704" y2="52"></line><line class="grid-line" x1="46" y1="112" x2="704" y2="112"></line><line class="grid-line" x1="46" y1="172" x2="704" y2="172"></line><line class="grid-line" x1="46" y1="226" x2="704" y2="226"></line>
                     <path d="M52 86 L704 86" stroke="#d97706" stroke-width="2" stroke-dasharray="7 7"></path>
                     <path class="line-blue" d="M52 72 C120 76 160 70 226 78 C300 86 360 92 430 118 C498 138 560 154 626 142 C660 136 684 130 704 128"></path>
                     <path class="line-red" d="M52 114 C130 110 198 108 260 118 C340 126 418 136 488 160 C568 184 634 192 704 188"></path>
-                    <text class="axis-label" x="58" y="248">Apr 26</text><text class="axis-label" x="342" y="248">May 10</text><text class="axis-label" x="644" y="248">May 24</text>
+                    <text class="axis-label" x="58" y="248">26 апр</text><text class="axis-label" x="342" y="248">10 мая</text><text class="axis-label" x="644" y="248">24 мая</text>
                   </svg>
                 </div>
                 <div class="card card-pad">
-                  <h2>Current vs baseline</h2>
-                  <div class="baseline-row"><span>Accuracy</span><div class="baseline-values"><span>0.918 / 0.936</span><div class="mini-progress"><span style="width:84%"></span></div></div></div>
-                  <div class="baseline-row"><span>Precision</span><div class="baseline-values"><span>0.904 / 0.908</span><div class="mini-progress"><span style="width:92%"></span></div></div></div>
-                  <div class="baseline-row"><span>Recall</span><div class="baseline-values"><span>0.842 / 0.884</span><div class="mini-progress"><span style="width:72%;background:#d97706"></span></div></div></div>
-                  <div class="baseline-row"><span>F1-score</span><div class="baseline-values"><span>0.872 / 0.914</span><div class="mini-progress"><span style="width:76%;background:#d97706"></span></div></div></div>
-                  <div class="baseline-row"><span>ROC-AUC</span><div class="baseline-values"><span>0.931 / 0.951</span><div class="mini-progress"><span style="width:86%"></span></div></div></div>
+                  <h2>Текущее vs база</h2>
+                  <div class="baseline-row"><span>Точность</span><div class="baseline-values"><span>0,918 / 0,936</span><div class="mini-progress"><span style="width:84%"></span></div></div></div>
+                  <div class="baseline-row"><span>Точность (P)</span><div class="baseline-values"><span>0,904 / 0,908</span><div class="mini-progress"><span style="width:92%"></span></div></div></div>
+                  <div class="baseline-row"><span>Полнота</span><div class="baseline-values"><span>0,842 / 0,884</span><div class="mini-progress"><span style="width:72%;background:#d97706"></span></div></div></div>
+                  <div class="baseline-row"><span>F1-score</span><div class="baseline-values"><span>0,872 / 0,914</span><div class="mini-progress"><span style="width:76%;background:#d97706"></span></div></div></div>
+                  <div class="baseline-row"><span>ROC-AUC</span><div class="baseline-values"><span>0,931 / 0,951</span><div class="mini-progress"><span style="width:86%"></span></div></div></div>
                 </div>
               </div>
 
               <div class="grid grid-3" style="margin-top:18px">
-                <div class="recommendation"><strong>Investigate</strong><p>Review acquisition_channel and plan_type distribution shift since May 19.</p><button class="button primary">Open drift analysis</button></div>
-                <div class="recommendation"><strong>Rollback</strong><p>Fallback version 3.7.0 remains stable and deployable if recall drops below 0.82.</p><button class="button">Prepare rollback</button></div>
-                <div class="recommendation"><strong>Monitor</strong><p>Increase evaluation cadence to hourly until drift score returns below 0.30.</p><button class="button">Create watch rule</button></div>
+                <div class="recommendation"><strong>Исследовать</strong><p>Проверить сдвиг распределений признаков acquisition_channel и plan_type с 19 мая.</p><button class="button primary">Открыть анализ дрейфа</button></div>
+                <div class="recommendation"><strong>Откат</strong><p>Резервная версия 3.7.0 стабильна и готова к деплою, если полнота упадёт ниже 0,82.</p><button class="button">Подготовить откат</button></div>
+                <div class="recommendation"><strong>Мониторинг</strong><p>Увеличить частоту оценки до почасовой, пока оценка дрейфа не вернётся ниже 0,30.</p><button class="button">Создать правило наблюдения</button></div>
               </div>
             </section>
           </div>
@@ -301,40 +301,40 @@
       <section class="frame" id="data-drift">
         <div class="app">
           <aside class="sidebar">
-            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Управление ML в продакшене</div></div></div>
             <div class="nav-section">
-              <div class="nav-label">Monitor</div>
-              <div class="nav-item"><span class="nav-icon">D</span>Dashboard</div><div class="nav-item"><span class="nav-icon">M</span>Models</div><div class="nav-item active"><span class="nav-icon">DD</span>Data Drift</div><div class="nav-item"><span class="nav-icon">P</span>Performance</div><div class="nav-item"><span class="nav-icon">A</span>Alerts</div><div class="nav-item"><span class="nav-icon">R</span>Registry</div>
+              <div class="nav-label">Мониторинг</div>
+              <div class="nav-item"><span class="nav-icon">Д</span>Дашборд</div><div class="nav-item"><span class="nav-icon">М</span>Модели</div><div class="nav-item active"><span class="nav-icon">ДД</span>Дрейф данных</div><div class="nav-item"><span class="nav-icon">П</span>Производительность</div><div class="nav-item"><span class="nav-icon">О</span>Оповещения</div><div class="nav-item"><span class="nav-icon">Р</span>Реестр</div>
             </div>
-            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
-            <div class="sidebar-card"><strong>Dataset comparison</strong><span>Train: 2026 Q1 cohort. Production: last 24h scored traffic.</span></div>
+            <div class="nav-section"><div class="nav-label">Рабочая область</div><div class="nav-item"><span class="nav-icon">Н</span>Настройки</div></div>
+            <div class="sidebar-card"><strong>Сравнение датасетов</strong><span>Обучение: когорта Q1 2026. Продакшен: скоринговый трафик за последние 24 ч.</span></div>
           </aside>
           <div class="content">
-            <header class="topbar"><div class="search">Search feature drift...</div><div class="top-actions"><div class="select-pill">Last 24 hours</div><div class="select-pill">fraud_detection_v2</div><div class="icon-button">N</div><div class="profile"><div class="avatar">MP</div><strong>Max Petrov</strong></div></div></header>
+            <header class="topbar"><div class="search">Поиск дрейфа признаков...</div><div class="top-actions"><div class="select-pill">Последние 24 часа</div><div class="select-pill">fraud_detection_v2</div><div class="icon-button">N</div><div class="profile"><div class="avatar">МП</div><strong>Макс Петров</strong></div></div></header>
             <section class="page">
               <div class="page-header">
-                <div><p class="eyebrow">Data Drift Monitoring</p><h1>Train vs production distribution shift</h1><p class="subtle">Feature-level drift scores with visual severity and latest checks.</p></div>
-                <div class="filter-row"><button class="filter-chip primary">Model: fraud_detection_v2</button><button class="filter-chip">Dataset: prod last 24h</button><button class="filter-chip">Method: PSI + KS</button></div>
+                <div><p class="eyebrow">Мониторинг дрейфа данных</p><h1>Сдвиг распределений: обучение vs продакшен</h1><p class="subtle">Drift score по признакам с визуальной оценкой критичности и результатами последних проверок.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Модель: fraud_detection_v2</button><button class="filter-chip">Датасет: прод за 24 ч</button><button class="filter-chip">Метод: PSI + KS</button></div>
               </div>
               <div class="grid grid-4">
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Overall drift</span><span class="badge critical">Critical</span></div><div class="metric-value">0.62</div><div class="metric-delta">Threshold 0.50</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">High drift features</span><span class="status-dot critical"></span></div><div class="metric-value">4</div><div class="metric-delta">Need investigation</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Warning features</span><span class="status-dot warning"></span></div><div class="metric-value">7</div><div class="metric-delta">Monitor trend</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Last check</span><span class="badge info">Fresh</span></div><div class="metric-value">5m</div><div class="metric-delta">Next run in 10 minutes</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Общий дрейф</span><span class="badge critical">Критично</span></div><div class="metric-value">0,62</div><div class="metric-delta">Порог 0,50</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Признаки с высоким дрейфом</span><span class="status-dot critical"></span></div><div class="metric-value">4</div><div class="metric-delta">Требуется исследование</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Признаки с предупреждением</span><span class="status-dot warning"></span></div><div class="metric-value">7</div><div class="metric-delta">Отслеживать тренд</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Последняя проверка</span><span class="badge info">Свежая</span></div><div class="metric-value">5 мин</div><div class="metric-delta">Следующий запуск через 10 минут</div></div>
               </div>
 
               <div class="grid drift-layout" style="margin-top:18px">
                 <div class="card card-pad">
-                  <h2>Highest drift features</h2>
+                  <h2>Признаки с наибольшим дрейфом</h2>
                   <div class="feature-list">
-                    <div class="feature-item"><strong>transaction_amount</strong><span class="badge critical">0.81</span><span>numeric - KS test</span><span>Critical</span></div>
-                    <div class="feature-item"><strong>merchant_category</strong><span class="badge critical">0.74</span><span>categorical - PSI</span><span>Critical</span></div>
-                    <div class="feature-item"><strong>device_risk_score</strong><span class="badge critical">0.66</span><span>numeric - KS test</span><span>Critical</span></div>
-                    <div class="feature-item"><strong>geo_distance_km</strong><span class="badge warning">0.49</span><span>numeric - PSI</span><span>Warning</span></div>
+                    <div class="feature-item"><strong>transaction_amount</strong><span class="badge critical">0,81</span><span>числовой — KS-тест</span><span>Критично</span></div>
+                    <div class="feature-item"><strong>merchant_category</strong><span class="badge critical">0,74</span><span>категориальный — PSI</span><span>Критично</span></div>
+                    <div class="feature-item"><strong>device_risk_score</strong><span class="badge critical">0,66</span><span>числовой — KS-тест</span><span>Критично</span></div>
+                    <div class="feature-item"><strong>geo_distance_km</strong><span class="badge warning">0,49</span><span>числовой — PSI</span><span>Предупреждение</span></div>
                   </div>
                 </div>
                 <div class="card card-pad">
-                  <div class="card-title-row"><h2>Feature distributions</h2><div class="legend"><span><i style="background:#b9c8dd"></i>Train</span><span><i style="background:#2563eb"></i>Production</span></div></div>
+                  <div class="card-title-row"><h2>Распределения признаков</h2><div class="legend"><span><i style="background:#b9c8dd"></i>Обучение</span><span><i style="background:#2563eb"></i>Продакшен</span></div></div>
                   <div class="dist-grid">
                     <div class="dist-card"><h3>transaction_amount</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="34" y="88" width="24" height="48" rx="5"></rect><rect class="bar-prod" x="62" y="62" width="24" height="74" rx="5"></rect><rect class="bar-train" x="108" y="54" width="24" height="82" rx="5"></rect><rect class="bar-prod" x="136" y="38" width="24" height="98" rx="5"></rect><rect class="bar-train" x="182" y="82" width="24" height="54" rx="5"></rect><rect class="bar-critical" x="210" y="24" width="24" height="112" rx="5"></rect><rect class="bar-train" x="256" y="106" width="24" height="30" rx="5"></rect><rect class="bar-critical" x="284" y="70" width="24" height="66" rx="5"></rect></svg></div>
                     <div class="dist-card"><h3>merchant_category</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="34" y="42" width="26" height="94" rx="5"></rect><rect class="bar-prod" x="64" y="78" width="26" height="58" rx="5"></rect><rect class="bar-train" x="112" y="80" width="26" height="56" rx="5"></rect><rect class="bar-critical" x="142" y="28" width="26" height="108" rx="5"></rect><rect class="bar-train" x="190" y="96" width="26" height="40" rx="5"></rect><rect class="bar-prod" x="220" y="86" width="26" height="50" rx="5"></rect><rect class="bar-train" x="268" y="112" width="26" height="24" rx="5"></rect></svg></div>
@@ -345,15 +345,15 @@
               </div>
 
               <div class="card card-pad" style="margin-top:18px">
-                <div class="table-title-row"><h2>Feature drift table</h2><span class="link">Download report</span></div>
+                <div class="table-title-row"><h2>Таблица дрейфа признаков</h2><span class="link">Скачать отчёт</span></div>
                 <table class="table">
-                  <thead><tr><th>Feature name</th><th>Type</th><th>Drift score</th><th>Status</th><th>Last checked</th></tr></thead>
+                  <thead><tr><th>Признак</th><th>Тип</th><th>Drift score</th><th>Статус</th><th>Последняя проверка</th></tr></thead>
                   <tbody>
-                    <tr><td>transaction_amount</td><td>numeric</td><td>0.81</td><td><span class="badge critical">Critical</span></td><td>May 25, 14:12</td></tr>
-                    <tr><td>merchant_category</td><td>categorical</td><td>0.74</td><td><span class="badge critical">Critical</span></td><td>May 25, 14:12</td></tr>
-                    <tr><td>device_risk_score</td><td>numeric</td><td>0.66</td><td><span class="badge critical">Critical</span></td><td>May 25, 14:12</td></tr>
-                    <tr><td>geo_distance_km</td><td>numeric</td><td>0.49</td><td><span class="badge warning">Warning</span></td><td>May 25, 14:12</td></tr>
-                    <tr><td>customer_age</td><td>numeric</td><td>0.18</td><td><span class="badge healthy">Healthy</span></td><td>May 25, 14:12</td></tr>
+                    <tr><td>transaction_amount</td><td>числовой</td><td>0,81</td><td><span class="badge critical">Критично</span></td><td>25 мая, 14:12</td></tr>
+                    <tr><td>merchant_category</td><td>категориальный</td><td>0,74</td><td><span class="badge critical">Критично</span></td><td>25 мая, 14:12</td></tr>
+                    <tr><td>device_risk_score</td><td>числовой</td><td>0,66</td><td><span class="badge critical">Критично</span></td><td>25 мая, 14:12</td></tr>
+                    <tr><td>geo_distance_km</td><td>числовой</td><td>0,49</td><td><span class="badge warning">Предупреждение</span></td><td>25 мая, 14:12</td></tr>
+                    <tr><td>customer_age</td><td>числовой</td><td>0,18</td><td><span class="badge healthy">Норма</span></td><td>25 мая, 14:12</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -365,60 +365,60 @@
       <section class="frame" id="model-performance">
         <div class="app">
           <aside class="sidebar">
-            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
-            <div class="nav-section"><div class="nav-label">Monitor</div><div class="nav-item"><span class="nav-icon">D</span>Dashboard</div><div class="nav-item"><span class="nav-icon">M</span>Models</div><div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div><div class="nav-item active"><span class="nav-icon">P</span>Performance</div><div class="nav-item"><span class="nav-icon">A</span>Alerts</div><div class="nav-item"><span class="nav-icon">R</span>Registry</div></div>
-            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
-            <div class="sidebar-card"><strong>Performance target</strong><span>p95 latency below 150 ms and model error rate below 2.5%.</span></div>
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Управление ML в продакшене</div></div></div>
+            <div class="nav-section"><div class="nav-label">Мониторинг</div><div class="nav-item"><span class="nav-icon">Д</span>Дашборд</div><div class="nav-item"><span class="nav-icon">М</span>Модели</div><div class="nav-item"><span class="nav-icon">ДД</span>Дрейф данных</div><div class="nav-item active"><span class="nav-icon">П</span>Производительность</div><div class="nav-item"><span class="nav-icon">О</span>Оповещения</div><div class="nav-item"><span class="nav-icon">Р</span>Реестр</div></div>
+            <div class="nav-section"><div class="nav-label">Рабочая область</div><div class="nav-item"><span class="nav-icon">Н</span>Настройки</div></div>
+            <div class="sidebar-card"><strong>Целевые показатели</strong><span>Задержка p95 ниже 150 мс и доля ошибок модели ниже 2,5%.</span></div>
           </aside>
           <div class="content">
-            <header class="topbar"><div class="search">Search performance metrics...</div><div class="top-actions"><div class="select-pill">Last 14 days</div><div class="select-pill">fraud_detection_v2</div><div class="icon-button">N</div><div class="profile"><div class="avatar">MP</div><strong>Max Petrov</strong></div></div></header>
+            <header class="topbar"><div class="search">Поиск метрик производительности...</div><div class="top-actions"><div class="select-pill">Последние 14 дней</div><div class="select-pill">fraud_detection_v2</div><div class="icon-button">N</div><div class="profile"><div class="avatar">МП</div><strong>Макс Петров</strong></div></div></header>
             <section class="page">
               <div class="page-header">
-                <div><p class="eyebrow">Model Performance</p><h1>fraud_detection_v2 operational and business performance</h1><p class="subtle">Metric dynamics, version comparison, confusion matrix, latency, throughput, error rate, and business impact.</p></div>
-                <div class="filter-row"><button class="filter-chip primary">Production</button><button class="filter-chip">Compare: v2.4.1 vs v2.3.8</button></div>
+                <div><p class="eyebrow">Производительность модели</p><h1>fraud_detection_v2 — операционные и бизнес-метрики</h1><p class="subtle">Динамика метрик, сравнение версий, confusion matrix, задержка, пропускная способность, доля ошибок и бизнес-эффект.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Продакшен</button><button class="filter-chip">Сравнение: v2.4.1 vs v2.3.8</button></div>
               </div>
               <div class="kpi-strip">
-                <div class="kpi"><span>ROC-AUC</span><strong>0.902</strong></div>
-                <div class="kpi"><span>Latency p95</span><strong>142 ms</strong></div>
-                <div class="kpi"><span>Throughput</span><strong>1.8k/min</strong></div>
-                <div class="kpi"><span>Error rate</span><strong>3.4%</strong></div>
-                <div class="kpi"><span>Business impact</span><strong>-$42k</strong></div>
+                <div class="kpi"><span>ROC-AUC</span><strong>0,902</strong></div>
+                <div class="kpi"><span>Задержка p95</span><strong>142 мс</strong></div>
+                <div class="kpi"><span>Пропускная способность</span><strong>1,8k/мин</strong></div>
+                <div class="kpi"><span>Доля ошибок</span><strong>3,4%</strong></div>
+                <div class="kpi"><span>Бизнес-эффект</span><strong>−$42k</strong></div>
               </div>
               <div class="grid grid-main" style="margin-top:18px">
                 <div class="card card-pad">
-                  <div class="card-title-row"><h2>Metric dynamics over time</h2><div class="legend"><span><i style="background:#2563eb"></i>ROC-AUC</span><span><i style="background:#dc2626"></i>Error rate</span></div></div>
+                  <div class="card-title-row"><h2>Динамика метрик во времени</h2><div class="legend"><span><i style="background:#2563eb"></i>ROC-AUC</span><span><i style="background:#dc2626"></i>Доля ошибок</span></div></div>
                   <svg class="chart" viewBox="0 0 740 260">
                     <rect class="chart-bg" width="740" height="260" rx="18"></rect>
                     <line class="grid-line" x1="46" y1="46" x2="704" y2="46"></line><line class="grid-line" x1="46" y1="98" x2="704" y2="98"></line><line class="grid-line" x1="46" y1="150" x2="704" y2="150"></line><line class="grid-line" x1="46" y1="202" x2="704" y2="202"></line>
                     <path class="line-blue" d="M54 68 C120 64 190 72 260 82 C336 92 400 90 474 106 C540 120 620 132 694 148"></path>
                     <path class="line-red" d="M54 188 C128 184 198 176 268 168 C338 156 410 146 486 130 C560 112 626 96 694 84"></path>
-                    <text class="axis-label" x="54" y="232">May 12</text><text class="axis-label" x="330" y="232">May 18</text><text class="axis-label" x="640" y="232">May 25</text>
+                    <text class="axis-label" x="54" y="232">12 мая</text><text class="axis-label" x="330" y="232">18 мая</text><text class="axis-label" x="640" y="232">25 мая</text>
                   </svg>
                 </div>
                 <div class="card card-pad">
-                  <h2>Confusion matrix</h2>
+                  <h2>Матрица ошибок</h2>
                   <div class="matrix">
-                    <div class="head"></div><div class="head">Pred no fraud</div><div class="head">Pred fraud</div>
-                    <div class="head">Actual no fraud</div><div class="cell good">18,420<small>TN</small></div><div class="cell mid">384<small>FP</small></div>
-                    <div class="head">Actual fraud</div><div class="cell danger">261<small>FN</small></div><div class="cell bad">1,942<small>TP</small></div>
+                    <div class="head"></div><div class="head">Пред: не мошен.</div><div class="head">Пред: мошен.</div>
+                    <div class="head">Факт: не мошен.</div><div class="cell good">18 420<small>ИН</small></div><div class="cell mid">384<small>ЛП</small></div>
+                    <div class="head">Факт: мошен.</div><div class="cell danger">261<small>ЛН</small></div><div class="cell bad">1 942<small>ИП</small></div>
                   </div>
                 </div>
               </div>
               <div class="grid grid-3" style="margin-top:18px">
                 <div class="card card-pad">
-                  <h2>Version comparison</h2>
-                  <table class="table"><thead><tr><th>Metric</th><th>v2.4.1</th><th>v2.3.8</th></tr></thead><tbody><tr><td>Precision</td><td>0.835</td><td>0.861</td></tr><tr><td>Recall</td><td>0.881</td><td>0.842</td></tr><tr><td>F1-score</td><td>0.857</td><td>0.851</td></tr><tr><td>False positives</td><td>384</td><td>311</td></tr></tbody></table>
+                  <h2>Сравнение версий</h2>
+                  <table class="table"><thead><tr><th>Метрика</th><th>v2.4.1</th><th>v2.3.8</th></tr></thead><tbody><tr><td>Точность (P)</td><td>0,835</td><td>0,861</td></tr><tr><td>Полнота</td><td>0,881</td><td>0,842</td></tr><tr><td>F1-score</td><td>0,857</td><td>0,851</td></tr><tr><td>Ложноположительные</td><td>384</td><td>311</td></tr></tbody></table>
                 </div>
                 <div class="card card-pad">
-                  <h2>Latency and throughput</h2>
+                  <h2>Задержка и пропускная способность</h2>
                   <svg class="chart" viewBox="0 0 320 210"><rect class="chart-bg" width="320" height="210" rx="18"></rect><rect class="bar-blue" x="38" y="92" width="28" height="84" rx="6"></rect><rect class="bar-blue" x="86" y="78" width="28" height="98" rx="6"></rect><rect class="bar-warn" x="134" y="58" width="28" height="118" rx="6"></rect><rect class="bar-critical" x="182" y="42" width="28" height="134" rx="6"></rect><rect class="bar-warn" x="230" y="70" width="28" height="106" rx="6"></rect><path class="line-green" d="M36 68 C90 72 126 86 166 80 C210 72 250 84 286 76"></path></svg>
                 </div>
                 <div class="card card-pad">
-                  <h2>Business metric impact</h2>
-                  <div class="baseline-row"><span>Fraud blocked</span><strong>$318k</strong></div>
-                  <div class="baseline-row"><span>False-positive cost</span><strong class="delta-down">$71k</strong></div>
-                  <div class="baseline-row"><span>Missed fraud estimate</span><strong class="delta-down">$42k</strong></div>
-                  <div class="baseline-row"><span>Net impact vs baseline</span><span class="badge critical">-$42k</span></div>
+                  <h2>Влияние на бизнес-метрики</h2>
+                  <div class="baseline-row"><span>Заблокированное мошенничество</span><strong>$318k</strong></div>
+                  <div class="baseline-row"><span>Стоимость ложноположительных</span><strong class="delta-down">$71k</strong></div>
+                  <div class="baseline-row"><span>Оценка пропущенного мошенничества</span><strong class="delta-down">$42k</strong></div>
+                  <div class="baseline-row"><span>Чистый эффект vs база</span><span class="badge critical">−$42k</span></div>
                 </div>
               </div>
             </section>
@@ -429,50 +429,50 @@
       <section class="frame" id="alerts-incidents">
         <div class="app">
           <aside class="sidebar">
-            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
-            <div class="nav-section"><div class="nav-label">Monitor</div><div class="nav-item"><span class="nav-icon">D</span>Dashboard</div><div class="nav-item"><span class="nav-icon">M</span>Models</div><div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div><div class="nav-item"><span class="nav-icon">P</span>Performance</div><div class="nav-item active"><span class="nav-icon">A</span>Alerts</div><div class="nav-item"><span class="nav-icon">R</span>Registry</div></div>
-            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
-            <div class="sidebar-card"><strong>Critical queue</strong><span>1 new critical alert is unassigned for 12 minutes.</span></div>
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Управление ML в продакшене</div></div></div>
+            <div class="nav-section"><div class="nav-label">Мониторинг</div><div class="nav-item"><span class="nav-icon">Д</span>Дашборд</div><div class="nav-item"><span class="nav-icon">М</span>Модели</div><div class="nav-item"><span class="nav-icon">ДД</span>Дрейф данных</div><div class="nav-item"><span class="nav-icon">П</span>Производительность</div><div class="nav-item active"><span class="nav-icon">О</span>Оповещения</div><div class="nav-item"><span class="nav-icon">Р</span>Реестр</div></div>
+            <div class="nav-section"><div class="nav-label">Рабочая область</div><div class="nav-item"><span class="nav-icon">Н</span>Настройки</div></div>
+            <div class="sidebar-card"><strong>Критичная очередь</strong><span>1 новое критичное оповещение не назначено уже 12 минут.</span></div>
           </aside>
           <div class="content">
-            <header class="topbar"><div class="search">Search alerts by model, owner, cause...</div><div class="top-actions"><div class="select-pill">Open alerts</div><div class="select-pill">All severities</div><div class="icon-button">N</div><div class="profile"><div class="avatar">IR</div><strong>Incident Room</strong></div></div></header>
+            <header class="topbar"><div class="search">Поиск оповещений по модели, владельцу, причине...</div><div class="top-actions"><div class="select-pill">Открытые оповещения</div><div class="select-pill">Все уровни</div><div class="icon-button">N</div><div class="profile"><div class="avatar">ИК</div><strong>Комната инцидентов</strong></div></div></header>
             <section class="page">
               <div class="page-header">
-                <div><p class="eyebrow">Alerts and Incidents</p><h1>Prioritized response queue</h1><p class="subtle">Severity, root cause, impacted model, status, timestamps, and quick actions for ML operations.</p></div>
-                <div class="filter-row"><button class="filter-chip primary">Status: New + Investigating</button><button class="filter-chip">Owner: All</button><button class="filter-chip">SLA risk</button></div>
+                <div><p class="eyebrow">Оповещения и инциденты</p><h1>Очередь приоритетных реакций</h1><p class="subtle">Критичность, причина, затронутая модель, статус, временные метки и быстрые действия для ML-операций.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Статус: новые + расследуются</button><button class="filter-chip">Владелец: все</button><button class="filter-chip">Риск SLA</button></div>
               </div>
               <div class="grid grid-4">
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">New</span><span class="badge info">Queue</span></div><div class="metric-value">7</div><div class="metric-delta">3 require assignment</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Investigating</span><span class="badge warning">Active</span></div><div class="metric-value">5</div><div class="metric-delta">Avg age 38 min</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Critical</span><span class="badge critical">SLA risk</span></div><div class="metric-value">1</div><div class="metric-delta">fraud_detection_v2</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Resolved today</span><span class="badge healthy">Done</span></div><div class="metric-value">12</div><div class="metric-delta">MTTR 26 min</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Новые</span><span class="badge info">Очередь</span></div><div class="metric-value">7</div><div class="metric-delta">3 требуют назначения</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Расследуются</span><span class="badge warning">Активные</span></div><div class="metric-value">5</div><div class="metric-delta">Средний возраст 38 мин</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Критичные</span><span class="badge critical">Риск SLA</span></div><div class="metric-value">1</div><div class="metric-delta">fraud_detection_v2</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Решено сегодня</span><span class="badge healthy">Готово</span></div><div class="metric-value">12</div><div class="metric-delta">MTTR 26 мин</div></div>
               </div>
               <div class="card card-pad" style="margin-top:18px">
-                <div class="table-title-row"><h2>Alert list</h2><span class="link">Create rule</span></div>
+                <div class="table-title-row"><h2>Список оповещений</h2><span class="link">Создать правило</span></div>
                 <div class="alert-list">
                   <div class="alert-card">
-                    <div><div class="alert-top"><span class="alert-title">High data drift in transaction_amount</span><span class="badge severity-critical">Critical</span></div><div class="alert-meta">Cause: production distribution deviates from train baseline. Model: fraud_detection_v2. Time: May 25, 14:00 UTC. Status: new.</div></div>
-                    <div class="alert-actions"><button class="button">Assign</button><button class="button primary">Investigate</button><button class="button">Mute</button><button class="button">Resolve</button></div>
+                    <div><div class="alert-top"><span class="alert-title">Высокий дрейф данных в transaction_amount</span><span class="badge severity-critical">Критично</span></div><div class="alert-meta">Причина: распределение в продакшене отклоняется от обучающей базы. Модель: fraud_detection_v2. Время: 25 мая, 14:00 UTC. Статус: новое.</div></div>
+                    <div class="alert-actions"><button class="button">Назначить</button><button class="button primary">Исследовать</button><button class="button">Заглушить</button><button class="button">Закрыть</button></div>
                   </div>
                   <div class="alert-card">
-                    <div><div class="alert-top"><span class="alert-title">Recall below baseline guardrail</span><span class="badge severity-high">High</span></div><div class="alert-meta">Cause: model drift detected after campaign traffic change. Model: churn_prediction_v3. Time: May 25, 13:48 UTC. Status: investigating.</div></div>
-                    <div class="alert-actions"><button class="button">Assign</button><button class="button primary">Investigate</button><button class="button">Mute</button><button class="button">Resolve</button></div>
+                    <div><div class="alert-top"><span class="alert-title">Полнота ниже контрольного порога</span><span class="badge severity-high">Высокий</span></div><div class="alert-meta">Причина: дрейф модели после изменения кампанийного трафика. Модель: churn_prediction_v3. Время: 25 мая, 13:48 UTC. Статус: расследуется.</div></div>
+                    <div class="alert-actions"><button class="button">Назначить</button><button class="button primary">Исследовать</button><button class="button">Заглушить</button><button class="button">Закрыть</button></div>
                   </div>
                   <div class="alert-card">
-                    <div><div class="alert-top"><span class="alert-title">Latency p95 exceeded warning threshold</span><span class="badge severity-medium">Medium</span></div><div class="alert-meta">Cause: prediction service saturation during batch scoring. Model: demand_forecast_v1. Time: May 25, 13:21 UTC. Status: investigating.</div></div>
-                    <div class="alert-actions"><button class="button">Assign</button><button class="button primary">Investigate</button><button class="button">Mute</button><button class="button">Resolve</button></div>
+                    <div><div class="alert-top"><span class="alert-title">Задержка p95 превысила порог предупреждения</span><span class="badge severity-medium">Средний</span></div><div class="alert-meta">Причина: насыщение сервиса предсказаний при пакетном скоринге. Модель: demand_forecast_v1. Время: 25 мая, 13:21 UTC. Статус: расследуется.</div></div>
+                    <div class="alert-actions"><button class="button">Назначить</button><button class="button primary">Исследовать</button><button class="button">Заглушить</button><button class="button">Закрыть</button></div>
                   </div>
                   <div class="alert-card">
-                    <div><div class="alert-top"><span class="alert-title">Dataset freshness delayed</span><span class="badge severity-low">Low</span></div><div class="alert-meta">Cause: upstream ETL finished 18 minutes later than expected. Model: credit_risk_v4. Time: May 25, 12:44 UTC. Status: resolved.</div></div>
-                    <div class="alert-actions"><button class="button">Assign</button><button class="button">Investigate</button><button class="button">Mute</button><button class="button primary">Resolve</button></div>
+                    <div><div class="alert-top"><span class="alert-title">Задержка обновления датасета</span><span class="badge severity-low">Низкий</span></div><div class="alert-meta">Причина: задержка upstream-пайплайна ETL на 18 минут относительно плана. Модель: credit_risk_v4. Время: 25 мая, 12:44 UTC. Статус: закрыто.</div></div>
+                    <div class="alert-actions"><button class="button">Назначить</button><button class="button">Исследовать</button><button class="button">Заглушить</button><button class="button primary">Закрыть</button></div>
                   </div>
                 </div>
               </div>
               <div class="card card-pad" style="margin-top:18px">
-                <div class="table-title-row"><h2>Recent incidents</h2><span class="link">Postmortems</span></div>
+                <div class="table-title-row"><h2>Недавние инциденты</h2><span class="link">Отчёты разбора</span></div>
                 <table class="table">
-                  <thead><tr><th>Incident</th><th>Model</th><th>Severity</th><th>Status</th><th>Owner</th><th>Updated</th></tr></thead>
-                  <tbody><tr><td>Feature schema mismatch</td><td>fraud_detection_v2</td><td><span class="badge severity-critical">Critical</span></td><td>New</td><td>Unassigned</td><td>12 min ago</td></tr><tr><td>Quality guardrail breach</td><td>churn_prediction_v3</td><td><span class="badge severity-high">High</span></td><td>Investigating</td><td>N. Orlova</td><td>21 min ago</td></tr><tr><td>Prediction service saturation</td><td>demand_forecast_v1</td><td><span class="badge severity-medium">Medium</span></td><td>Investigating</td><td>A. Kim</td><td>34 min ago</td></tr></tbody>
+                  <thead><tr><th>Инцидент</th><th>Модель</th><th>Критичность</th><th>Статус</th><th>Владелец</th><th>Обновлено</th></tr></thead>
+                  <tbody><tr><td>Несоответствие схемы признаков</td><td>fraud_detection_v2</td><td><span class="badge severity-critical">Критично</span></td><td>Новый</td><td>Не назначен</td><td>12 мин назад</td></tr><tr><td>Нарушение контрольного порога качества</td><td>churn_prediction_v3</td><td><span class="badge severity-high">Высокий</span></td><td>Расследуется</td><td>Н. Орлова</td><td>21 мин назад</td></tr><tr><td>Насыщение сервиса предсказаний</td><td>demand_forecast_v1</td><td><span class="badge severity-medium">Средний</span></td><td>Расследуется</td><td>А. Ким</td><td>34 мин назад</td></tr></tbody>
                 </table>
               </div>
             </section>
@@ -483,41 +483,41 @@
       <section class="frame" id="model-registry">
         <div class="app">
           <aside class="sidebar">
-            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Production ML Control</div></div></div>
-            <div class="nav-section"><div class="nav-label">Monitor</div><div class="nav-item"><span class="nav-icon">D</span>Dashboard</div><div class="nav-item"><span class="nav-icon">M</span>Models</div><div class="nav-item"><span class="nav-icon">DD</span>Data Drift</div><div class="nav-item"><span class="nav-icon">P</span>Performance</div><div class="nav-item"><span class="nav-icon">A</span>Alerts</div><div class="nav-item active"><span class="nav-icon">R</span>Registry</div></div>
-            <div class="nav-section"><div class="nav-label">Workspace</div><div class="nav-item"><span class="nav-icon">S</span>Settings</div></div>
-            <div class="sidebar-card"><strong>Deployment gate</strong><span>2 versions are approved for production, 1 rollback is ready.</span></div>
+            <div class="brand"><div class="brand-mark">ML</div><div><div class="brand-title">ModelPulse</div><div class="brand-caption">Управление ML в продакшене</div></div></div>
+            <div class="nav-section"><div class="nav-label">Мониторинг</div><div class="nav-item"><span class="nav-icon">Д</span>Дашборд</div><div class="nav-item"><span class="nav-icon">М</span>Модели</div><div class="nav-item"><span class="nav-icon">ДД</span>Дрейф данных</div><div class="nav-item"><span class="nav-icon">П</span>Производительность</div><div class="nav-item"><span class="nav-icon">О</span>Оповещения</div><div class="nav-item active"><span class="nav-icon">Р</span>Реестр</div></div>
+            <div class="nav-section"><div class="nav-label">Рабочая область</div><div class="nav-item"><span class="nav-icon">Н</span>Настройки</div></div>
+            <div class="sidebar-card"><strong>Контроль деплоя</strong><span>2 версии одобрены для продакшена, 1 откат готов.</span></div>
           </aside>
           <div class="content">
-            <header class="topbar"><div class="search">Search registry by model, version, dataset...</div><div class="top-actions"><div class="select-pill">All projects</div><div class="select-pill">Production-ready</div><div class="icon-button">N</div><div class="profile"><div class="avatar">MR</div><strong>Model Registry</strong></div></div></header>
+            <header class="topbar"><div class="search">Поиск в реестре по модели, версии, датасету...</div><div class="top-actions"><div class="select-pill">Все проекты</div><div class="select-pill">Готовы к продакшену</div><div class="icon-button">N</div><div class="profile"><div class="avatar">РМ</div><strong>Реестр моделей</strong></div></div></header>
             <section class="page">
               <div class="page-header">
-                <div><p class="eyebrow">Model Registry</p><h1>Models, versions, datasets, owners, and deployment actions</h1><p class="subtle">Govern model lifecycle from training to deployment, rollback, and version comparison.</p></div>
-                <div class="filter-row"><button class="filter-chip primary">Environment: All</button><button class="filter-chip">Status: Active + Approved</button><button class="filter-chip">Owner: All</button></div>
+                <div><p class="eyebrow">Реестр моделей</p><h1>Модели, версии, датасеты, владельцы и действия деплоя</h1><p class="subtle">Управление жизненным циклом модели от обучения до деплоя, отката и сравнения версий.</p></div>
+                <div class="filter-row"><button class="filter-chip primary">Среда: все</button><button class="filter-chip">Статус: активные + одобренные</button><button class="filter-chip">Владелец: все</button></div>
               </div>
               <div class="grid grid-4">
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Registered models</span><span class="badge info">Catalog</span></div><div class="metric-value">28</div><div class="metric-delta">12 active in production</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Approved versions</span><span class="badge healthy">Ready</span></div><div class="metric-value">9</div><div class="metric-delta">Passing validation</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Rollback-ready</span><span class="badge warning">Prepared</span></div><div class="metric-value">4</div><div class="metric-delta">Across critical workflows</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Blocked</span><span class="badge critical">Needs review</span></div><div class="metric-value">2</div><div class="metric-delta">Failed drift validation</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Зарегистрированные модели</span><span class="badge info">Каталог</span></div><div class="metric-value">28</div><div class="metric-delta">12 активны в продакшене</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Одобренные версии</span><span class="badge healthy">Готовы</span></div><div class="metric-value">9</div><div class="metric-delta">Прошли валидацию</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Готовы к откату</span><span class="badge warning">Подготовлено</span></div><div class="metric-value">4</div><div class="metric-delta">Для критичных процессов</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Заблокированы</span><span class="badge critical">Нужен обзор</span></div><div class="metric-value">2</div><div class="metric-delta">Не прошли проверку дрейфа</div></div>
               </div>
               <div class="card card-pad" style="margin-top:18px">
-                <div class="table-title-row"><h2>Model versions</h2><span class="link">Register new model</span></div>
+                <div class="table-title-row"><h2>Версии моделей</h2><span class="link">Зарегистрировать модель</span></div>
                 <table class="table">
-                  <thead><tr><th>Model and version</th><th>Status</th><th>Training date</th><th>Deploy date</th><th>Dataset</th><th>Owner</th><th>Actions</th></tr></thead>
+                  <thead><tr><th>Модель и версия</th><th>Статус</th><th>Дата обучения</th><th>Дата деплоя</th><th>Датасет</th><th>Владелец</th><th>Действия</th></tr></thead>
                   <tbody>
-                    <tr><td><div class="model-name"><span class="model-icon">CP</span>churn_prediction_v3 / v3.8.2</div></td><td><span class="badge warning">Production warning</span></td><td>May 18, 2026</td><td>May 21, 2026</td><td>retention_2026_05</td><td>N. Orlova</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button">Deploy</button><button class="button primary">Rollback</button></div></td></tr>
-                    <tr><td><div class="model-name"><span class="model-icon">FD</span>fraud_detection_v2 / v2.4.1</div></td><td><span class="badge critical">Production critical</span></td><td>May 12, 2026</td><td>May 19, 2026</td><td>fraud_txn_v9</td><td>M. Petrov</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button">Deploy</button><button class="button primary">Rollback</button></div></td></tr>
-                    <tr><td><div class="model-name"><span class="model-icon">DF</span>demand_forecast_v1 / v1.9.0</div></td><td><span class="badge healthy">Production healthy</span></td><td>May 03, 2026</td><td>May 09, 2026</td><td>demand_weekly_v14</td><td>A. Kim</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button primary">Deploy</button><button class="button">Rollback</button></div></td></tr>
-                    <tr><td><div class="model-name"><span class="model-icon">CR</span>credit_risk_v4 / v4.2.5</div></td><td><span class="badge healthy">Approved</span></td><td>May 22, 2026</td><td>Not deployed</td><td>credit_app_2026_q2</td><td>D. Ivanov</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button primary">Deploy</button><button class="button">Rollback</button></div></td></tr>
-                    <tr><td><div class="model-name"><span class="model-icon">PE</span>price_elasticity_v1 / v1.3.4</div></td><td><span class="badge neutral">Archived</span></td><td>Mar 12, 2026</td><td>Apr 01, 2026</td><td>pricing_history_v7</td><td>S. Lee</td><td><div class="registry-actions"><button class="button">View details</button><button class="button">Compare versions</button><button class="button">Deploy</button><button class="button">Rollback</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">CP</span>churn_prediction_v3 / v3.8.2</div></td><td><span class="badge warning">Прод: предупреждение</span></td><td>18 мая 2026</td><td>21 мая 2026</td><td>retention_2026_05</td><td>Н. Орлова</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button">Деплой</button><button class="button primary">Откат</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">FD</span>fraud_detection_v2 / v2.4.1</div></td><td><span class="badge critical">Прод: критично</span></td><td>12 мая 2026</td><td>19 мая 2026</td><td>fraud_txn_v9</td><td>М. Петров</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button">Деплой</button><button class="button primary">Откат</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">DF</span>demand_forecast_v1 / v1.9.0</div></td><td><span class="badge healthy">Прод: норма</span></td><td>3 мая 2026</td><td>9 мая 2026</td><td>demand_weekly_v14</td><td>А. Ким</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button primary">Деплой</button><button class="button">Откат</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">CR</span>credit_risk_v4 / v4.2.5</div></td><td><span class="badge healthy">Одобрено</span></td><td>22 мая 2026</td><td>Не развёрнуто</td><td>credit_app_2026_q2</td><td>Д. Иванов</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button primary">Деплой</button><button class="button">Откат</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">PE</span>price_elasticity_v1 / v1.3.4</div></td><td><span class="badge neutral">Архив</span></td><td>12 мар 2026</td><td>1 апр 2026</td><td>pricing_history_v7</td><td>С. Ли</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button">Деплой</button><button class="button">Откат</button></div></td></tr>
                   </tbody>
                 </table>
               </div>
               <div class="grid grid-3" style="margin-top:18px">
-                <div class="recommendation"><strong>Compare versions</strong><p>Side-by-side validation results, performance curves, feature drift, and approval history.</p><button class="button primary">Open comparison</button></div>
-                <div class="recommendation"><strong>Deploy gate</strong><p>Requires approved validation suite, owner sign-off, and rollback target before production.</p><button class="button">Review checklist</button></div>
-                <div class="recommendation"><strong>Rollback plan</strong><p>fraud_detection_v2 can roll back to v2.3.8 with validated schema compatibility.</p><button class="button">Inspect plan</button></div>
+                <div class="recommendation"><strong>Сравнение версий</strong><p>Результаты валидации, кривые качества, дрейф признаков и история одобрений в сравнении рядом.</p><button class="button primary">Открыть сравнение</button></div>
+                <div class="recommendation"><strong>Контроль деплоя</strong><p>Требуются одобренный набор проверок, подпись владельца и целевая версия отката перед продакшеном.</p><button class="button">Проверить чеклист</button></div>
+                <div class="recommendation"><strong>План отката</strong><p>fraud_detection_v2 можно откатить на v2.3.8 с проверенной совместимостью схемы.</p><button class="button">Открыть план</button></div>
               </div>
             </section>
           </div>
@@ -534,7 +534,7 @@
 
         if (target) {
           target.classList.add("export-target");
-          document.title = `ModelPulse - ${screen}`;
+          document.title = `ModelPulse — ${screen}`;
         }
       }
     </script>

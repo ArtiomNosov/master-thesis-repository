@@ -8,27 +8,28 @@
 - `styles.css` — дизайн-токены и reusable UI-компоненты.
 - `exports/png/` — PNG-картинки всех экранов 1440x1024.
 - `figma-plugin/` — локальный Figma plugin generator для создания редактируемых фреймов внутри Figma.
-- `scripts/export-png.sh` — скрипт экспорта HTML-экранов в PNG через headless Chrome.
+- `scripts/export-png.sh` — скрипт экспорта HTML-экранов в PNG через headless Chrome (Linux/macOS).
+- `scripts/export-png.ps1` — тот же экспорт для Windows/PowerShell.
 
 ## Экраны макета
 
-1. `01-main-mlops-dashboard.png` — главный MLOps Dashboard.
-2. `02-model-detail.png` — страница конкретной модели.
-3. `03-data-drift-monitoring.png` — Data Drift Monitoring.
-4. `04-model-performance.png` — Model Performance.
-5. `05-alerts-incidents.png` — Alerts and Incidents.
-6. `06-model-registry.png` — Model Registry.
+1. `01-main-mlops-dashboard.png` — главный MLOps-дашборд.
+2. `02-model-detail.png` — карточка модели.
+3. `03-data-drift-monitoring.png` — мониторинг дрейфа данных.
+4. `04-model-performance.png` — производительность модели.
+5. `05-alerts-incidents.png` — оповещения и инциденты.
+6. `06-model-registry.png` — реестр моделей.
 
 ## Состав интерфейса
 
 Макет выполнен в стиле clean enterprise SaaS, light mode:
 
-- левая навигация: Dashboard, Models, Data Drift, Performance, Alerts, Registry, Settings;
+- левая навигация: Дашборд, Модели, Дрейф данных, Производительность, Оповещения, Реестр, Настройки;
 - верхняя панель: поиск, период, окружение, уведомления, профиль;
 - карточки метрик и системного статуса;
 - таблицы активных моделей, features, incidents и registry versions;
 - графики качества, drift distributions, latency/throughput и business impact;
-- status badges: Healthy, Warning, Critical, Info, Archived;
+- status badges: Норма, Предупреждение, Критично, Инфо, Архив;
 - alert cards с severity, причиной, затронутой моделью, временем, статусом и быстрыми действиями;
 - realistic MLOps data для `churn_prediction_v3`, `fraud_detection_v2`, `demand_forecast_v1`, `credit_risk_v4`.
 
@@ -52,6 +53,10 @@ index.html?screen=model-registry
 ```
 
 ## Как пересобрать PNG-картинки
+
+```powershell
+design/mlops-monitoring-platform/scripts/export-png.ps1
+```
 
 ```bash
 design/mlops-monitoring-platform/scripts/export-png.sh
