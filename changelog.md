@@ -4,6 +4,9 @@
 
 - Подключён git submodule `reqcore` → https://github.com/ArtiomNosov/reqcore, ветка `thesis/ru-localization`.
 - В форке Reqcore: русская локаль `i18n/locales/ru.json`, язык по умолчанию `ru`, плагин `app/plugins/russian-ui.client.ts`, навигация через `$t('nav.*')`, убраны пользовательские формулировки с «ATS».
+- Docker: Postgres + MinIO подняты, выполнены `db:migrate` и `db:seed`, проверен вход `demo@reqcore.com` / `demo1234` и активация org `reqcore-demo`.
+- Скриншоты dashboard (22 страницы): `reqcore/artifacts/i18n-ru-screenshots/`, отчёт `dom-language-report.json`.
+- Исправлен `russian-ui.client.ts` (больше не ломает гидратацию dashboard).
 
 ## 2026-05-25
 
