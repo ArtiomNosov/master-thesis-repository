@@ -1,0 +1,7 @@
+{
+  "name": "Генератор панели мониторинга ПульсМоделей",
+  "id": "pulsmodeley-dashboard-generator",
+  "api": "1.0.0",
+  "main": "code.js",
+  "editorType": ["figma"]
+}
