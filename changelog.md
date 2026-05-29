@@ -2,6 +2,7 @@
 
 ## 2026-05-29
 
+- E2E i18n: `npm run db:reseed`, dev на **http://localhost:3001** (3000 занят Langfuse), `dom-language-report.json` → `pagesWithUnexpectedLatin: []`, 24 скриншота обновлены.
 - Расширена русификация Reqcore: `ru.json` (settings, pipeline, onboarding, auth), `useLocalizedEnums`, `$t()` в SettingsSidebar и dashboard pipeline.
 - Русский демо-seed: вакансии, кандидаты (ФИО), вопросы анкеты, заметки по откликам; org «Демо Reqcore».
 - `RUNBOOK-RU.md`, доработан `russian-ui.client.ts` и `scripts/capture-i18n-screenshots.mjs` (localhost, UI-login fallback).
