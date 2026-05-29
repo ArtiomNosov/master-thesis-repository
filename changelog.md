@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-05-29
+
+- Расширена русификация Reqcore: `ru.json` (settings, pipeline, onboarding, auth), `useLocalizedEnums`, `$t()` в SettingsSidebar и dashboard pipeline.
+- Русский демо-seed: вакансии, кандидаты (ФИО), вопросы анкеты, заметки по откликам; org «Демо Reqcore».
+- `RUNBOOK-RU.md`, доработан `russian-ui.client.ts` и `scripts/capture-i18n-screenshots.mjs` (localhost, UI-login fallback).
+- Проверки: `npm run build`, `vitest` (361 тест), `db:reseed` — успешно.
+
 ## 2026-05-27
 
 - Подключён git submodule `reqcore` → https://github.com/ArtiomNosov/reqcore, ветка `thesis/ru-localization`.
