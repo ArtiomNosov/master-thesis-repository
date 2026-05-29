@@ -1,19 +1,20 @@
-# MLOps Monitoring Platform UI Mockup
+# Макет платформы мониторинга моделей машинного обучения
 
-Документация к high-fidelity макету MLOps-платформы для мониторинга качества ML-моделей, data drift, model drift, алертов и состояния моделей в production.
+Документация к high-fidelity макету платформы мониторинга моделей машинного обучения: качество моделей, дрейф данных, дрейф моделей, оповещения и состояние моделей в промышленной среде.
 
 ## Что находится в директории
 
 - `index.html` — интерактивный HTML-board с шестью desktop-экранами 1440px.
-- `styles.css` — дизайн-токены и reusable UI-компоненты.
-- `exports/png/` — PNG-картинки всех экранов 1440x1024.
-- `figma-plugin/` — локальный Figma plugin generator для создания редактируемых фреймов внутри Figma.
+- `styles.css` — дизайн-токены и переиспользуемые UI-компоненты.
+- `exports/png/` — PNG-картинки всех экранов 1440×1024.
+- `figma-plugin/` — локальный генератор Figma plugin для создания редактируемых фреймов внутри Figma.
 - `scripts/export-png.sh` — скрипт экспорта HTML-экранов в PNG через headless Chrome (Linux/macOS).
 - `scripts/export-png.ps1` — тот же экспорт для Windows/PowerShell.
+- `scripts/check-no-latin.ps1` — проверка отсутствия латиницы в видимом тексте HTML-макета.
 
 ## Экраны макета
 
-1. `01-main-mlops-dashboard.png` — главный MLOps-дашборд.
+1. `01-main-mlops-dashboard.png` — главная панель мониторинга моделей.
 2. `02-model-detail.png` — карточка модели.
 3. `03-data-drift-monitoring.png` — мониторинг дрейфа данных.
 4. `04-model-performance.png` — производительность модели.
@@ -22,16 +23,16 @@
 
 ## Состав интерфейса
 
-Макет выполнен в стиле clean enterprise SaaS, light mode:
+Макет выполнен в стиле clean enterprise SaaS, light mode. Весь видимый текст — на русском языке без латиницы и англицизмов.
 
-- левая навигация: Дашборд, Модели, Дрейф данных, Производительность, Оповещения, Реестр, Настройки;
+- левая навигация: Панель мониторинга, Модели, Дрейф данных, Производительность, Оповещения, Реестр, Настройки;
 - верхняя панель: поиск, период, окружение, уведомления, профиль;
 - карточки метрик и системного статуса;
-- таблицы активных моделей, features, incidents и registry versions;
-- графики качества, drift distributions, latency/throughput и business impact;
-- status badges: Норма, Предупреждение, Критично, Инфо, Архив;
-- alert cards с severity, причиной, затронутой моделью, временем, статусом и быстрыми действиями;
-- realistic MLOps data для `churn_prediction_v3`, `fraud_detection_v2`, `demand_forecast_v1`, `credit_risk_v4`.
+- таблицы активных моделей, признаков, инцидентов и версий реестра;
+- графики качества, распределений дрейфа, задержки/пропускной способности и бизнес-эффекта;
+- статусные бейджи: Норма, Предупреждение, Критично, Инфо, Архив;
+- карточки оповещений с уровнем критичности, причиной, затронутой моделью, временем, статусом и быстрыми действиями;
+- реалистичные данные для `прогноз_оттока_3`, `обнаружение_мошенничества_2`, `прогноз_спроса_1`, `кредитный_риск_4`.
 
 ## Как открыть HTML-макет
 
@@ -54,6 +55,12 @@ index.html?screen=model-registry
 
 ## Как пересобрать PNG-картинки
 
+Перед экспортом рекомендуется проверить отсутствие латиницы:
+
+```powershell
+design/mlops-monitoring-platform/scripts/check-no-latin.ps1
+```
+
 ```powershell
 design/mlops-monitoring-platform/scripts/export-png.ps1
 ```
@@ -68,7 +75,7 @@ design/mlops-monitoring-platform/scripts/export-png.sh
 design/mlops-monitoring-platform/exports/png/
 ```
 
-Каждый файл экспортируется в размере 1440x1024.
+Каждый файл экспортируется в размере 1440×1024.
 
 ## Figma API: что реально можно сделать
 
@@ -93,9 +100,9 @@ design/mlops-monitoring-platform/exports/png/
 design/mlops-monitoring-platform/figma-plugin/manifest.json
 ```
 
-5. Запустите plugin `ModelPulse MLOps Dashboard Generator`.
+5. Запустите plugin «Генератор панели мониторинга ПульсМоделей».
 
-После запуска plugin создаст шесть редактируемых 1440px Figma-фреймов с компонентами, таблицами, графиками, бейджами, карточками алертов, sidebar navigation и topbar controls.
+После запуска plugin создаст шесть редактируемых 1440px Figma-фреймов с компонентами, таблицами, графиками, бейджами, карточками оповещений, боковой навигацией и элементами верхней панели.
 
 ## Почему здесь нет live Figma-ссылки
 
