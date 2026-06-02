@@ -1,7 +1,21 @@
 # Changelog
 
+## 2026-05-29
+
+- E2E i18n: `npm run db:reseed`, dev на **http://localhost:3001** (3000 занят Langfuse), `dom-language-report.json` → `pagesWithUnexpectedLatin: []`, 24 скриншота обновлены.
+- Исправлена загрузка локали `ru`: экранирован `@` в `emailPlaceholder` (`colleague{'@'}company.com`), иначе vue-i18n не компилировал `ru.json` и UI показывал ключи i18n.
+- Расширена русификация Reqcore: `ru.json` (settings, pipeline, onboarding, auth), `useLocalizedEnums`, `$t()` в SettingsSidebar и dashboard pipeline.
+- Русский демо-seed: вакансии, кандидаты (ФИО), вопросы анкеты, заметки по откликам; org «Демо Reqcore».
+- `RUNBOOK-RU.md`, доработан `russian-ui.client.ts` и `scripts/capture-i18n-screenshots.mjs` (localhost, UI-login fallback, fail при видимых i18n-ключах).
+- Проверки: `npm run build`, `vitest` (361 тест), `db:reseed` — успешно.
+
 ## 2026-05-27
 
+- Подключён git submodule `reqcore` → https://github.com/ArtiomNosov/reqcore, ветка `thesis/ru-localization`.
+- В форке Reqcore: русская локаль `i18n/locales/ru.json`, язык по умолчанию `ru`, плагин `app/plugins/russian-ui.client.ts`, навигация через `$t('nav.*')`, убраны пользовательские формулировки с «ATS».
+- Docker: Postgres + MinIO подняты, выполнены `db:migrate` и `db:seed`, проверен вход `demo@reqcore.com` / `demo1234` и активация org `reqcore-demo`.
+- Скриншоты dashboard (22 страницы): `reqcore/artifacts/i18n-ru-screenshots/`, отчёт `dom-language-report.json`.
+- Исправлен `russian-ui.client.ts` (больше не ломает гидратацию dashboard).
 - Нейтрализованы упоминания SuperJob в текстах ВКР и презентации (формулировка «агрегатор вакансий»).
 - Термины приведены к виду «независимый энкодер (bi-encoder)»; в таблице задачи 1 убран дублирующий столбец «Комментарий».
 - Вспомогательный скрипт агента перенесён в `.agents/artifacts/patch_vkr_texts.py` (не часть ВКР).
