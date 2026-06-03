@@ -11,7 +11,8 @@
 
 ## 2026-05-27
 
-- Исправлена раскладка Graphviz: убраны фантомные узлы из имён кластеров в `rank=same`/рёбрах; легенда SAT закреплена снизу (`rank=sink`, якорь `flow_anchor` / `metrics -> leg_assumption`).
+- Рис. 2 (поток заявки): исправлена пустая легенда (убрана постобработка `move_legend_cluster_last`, легенда — HTML-таблица `sat_legend`); ветки горизонтально через `rank=same`, `splines=polyline`.
+- Исправлена раскладка Graphviz: убраны фантомные узлы из имён кластеров в `rank=same`/рёбрах; легенда SAT закреплена снизу (`flow_anchor` / `metrics -> leg_assumption`).
 - Раскладка Graphviz: `rankdir=TB`, горизонтальные цепочки в ветках (`rankdir=LR` в кластерах), легенда SAT в `cluster_legend`; `bi_gate`/`llm_gate` — рамка «Ветка bi-encoder» охватывает «Вызов bi-encoder сервиса».
 - Скрипт `scripts/render_thesis_diagrams.ps1` и постобработка SVG (легенда в конце DOM).
 - Рис. 1 (C4): источник [`c4_container_architecture.dot`](docs/obsidian/thesis/diagrams/c4_container_architecture.dot), рендер в `c4_container_architecture_marked.svg` (вместо ручного SVG).

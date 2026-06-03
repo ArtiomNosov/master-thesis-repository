@@ -38,10 +38,10 @@ py -3 scripts/render_thesis_diagram.py c4_container_architecture
 
 ## Шаблон раскладки
 
-1. **`rankdir=TB`** на корне — схема сверху вниз, **легенда SAT снизу** (`subgraph cluster_legend`, якорь `flow_anchor` / ребро от `metrics`).
-2. **`subgraph cluster_flow`** с **`rankdir=LR`** в позвоночнике и ветках.
-3. **Ветки** — вход через **`bi_gate` / `llm_gate`** (`shape=point`), ребро `provider -> bi_gate` с `lhead=cluster_biencoder`.
-4. **Не использовать имена кластеров как узлы** в `{ rank=same; ... }` или рёбрах — Graphviz создаёт «фантомные» блоки и ломает раскладку.
+1. **`rankdir=TB`** + **`rank=same`** на каждом ряду — горизонтальные цепочки (позвоночник, ветки); **легенда** — узел `sat_legend` (HTML-таблица), якорь `flow_anchor`.
+2. **`splines=polyline`** (не `ortho`) — читаемые рёбра между рядами.
+3. **Ветки** — `bi_gate` / `llm_gate` (`shape=point`), `provider -> bi_gate` с `lhead=cluster_biencoder`.
+4. **Не использовать имена кластеров как узлы** и не переносить в SVG только рамку `cluster_legend` — иначе легенда визуально «пустая».
 
 ## SAT (Status Assertion Taxonomy)
 
