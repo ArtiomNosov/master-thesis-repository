@@ -43,8 +43,6 @@
 
 ## 2026-05-25
 
-- Добавлен расчет экономического обоснования внедрения в текст ВКР: исходные метрики времени и качества, денежные показатели, срок окупаемости и ROI.
-- Обновлена презентация ВКР: добавлены слайды с базовыми метриками сравнения человека и модели, а также с денежными метриками внедрения.
 - Добавлен high-fidelity HTML-макет MLOps-платформы мониторинга (light mode) в `design/mlops-monitoring-platform/`.
 - Спроектированы шесть desktop-экранов 1440px: Dashboard, Model Detail, Data Drift Monitoring, Model Performance, Alerts and Incidents, Model Registry.
 - Добавлены переиспользуемые UI-компоненты и стили: sidebar navigation, topbar controls, metric cards, status badges, alert cards, tables, charts, recommendations, registry actions.
