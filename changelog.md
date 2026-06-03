@@ -11,6 +11,14 @@
 
 ## 2026-05-27
 
+- Исправлена раскладка Graphviz: убраны фантомные узлы из имён кластеров в `rank=same`/рёбрах; легенда SAT закреплена снизу (`rank=sink`, якорь `flow_anchor` / `metrics -> leg_assumption`).
+- Раскладка Graphviz: `rankdir=TB`, горизонтальные цепочки в ветках (`rankdir=LR` в кластерах), легенда SAT в `cluster_legend`; `bi_gate`/`llm_gate` — рамка «Ветка bi-encoder» охватывает «Вызов bi-encoder сервиса».
+- Скрипт `scripts/render_thesis_diagrams.ps1` и постобработка SVG (легенда в конце DOM).
+- Рис. 1 (C4): источник [`c4_container_architecture.dot`](docs/obsidian/thesis/diagrams/c4_container_architecture.dot), рендер в `c4_container_architecture_marked.svg` (вместо ручного SVG).
+- `py -3 scripts/render_thesis_diagram.py all` — пересборка обеих thesis-диаграмм.
+- Рис. 2 (поток анализа заявки): источник Graphviz [`application_analysis_request_flow.dot`](docs/obsidian/thesis/diagrams/application_analysis_request_flow.dot), рендер `py -3 scripts/render_thesis_diagram.py`; SVG пересобирается автоматически, SAT — цветом рамки + `cluster_legend`.
+- Справочник цветов SAT: [`sat_styles.inc`](docs/obsidian/thesis/diagrams/sat_styles.inc); инструкция: [`diagrams/README.ru.md`](docs/obsidian/thesis/diagrams/README.ru.md).
+- Валидатор SVG: отдельные правила для Graphviz (без проверки координат текста) и BPMN overlay.
 - Влит актуальный `semester-4` в `cursor/separate-architecture-results-771d` для автоматического merge PR.
 - Переработана вёрстка диаграмм C4 и потока анализа (SAT): статус кодируется цветом рамки.
 - Исправлены BPMN AS IS / TO BE: устранены наложения подписей.
