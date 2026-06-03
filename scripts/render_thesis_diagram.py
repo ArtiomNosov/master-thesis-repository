@@ -50,35 +50,6 @@ def compose_dot(source: Path) -> str:
     return source.read_text(encoding="utf-8")
 
 
-def move_legend_cluster_last(svg: str) -> str:
-    """Move cluster_legend &lt;g&gt; to end of graph0 so legend paints after the flow (readability)."""
-    marker = '<title>cluster_legend</title>'
-    idx = svg.find(marker)
-    if idx < 0:
-        return svg
-    start = svg.rfind("<g ", 0, idx)
-    if start < 0:
-        return svg
-    depth = 0
-    end = start
-    for i in range(start, len(svg)):
-        if svg.startswith("<g ", i) or svg.startswith("<g>", i):
-            depth += 1
-        elif svg.startswith("</g>", i):
-            depth -= 1
-            if depth == 0:
-                end = i + len("</g>")
-                break
-    if end <= start:
-        return svg
-    block = svg[start:end]
-    rest = svg[:start] + svg[end:]
-    insert_at = rest.rfind("</g>")
-    if insert_at < 0:
-        return svg
-    return rest[:insert_at] + block + rest[insert_at:]
-
-
 def inject_svg_metadata(svg: str, title: str, desc: str) -> str:
     if re.search(r"<title[^>]*>", svg, re.I):
         svg = re.sub(r"<title[^>]*>.*?</title>", "", svg, count=1, flags=re.I | re.S)
@@ -132,7 +103,6 @@ def render_one(stem: str, dot_path: Path | None = None) -> Path:
         )
 
     raw = out_path.read_text(encoding="utf-8")
-    raw = move_legend_cluster_last(raw)
     meta = METADATA.get(stem)
     if meta:
         raw = inject_svg_metadata(raw, meta[0], meta[1])
