@@ -11,6 +11,7 @@
 
 ## 2026-05-27
 
+- E2E визуальный аудит диаграмм: `check_svg_layout.py`, `export_thesis_diagram_png.py`, `run_diagram_visual_e2e.ps1`, отчёты в `assets/_audit/`.
 - Рис. 2 (поток заявки): исправлена пустая легенда (убрана постобработка `move_legend_cluster_last`, легенда — HTML-таблица `sat_legend`); ветки горизонтально через `rank=same`, `splines=polyline`.
 - Исправлена раскладка Graphviz: убраны фантомные узлы из имён кластеров в `rank=same`/рёбрах; легенда SAT закреплена снизу (`flow_anchor` / `metrics -> leg_assumption`).
 - Раскладка Graphviz: `rankdir=TB`, горизонтальные цепочки в ветках (`rankdir=LR` в кластерах), легенда SAT в `cluster_legend`; `bi_gate`/`llm_gate` — рамка «Ветка bi-encoder» охватывает «Вызов bi-encoder сервиса».
