@@ -56,3 +56,11 @@ py -3 scripts/render_thesis_diagram.py c4_container_architecture
 | `sat_styles.inc` | Справочник SAT-цветов |
 
 BPMN (`archive/.../as_is.svg`, `to_be.svg`) пока не в Graphviz-пайплайне.
+
+## E2E визуальная проверка
+
+```powershell
+.\scripts\run_diagram_visual_e2e.ps1
+```
+
+Создаёт PNG в [`../assets/_audit/`](../assets/_audit/), `layout_report.json`, затем vision-агенты по чеклисту [`.agents/prompts/diagram-visual-audit.md`](../../../.agents/prompts/diagram-visual-audit.md).

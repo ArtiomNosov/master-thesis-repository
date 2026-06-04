@@ -2,17 +2,16 @@
 digraph C4ContainerArchitecture {
   graph [
     rankdir=TB
-    splines=ortho
+    splines=polyline
     bgcolor="#ffffff"
-    pad="0.5"
-    nodesep="0.5"
-    ranksep="0.65"
+    pad="0.45"
+    nodesep="0.45"
+    ranksep="0.6"
     fontsize=11
     fontname="Arial"
     compound=true
-    newrank=true
-    size="14,10!"
-    ratio="fill"
+    size="12,9!"
+    ratio="compress"
     label=<
       <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4" CELLPADDING="2">
         <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="18"><B>Диаграмма контейнеров C4: Reqcore и модуль семантического ранжирования</B></FONT></TD></TR>
@@ -117,37 +116,35 @@ digraph C4ContainerArchitecture {
     metrics -> vectordb [style=invis, minlen=2, constraint=false]
   }
 
-  subgraph cluster_legend {
+  sat_legend [
+    shape=plain
+    margin=0
     label=<
-      <TABLE BORDER="0" CELLBORDER="0" CELLPADDING="2">
-        <TR><TD ALIGN="LEFT"><B>Легенда SAT поверх нотации C4 Container</B></TD></TR>
-        <TR><TD ALIGN="LEFT"><FONT COLOR="#546e7a" POINT-SIZE="10">C4 задаёт тип элемента (контейнер, БД, внешняя система); SAT задаёт, насколько утверждение о нём подтверждено в диссертации.</FONT></TD></TR>
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="10" CELLPADDING="8" COLOR="#cfd8dc">
+        <TR>
+          <TD COLSPAN="3" ALIGN="LEFT"><B>Легенда SAT поверх нотации C4 Container</B></TD>
+        </TR>
+        <TR>
+          <TD COLSPAN="3" ALIGN="LEFT"><FONT COLOR="#546e7a" POINT-SIZE="10">C4 — тип элемента; SAT — степень подтверждения в диссертации.</FONT></TD>
+        </TR>
+        <TR>
+          <TD BGCOLOR="#fff8e1" BORDERCOLOR="#f57f17"><FONT POINT-SIZE="10">Архитектурное допущение</FONT></TD>
+          <TD BGCOLOR="#e3f2fd" BORDERCOLOR="#1565c0"><FONT POINT-SIZE="10">Архитектурный подход</FONT></TD>
+          <TD BGCOLOR="#f3e5f5" BORDERCOLOR="#6a1b9a"><FONT POINT-SIZE="10">Концептуальный компонент</FONT></TD>
+        </TR>
+        <TR>
+          <TD BGCOLOR="#f1f8e9" BORDERCOLOR="#558b2f"><FONT POINT-SIZE="10">Исследовано</FONT></TD>
+          <TD BGCOLOR="#e8f5e9" BORDERCOLOR="#2e7d32"><FONT POINT-SIZE="10">Реализовано</FONT></TD>
+          <TD BGCOLOR="#e0f2f1" BORDERCOLOR="#00695c"><FONT POINT-SIZE="10">Экспериментально проверено</FONT></TD>
+        </TR>
+        <TR>
+          <TD COLSPAN="3" ALIGN="LEFT"><FONT COLOR="#546e7a" POINT-SIZE="10">Светло-зелёная заливка — данные; тёмно-зелёная — код; бирюзовая — эксперимент.</FONT></TD>
+        </TR>
       </TABLE>
     >
-    labelloc="t"
-    labeljust="l"
-    fontsize=11
-    fontname="Arial"
-    style="rounded"
-    color="#cfd8dc"
-    bgcolor="#fafafa"
-    margin=18
-    rankdir=LR
+  ]
 
-    leg_assumption [fillcolor="#fff8e1", color="#f57f17", style="rounded,filled,dashed", label="Архитектурное допущение", width=2.2]
-    leg_approach [fillcolor="#e3f2fd", color="#1565c0", label="Архитектурный подход\n(граница системы)", width=2.2]
-    leg_concept [fillcolor="#f3e5f5", color="#6a1b9a", style="rounded,filled,dashed", label="Концептуальный компонент", width=2.2]
-    leg_studied [fillcolor="#f1f8e9", color="#558b2f", label="Исследовано\n(корпус, артефакты)", width=2.2]
-    leg_implemented [fillcolor="#e8f5e9", color="#2e7d32", label="Реализовано\n(код прототипа)", width=2.2]
-    leg_experimental [fillcolor="#e0f2f1", color="#00695c", label="Экспериментально проверено\n(метрики, E2E)", width=2.2]
-    leg_note [shape=plain, label=<
-      <FONT COLOR="#546e7a" POINT-SIZE="10">Светло-зелёная заливка = исследованные данные; тёмно-зелёная = реализованные контейнеры; бирюзовая = экспериментальный блок.</FONT>
-    >, margin=0]
-
-    { rank=same; leg_assumption; leg_approach; leg_concept; leg_studied; leg_implemented; leg_experimental }
-    leg_assumption -> leg_note [style=invis]
-
-  }
-
-  metrics -> leg_assumption [style=invis, minlen=3, lhead=cluster_legend]
+  flow_anchor [shape=point, width=0.01, style=invis, label=""]
+  metrics -> flow_anchor [style=invis, constraint=false]
+  flow_anchor -> sat_legend [style=invis, minlen=2]
 }
