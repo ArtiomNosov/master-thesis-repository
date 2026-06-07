@@ -54,6 +54,9 @@ EXPECTED_CONFIG_KEYS: dict[str, Any] = {
         "include_toc",
         "toc_heading",
         "toc_levels",
+        "plantuml_mode",
+        "plantuml_jar",
+        "plantuml_auto_download",
         "plantuml_server_url",
     },
 }
@@ -310,10 +313,10 @@ def add_plantuml_figure(
     config: dict[str, Any],
     chapter: int | None,
     chapter_figures: dict[int, int],
+    tool_root: Path,
 ) -> None:
     assembly = config.get("assembly", {})
-    server_url = assembly.get("plantuml_server_url", "http://www.plantuml.com/plantuml/img/")
-    png_stream = render_plantuml_png_stream(content, server_url)
+    png_stream = render_plantuml_png_stream(content, assembly, tool_root)
     paragraph = document.add_paragraph(style="Normal")
     paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     paragraph.paragraph_format.first_line_indent = Cm(0)
@@ -763,9 +766,16 @@ def add_code_block(document: Document, content: str, config: dict[str, Any], equ
     return equation_number
 
 
-def convert_markdown(input_path: Path, output_path: Path, config: dict[str, Any]) -> None:
+def convert_markdown(
+    input_path: Path,
+    output_path: Path,
+    config: dict[str, Any],
+    tool_root: Path | None = None,
+) -> None:
     if output_path.suffix.lower() != ".docx":
         raise ValueError("Output path must have .docx extension")
+    if tool_root is None:
+        tool_root = Path.cwd()
 
     markdown = input_path.read_text(encoding=config["markdown"]["encoding"])
     parser = MarkdownIt("commonmark").enable("table")
@@ -842,7 +852,7 @@ def convert_markdown(input_path: Path, output_path: Path, config: dict[str, Any]
             if fence_info in {"plantuml", "puml"} or (
                 fence_info in {"", "text"} and "@startuml" in token.content
             ):
-                add_plantuml_figure(document, token.content, config, current_chapter, chapter_figures)
+                add_plantuml_figure(document, token.content, config, current_chapter, chapter_figures, tool_root)
             elif fence_info in {"math", "formula"} or looks_like_formula(token.content.strip()):
                 add_equation(document, token.content.strip(), config, equation_number)
                 equation_number += 1
@@ -873,24 +883,25 @@ def main() -> None:
     args = parser.parse_args()
 
     config = load_config(args.config)
+    tool_root = args.config.parent.resolve()
     assembly = config.get("assembly", {})
     use_assembly = not args.no_assembly and bool(assembly.get("title_pages") or assembly.get("include_toc"))
 
     if use_assembly:
         with tempfile.TemporaryDirectory() as temp_dir:
             body_path = Path(temp_dir) / "body.docx"
-            convert_markdown(args.input, body_path, config)
+            convert_markdown(args.input, body_path, config, tool_root=tool_root)
 
             abstract_path: Path | None = None
             abstract_md = assembly.get("abstract_md")
             if abstract_md:
                 abstract_source = resolve_tool_path(args.config, abstract_md)
                 abstract_path = Path(temp_dir) / "abstract.docx"
-                convert_markdown(abstract_source, abstract_path, config)
+                convert_markdown(abstract_source, abstract_path, config, tool_root=tool_root)
 
             assemble_vkr_document(body_path, args.output, args.config, config, abstract_path)
     else:
-        convert_markdown(args.input, args.output, config)
+        convert_markdown(args.input, args.output, config, tool_root=tool_root)
 
 
 if __name__ == "__main__":

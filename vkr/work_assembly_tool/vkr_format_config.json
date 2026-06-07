@@ -99,7 +99,10 @@
     "include_toc": true,
     "toc_heading": "Содержание",
     "toc_levels": "1-3",
-    "plantuml_server_url": "http://www.plantuml.com/plantuml/img/"
+    "plantuml_mode": "local_jar",
+    "plantuml_jar": "tools/plantuml.jar",
+    "plantuml_auto_download": true,
+    "plantuml_server_url": "http://127.0.0.1:8080/png/"
   },
   "tables": {
     "cell_line_spacing": 1.0,
