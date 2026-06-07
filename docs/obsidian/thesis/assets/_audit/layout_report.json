@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "diagrams": [
+    {
+      "file": "application_analysis_request_flow_marked.svg",
+      "passed": true,
+      "viewbox": [
+        0.0,
+        0.0,
+        960.0,
+        371.0
+      ],
+      "aspect_ratio": 2.5876010781671157,
+      "issues": []
+    },
+    {
+      "file": "c4_container_architecture_marked.svg",
+      "passed": true,
+      "viewbox": [
+        0.0,
+        0.0,
+        1115.0,
+        864.0
+      ],
+      "aspect_ratio": 1.2905092592592593,
+      "issues": []
+    }
+  ]
+}
