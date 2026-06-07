@@ -1,0 +1,150 @@
+// Рис. 1 — C4 Container (Reqcore + ML). Рендер: scripts/render_thesis_diagram.py
+digraph C4ContainerArchitecture {
+  graph [
+    rankdir=TB
+    splines=polyline
+    bgcolor="#ffffff"
+    pad="0.45"
+    nodesep="0.45"
+    ranksep="0.6"
+    fontsize=11
+    fontname="Arial"
+    compound=true
+    size="12,9!"
+    ratio="compress"
+    label=<
+      <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4" CELLPADDING="2">
+        <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="18"><B>Диаграмма контейнеров C4: Reqcore и модуль семантического ранжирования</B></FONT></TD></TR>
+        <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="11">Нотация C4 Container (уровень контейнеров) + надстройка SAT: цвет рамки показывает статус утверждения о компоненте.</FONT></TD></TR>
+        <TR><TD ALIGN="LEFT"><FONT COLOR="#546e7a" POINT-SIZE="10">Стрелки — связи контейнеров; подписи маршрутов и полей БД даны в скобках после русских названий.</FONT></TD></TR>
+      </TABLE>
+    >
+    labelloc="t"
+    labeljust="l"
+  ]
+
+  node [
+    shape=box
+    style="rounded,filled"
+    penwidth=2.5
+    fontname="Arial"
+    fontsize=11
+    margin="0.22,0.14"
+  ]
+
+  edge [
+    fontname="Arial"
+    fontsize=11
+    color="#263238"
+    penwidth=2.2
+    arrowsize=0.85
+  ]
+
+  subgraph cluster_diagram {
+    label=""
+    style=invis
+    margin=12
+
+    subgraph cluster_system {
+      label="Граница системы: ATS Reqcore + модуль семантического ранжирования (архитектурный подход)"
+      fontsize=12
+      fontname="Arial"
+      style="rounded"
+      color="#1565c0"
+      bgcolor="#e3f2fd"
+      margin=24
+      penwidth=2.5
+
+      subgraph cluster_row_top {
+        label=""
+        style=invis
+        rankdir=LR
+
+        web [fillcolor="#e8f5e9", color="#2e7d32", label="Веб-приложение Reqcore\nUI вакансий, откликов,\nрезультатов анализа"]
+        backend [fillcolor="#e8f5e9", color="#2e7d32", label="Бэкенд Reqcore\nВыбор LLM- или\nbi-encoder scoring"]
+        db [fillcolor="#e8f5e9", color="#2e7d32", label="Основная БД Reqcore\nоценка (application.score)\nаудит (analysis_run)"]
+        llm_ext [fillcolor="#e8f5e9", color="#2e7d32", label="Внешние LLM-провайдеры\nOpenAI / Anthropic / Google\nКритериальный scoring\nв контуре Reqcore"]
+
+        web -> backend -> db
+        backend -> llm_ext [label="LLM API"]
+      }
+
+      subgraph cluster_row_mid {
+        label=""
+        style=invis
+        rankdir=LR
+
+        api [fillcolor="#e8f5e9", color="#2e7d32", label="API ранжирования\n(ATS Semantic Ranking Engine API)\nFastAPI: индекс, ранг, оценка\n(/index/candidate, /search/rank, /score)"]
+        bienv [fillcolor="#e0f2f1", color="#00695c", label="Среда bi-encoder\n(cointegrated/rubert-tiny2)\nКосинусное сходство"]
+        index [fillcolor="#e8f5e9", color="#2e7d32", label="Индекс кандидатов\nиндекс в памяти (CANDIDATE_INDEX)\nдля API ранжирования"]
+
+        api -> bienv -> index
+      }
+
+      subgraph cluster_row_offline {
+        label=""
+        style=invis
+        rankdir=LR
+
+        pipeline [fillcolor="#e8f5e9", color="#2e7d32", label="Офлайн-пайплайн\nПодготовка пар, split,\nfine-tuning\nскрипты Python 01–17"]
+        artifacts [fillcolor="#f1f8e9", color="#558b2f", label="Артефакты данных\nTSV / SQLite / local files\ntrain / val / test"]
+        metrics [fillcolor="#e0f2f1", color="#00695c", label="Офлайн-метрики ранжирования\nNDCG на K (NDCG@K)\nPrecision@K, Recall@K, MRR\nval/test split"]
+
+        pipeline -> artifacts -> metrics
+      }
+
+      backend -> api [style=invis, minlen=1]
+      db -> api [style=invis, minlen=1]
+      api -> pipeline [style=invis, minlen=1]
+      metrics -> bienv [label="модель", constraint=false]
+    }
+
+    subgraph cluster_future {
+      label="Перспектива (вне границы системы)"
+      fontsize=11
+      fontname="Arial"
+      style="rounded,dashed"
+      color="#b0bec5"
+      bgcolor="#fafafa"
+      margin=16
+      rankdir=LR
+
+      vectordb [fillcolor="#fff8e1", color="#f57f17", style="rounded,filled,dashed", label="Векторная БД\n(ANN / Vector DB)\nMilvus, DiskANN, SPANN\nмасштабирование поиска"]
+      rerank [fillcolor="#f3e5f5", color="#6a1b9a", style="rounded,filled,dashed", label="Слой переранжирования\n(LTR / fair ranking)\nПереранжирование и аудит"]
+    }
+
+    metrics -> vectordb [style=invis, minlen=2, constraint=false]
+  }
+
+  sat_legend [
+    shape=plain
+    margin=0
+    label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="10" CELLPADDING="8" COLOR="#cfd8dc">
+        <TR>
+          <TD COLSPAN="3" ALIGN="LEFT"><B>Легенда SAT поверх нотации C4 Container</B></TD>
+        </TR>
+        <TR>
+          <TD COLSPAN="3" ALIGN="LEFT"><FONT COLOR="#546e7a" POINT-SIZE="10">C4 — тип элемента; SAT — степень подтверждения в диссертации.</FONT></TD>
+        </TR>
+        <TR>
+          <TD BGCOLOR="#fff8e1" BORDERCOLOR="#f57f17"><FONT POINT-SIZE="10">Архитектурное допущение</FONT></TD>
+          <TD BGCOLOR="#e3f2fd" BORDERCOLOR="#1565c0"><FONT POINT-SIZE="10">Архитектурный подход</FONT></TD>
+          <TD BGCOLOR="#f3e5f5" BORDERCOLOR="#6a1b9a"><FONT POINT-SIZE="10">Концептуальный компонент</FONT></TD>
+        </TR>
+        <TR>
+          <TD BGCOLOR="#f1f8e9" BORDERCOLOR="#558b2f"><FONT POINT-SIZE="10">Исследовано</FONT></TD>
+          <TD BGCOLOR="#e8f5e9" BORDERCOLOR="#2e7d32"><FONT POINT-SIZE="10">Реализовано</FONT></TD>
+          <TD BGCOLOR="#e0f2f1" BORDERCOLOR="#00695c"><FONT POINT-SIZE="10">Экспериментально проверено</FONT></TD>
+        </TR>
+        <TR>
+          <TD COLSPAN="3" ALIGN="LEFT"><FONT COLOR="#546e7a" POINT-SIZE="10">Светло-зелёная заливка — данные; тёмно-зелёная — код; бирюзовая — эксперимент.</FONT></TD>
+        </TR>
+      </TABLE>
+    >
+  ]
+
+  flow_anchor [shape=point, width=0.01, style=invis, label=""]
+  metrics -> flow_anchor [style=invis, constraint=false]
+  flow_anchor -> sat_legend [style=invis, minlen=2]
+}

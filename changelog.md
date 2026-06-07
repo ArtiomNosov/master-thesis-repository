@@ -11,23 +11,27 @@
 
 ## 2026-05-27
 
-- Подключён git submodule `reqcore` → https://github.com/ArtiomNosov/reqcore, ветка `thesis/ru-localization`.
-- В форке Reqcore: русская локаль `i18n/locales/ru.json`, язык по умолчанию `ru`, плагин `app/plugins/russian-ui.client.ts`, навигация через `$t('nav.*')`, убраны пользовательские формулировки с «ATS».
-- Docker: Postgres + MinIO подняты, выполнены `db:migrate` и `db:seed`, проверен вход `demo@reqcore.com` / `demo1234` и активация org `reqcore-demo`.
-- Скриншоты dashboard (22 страницы): `reqcore/artifacts/i18n-ru-screenshots/`, отчёт `dom-language-report.json`.
-- Исправлен `russian-ui.client.ts` (больше не ломает гидратацию dashboard).
-- Нейтрализованы упоминания SuperJob в текстах ВКР и презентации (формулировка «агрегатор вакансий»).
-- Термины приведены к виду «независимый энкодер (bi-encoder)»; в таблице задачи 1 убран дублирующий столбец «Комментарий».
-- Вспомогательный скрипт агента перенесён в `.agents/artifacts/patch_vkr_texts.py` (не часть ВКР).
-- В сравнительном подразделе заменены англицизмы «эмбеддинг» и сокращения LTR на русские формулировки с полными английскими названиями в скобках (markdown и DOCX).
-- Уточнена терминология сравнения ранжирования: полные русские названия вместо сокращений BERT/Sentence-BERT/bi-encoder.
-- Переформулированы фрагменты про согласованность вакансии и резюме и обоснование выбора трансформерного подхода на первом этапе работы.
-- Слияние с `semester-4`: сохранён сравнительный подраздел в DOCX, подтянуты правки baseline и нейтрализации источника данных.
-- Интерфейс HTML-макета, Figma plugin generator и PNG-экспорты переведены на русский язык.
-- Пересобраны все шесть PNG 1440x1024 из обновлённого HTML-макета.
-- Добавлен Windows-скрипт `scripts/export-png.ps1` для локальной пересборки PNG.
-- Полная русификация макета мониторинга моделей: убрана латиница и англицизмы из видимого UI (HTML, Figma plugin, PNG).
-- Добавлен скрипт `scripts/check-no-latin.ps1` для автоматической проверки отсутствия латиницы в HTML-макете.
+- E2E визуальный аудит диаграмм: `check_svg_layout.py`, `export_thesis_diagram_png.py`, `run_diagram_visual_e2e.ps1`, отчёты в `assets/_audit/`.
+- Рис. 2 (поток заявки): исправлена пустая легенда (убрана постобработка `move_legend_cluster_last`, легенда — HTML-таблица `sat_legend`); ветки горизонтально через `rank=same`, `splines=polyline`.
+- Исправлена раскладка Graphviz: убраны фантомные узлы из имён кластеров в `rank=same`/рёбрах; легенда SAT закреплена снизу (`flow_anchor` / `metrics -> leg_assumption`).
+- Раскладка Graphviz: `rankdir=TB`, горизонтальные цепочки в ветках (`rankdir=LR` в кластерах), легенда SAT в `cluster_legend`; `bi_gate`/`llm_gate` — рамка «Ветка bi-encoder» охватывает «Вызов bi-encoder сервиса».
+- Скрипт `scripts/render_thesis_diagrams.ps1` и постобработка SVG (легенда в конце DOM).
+- Рис. 1 (C4): источник [`c4_container_architecture.dot`](docs/obsidian/thesis/diagrams/c4_container_architecture.dot), рендер в `c4_container_architecture_marked.svg` (вместо ручного SVG).
+- `py -3 scripts/render_thesis_diagram.py all` — пересборка обеих thesis-диаграмм.
+- Рис. 2 (поток анализа заявки): источник Graphviz [`application_analysis_request_flow.dot`](docs/obsidian/thesis/diagrams/application_analysis_request_flow.dot), рендер `py -3 scripts/render_thesis_diagram.py`; SVG пересобирается автоматически, SAT — цветом рамки + `cluster_legend`.
+- Справочник цветов SAT: [`sat_styles.inc`](docs/obsidian/thesis/diagrams/sat_styles.inc); инструкция: [`diagrams/README.ru.md`](docs/obsidian/thesis/diagrams/README.ru.md).
+- Валидатор SVG: отдельные правила для Graphviz (без проверки координат текста) и BPMN overlay.
+- Влит актуальный `semester-4` в `cursor/separate-architecture-results-771d` для автоматического merge PR.
+- Переработана вёрстка диаграмм C4 и потока анализа (SAT): статус кодируется цветом рамки.
+- Исправлены BPMN AS IS / TO BE: устранены наложения подписей.
+- В текст ВКР добавлена нотация SAT; маркеры заменены на органичные формулировки.
+- Скрипты `scripts/validate_thesis_diagram_svgs.py`, `scripts/organic_thesis_markers.py`.
+- Подключён submodule `reqcore`, русификация UI, Docker/E2E проверка, скриншоты i18n.
+- Нейтрализованы упоминания SuperJob; термины «независимый энкодер (bi-encoder)».
+- Термины приведены к виду «по-русски (идентификатор)» в диаграммах и API-разделе.
+- Слияние сравнительного подраздела, MLOps-макет, baseline-метрики в DOCX/презентации.
+- В таблице задачи 1 убран дублирующий столбец «Комментарий»; скрипт агента перенесён в `.agents/artifacts/patch_vkr_texts.py`.
+- В сравнительном подразделе: русские формулировки вместо «эмбеддинг» и сокращений LTR; полные названия вместо BERT/Sentence-BERT/bi-encoder.
 
 ## 2026-05-26
 
@@ -43,11 +47,10 @@
 
 ## 2026-05-25
 
-- Добавлен high-fidelity HTML-макет MLOps-платформы мониторинга (light mode) в `design/mlops-monitoring-platform/`.
-- Спроектированы шесть desktop-экранов 1440px: Dashboard, Model Detail, Data Drift Monitoring, Model Performance, Alerts and Incidents, Model Registry.
-- Добавлены переиспользуемые UI-компоненты и стили: sidebar navigation, topbar controls, metric cards, status badges, alert cards, tables, charts, recommendations, registry actions.
-- Макет заполнен реалистичными MLOps-данными для `churn_prediction_v3`, `fraud_detection_v2`, `demand_forecast_v1` и связанных сценариев качества моделей, drift, инцидентов и registry.
-- Добавлен локальный Figma plugin generator, создающий редактируемые 1440px-фреймы MLOps dashboard внутри Figma при запуске в авторизованной Figma desktop/web-сессии.
-- Добавлен подраздел в основной текст работы со сравнением трансформерного подхода с классическими системами ранжирования: TF-IDF, BM25, векторной моделью поиска, вероятностными моделями IR, PageRank и обучением ранжированию.
-- Обновлен список литературы источниками по классической векторной модели поиска, TF-IDF/term specificity, PageRank и LambdaMART.
-- Сравнительная таблица заменена на связный академический текст о роли классических методов и трансформерного подхода в архитектуре ATS.
+- Единообразные маркеры SAT в тексте диссертации; уточнены формулировки API, Reqcore, экономики, экспериментов.
+- SVG-диаграммы C4, потока анализа, AS IS / TO BE с визуальной легендой SAT.
+- High-fidelity HTML-макет MLOps-мониторинга, Figma plugin, PNG-экспорты.
+- Сравнительный подраздел: TF-IDF, BM25, PageRank, LambdaMART vs трансформерный подход.
+- Расчёт экономического обоснования внедрения; слайды baseline и денежных метрик в презентации.
+
+
