@@ -1,0 +1,128 @@
+// Рис. 2 — поток анализа заявки (Reqcore + bi-encoder). Рендер: scripts/render_thesis_diagram.py
+digraph ApplicationAnalysisRequestFlow {
+  graph [
+    rankdir=TB
+    splines=polyline
+    bgcolor="#ffffff"
+    pad="0.4"
+    nodesep="0.4"
+    ranksep="0.55"
+    size="10,7!"
+    ratio="compress"
+    fontsize=11
+    fontname="Arial"
+    compound=true
+    label=<
+      <TABLE BORDER="0" CELLBORDER="0" CELLSPACING="4" CELLPADDING="2">
+        <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="18"><B>Поток анализа заявки в Reqcore и bi-encoder сервисе</B></FONT></TD></TR>
+        <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="11">Нотация SAT: статус элемента задаётся цветом рамки (см. легенду), а не отдельной строкой внутри блока.</FONT></TD></TR>
+        <TR><TD ALIGN="LEFT"><FONT COLOR="#546e7a" POINT-SIZE="10">Базовая нотация — потоковая схема (flowchart); надстройка SAT — авторская шкала достоверности утверждений о компонентах.</FONT></TD></TR>
+      </TABLE>
+    >
+    labelloc="t"
+    labeljust="l"
+  ]
+
+  node [
+    shape=box
+    style="rounded,filled"
+    penwidth=2.5
+    fontname="Arial"
+    fontsize=11
+    margin="0.25,0.16"
+  ]
+
+  edge [
+    fontname="Arial"
+    fontsize=12
+    fontcolor="#37474f"
+    color="#263238"
+    penwidth=2.2
+    arrowsize=0.85
+  ]
+
+  // Ряд 1: позвоночник (горизонтально при rankdir=TB + rank=same)
+  ui [fillcolor="#e8f5e9", color="#2e7d32", label="Интерфейс Reqcore\n(Reqcore UI)\nЗапрос анализа заявки"]
+  analyze [fillcolor="#e8f5e9", color="#2e7d32", label="Точка анализа заявки\n(/api/applications/:id/analyze)\nВыбор ветки скоринга"]
+  provider [fillcolor="#e3f2fd", color="#1565c0", shape=diamond, margin="0.28,0.22", label="Провайдер\n(provider = biencoder?)"]
+
+  ui -> analyze -> provider
+  { rank=same; ui; analyze; provider }
+
+  // Ряд 2: ветка bi-encoder (кластер только для рамки)
+  subgraph cluster_biencoder {
+    label="Ветка bi-encoder"
+    fontsize=12
+    fontname="Arial"
+    style="rounded"
+    color="#b0bec5"
+    bgcolor="#fafcfd"
+    margin=22
+
+    bi_gate [shape=point, width=0.12, label="", fillcolor="#fafcfd", color="#b0bec5"]
+    bicall [fillcolor="#e8f5e9", color="#2e7d32", label="Вызов bi-encoder сервиса\nURL (BIENCODER_URL)\nмаршрут (/score)\nHTTP POST, Python API"]
+    fastapi [fillcolor="#e8f5e9", color="#2e7d32", label="Сервис FastAPI\n(11_api_server.py)\nЗагрузка ранжировщика"]
+    ranker [fillcolor="#e0f2f1", color="#00695c", label="Ранжировщик\n(ATSRanker)\nКосинусное сходство, top-k"]
+    appscore [fillcolor="#e8f5e9", color="#2e7d32", label="Оценка заявки\n(application.score)\nаудит (analysis_run)"]
+    onlyscore [fillcolor="#f3e5f5", color="#6a1b9a", style="rounded,filled,dashed", label="Ветка «только score»\n(bi-encoder)\nНе заменяет объяснимость\nпо критериям"]
+
+    bi_gate -> bicall -> fastapi -> ranker -> appscore -> onlyscore
+    { rank=same; bi_gate; bicall; fastapi; ranker; appscore; onlyscore }
+  }
+
+  // Ряд 3: ветка LLM
+  subgraph cluster_llm {
+    label="Ветка LLM scoring"
+    fontsize=12
+    fontname="Arial"
+    style="rounded"
+    color="#b0bec5"
+    bgcolor="#fafcfd"
+    margin=22
+
+    llm_gate [shape=point, width=0.12, label="", fillcolor="#fafcfd", color="#b0bec5"]
+    llmprov [fillcolor="#e8f5e9", color="#2e7d32", label="Провайдер LLM\nOpenAI / Anthropic / Google"]
+    scoring [fillcolor="#e8f5e9", color="#2e7d32", label="Скоринг заявки\n(scoreApplication())\nКритериальный LLM scoring"]
+    llmwrite [fillcolor="#e8f5e9", color="#2e7d32", label="Запись LLM-результата\n(criterion_score)\n(application.score)\nИтог по критериям и заявке"]
+
+    llm_gate -> llmprov -> scoring -> llmwrite
+    { rank=same; llm_gate; llmprov; scoring; llmwrite }
+  }
+
+  provider -> bi_gate [label="да", lhead=cluster_biencoder]
+  provider -> llm_gate [label="нет", lhead=cluster_llm]
+
+  // Легенда SAT — HTML-таблица (видна целиком, без пустой рамки)
+  sat_legend [
+    shape=plain
+    margin=0
+    label=<
+      <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="10" CELLPADDING="8" COLOR="#cfd8dc">
+        <TR>
+          <TD COLSPAN="3" ALIGN="LEFT"><B>Легенда SAT (Status Assertion Taxonomy)</B></TD>
+        </TR>
+        <TR>
+          <TD COLSPAN="3" ALIGN="LEFT"><FONT COLOR="#546e7a" POINT-SIZE="10">C4 Container и BPMN — та же цветовая схема; BPMN — процесс, SAT — эпистемический статус элемента.</FONT></TD>
+        </TR>
+        <TR>
+          <TD BGCOLOR="#fff8e1" BORDERCOLOR="#f57f17"><FONT POINT-SIZE="10">Архитектурное допущение</FONT></TD>
+          <TD BGCOLOR="#e3f2fd" BORDERCOLOR="#1565c0"><FONT POINT-SIZE="10">Архитектурный подход</FONT></TD>
+          <TD BGCOLOR="#f3e5f5" BORDERCOLOR="#6a1b9a"><FONT POINT-SIZE="10">Концептуальный компонент</FONT></TD>
+        </TR>
+        <TR>
+          <TD BGCOLOR="#f1f8e9" BORDERCOLOR="#558b2f"><FONT POINT-SIZE="10">Исследовано</FONT></TD>
+          <TD BGCOLOR="#e8f5e9" BORDERCOLOR="#2e7d32"><FONT POINT-SIZE="10">Реализовано</FONT></TD>
+          <TD BGCOLOR="#e0f2f1" BORDERCOLOR="#00695c"><FONT POINT-SIZE="10">Экспериментально проверено</FONT></TD>
+        </TR>
+        <TR>
+          <TD COLSPAN="3" ALIGN="LEFT"><FONT COLOR="#546e7a" POINT-SIZE="10">Зелёная рамка — реализовано; бирюзовая — эксперимент; синяя заливка у ромба — выбор ветки.</FONT></TD>
+        </TR>
+      </TABLE>
+    >
+  ]
+
+  flow_anchor [shape=point, width=0.01, style=invis, label=""]
+  onlyscore -> flow_anchor [style=invis]
+  llmwrite -> flow_anchor [style=invis, constraint=false]
+  flow_anchor -> sat_legend [style=invis, minlen=2]
+}
