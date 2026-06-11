@@ -1,0 +1,28 @@
+name: Build thesis PDF
+
+on:
+  push:
+    paths:
+      - 'thesis/**'
+      - '.github/workflows/build-thesis.yml'
+  pull_request:
+    paths:
+      - 'thesis/**'
+      - '.github/workflows/build-thesis.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: aergus/latex:2022-01-02
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build PDF
+        run: |
+          cd thesis/latex
+          latexmk -xelatex -interaction=nonstopmode -halt-on-error master-thesis-3-pz.tex
+      - name: Upload PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: master-thesis-pdf
+          path: thesis/latex/build/master-thesis-3-pz.pdf

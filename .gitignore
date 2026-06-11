@@ -35,3 +35,30 @@ ats/
 # Summer practice temp / unpack artifacts
 summer-practice/artifacts/_tmp_docx/
 summer-practice/artifacts/_zadanie.zip
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
+
+# LaTeX build artifacts
+thesis/latex/build/
+thesis/latex/*.aux
+thesis/latex/*.bbl
+thesis/latex/*.bcf
+thesis/latex/*.blg
+thesis/latex/*.fdb_latexmk
+thesis/latex/*.fls
+thesis/latex/*.log
+thesis/latex/*.out
+thesis/latex/*.run.xml
+thesis/latex/*.synctex.gz
+thesis/latex/*.toc
