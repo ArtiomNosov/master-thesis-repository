@@ -1,0 +1,52 @@
+% arara: xelatex
+% arara: biber
+% arara: xelatex: { synctex: true }
+
+\documentclass[12pt,a4paper,oneside,final]{report}
+
+\input{chapters/thesis-template-macro.tex}
+
+\addto{\captionsrussian}{\renewcommand{\bibname}{Список литературы}}
+
+\begin{document}
+
+% Official department forms are expected in ../forms/.
+% Until they are provided, the LaTeX placeholders keep the draft buildable and
+% visibly mark missing submission-critical data.
+\IfFileExists{../forms/title.pdf}{%
+  \includepdf[pages={-}, offset=0mm -0mm]{../forms/title.pdf}%
+}{%
+  \input{title/title-3-pz}%
+  \newpage%
+}
+
+\IfFileExists{../forms/title-dep22.pdf}{%
+  \clearpage%
+  \includepdf[pages={-}, offset=0mm -0mm]{../forms/title-dep22.pdf}%
+  \clearpage%
+}{%
+  \clearpage%
+  \thispagestyle{empty}%
+  \vspace*{\fill}%
+  \begin{center}
+    \textbf{TODO: заменить страницу официальным листом с подписями ВКР.}\\
+    Поместить файл в \texttt{thesis/forms/title-dep22.pdf}.
+  \end{center}
+  \vspace*{\fill}%
+  \clearpage%
+}
+
+\IfFileExists{../forms/task.pdf}{%
+  \includepdf[pages={-}, offset=0mm -0mm]{../forms/task.pdf}%
+}{%
+  \input{title/task}%
+  \newpage%
+}
+
+\input{chapters/_content}
+
+\end{document}
+
+%%% Local Variables:
+%%% TeX-engine: xetex
+%%% End:

@@ -41,3 +41,15 @@ git add reqcore
 - `docs/references/`: Статьи в PDF (литобзор) и .bib файлы.
 - `prompts/`: Набор промптов для работы с ИИ ассистентами.
 - `archive/`: Архивные материалы из прошлых семестров.
+
+## ВКР (LaTeX)
+
+Рабочий контур диплома находится в `thesis/`.
+
+- LaTeX entrypoint: `thesis/latex/master-thesis-3-pz.tex`
+- Build wrapper: `thesis/build.ps1`
+- Structural checks: `thesis/check.ps1`
+- Исходный текст: `docs/obsidian/thesis/[USED] thesis_draft_final_ru.md`
+- Submission checklist: `archive/semester-3-and-previous/master-thesis-obsidian/submission-checklist.md`
+
+Перед финальной сдачей нужно заменить временные титульные материалы официальными PDF-бланками в `thesis/forms/`.
