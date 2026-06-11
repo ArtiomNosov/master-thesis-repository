@@ -1,17 +1,15 @@
+import argparse
+import importlib
+import math
+import os
 import sys
-import numpy as np
+from pathlib import Path
 
 # Fix stdout for Cyrillic on Windows
-sys.stdout.reconfigure(encoding='utf-8')
+sys.stdout.reconfigure(encoding="utf-8")
 
-try:
-    from sklearn.metrics import ndcg_score
-    from sklearn.feature_extraction.text import TfidfVectorizer
-    from sklearn.metrics.pairwise import cosine_similarity
-    from sentence_transformers import SentenceTransformer, util
-except ImportError:
-    print("WARNING: Missing scikit-learn or sentence-transformers")
-    sys.exit(1)
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+comparison = importlib.import_module("12_baseline_comparison")
 
 # --- Metric Implementations ---
 def compute_precision_at_k(actual_labels, k=3):
@@ -36,10 +34,13 @@ def evaluate_predictions(y_true, scores, k=3):
     
     total_rel = sum(y_true)
     
-    # Sklearn expects nested arrays: ndcg_score([y_true], [y_score], k=k)
-    y_true_arr = np.asarray([y_true])
-    scores_arr = np.asarray([scores])
-    ndcg = ndcg_score(y_true_arr, scores_arr, k=k)
+    ideal_labels = sorted(y_true, reverse=True)
+
+    def dcg(values):
+        return sum((2**label - 1) / math.log2(rank + 1) for rank, label in enumerate(values[:k], start=1))
+
+    ideal = dcg(ideal_labels)
+    ndcg = dcg(sorted_y_true) / ideal if ideal > 0 else 0.0
     
     prec_k = compute_precision_at_k(sorted_y_true, k=k)
     rec_k = compute_recall_at_k(sorted_y_true, total_rel, k=k)
@@ -47,15 +48,14 @@ def evaluate_predictions(y_true, scores, k=3):
     
     return {"NDCG@K": ndcg, "Precision@K": prec_k, "Recall@K": rec_k, "MRR": mrr}
 
-def run_evaluation():
+def run_evaluation(args):
     print("==================================================")
-    print("         RANKING METRICS EXPERIMENT 7.3           ")
+    print("    THREE-MODEL RANKING METRICS EXPERIMENT 7.3    ")
     print("==================================================")
-    
-    # Simulating the Test Split
-    # We construct a Ground Truth mapping where 1 means HR Invited the candidate, 0 means Rejected.
+
+    # Demo ranking group. The final thesis evaluation must be run on test.tsv.
     vacancy_text = "Role: Go Backend Developer | Seniority: middle | Skills: golang, postgresql, docker, microservices"
-    
+
     candidates = [
         "Go-разработчик. 3 года опыта. Микросервисы, PostgreSQL.",            # True Relevant (1)
         "Разработчик на Python и немного Go. Знаю Docker.",                    # Marginal (0)
@@ -65,38 +65,44 @@ def run_evaluation():
     ]
     y_true = [1, 0, 1, 0, 0] # Boolean labels mapping
     K = 3 # Evaluate Top 3 logic
-    
-    # 1. Evaluate TF-IDF Baseline
-    vec = TfidfVectorizer().fit_transform([vacancy_text] + candidates)
-    tfidf_scores = cosine_similarity(vec[0:1], vec[1:])[0].tolist()
-    
-    tfidf_metrics = evaluate_predictions(y_true, tfidf_scores, k=K)
-    
-    # 2. Evaluate Dense Reranker
+
+    model_scores = {
+        "1. BM25 lexical ranking baseline": comparison.eval_bm25(vacancy_text, candidates),
+    }
+
     try:
-        model = SentenceTransformer("cointegrated/rubert-tiny2")
-        v_e = model.encode(vacancy_text, convert_to_tensor=True)
-        c_e = model.encode(candidates, convert_to_tensor=True)
-        dense_scores = util.cos_sim(v_e, c_e)[0].tolist()
-        
-        dense_metrics = evaluate_predictions(y_true, dense_scores, k=K)
-        
-    except Exception as e:
-        print(f"Model Eval Error: {e}")
-        dense_metrics = {}
-        
-    print(f"\n--- Baseline Model (Lexical TF-IDF) ---")
-    for metric, val in tfidf_metrics.items():
-        print(f"{metric}: {val:.4f}")
-        
-    print(f"\n--- Reranker Model (Semantic rubert-tiny2) ---")
-    for metric, val in dense_metrics.items():
-        print(f"{metric}: {val:.4f}")
-        
+        model_scores["2. Fine-tuned Cross-Encoder"] = comparison.eval_cross_encoder(
+            args.cross_model, vacancy_text, candidates, batch_size=args.batch_size
+        )
+    except Exception as exc:
+        print(f"\n--- 2. Fine-tuned Cross-Encoder ---")
+        print(f"Skipped: {exc}")
+        print("Train experiments/models/cross_encoder_rubert_tiny2 with 18_train_cross_encoder.py.")
+
+    try:
+        model_scores["3. Fine-tuned Bi-Encoder"] = comparison.eval_biencoder(
+            args.bi_model, vacancy_text, candidates
+        )
+    except Exception as exc:
+        print(f"\n--- 3. Fine-tuned Bi-Encoder ---")
+        print(f"Skipped: {exc}")
+
+    for model_name, scores in model_scores.items():
+        metrics = evaluate_predictions(y_true, scores, k=K)
+        print(f"\n--- {model_name} ---")
+        for metric, val in metrics.items():
+            print(f"{metric}: {val:.4f}")
+
     print("\n[CONCLUSIONS OVERVIEW]")
-    print("NDCG@K mathematically proves Dense structures capture ranking severity.")
-    print("MRR guarantees the Recruiter sees a highly matched candidate on Screen 1.")
+    print("BM25 measures lexical overlap without training.")
+    print("Cross-Encoder estimates the quality ceiling for expensive pairwise scoring.")
+    print("Bi-Encoder measures scalable semantic retrieval with independently cached resume embeddings.")
 
 
 if __name__ == "__main__":
-    run_evaluation()
+    root = Path(__file__).resolve().parents[2]
+    parser = argparse.ArgumentParser(description="Compute demo IR metrics for the three-model comparison.")
+    parser.add_argument("--cross_model", default=str(root / "experiments" / "models" / "cross_encoder_rubert_tiny2"))
+    parser.add_argument("--bi_model", default=str(root / "experiments" / "models" / "bi_encoder_rubert_tiny2"))
+    parser.add_argument("--batch_size", type=int, default=8)
+    run_evaluation(parser.parse_args())
