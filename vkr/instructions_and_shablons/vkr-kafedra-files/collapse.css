@@ -1,0 +1,270 @@
+/* Start Expand content */
+.exp-arrow:after{
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  border-bottom: 10px solid #222;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  height: 0;
+  width: 0;
+  margin: 2px auto 0;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+}
+.exp-arrow:before {
+  content: "";
+  border-bottom: 10px solid #eee;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  right: 9px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  opacity: 0;
+  display: block !important;
+}
+.ex-tplist.column-3 .exp-expand{
+  width: calc(300% + 20px);
+}
+.ex-tplist.column-2 .exp-expand{
+  width: calc(200% + 10px);
+}
+.ex-tplist.column-4 .exp-expand{
+  width: calc(400% + 30px);
+}
+.ex-tplist.column-5 .exp-expand{
+  width: calc(500% + 40px);
+}
+.exp-expand {
+  position: relative;
+  box-sizing: content-box;
+  overflow: hidden;
+  background: #222;
+  transition: max-height .3s ease-in-out,margin-bottom .1s .2s,margin-top .2s 0s;
+  color: #d6d6d6;
+  max-height: 0;
+  margin: 0;
+  z-index: 9;
+  -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+.active-collaps .exp-expand{ margin-top:10px; z-index: 99}
+.cl-dark .exp-expand{
+  background: #333;
+  color: #fff;
+  /*border: 1px solid #333;*/
+}
+.cl-dark .exp-arrow:after {
+  border-bottom: 8px solid #333;
+}
+.nicescroll-rails {
+  border-radius: 5px;
+  width: 6px !important;
+	background:rgba(0, 0, 0,.15);
+	overflow:hidden;
+  margin-left: -3px;
+  z-index: 999 !important;
+}
+.nicescroll-cursors{ border:0 !important}
+.exp-expand .exp-padding{padding: 0px; display: inline-block; box-sizing: border-box; vertical-align: top; max-width:100%; max-height:400px; opacity: 1 !important;}
+.ex-tplist.column-3 .item-grid:nth-of-type(3n+2) .exp-expand {margin-left: calc(-100% - 10px);}
+.ex-tplist.column-3 .item-grid:nth-of-type(3n+3) .exp-expand {margin-left: calc(-200% - 20px);}
+.ex-tplist.column-2 .item-grid:nth-of-type(2n+2) .exp-expand {margin-left: calc(-100% - 10px);}
+.ex-tplist.column-4 .item-grid:nth-of-type(4n+2) .exp-expand {margin-left: calc(-100% - 10px);}
+.ex-tplist.column-4 .item-grid:nth-of-type(4n+3) .exp-expand {margin-left: calc(-200% - 20px);}
+.ex-tplist.column-4 .item-grid:nth-of-type(4n+4) .exp-expand {margin-left: calc(-300% - 30px);}
+.ex-tplist.column-5 .item-grid:nth-of-type(5n+2) .exp-expand {margin-left: calc(-100% - 10px);}
+.ex-tplist.column-5 .item-grid:nth-of-type(5n+3) .exp-expand {margin-left: calc(-200% - 20px);}
+.ex-tplist.column-5 .item-grid:nth-of-type(5n+4) .exp-expand {margin-left: calc(-300% - 30px);}
+.ex-tplist.column-5 .item-grid:nth-of-type(5n+5) .exp-expand {margin-left: calc(-400% - 40px);}
+.active-collaps .exp-expand-des,
+.active-collaps .exp-expand{
+  max-height: 400px;
+}
+.ex-tplist.fct-collapse .ctgrid .item-grid:first-child .exp-expand-pre,
+.ex-tplist.fct-collapse .ctgrid .item-grid:last-child .exp-expand-next{
+  pointer-events: none;
+  opacity: .5;
+}
+.item-grid.active-collaps .exp-arrow:before,
+.item-grid.active-collaps .exp-arrow:after {
+    opacity: 1;
+}
+.exp-expand .exp-expand-meta{
+  border-bottom: 1px solid #2f2f2f;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+.exp-expand .expand-social{ padding:0; margin:10px 0}
+.exp-expand .exp-expand-meta .ex-social-account {
+  margin-top: 10px;
+}
+.exp-expand .exp-expand-meta .ex-social-account li a {
+    color: #888;
+    border: 0px solid #eee;
+    line-height: 35px;
+    transition: all .2s;
+}
+.exp-expand .exp-expand-meta .ex-social-account li a:hover{
+  color: #fff;
+}
+
+.exp-expand .exp-expand-des h3 {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 3px 0;
+}
+.exp-expand .exp-expand-des h3 a{
+  box-shadow: none;
+  color: #00bcd4;
+}
+.exp-expand .exp-expand-meta h5 {
+  font-weight: 400;
+  margin: 0;
+  font-size: 13px;
+  text-transform: initial;
+  color: #888;
+  display: inline-block;
+  margin-right: 15px;
+  padding-right: 15px;
+  border-right: 2px solid #3b3b3b;
+}
+.exp-expand .exp-expand-meta h5:last-of-type {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+.exp-expand .exp-expand-meta h5:first-child {
+  
+}
+.exp-expand .exp-expand-image{
+  display: inline-block;
+  width: 40%;
+  float:left;
+  padding: 25px 0 25px 25px;
+}
+.exp-expand .exp-expand-des{
+  display: inline-block;
+  width: 60%;
+  vertical-align: top;
+  padding: 0 25px;
+  height: 0;
+}
+.active-collaps .exp-expand-des {
+    height: 308px;
+    margin: 25px 0;
+}
+.exp-expand .extp-epbutton {
+  position: absolute;
+  right: 22px;
+  top: 10px;
+  z-index:999;
+}
+.exp-expand .extp-epbutton .exp-expand-close{
+  vertical-align: top;
+}
+.exp-expand .extp-epbutton > div{
+  width: 35px;
+  height: 35px;
+  display:inline-block;
+  text-align: center;
+  border: 1px solid transparent;
+  background: rgba(0,0,0,.7);
+  line-height: 34px;
+  position:relative;
+  cursor:pointer;
+  transition: all .3s;
+}
+.exp-expand .extp-epbutton > div:after {
+  content:"";
+  border: solid rgb(255, 255, 255);
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 4px;
+}
+.exp-expand .extp-epbutton > div.exp-expand-pre:after {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+  margin-right:-4px;
+}
+.exp-expand .extp-epbutton > div.exp-expand-next:after {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  margin-left:-4px;
+}
+.exp-expand .extp-epbutton > div.exp-expand-close:before,
+.exp-expand .extp-epbutton > div.exp-expand-close:after{
+  position: absolute;
+  top: 50%;
+  padding:0;
+  border:0;
+  content:"";
+  background-color: rgba(255,255,255,1);
+}
+.exp-expand .extp-epbutton > div.exp-expand-close:before {
+  left: 50%;
+  display: block;
+  height: 1px;
+  width: 19px;
+  margin-left: -10px;
+  margin-top: -1px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+}
+.exp-expand .extp-epbutton > div.exp-expand-close:after {
+  display: block;
+  height: 19px;
+  width: 1px;
+  margin-left: 16px;
+  margin-top: -10px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+}
+.exp-expand .extp-epbutton > div:hover{ background:#fff; color:#000000;border-color:#000;}
+.exp-expand .extp-epbutton > div:hover:after{ border-color:#000;}
+.exp-expand .extp-epbutton > div.exp-expand-close:hover:before,
+.exp-expand .extp-epbutton > div.exp-expand-close:hover:after{background:#000;}
+/* End Expand content */
+
+/* Responesive expand*/
+@media screen and (max-width: 992px) and (min-width: 769px){
+  .ex-tplist.column-4 .exp-expand,
+  .ex-tplist.column-5 .exp-expand{
+    width: calc(300% + 20px);
+  }
+  .ex-tplist.column-4 .item-grid:nth-of-type(3n+1) .exp-expand,
+  .ex-tplist.column-5 .item-grid:nth-of-type(3n+1) .exp-expand
+   {margin-left: 0;}
+  .ex-tplist.column-4 .item-grid:nth-of-type(3n+2) .exp-expand,
+  .ex-tplist.column-5 .item-grid:nth-of-type(3n+2) .exp-expand
+   {margin-left: calc(-100% - 10px);}
+  .ex-tplist.column-4 .item-grid:nth-of-type(3n+3) .exp-expand,
+  .ex-tplist.column-5 .item-grid:nth-of-type(3n+3) .exp-expand
+   {margin-left: calc(-200% - 20px);}
+}
+@media screen and (max-width: 768px){
+  .ex-tplist.column-3 .exp-expand,
+  .ex-tplist.column-4 .exp-expand,
+  .ex-tplist.column-5 .exp-expand{
+    width: calc(200% + 10px);
+  }
+  .ex-tplist.column-3 .item-grid:nth-of-type(2n+1) .exp-expand,
+  .ex-tplist.column-4 .item-grid:nth-of-type(2n+1) .exp-expand,
+  .ex-tplist.column-5 .item-grid:nth-of-type(2n+1) .exp-expand
+   {margin-left: 0;}
+  .ex-tplist.column-3 .item-grid:nth-of-type(2n+2) .exp-expand,
+  .ex-tplist.column-4 .item-grid:nth-of-type(2n+2) .exp-expand,
+  .ex-tplist.column-5 .item-grid:nth-of-type(2n+2) .exp-expand
+   {margin-left: calc(-100% - 10px);}
+}
+@media (max-width: 450px){
+  .ex-tplist > .ctgrid .item-grid:nth-of-type(n) .exp-expand {width: 100%; margin-left: 0;}
+}

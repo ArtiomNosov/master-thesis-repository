@@ -1,0 +1,204 @@
+.tpitem-list{
+  color: #101010;
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 20px 0;
+}
+.ctlist .tpitem-list.item-grid:first-child{margin-top: 5px}
+.ctlist .tpitem-list.item-grid:last-child{margin-bottom: 5px}
+/* Start stype list 1 */
+.tpstyle-list-1{
+  width: 100%;
+  position: relative;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+  border-radius: 22px;
+  border-top: 50px solid #eee;
+}
+.tpstyle-list-1 .tplist-1-info,
+.tpstyle-list-2 .tplist-2-info{
+  padding: 40px 20px;
+  margin-top: -65px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tpstyle-list-1 .tplist-1-image,
+.tpstyle-list-2 .tplist-2-image{
+  width: 142px;
+  height: 142px;
+  overflow: hidden;
+  float: left;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 35px;
+}
+.tpstyle-list-1 .tplist-1-image .image-bg-circle,
+.tpstyle-list-2 .tplist-2-image .image-bg-circle{
+  width: 142px;
+  height: 142px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-position: center center;
+  background-size: cover;
+  border: solid 6px #eee;
+}
+.tpstyle-list-1 figcaption,
+.tpstyle-list-2 figcaption{
+  width: calc(100% - 145px);
+  padding: 0 10px;
+  display: inline-block;
+  margin-top: -10px;
+}
+.tpstyle-list-1 h5{margin-top: 35px}
+.tpstyle-list-1 .ex-social-account li a,
+.tpstyle-list-2 .ex-social-account li a{
+  background: none;
+  color: #888;
+  line-height: 34px;
+  border:1px solid #eee;
+}
+/* End stype list 1 */
+
+/* Start stype list 2 */
+.tpstyle-list-2 .ex-social-account li a{ border-color:#ddd}
+.tpstyle-list-2 figcaption{ padding:15px 20px;}
+.tpstyle-list-2{
+  width: 100%;
+  border-radius: 0;
+}
+.tpstyle-list-2 .tplist-2-info{
+  margin-top: 0px;
+  padding: 0;
+}
+.tpstyle-list-2 .tplist-2-image{
+  margin-top: 0px;
+  width: 240px;
+  height: 240px;
+}
+.tpstyle-list-2 .tplist-2-image .image-bg-circle{
+  border: 0;
+  width: 240px;
+  height: 240px;
+}
+.tpstyle-list-2 figcaption{
+  margin-top: 0;
+  width: calc(100% - 240px);
+}
+.tpstyle-list-2 p{
+  padding-top: 10px;
+  position: relative;
+}
+.tpstyle-list-2 p:before{
+  content: '';
+  border-top: 2px solid #eee;
+  position: absolute;
+  width: 20%;
+  min-width:150px;
+  top: 0;
+  left: 0;
+}
+/* End stype list 2 */
+
+/* Start stype list 3 */
+.tpstyle-list-3{
+  width: calc(100% - 80px);
+  border-radius: 0;
+  border: 2px dashed #00bcd4;
+}
+.tpstyle-list-3 .tplist-3-info{
+  margin-top: 0px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+.tpstyle-list-3 .tplist-3-image{
+  margin-top: 0px;
+  width: 160px;
+  height: 160px;
+}
+.tpstyle-list-3 .tplist-3-image .image-bg-circle{
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+  background-position: center center;
+  background-size: cover;
+}
+.tpstyle-list-3 figcaption{
+  width: calc(100% - 80px);
+  padding: 15px 25px;
+}
+.tpitem-list.item-grid:nth-child(odd) .tpstyle-list-3{
+  margin-left: 80px;
+}
+.tpitem-list.item-grid:nth-child(even) .tpstyle-list-3{
+  margin-right: 80px;
+}
+.tpitem-list.item-grid:nth-child(even) .tpstyle-list-3  figcaption{
+  border-radius: 0 10px 10px 0;
+  text-align: right;
+}
+.tpitem-list.item-grid:nth-child(odd) .tpstyle-list-3 figcaption{
+  float: right;
+  border-radius: 10px 0 0  10px;
+  
+}
+.tpitem-list.item-grid:nth-child(even) .tpstyle-list-3  .tplist-3-image{
+  margin-left: auto;
+  order: 2;
+  margin-right: -80px;
+}
+.tpitem-list.item-grid:nth-child(odd) .tpstyle-list-3 .tplist-3-image{
+  float: left;
+  margin-left: -80px;
+}
+.tpstyle-list-3 .ex-social-account li a{
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  line-height: 15px;
+  opacity: .8;
+  width: 25px;
+}
+.tpitem-list.item-grid:nth-child(even) .tpstyle-list-3 .ex-social-account li a{ text-align:right;}
+.tpstyle-list-1 .ex-social-account li a:hover,
+.tpstyle-list-2 .ex-social-account li a:hover{color:#fff;background: #00bcd4;}
+.ex-tplist .tpstyle-list-3 h5{color: #00BCD4;}
+
+@media screen and (max-width: 450px){
+  .tpstyle-list-1 figcaption, .tpstyle-list-2 figcaption{
+    width: 100%;
+  }
+  .tpstyle-list-1 .tplist-1-image, .tpstyle-list-2 .tplist-2-image{
+    width: 100%;
+  }
+  .tpstyle-list-3 {
+    width: calc(100% - 50px);
+}
+  .tpstyle-list-3 figcaption {
+    width: calc(100% - 50px);
+    padding: 15px 10px;
+  }
+  .tpstyle-list-3 .tplist-3-image .image-bg-circle {
+    width: 100px;
+    height: 100px;
+  }
+  .tpstyle-list-3 .tplist-3-image {
+    width: 100px;
+    height: 100px;
+  }
+  .tpitem-list.item-grid:nth-child(odd) .tpstyle-list-3 .tplist-3-image {
+    margin-left: -50px;
+  }
+  .tpitem-list.item-grid:nth-child(even) .tpstyle-list-3 .tplist-3-image {
+    margin-right: -50px;
+  }
+  .tpitem-list.item-grid:nth-child(odd) .tpstyle-list-3 {
+    margin-left: 50px;
+  }
+  .tpitem-list.item-grid:nth-child(even) .tpstyle-list-3 {
+    margin-right: 50px;
+  }
+  .tpstyle-list-1 h5{margin-top: 0}
+  .ex-tplist .tpstyle-list-1 figcaption h3,
+  .ex-tplist .tpstyle-list-2 figcaption h3{margin-top: 10px}
+}
