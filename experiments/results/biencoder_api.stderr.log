@@ -1,0 +1,12 @@
+C:\Users\MSI-Vector\Documents\repositories\master-thesis-repository\experiments\scripts\11_api_server.py:47: DeprecationWarning: 
+        on_event is deprecated, use lifespan event handlers instead.
+
+        Read more about it in the
+        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
+        
+  @app.on_event("startup")
+INFO:     Started server process [6904]
+INFO:     Waiting for application startup.
+Loading weights:   0%|          | 0/55 [00:00<?, ?it/s]Loading weights: 100%|##########| 55/55 [00:00<00:00, 10445.40it/s]
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)

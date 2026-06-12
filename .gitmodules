@@ -1,0 +1,4 @@
+[submodule "reqcore"]
+	path = reqcore
+	url = https://github.com/ArtiomNosov/reqcore.git
+	branch = thesis/ru-localization
