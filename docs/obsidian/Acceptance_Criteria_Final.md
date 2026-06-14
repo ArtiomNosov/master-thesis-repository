@@ -10,7 +10,7 @@
 
 **✅ ВЫПОЛНЕН**
 
-Разработан полноценный ATS AI Engine, состоящий из **17 взаимосвязанных Python-скриптов** в папке `experiments/scripts/`:
+Разработан полноценный ATS AI Engine, состоящий из **19 взаимосвязанных Python-скриптов** в папке `experiments/scripts/`:
 - `05_text_normalization.py` — нормализация данных
 - `06_entity_extraction.py` — извлечение сущностей
 - `07_feature_formatting.py` — унифицированный формат признаков
@@ -18,8 +18,10 @@
 - `10_ranking_module.py` — ядро ранжирования (`ATSRanker`)
 - `11_api_server.py` — FastAPI микросервис
 - `12_`–`17_` — экспериментальные бенчмарки
+- `18_train_cross_encoder.py` — обучение перекрёстного энкодера
+- `19_train_ranknet.py` — обучение RankNet baseline с попарной функцией потерь
 
-Все скрипты исполняются без ошибок на Python 3.11 (проверено многократным запуском в ходе разработки).
+Новый RankNet-контур проверен smoke-прогоном на встроенном демонстрационном наборе в Python 3.12 runtime Codex; полный прогон на `test.tsv` требует приватной папки `data/`, которая не хранится в Git.
 
 ---
 
@@ -40,8 +42,8 @@
 
 - Обучение: `09_train_biencoder.py` с фиксированными гиперпараметрами (`ContrastiveLoss`, `batch_size=16`, `margin=0.5`).
 - Инференс: `10_ranking_module.py` загружает веса из `experiments/models/bi_encoder_rubert_tiny2/`.
-- Все зависимости фиксированы через `pip install sentence-transformers scikit-learn fastapi uvicorn`.
-- Любой разработчик воспроизведёт результаты, запустив скрипты в порядке нумерации `05_` → `17_`.
+- Все зависимости фиксированы через `pip install sentence-transformers scikit-learn fastapi uvicorn`; RankNet baseline дополнительно использует NumPy.
+- Любой разработчик воспроизведёт основные результаты, запустив скрипты в порядке нумерации `05_` → `19_` при наличии приватных данных `data/`.
 
 ---
 
@@ -68,15 +70,16 @@
 
 **✅ ВЫПОЛНЕН**
 
-Скрипт `12_baseline_comparison.py` сравнивает три подхода на `test.tsv` и в демонстрационном edge-case. Результаты:
+Скрипт `12_baseline_comparison.py` сравнивает BM25, перекрёстный энкодер, двухбашенный энкодер и, при наличии обученного артефакта, RankNet на `test.tsv` и в демонстрационном edge-case. Зафиксированные результаты прежнего полного прогона и статус RankNet:
 
 | Подход | Средняя точность (Average Precision) | Нормализованный дисконтированный совокупный выигрыш на 3 (Normalized Discounted Cumulative Gain at 3) | Средний обратный ранг на 3 (Mean Reciprocal Rank at 3) | Роль в эксперименте |
 |---|---:|---:|---:|---|
 | BM25, лексическая базовая линия | 0.3936 | 0.9888 | 0.9958 | Классическая лексическая нижняя граница без обучения |
 | Дообученный перекрёстный энкодер `cointegrated/rubert-tiny2` | 0.9356 | 1.0000 | 1.0000 | Верхняя граница качества при попарном оценивании (pairwise scoring) |
 | Дообученный двухбашенный энкодер `experiments/models/bi_encoder_rubert_tiny2` | 0.9921 | 1.0000 | 1.0000 | Предлагаемый подход (proposed approach) для системы управления подбором персонала (Applicant Tracking System) |
+| RankNet `experiments/models/ranknet_hashed_baseline/ranknet.npz` | требуется полный прогон | требуется полный прогон | требуется полный прогон | Pairwise Learning-to-Rank baseline, реализован в `19_train_ranknet.py` |
 
-На демонстрационном примере с синонимией релевантный кандидат получил оценку **0.9219** (двухбашенный энкодер, 1-е место) против **1.8069** у BM25 (2-е место). Артефакт: `experiments/results/three_model_baseline_test.json`.
+На демонстрационном примере с синонимией релевантный кандидат получил оценку **0.9219** (двухбашенный энкодер, 1-е место) против **1.8069** у BM25 (2-е место). Артефакт прежнего полного сравнения: `experiments/results/three_model_baseline_test.json`; статус RankNet и команда полного запуска: `experiments/results/ranknet_experiment_status.json`.
 
 Результаты и выводы: `docs/obsidian/Baseline_Comparison_Report.md`.
 

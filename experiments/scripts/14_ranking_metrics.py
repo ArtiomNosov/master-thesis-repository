@@ -50,7 +50,7 @@ def evaluate_predictions(y_true, scores, k=3):
 
 def run_evaluation(args):
     print("==================================================")
-    print("    THREE-MODEL RANKING METRICS EXPERIMENT 7.3    ")
+    print("    RANKING METRICS EXPERIMENT 7.3                ")
     print("==================================================")
 
     # Demo ranking group. The final thesis evaluation must be run on test.tsv.
@@ -87,6 +87,15 @@ def run_evaluation(args):
         print(f"\n--- 3. Fine-tuned Bi-Encoder ---")
         print(f"Skipped: {exc}")
 
+    try:
+        model_scores["4. RankNet pairwise baseline"] = comparison.eval_ranknet_pairs(
+            args.ranknet_model, [vacancy_text] * len(candidates), candidates
+        )
+    except Exception as exc:
+        print(f"\n--- 4. RankNet pairwise baseline ---")
+        print(f"Skipped: {exc}")
+        print("Train experiments/models/ranknet_hashed_baseline/ranknet.npz with 19_train_ranknet.py.")
+
     for model_name, scores in model_scores.items():
         metrics = evaluate_predictions(y_true, scores, k=K)
         print(f"\n--- {model_name} ---")
@@ -97,12 +106,14 @@ def run_evaluation(args):
     print("BM25 measures lexical overlap without training.")
     print("Cross-Encoder estimates the quality ceiling for expensive pairwise scoring.")
     print("Bi-Encoder measures scalable semantic retrieval with independently cached resume embeddings.")
+    print("RankNet measures a trainable pairwise Learning-to-Rank baseline when the model artifact is available.")
 
 
 if __name__ == "__main__":
     root = Path(__file__).resolve().parents[2]
-    parser = argparse.ArgumentParser(description="Compute demo IR metrics for the three-model comparison.")
+    parser = argparse.ArgumentParser(description="Compute demo IR metrics for the ranking-model comparison.")
     parser.add_argument("--cross_model", default=str(root / "experiments" / "models" / "cross_encoder_rubert_tiny2"))
     parser.add_argument("--bi_model", default=str(root / "experiments" / "models" / "bi_encoder_rubert_tiny2"))
+    parser.add_argument("--ranknet_model", default=str(root / "experiments" / "models" / "ranknet_hashed_baseline" / "ranknet.npz"))
     parser.add_argument("--batch_size", type=int, default=8)
     run_evaluation(parser.parse_args())

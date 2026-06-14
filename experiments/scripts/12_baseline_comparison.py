@@ -171,6 +171,15 @@ def eval_biencoder_pairs(model_path: str, vacancy_texts: list[str], resume_texts
     return util.cos_sim(vacancy_embs, resume_embs).diagonal().cpu().tolist()
 
 
+def eval_ranknet_pairs(model_path: str, vacancy_texts: list[str], resume_texts: list[str]) -> list[float]:
+    if not os.path.exists(model_path):
+        raise FileNotFoundError(model_path)
+
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    ranknet_module = importlib.import_module("19_train_ranknet")
+    return ranknet_module.score_pairs(model_path, vacancy_texts, resume_texts)
+
+
 def print_ranking(title: str, scores: list[float], candidates: list[str]) -> None:
     print(f"\n--- {title} ---")
     for rank, idx in enumerate(sorted(range(len(scores)), key=lambda i: scores[i], reverse=True), start=1):
@@ -346,6 +355,12 @@ def evaluate_split(args) -> None:
         except FileNotFoundError:
             print(f"Bi-encoder model not found at {args.bi_model}; skipping.")
 
+    if args.ranknet_model:
+        try:
+            model_scores["ranknet"] = eval_ranknet_pairs(args.ranknet_model, vacancy_texts, resume_texts)
+        except FileNotFoundError:
+            print(f"RankNet model not found at {args.ranknet_model}; skipping.")
+
     for model_name, scores in model_scores.items():
         results["models"][model_name] = compute_metrics(examples, scores)
 
@@ -359,10 +374,11 @@ def evaluate_split(args) -> None:
 def main() -> None:
     root = Path(__file__).resolve().parents[2]
     parser = argparse.ArgumentParser(
-        description="Compare exactly three ranking strategies: BM25, fine-tuned cross-encoder, fine-tuned bi-encoder."
+        description="Compare ranking strategies: BM25, cross-encoder, bi-encoder, and optional RankNet."
     )
     parser.add_argument("--cross_model", default=str(root / "experiments" / "models" / "cross_encoder_rubert_tiny2"))
     parser.add_argument("--bi_model", default=str(root / "experiments" / "models" / "bi_encoder_rubert_tiny2"))
+    parser.add_argument("--ranknet_model", default=str(root / "experiments" / "models" / "ranknet_hashed_baseline" / "ranknet.npz"))
     parser.add_argument("--batch_size", type=int, default=8)
     parser.add_argument("--data_dir", default=str(root / "data"))
     parser.add_argument("--split", default="test", choices=["train", "val", "test"])
@@ -371,7 +387,7 @@ def main() -> None:
     parser.add_argument("--evaluate_split", action="store_true")
     args = parser.parse_args()
 
-    print("=== THREE-MODEL RANKING COMPARISON (BM25 / Cross-Encoder / Bi-Encoder) ===")
+    print("=== RANKING COMPARISON (BM25 / Cross-Encoder / Bi-Encoder / RankNet) ===")
 
     if args.evaluate_split:
         evaluate_split(args)
@@ -402,6 +418,14 @@ def main() -> None:
     except Exception as exc:
         print(f"\n--- 3. Fine-tuned Bi-Encoder ---")
         print(f"Model is not available for demo scoring: {exc}")
+
+    try:
+        ranknet_scores = eval_ranknet_pairs(args.ranknet_model, [vacancy] * len(candidates), candidates)
+        print_ranking("4. RankNet pairwise baseline", ranknet_scores, candidates)
+    except Exception as exc:
+        print(f"\n--- 4. RankNet pairwise baseline ---")
+        print(f"Model is not available for demo scoring: {exc}")
+        print("Train it with experiments/scripts/19_train_ranknet.py before final comparison.")
 
 
 if __name__ == "__main__":

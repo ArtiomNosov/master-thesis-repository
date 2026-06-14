@@ -1,0 +1,29 @@
+{
+  "experiment": "RankNet pairwise Learning-to-Rank baseline",
+  "status": "implemented; full private-corpus run is blocked in this checkout",
+  "blocked_reason": "The repository ignores data/*, and the current checkout does not contain data/splits/train.tsv, data/splits/val.tsv, data/splits/test.tsv, data/unified/resumes_unified.tsv, or data/unified/vacancies_unified.tsv.",
+  "implementation": {
+    "training_script": "experiments/scripts/19_train_ranknet.py",
+    "comparison_script": "experiments/scripts/12_baseline_comparison.py",
+    "model_artifact": "experiments/models/ranknet_hashed_baseline/ranknet.npz",
+    "method": "NumPy MLP scorer trained with RankNet pairwise logistic loss on positive > negative resume preferences within each vacancy."
+  },
+  "full_run_command": "python experiments/scripts/19_train_ranknet.py --data_dir data --output_dir experiments/models/ranknet_hashed_baseline --metrics_output experiments/results/ranknet_test_metrics.json && python experiments/scripts/12_baseline_comparison.py --evaluate_split --split test --ranknet_model experiments/models/ranknet_hashed_baseline/ranknet.npz --output experiments/results/four_model_baseline_test.json",
+  "smoke_test": {
+    "command": "python experiments/scripts/19_train_ranknet.py --demo --epochs 30 --metrics_output experiments/results/ranknet_demo_metrics.json --output_dir experiments/models/ranknet_hashed_demo",
+    "environment": "C:/Users/hex/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "splits": {
+      "train": 11,
+      "val": 11,
+      "test": 11
+    },
+    "preference_pairs": 10,
+    "test_metrics": {
+      "pair_average_precision": 1.0,
+      "ndcg@3": 1.0,
+      "precision@3": 0.5555555555555555,
+      "recall@3": 1.0,
+      "mrr@3": 1.0
+    }
+  }
+}

@@ -14,7 +14,7 @@
 1. **Алгоритмический фундамент:** Использование сиамских нейронных сетей (Sentence-BERT / bi-encoder). Выбрана базовая модель `cointegrated/rubert-tiny2`.
 2. **Обучение модели:** Был собран и подготовлен корпус данных из агрегатора вакансий и резюме. Модель была дообучена (fine-tuning) с функцией потерь ContrastiveLoss на парах «вакансия-резюме», извлеченных из исторических HR-событий (приглашения/отказы).
 3. **Результаты оценки (Метрики):** 
-   - Основной эксперимент сравнивает ровно три стратегии: BM25 lexical baseline, fine-tuned cross-encoder и fine-tuned bi-encoder.
+   - Основной эксперимент сравнивает BM25 lexical baseline, fine-tuned cross-encoder и fine-tuned bi-encoder; дополнительно добавлен RankNet-контур для проверки pairwise Learning-to-Rank на той же разметке.
    - Для proposed bi-encoder на задаче бинарного сопоставления достигнуты Average Precision 0.9870 на `val.tsv` и 0.9921 на `test.tsv`.
    - На задаче ранжирования (по тестовому срезу вакансий): достигнуто значение NDCG@3 = 1.0, Precision@3 = 0.9958.
 4. **Интеграционный слой:** Написан Python API Service (FastAPI) с маршрутами индексации (`/index/candidate`) и ранжирования (`/search/rank`).
@@ -48,7 +48,7 @@
     - `Z:\repositories\master-thesis-repository\archive\semester-3-and-previous\master-thesis-obsidian\thesis-draft\2\4\use_cases.png`
 
 ### Слайд 5: Архитектура и методы ML (Исследование)
-- Три сравниваемые стратегии: BM25, fine-tuned cross-encoder, fine-tuned bi-encoder.
+- Сравниваемые стратегии: BM25, fine-tuned cross-encoder, fine-tuned bi-encoder; RankNet добавлен как offline baseline, полный прогон требует приватной папки `data/`.
 - Почему выбран **Bi-Encoder** (Sentence-BERT) как proposed approach. Проблема перекрестных энкодеров (Cross-Encoders) с вычислительными ограничениями на больших базах.
 
 ### Слайд 6: Подготовка данных и обучение
@@ -75,7 +75,7 @@
 ### Слайд 10: Планы развития (Future Work)
 - Что не вошло в текущую итерацию, но заложено в архитектуру:
   - Vector DB (Milvus / Qdrant) и алгоритмы ANN для индексации миллионов профилей на диске.
-  - Обучение ранжированию моделей второго уровня (Learning to Rank / RankNet).
+  - Перенос offline RankNet / Learning-to-Rank в продуктовый второй этап переранжирования.
   - Модуль объяснимости (Explainability) и справедливого ранжирования (Fair Ranking).
 
 ### Слайд 11: Заключение
