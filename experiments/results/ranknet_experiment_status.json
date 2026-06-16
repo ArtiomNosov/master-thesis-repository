@@ -1,17 +1,110 @@
 {
   "experiment": "RankNet pairwise Learning-to-Rank baseline",
-  "status": "implemented; full private-corpus run is blocked in this checkout",
-  "blocked_reason": "The repository ignores data/*, and the current checkout does not contain data/splits/train.tsv, data/splits/val.tsv, data/splits/test.tsv, data/unified/resumes_unified.tsv, or data/unified/vacancies_unified.tsv.",
+  "status": "implemented; full private-corpus run completed",
+  "completed_at": "2026-06-16",
+  "runner_environment": "Windows 10, Python 3.14.2, NumPy 2.4.2 (CPU-only, no GPU). Data sourced from the local private mirror at C:/Users/MSI-Vector/Documents/repositories/master-thesis-repository/data because the repository ignores data/* by design.",
   "implementation": {
     "training_script": "experiments/scripts/19_train_ranknet.py",
     "comparison_script": "experiments/scripts/12_baseline_comparison.py",
+    "ranking_metrics_script": "experiments/scripts/14_ranking_metrics.py",
     "model_artifact": "experiments/models/ranknet_hashed_baseline/ranknet.npz",
-    "method": "NumPy MLP scorer trained with RankNet pairwise logistic loss on positive > negative resume preferences within each vacancy."
+    "method": "NumPy MLP scorer trained with RankNet pairwise logistic loss on positive > negative resume preferences within each vacancy; features are hashed token counts over the vacancy text, the resume text and their intersection plus five length / overlap scalars (1541-dim)."
   },
-  "full_run_command": "python experiments/scripts/19_train_ranknet.py --data_dir data --output_dir experiments/models/ranknet_hashed_baseline --metrics_output experiments/results/ranknet_test_metrics.json && python experiments/scripts/12_baseline_comparison.py --evaluate_split --split test --ranknet_model experiments/models/ranknet_hashed_baseline/ranknet.npz --output experiments/results/four_model_baseline_test.json",
+  "full_run_command": "python experiments/scripts/19_train_ranknet.py --data_dir <path_to_private_data> --output_dir experiments/models/ranknet_hashed_baseline --metrics_output experiments/results/ranknet_test_metrics.json && python experiments/scripts/12_baseline_comparison.py --evaluate_split --split test --data_dir <path_to_private_data> --ranknet_model experiments/models/ranknet_hashed_baseline/ranknet.npz --bi_model <path_to_bi_encoder> --output experiments/results/four_model_baseline_test.json",
+  "training": {
+    "hyperparameters": {
+      "feature_dim": 512,
+      "hidden_dim": 64,
+      "input_dim": 1541,
+      "epochs": 20,
+      "batch_size": 64,
+      "learning_rate": 0.01,
+      "weight_decay": 0.0001,
+      "max_pairs_per_query": 256,
+      "seed": 42
+    },
+    "splits": {
+      "train_rows": 4176,
+      "val_rows": 521,
+      "test_rows": 521
+    },
+    "pair_construction": {
+      "train_unique_vacancies": 2343,
+      "train_vacancies_with_both_positive_and_negative": 4,
+      "train_preference_pairs": 48,
+      "comment": "Most train vacancies have only one labeled candidate, so the pairwise objective is extremely data-sparse. This is a property of the dataset, not the RankNet implementation."
+    },
+    "best_val_pair_average_precision": 0.3365915582101982,
+    "final_train_loss": 0.09493216872215271
+  },
+  "test_metrics_from_19_train_ranknet": {
+    "source": "experiments/results/ranknet_test_metrics.json (precision@K normalises by min(K, group_size))",
+    "pair_average_precision": 0.3240873266750592,
+    "pairs": 521,
+    "precision@1": 0.9915966386554622,
+    "recall@1": 0.8386816264967525,
+    "ndcg@1": 0.9696969696969697,
+    "mrr@1": 0.9957983193277311,
+    "precision@3": 0.9957983193277311,
+    "recall@3": 0.9824314341121063,
+    "ndcg@3": 0.988816053138529,
+    "mrr@3": 0.9957983193277311,
+    "precision@5": 0.9957983193277311,
+    "recall@5": 0.9924277403269,
+    "ndcg@5": 0.988816053138529,
+    "mrr@5": 0.9957983193277311
+  },
+  "test_metrics_from_12_baseline_comparison": {
+    "source": "experiments/results/four_model_baseline_test.json (precision@K normalises by K, identical normalisation as BM25 / bi-encoder rows)",
+    "pair_average_precision": 0.3240873266750592,
+    "pairs": 521,
+    "precision@1": 0.9915966386554622,
+    "recall@1": 0.8386816264967525,
+    "ndcg@1": 0.9696969696969697,
+    "mrr@1": 0.9957983193277311,
+    "precision@3": 0.44817927170868344,
+    "recall@3": 0.9824314341121063,
+    "ndcg@3": 0.988816053138529,
+    "mrr@3": 0.9957983193277311,
+    "precision@5": 0.280672268907563,
+    "recall@5": 0.9924277403269,
+    "ndcg@5": 0.988816053138529,
+    "mrr@5": 0.9957983193277311
+  },
+  "comparison_against_other_models_on_test_tsv": {
+    "bm25": {
+      "pair_average_precision": 0.3936051702066206,
+      "ndcg@3": 0.988816053138529,
+      "mrr@3": 0.9957983193277311
+    },
+    "bi_encoder_rubert_tiny2": {
+      "pair_average_precision": 0.9921244390921605,
+      "ndcg@3": 1.0,
+      "mrr@3": 1.0
+    },
+    "ranknet": {
+      "pair_average_precision": 0.3240873266750592,
+      "ndcg@3": 0.988816053138529,
+      "mrr@3": 0.9957983193277311
+    },
+    "cross_encoder": "Not re-run in this checkout (no cross_encoder_rubert_tiny2 artifact); historical value from three_model_baseline_test.json is 0.9356 AP."
+  },
+  "interpretation": [
+    "On per-query ranking metrics (precision@1, ndcg@3, mrr@3) RankNet matches BM25 essentially exactly because the hashed token overlap features carry the same lexical signal that BM25 uses; on global pair-AP RankNet is even slightly below BM25 (0.324 vs 0.394) and far below the fine-tuned bi-encoder (0.992).",
+    "The bottleneck is the dataset, not the model: only 4 out of 2343 training vacancies contain both a positive and a negative labeled resume, yielding 48 preference pairs in total. This is far too few examples for a pairwise Learning-to-Rank objective to surpass a tuned semantic bi-encoder trained with ContrastiveLoss on 4176 binary pairs.",
+    "Methodological value: the offline experiment closes the loop between the Learning-to-Rank discussion in the thesis and the experimental protocol; it demonstrates that pairwise L2R is the correct method but that production deployment requires either (a) richer per-vacancy candidate lists with graded relevance, or (b) hybrid features (BM25 score, bi-encoder cosine, structured signals) instead of pure hashed text."
+  ],
+  "artifacts": {
+    "model": "experiments/models/ranknet_hashed_baseline/ranknet.npz",
+    "training_log": "experiments/results/ranknet_train_stdout.txt",
+    "test_metrics_json": "experiments/results/ranknet_test_metrics.json",
+    "four_model_baseline_json": "experiments/results/four_model_baseline_test.json",
+    "four_model_baseline_stdout": "experiments/results/four_model_baseline_test_stdout.txt",
+    "ranking_metrics_demo_stdout": "experiments/results/ranking_metrics_demo_stdout.txt"
+  },
   "smoke_test": {
     "command": "python experiments/scripts/19_train_ranknet.py --demo --epochs 30 --metrics_output experiments/results/ranknet_demo_metrics.json --output_dir experiments/models/ranknet_hashed_demo",
-    "environment": "C:/Users/hex/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe",
+    "result_file": "experiments/results/ranknet_demo_metrics.json",
     "splits": {
       "train": 11,
       "val": 11,

@@ -21,7 +21,7 @@
 - `18_train_cross_encoder.py` — обучение перекрёстного энкодера
 - `19_train_ranknet.py` — обучение RankNet baseline с попарной функцией потерь
 
-Новый RankNet-контур проверен smoke-прогоном на встроенном демонстрационном наборе в Python 3.12 runtime Codex; полный прогон на `test.tsv` требует приватной папки `data/`, которая не хранится в Git.
+Новый RankNet-контур проверен smoke-прогоном на встроенном демонстрационном наборе, а затем выполнен полный прогон на приватной копии `data/` (Python 3.14, NumPy 2.4, CPU). Артефакты прогона: `experiments/models/ranknet_hashed_baseline/ranknet.npz`, `experiments/results/ranknet_test_metrics.json`, `experiments/results/ranknet_train_stdout.txt`, статус — `experiments/results/ranknet_experiment_status.json`.
 
 ---
 
@@ -70,16 +70,16 @@
 
 **✅ ВЫПОЛНЕН**
 
-Скрипт `12_baseline_comparison.py` сравнивает BM25, перекрёстный энкодер, двухбашенный энкодер и, при наличии обученного артефакта, RankNet на `test.tsv` и в демонстрационном edge-case. Зафиксированные результаты прежнего полного прогона и статус RankNet:
+Скрипт `12_baseline_comparison.py` сравнивает BM25, перекрёстный энкодер, двухбашенный энкодер и, при наличии обученного артефакта, RankNet на `test.tsv` и в демонстрационном edge-case. Полный прогон с RankNet выполнен 2026-06-16 на приватной копии `data/`:
 
 | Подход | Средняя точность (Average Precision) | Нормализованный дисконтированный совокупный выигрыш на 3 (Normalized Discounted Cumulative Gain at 3) | Средний обратный ранг на 3 (Mean Reciprocal Rank at 3) | Роль в эксперименте |
 |---|---:|---:|---:|---|
 | BM25, лексическая базовая линия | 0.3936 | 0.9888 | 0.9958 | Классическая лексическая нижняя граница без обучения |
 | Дообученный перекрёстный энкодер `cointegrated/rubert-tiny2` | 0.9356 | 1.0000 | 1.0000 | Верхняя граница качества при попарном оценивании (pairwise scoring) |
 | Дообученный двухбашенный энкодер `experiments/models/bi_encoder_rubert_tiny2` | 0.9921 | 1.0000 | 1.0000 | Предлагаемый подход (proposed approach) для системы управления подбором персонала (Applicant Tracking System) |
-| RankNet `experiments/models/ranknet_hashed_baseline/ranknet.npz` | требуется полный прогон | требуется полный прогон | требуется полный прогон | Pairwise Learning-to-Rank baseline, реализован в `19_train_ranknet.py` |
+| RankNet `experiments/models/ranknet_hashed_baseline/ranknet.npz` | 0.3241 | 0.9888 | 0.9958 | Pairwise Learning-to-Rank baseline, реализован в `19_train_ranknet.py` |
 
-На демонстрационном примере с синонимией релевантный кандидат получил оценку **0.9219** (двухбашенный энкодер, 1-е место) против **1.8069** у BM25 (2-е место). Артефакт прежнего полного сравнения: `experiments/results/three_model_baseline_test.json`; статус RankNet и команда полного запуска: `experiments/results/ranknet_experiment_status.json`.
+На демонстрационном примере с синонимией релевантный кандидат получил оценку **0.9219** (двухбашенный энкодер, 1-е место) против **1.8069** у BM25 (2-е место). Артефакт прежнего трёхмодельного сравнения: `experiments/results/three_model_baseline_test.json`; полный четырёхмодельный JSON с RankNet: `experiments/results/four_model_baseline_test.json`; статус RankNet и команда полного запуска: `experiments/results/ranknet_experiment_status.json`. По полному прогону RankNet сходится к лексическому уровню BM25 на per-query метриках и проигрывает ему по средней точности (`0.3241` против `0.3936`), что вызвано экстремальной разреженностью предпочтительных пар в обучающей выборке: `4` из `2343` вакансий `train.tsv` содержат и положительный, и отрицательный отклик, итого `48` пар `positive > negative`.
 
 Результаты и выводы: `docs/obsidian/Baseline_Comparison_Report.md`.
 

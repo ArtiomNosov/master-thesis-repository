@@ -1,0 +1,139 @@
+{
+  "model": "RankNet",
+  "implementation": "NumPy MLP scorer with RankNet pairwise logistic loss over hashed vacancy-resume text features",
+  "demo": false,
+  "model_path": "experiments\\models\\ranknet_hashed_baseline\\ranknet.npz",
+  "data_dir": "C:\\Users\\MSI-Vector\\Documents\\repositories\\master-thesis-repository\\data",
+  "splits": {
+    "train": 4176,
+    "val": 521,
+    "test": 521
+  },
+  "training": {
+    "epochs": 20,
+    "batch_size": 64,
+    "learning_rate": 0.01,
+    "weight_decay": 0.0001,
+    "eligible_queries": 4,
+    "preference_pairs": 48,
+    "queries": 2343
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.6931435465812683,
+      "val_pair_average_precision": 0.3190179091682156
+    },
+    {
+      "epoch": 2,
+      "loss": 0.6836850047111511,
+      "val_pair_average_precision": 0.34613776640453753
+    },
+    {
+      "epoch": 3,
+      "loss": 0.6579429507255554,
+      "val_pair_average_precision": 0.3472041959250677
+    },
+    {
+      "epoch": 4,
+      "loss": 0.6198397874832153,
+      "val_pair_average_precision": 0.34513837731629327
+    },
+    {
+      "epoch": 5,
+      "loss": 0.5698849558830261,
+      "val_pair_average_precision": 0.3434765868591168
+    },
+    {
+      "epoch": 6,
+      "loss": 0.5114760994911194,
+      "val_pair_average_precision": 0.3413002857391426
+    },
+    {
+      "epoch": 7,
+      "loss": 0.44857385754585266,
+      "val_pair_average_precision": 0.337488592962429
+    },
+    {
+      "epoch": 8,
+      "loss": 0.3855304718017578,
+      "val_pair_average_precision": 0.3337152820573023
+    },
+    {
+      "epoch": 9,
+      "loss": 0.32693514227867126,
+      "val_pair_average_precision": 0.33118227284301904
+    },
+    {
+      "epoch": 10,
+      "loss": 0.2758384943008423,
+      "val_pair_average_precision": 0.3305501312947317
+    },
+    {
+      "epoch": 11,
+      "loss": 0.2332335263490677,
+      "val_pair_average_precision": 0.3312535965967019
+    },
+    {
+      "epoch": 12,
+      "loss": 0.1988254338502884,
+      "val_pair_average_precision": 0.3314501434402329
+    },
+    {
+      "epoch": 13,
+      "loss": 0.17147047817707062,
+      "val_pair_average_precision": 0.33189344926894043
+    },
+    {
+      "epoch": 14,
+      "loss": 0.15009842813014984,
+      "val_pair_average_precision": 0.33232561629612234
+    },
+    {
+      "epoch": 15,
+      "loss": 0.13348089158535004,
+      "val_pair_average_precision": 0.33225273839187053
+    },
+    {
+      "epoch": 16,
+      "loss": 0.12097945064306259,
+      "val_pair_average_precision": 0.3329752602432541
+    },
+    {
+      "epoch": 17,
+      "loss": 0.11152061820030212,
+      "val_pair_average_precision": 0.3334252141896083
+    },
+    {
+      "epoch": 18,
+      "loss": 0.10438326746225357,
+      "val_pair_average_precision": 0.33364111579714645
+    },
+    {
+      "epoch": 19,
+      "loss": 0.09901636838912964,
+      "val_pair_average_precision": 0.3344931818199883
+    },
+    {
+      "epoch": 20,
+      "loss": 0.09493216872215271,
+      "val_pair_average_precision": 0.3365915582101982
+    }
+  ],
+  "test_metrics": {
+    "pair_average_precision": 0.3240873266750592,
+    "pairs": 521,
+    "precision@1": 0.9915966386554622,
+    "recall@1": 0.8386816264967525,
+    "ndcg@1": 0.9696969696969697,
+    "mrr@1": 0.9957983193277311,
+    "precision@3": 0.9957983193277311,
+    "recall@3": 0.9824314341121063,
+    "ndcg@3": 0.988816053138529,
+    "mrr@3": 0.9957983193277311,
+    "precision@5": 0.9957983193277311,
+    "recall@5": 0.9924277403269,
+    "ndcg@5": 0.988816053138529,
+    "mrr@5": 0.9957983193277311
+  }
+}

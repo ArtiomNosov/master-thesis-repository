@@ -1,0 +1,189 @@
+{
+  "model": "RankNet",
+  "implementation": "NumPy MLP scorer with RankNet pairwise logistic loss over hashed vacancy-resume text features",
+  "demo": true,
+  "model_path": "experiments\\models\\ranknet_hashed_demo\\ranknet.npz",
+  "data_dir": "C:\\Users\\MSI-Vector\\.cursor\\worktrees\\master-thesis-repository\\5zxg\\data",
+  "splits": {
+    "train": 11,
+    "val": 11,
+    "test": 11
+  },
+  "training": {
+    "epochs": 30,
+    "batch_size": 64,
+    "learning_rate": 0.01,
+    "weight_decay": 0.0001,
+    "eligible_queries": 3,
+    "preference_pairs": 10,
+    "queries": 3
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.6932451128959656,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 2,
+      "loss": 0.6749589443206787,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 3,
+      "loss": 0.6401233077049255,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 4,
+      "loss": 0.5894156694412231,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 5,
+      "loss": 0.5249553918838501,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 6,
+      "loss": 0.4499623775482178,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 7,
+      "loss": 0.36849868297576904,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 8,
+      "loss": 0.2867506146430969,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 9,
+      "loss": 0.21087758243083954,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 10,
+      "loss": 0.14632461965084076,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 11,
+      "loss": 0.09623979032039642,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 12,
+      "loss": 0.060595087707042694,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 13,
+      "loss": 0.03704966977238655,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 14,
+      "loss": 0.022297028452157974,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 15,
+      "loss": 0.013355724513530731,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 16,
+      "loss": 0.008041517809033394,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 17,
+      "loss": 0.004901576787233353,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 18,
+      "loss": 0.0030426657758653164,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 19,
+      "loss": 0.0019302821019664407,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 20,
+      "loss": 0.0012543716002255678,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 21,
+      "loss": 0.0008360679494217038,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 22,
+      "loss": 0.0005714978324249387,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 23,
+      "loss": 0.0004006477538496256,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 24,
+      "loss": 0.0002880426764022559,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 25,
+      "loss": 0.00021217460744082928,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 26,
+      "loss": 0.00015992367116268724,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 27,
+      "loss": 0.0001232107460964471,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 28,
+      "loss": 9.692006278783083e-05,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 29,
+      "loss": 7.775081030558795e-05,
+      "val_pair_average_precision": 1.0
+    },
+    {
+      "epoch": 30,
+      "loss": 6.353501521516591e-05,
+      "val_pair_average_precision": 1.0
+    }
+  ],
+  "test_metrics": {
+    "pair_average_precision": 1.0,
+    "pairs": 11,
+    "precision@1": 1.0,
+    "recall@1": 0.6666666666666666,
+    "ndcg@1": 1.0,
+    "mrr@1": 1.0,
+    "precision@3": 0.5555555555555555,
+    "recall@3": 1.0,
+    "ndcg@3": 1.0,
+    "mrr@3": 1.0,
+    "precision@5": 0.4444444444444444,
+    "recall@5": 1.0,
+    "ndcg@5": 1.0,
+    "mrr@5": 1.0
+  }
+}
