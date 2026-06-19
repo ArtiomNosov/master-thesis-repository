@@ -21,6 +21,7 @@ Linux/macOS: `./thesis/build-docker.sh`
 ```powershell
 py -3 thesis/scripts/md_to_latex_port.py
 py -3 thesis/scripts/render_regex_figure.py   # при необходимости
+py -3 thesis/scripts/render_flow_figure.py    # рис. 2 — flowchart Reqcore
 ```
 
 Источник: `docs/obsidian/thesis/[USED] thesis_draft_final_ru.md`
