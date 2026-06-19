@@ -1,12 +1,14 @@
-# LaTeX PZ build
+# LaTeX PZ
 
 Entrypoint: `master-thesis-pz-body.tex`
 
+Сборка — из корня репозитория:
+
 ```powershell
-# from repo root
-.\thesis\build.ps1
+..\build.ps1          # локальный TeX
+..\build.ps1 -Docker  # Docker (aergus/latex:2022-01-02)
 ```
 
-Upstream department template (submodule, reference only): `thesis/upstream-template/`
+Порт из Markdown: `../scripts/md_to_latex_port.py`
 
-Markdown → LaTeX: `thesis/scripts/md_to_latex_port.py`
+Upstream (submodule): `../upstream-template/`
