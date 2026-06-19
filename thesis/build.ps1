@@ -20,6 +20,7 @@ function Invoke-DockerBuild {
     docker run --rm -v "${mount}:/work" -w /work aergus/latex:2022-01-02 bash -c "rm -rf build/master-thesis-pz-body.*"
   }
   docker run --rm -v "${mount}:/work" -w /work aergus/latex:2022-01-02 bash -c @"
+mkdir -p build &&
 xelatex -interaction=nonstopmode -output-directory=build master-thesis-pz-body.tex &&
 biber build/master-thesis-pz-body &&
 xelatex -interaction=nonstopmode -output-directory=build master-thesis-pz-body.tex &&
@@ -49,6 +50,8 @@ if (-not $latexmk -or -not $xelatex) {
 
 Push-Location $latexDir
 try {
+  New-Item -ItemType Directory -Force -Path (Join-Path $latexDir 'build') | Out-Null
+
   if ($Clean) {
     latexmk -C $entrypoint
   }
