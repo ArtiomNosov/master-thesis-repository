@@ -16,7 +16,7 @@ DEFAULT_STEMS = [
     "application_analysis_request_flow",
     "c4_container_architecture",
 ]
-DPI = 120
+DPI = 300
 
 
 def find_inkscape() -> str | None:
