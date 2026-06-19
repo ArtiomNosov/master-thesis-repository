@@ -1,0 +1,59 @@
+\resizebox{0.98\textwidth}{!}{%
+\begin{tikzpicture}[
+  node distance=6mm and 8mm,
+  box/.style={
+    rectangle,
+    draw,
+    rounded corners=2pt,
+    align=center,
+    text width=54mm,
+    inner sep=5pt,
+    minimum height=10mm
+  },
+  term/.style={
+    rectangle,
+    draw,
+    rounded corners=10pt,
+    align=center,
+    text width=24mm,
+    inner sep=3pt,
+    minimum height=6mm
+  },
+  dec/.style={
+    diamond,
+    draw,
+    aspect=2.0,
+    align=center,
+    inner sep=3pt,
+    text width=32mm
+  },
+  arr/.style={
+    -{Latex[length=2mm]},
+    shorten >=2pt,
+    shorten <=2pt
+  }
+]
+\node[term] (start) {Начало};
+\node[box, below=of start] (req) {Интерфейс Reqcore \\ отправляет запрос \\ на анализ заявки};
+\node[box, below=of req] (api) {\texttt{/api/applications/\\:id/analyze}};
+\node[dec, below=of api] (dec) {\texttt{provider} \\ == \texttt{biencoder}?};
+\node[box, below left=12mm and 20mm of dec] (bi1) {Вызов \\ \texttt{BIENCODER\_URL} \\ + \texttt{/score}};
+\node[box, below=of bi1] (bi2) {\texttt{11\_api\_server.py}: \\ расчёт косинусного сходства};
+\node[box, below=of bi2] (bi3) {Запись \\ \texttt{application.score}};
+\node[box, below right=12mm and 20mm of dec] (llm1) {Вызов \\ \texttt{scoreApplication()}};
+\node[box, below=of llm1] (llm2) {\texttt{provider.ts} \\ вызывает внешний LLM API};
+\node[box, below=of llm2] (llm3) {\texttt{criterion\_score} \\ и \texttt{application.score}};
+\node[term, below=42mm of dec] (stop) {Конец};
+\draw[arr] (start) -- (req);
+\draw[arr] (req) -- (api);
+\draw[arr] (api) -- (dec);
+\draw[arr] (dec.west) -| node[near start, above]{да} (bi1.north);
+\draw[arr] (dec.east) -| node[near start, above]{нет} (llm1.north);
+\draw[arr] (bi1) -- (bi2);
+\draw[arr] (bi2) -- (bi3);
+\draw[arr] (llm1) -- (llm2);
+\draw[arr] (llm2) -- (llm3);
+\draw[arr] (bi3.south) -- ++(0,-6mm) -| (stop.north);
+\draw[arr] (llm3.south) -- ++(0,-6mm) -| (stop.north);
+\end{tikzpicture}%
+}
