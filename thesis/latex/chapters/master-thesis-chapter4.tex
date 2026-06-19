@@ -40,7 +40,7 @@
 
 \section{Экономическое обоснование внедрения модуля ранжирования}
 
-Экономическая оценка не опирается на логи траты знаков по подписке у провайдеров и не утверждает, что фактический расход или замер рабочего времени специалистов по подбору персонала извлечены из работающей в реальном времени промышленной системы автоматизированного подбора персонала. В коде системы автоматизированного подбора персонала под названием Reqcore предусмотрены поля числа знаков запроса и ответа, а также настраиваемые ценовые параметры (формулы \eqref{eq:prompttokens-1}--\eqref{eq:outputprice-4}). Пользовательский интерфейс рассчитывает стоимость по формуле \eqref{eq:c_ui-5}. В рамках работы эти значения из базы данных системы не выгружались, поэтому ниже приводится расчетный сценарий на публичной форме стоимости запроса к большой языковой модели, измеренном времени вывода модели и явных допущениях для возможности оценки экономики с допустимой долей погрешности.
+Экономическая оценка не опирается на логи траты знаков по подписке у провайдеров и не утверждает, что фактический расход или замер рабочего времени специалистов по подбору персонала извлечены из работающей в реальном времени промышленной системы автоматизированного подбора персонала. В коде системы автоматизированного подбора персонала под названием Reqcore предусмотрены поля числа знаков запроса и ответа (promptTokens, completionTokens), а также настраиваемые ценовые параметры (inputPrice, outputPrice); их определения приведены ниже. Пользовательский интерфейс рассчитывает стоимость по формуле C\_ui, также приведённой ниже. В рамках работы эти значения из базы данных системы не выгружались, поэтому ниже приводится расчетный сценарий на публичной форме стоимости запроса к большой языковой модели, измеренном времени вывода модели и явных допущениях для возможности оценки экономики с допустимой долей погрешности.
 
 \begin{equation}
 \label{eq:prompttokens-1}
@@ -99,27 +99,32 @@ C_{\text{topK\_pipeline}}(N, K) = C_{\text{bi\_infra}}(N) + K \cdot C_{\text{llm
 Savings_{\text{api}}(N, K) = 1 - C_{\text{topK\_pipeline}}(N, K) / C_{\text{full\_llm}}(N)
 \end{equation}
 
-где $N$ - число кандидатов в исходном наборе данных, $K$ - число кандидатов, передаваемых на дальнейший анализ большой языковой моделью после предварительного ранжирования, $L_{\text{bi}}$ - задержка локального расчета близости моделью раздельного кодирования для набора из $N$ кандидатов, а $C_{\text{cpu\_hour}}$ - стоимость часа инстанса с центральным модулем расчётов (CPU). Если инфраструктурная стоимость локального расчета оценки мала относительно вызовов большой языковой модели, то для \texttt{N = 100} и \texttt{K = 10} приближенная экономия внешних вызовов составляет около 90\%.
+\begin{equation}
+\label{eq:savings_approx-11}
+Savings_{\text{approx}}(N, K) = 1 - K / N
+\end{equation}
+
+где $N$ - число кандидатов в исходном наборе данных, $K$ - число кандидатов, передаваемых на дальнейший анализ большой языковой моделью после предварительного ранжирования, $L_{\text{bi}}$ - задержка локального расчета близости моделью раздельного кодирования для набора из $N$ кандидатов, а $C_{\text{cpu\_hour}}$ - стоимость часа инстанса с центральным модулем расчётов (CPU). Если инфраструктурная стоимость локального расчета оценки мала относительно вызовов большой языковой модели, то для \texttt{N = 100} и \texttt{K = 10} по формуле Savings\_approx получаем 1 - K / N = 90\%.
 
 Задержка полного оценивания с использованием большой языковой модели и предварительного ранжирования моделью раздельного кодирования задается следующими формулами:
 
 \begin{equation}
-\label{eq:l_full_llm_seq-11}
+\label{eq:l_full_llm_seq-12}
 L_{\text{full\_llm\_seq}}(N) = N \cdot L_{\text{llm\_pair}}
 \end{equation}
 
 \begin{equation}
-\label{eq:l_full_llm_parallel-12}
+\label{eq:l_full_llm_parallel-13}
 L_{\text{full\_llm\_parallel}}(N) \approx  \operatorname{ceil}(N / P_{\text{parallel}}) \cdot L_{\text{llm\_pair}}
 \end{equation}
 
 \begin{equation}
-\label{eq:l_bi-13}
+\label{eq:l_bi-14}
 L_{\text{bi}}(N) = L_{\text{filter}}(N) + L_{\text{encode\_vacancy}} + L_{\text{encode\_candidates}}(N) + L_{\text{cosine\_topK}}(N)
 \end{equation}
 
 \begin{equation}
-\label{eq:l_bi_precomputed-14}
+\label{eq:l_bi_precomputed-15}
 L_{\text{bi\_precomputed}}(N) = L_{\text{filter}}(N) + L_{\text{encode\_vacancy}} + L_{\text{cosine\_topK}}(N)
 \end{equation}
 
@@ -128,24 +133,24 @@ L_{\text{bi\_precomputed}}(N) = L_{\text{filter}}(N) + L_{\text{encode\_vacancy}
 Расчет внедрения строится от измеримых показателей качества и времени. В качестве технического источника времени используется полный прогон оценки ранжирования на файле тестовой выборки \texttt{data-splits-test.tsv}, где каждая строка задает пару резюме и вакансии с меткой релевантности: файл \texttt{experiments-results-full\_test\_ranking\_metrics\_stdout.txt} фиксирует 521 обработанную текстовую пару текст вакансии и текст резюме, и время выполнения \texttt{runtime\_seconds = 3.870512}. Отсюда среднее модельное время на одну заявку:
 
 \begin{equation}
-\label{eq:t_model_sec-15}
+\label{eq:t_model_sec-16}
 T_{\text{model\_sec}} = R_{\text{test}} / N_{\text{test}} = 3.870512 / 521 = 0.007429 \text{с}
 \end{equation}
 
 \begin{equation}
-\label{eq:t_model_min-16}
+\label{eq:t_model_min-17}
 T_{\text{model\_min}} = T_{\text{model\_sec}} / 60 = 0.000124 \text{мин.}
 \end{equation}
 
 Для ручного сценария в расчет введены явные допущения, поскольку в логах системы автоматизированного подбора персонала под названием Reqcore отсутствует независимый замер рабочего времени специалиста по подбору персонала. В работе для ручной оценки зафиксируем ориентир 45 минут на цикл из 20 заявок от соискателей. Для расчета принято, что один такой цикл содержит ровно 20 заявок от соискателей. После внедрения модуль ранжирования цифровых профилей кандидатов не принимает кадровое решение автономно: он сортирует заявки и передает результат специалисту по подбору персонала. Для контрольной проверки ранжированного списка принята верхняя граница: 4 минуты на 20 заявок.
 
 \begin{equation}
-\label{eq:t_human-17}
+\label{eq:t_human-18}
 T_{\text{human}} = T_{\text{manual\_batch}} / N_{\text{batch}} = 45 / 20 = 2.25 \text{мин.}
 \end{equation}
 
 \begin{equation}
-\label{eq:t_check_hr-18}
+\label{eq:t_check_hr-19}
 T_{\text{check\_hr}} = T_{\text{check\_batch}} / N_{\text{batch}} = 4 / 20 = 0.20 \text{мин.}
 \end{equation}
 
@@ -179,71 +184,71 @@ Precision@3 для вакансий с хотя бы одним историче
 Количество заявок за расчетный месяц принято равным 521, то есть объему отложенного test split. Такой выбор не переносит тестовый набор в production как факт нагрузки, но позволяет сделать воспроизводимый расчет на тех же данных, на которых измерены качество и время. Экономия времени и денежные показатели задаются следующими формулами:
 
 \begin{equation}
-\label{eq:s_time_one-19}
+\label{eq:s_time_one-20}
 S_{\text{time\_one}} = T_{\text{human}} - T_{\text{model\_min}}
 \end{equation}
 
 \begin{equation}
-\label{eq:s_time_period-20}
+\label{eq:s_time_period-21}
 S_{\text{time\_period}} = S_{\text{time\_one}} \cdot N_{\text{period}}
 \end{equation}
 
 \begin{equation}
-\label{eq:c_manual_one-21}
+\label{eq:c_manual_one-22}
 C_{\text{manual\_one}} = (T_{\text{human}} / 60) \cdot R_{\text{hr}}
 \end{equation}
 
 \begin{equation}
-\label{eq:c_after_one-22}
+\label{eq:c_after_one-23}
 C_{\text{after\_one}} = (T_{\text{model\_sec}} / 3600) \cdot R_{\text{cpu}} + (T_{\text{check\_hr}} / 60) \cdot R_{\text{hr}}
 \end{equation}
 
 \begin{equation}
-\label{eq:s_cost_one-23}
+\label{eq:s_cost_one-24}
 S_{\text{cost\_one}} = C_{\text{manual\_one}} - C_{\text{after\_one}}
 \end{equation}
 
 \begin{equation}
-\label{eq:s_cost_period-24}
+\label{eq:s_cost_period-25}
 S_{\text{cost\_period}} = S_{\text{cost\_one}} \cdot N_{\text{period}}
 \end{equation}
 
 \begin{equation}
-\label{eq:c_support_month-25}
+\label{eq:c_support_month-26}
 C_{\text{support\_month}} = H_{\text{support}} \cdot R_{\text{engineer}}
 \end{equation}
 
 \begin{equation}
-\label{eq:c_impl-26}
+\label{eq:c_impl-27}
 C_{\text{impl}} = H_{\text{impl}} \cdot R_{\text{engineer}} + (T_{\text{train\_sec}} / 3600) \cdot R_{\text{cpu}}
 \end{equation}
 
 \begin{equation}
-\label{eq:e_month-27}
+\label{eq:e_month-28}
 E_{\text{month}} = S_{\text{cost\_period}} - C_{\text{support\_month}}
 \end{equation}
 
 \begin{equation}
-\label{eq:p_payback-28}
+\label{eq:p_payback-29}
 P_{\text{payback}} = C_{\text{impl}} / E_{\text{month}}
 \end{equation}
 
 \begin{equation}
-\label{eq:roi_12-29}
+\label{eq:roi_12-30}
 ROI_{12} = ((E_{\text{month}} \cdot 12) - C_{\text{impl}}) / C_{\text{impl}} \cdot 100 \%
 \end{equation}
 
-где $S_{\text{time\_one}}$~\eqref{eq:s_time_one-19} - экономия времени на одной заявке, $S_{\text{time\_period}}$~\eqref{eq:s_time_period-20} - экономия времени за период, $N_{\text{period}}$ - число заявок за расчетный период, $C_{\text{manual\_one}}$~\eqref{eq:c_manual_one-21} - стоимость ручной обработки одной заявки, $C_{\text{after\_one}}$~\eqref{eq:c_after_one-22} - стоимость обработки одной заявки после внедрения, $S_{\text{cost\_one}}$~\eqref{eq:s_cost_one-23} - денежная экономия на одной заявке, $S_{\text{cost\_period}}$~\eqref{eq:s_cost_period-24} - денежная экономия за период, $R_{\text{hr}}$ - часовая ставка специалиста по подбору персонала, $R_{\text{cpu}}$ - стоимость часа сервера с центральным процессором, $R_{\text{engineer}}$ - инженерная ставка, $H_{\text{support}}$ - часы ежемесячного сопровождения, $H_{\text{impl}}$ - часы разового внедрения, $T_{\text{train\_sec}}$ - время первичного обучения модели в секундах, $C_{\text{support\_month}}$~\eqref{eq:c_support_month-25} - ежемесячные затраты на сопровождение, $C_{\text{impl}}$~\eqref{eq:c_impl-26} - затраты на внедрение, $E_{\text{month}}$~\eqref{eq:e_month-27} - чистый ежемесячный эффект, $P_{\text{payback}}$~\eqref{eq:p_payback-28} - срок окупаемости, $ROI_{12}$~\eqref{eq:roi_12-29} - возврат инвестиций за 12 месяцев.
+где $S_{\text{time\_one}}$~\eqref{eq:s_time_one-20} - экономия времени на одной заявке, $S_{\text{time\_period}}$~\eqref{eq:s_time_period-21} - экономия времени за период, $N_{\text{period}}$ - число заявок за расчетный период, $C_{\text{manual\_one}}$~\eqref{eq:c_manual_one-22} - стоимость ручной обработки одной заявки, $C_{\text{after\_one}}$~\eqref{eq:c_after_one-23} - стоимость обработки одной заявки после внедрения, $S_{\text{cost\_one}}$~\eqref{eq:s_cost_one-24} - денежная экономия на одной заявке, $S_{\text{cost\_period}}$~\eqref{eq:s_cost_period-25} - денежная экономия за период, $R_{\text{hr}}$ - часовая ставка специалиста по подбору персонала, $R_{\text{cpu}}$ - стоимость часа сервера с центральным процессором, $R_{\text{engineer}}$ - инженерная ставка, $H_{\text{support}}$ - часы ежемесячного сопровождения, $H_{\text{impl}}$ - часы разового внедрения, $T_{\text{train\_sec}}$ - время первичного обучения модели в секундах, $C_{\text{support\_month}}$~\eqref{eq:c_support_month-26} - ежемесячные затраты на сопровождение, $C_{\text{impl}}$~\eqref{eq:c_impl-27} - затраты на внедрение, $E_{\text{month}}$~\eqref{eq:e_month-28} - чистый ежемесячный эффект, $P_{\text{payback}}$~\eqref{eq:p_payback-29} - срок окупаемости, $ROI_{12}$~\eqref{eq:roi_12-30} - возврат инвестиций за 12 месяцев.
 
 Подстановка значений для времени:
 
 \begin{equation}
-\label{eq:s_time_one-30}
+\label{eq:s_time_one-31}
 S_{\text{time\_one}} = 2.25 - 0.000124 = 2.249876 \text{мин.}
 \end{equation}
 
 \begin{equation}
-\label{eq:s_time_period-31}
+\label{eq:s_time_period-32}
 S_{\text{time\_period}} = 2.249876 \cdot 521 = 1172.19 \text{мин}= 19.54 \text{ч за расчетный месяц}
 \end{equation}
 
@@ -315,7 +320,7 @@ ROI за 12 месяцев & (92165.61 - 24052.12) / 24052.12 * 100\% & 283.2\% 
 \endfoot
 \hline
 \endlastfoot
-Бинарная классификация текстовых (pair-level classification) & Качество отделения пар, где кандидат был принят к рассмотрению или приглашен на следующий этап, от пар, где был зафиксирован отказ, для перекрестной модели совместного кодирования и модели раздельного кодирования (bi-encoder) & train.tsv, val.tsv, test.tsv \\
+Бинарная классификация пар (pair-level classification) & Качество отделения пар, где кандидат был принят к рассмотрению или приглашен на следующий этап, от пар, где был зафиксирован отказ, для перекрестной модели совместного кодирования и модели раздельного кодирования (bi-encoder) & train.tsv, val.tsv, test.tsv \\
 \hline
 Ранжирование внутри вакансии (vacancy-level ranking) & Качество сортировки кандидатов внутри одной вакансии для вероятностной функции ранжирования документов под названием BM25, перекрестной модели совместного кодирования и модели раздельного кодирования (bi-encoder) & группировка test.tsv по \texttt{vacancy\_id} \\
 \end{longtable}

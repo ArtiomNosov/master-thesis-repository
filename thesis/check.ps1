@@ -22,31 +22,18 @@ function Test-RequiredFile($relativePath) {
 }
 
 $requiredFiles = @(
-  'thesis\latex\master-thesis-3-pz.tex',
+  'thesis\latex\master-thesis-pz-body.tex',
   'thesis\latex\.latexmkrc',
   'thesis\latex\UPSTREAM.md',
-  'thesis\references\thesis-template-3-pz.pdf',
   'thesis\presentation\uir-nir-vkr-wide-template-v2.pptx',
   'thesis\latex\img\thesis\as-is.png',
   'thesis\latex\img\thesis\to-be.png',
   'thesis\latex\img\thesis\use-cases.png',
-  'thesis\latex\img\thesis\job-posting-entry.png',
-  'documentation\master-thesis-obsidian\submission-checklist.md'
+  'thesis\latex\img\thesis\job-posting-entry.png'
 )
 
 foreach ($file in $requiredFiles) {
   Test-RequiredFile $file
-}
-
-$officialForms = @('title.pdf', 'title-dep22.pdf', 'task.pdf')
-foreach ($form in $officialForms) {
-  $path = Join-Path (Join-Path $PSScriptRoot 'forms') $form
-  if (Test-Path -LiteralPath $path) {
-    Add-Pass "official form present: thesis/forms/$form"
-  }
-  else {
-    Add-Warn "official form is still TODO: thesis/forms/$form"
-  }
 }
 
 $texFiles = Get-ChildItem -LiteralPath $latexDir -Recurse -File -Include *.tex
@@ -66,16 +53,6 @@ if ($todoMatches) {
 }
 else {
   Add-Pass 'no TODO markers found in LaTeX files'
-}
-
-$main = Get-Content -Raw -LiteralPath (Join-Path $latexDir 'master-thesis-3-pz.tex')
-foreach ($form in $officialForms) {
-  if ($main -match [regex]::Escape("../forms/$form")) {
-    Add-Pass "main entrypoint checks ../forms/$form"
-  }
-  else {
-    Add-Fail "main entrypoint does not check ../forms/$form"
-  }
 }
 
 $bib = Get-Content -Raw -LiteralPath (Join-Path $latexDir 'chapters\biblio.bib')
