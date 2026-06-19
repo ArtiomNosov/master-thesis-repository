@@ -12,7 +12,7 @@ KIT = ROOT / "thesis/pz-latex-kit"
 
 CHAPTER_FILES = [
     "thesis-template-macro.tex",
-    "thesis-template-bibl.tex",
+    "master-thesis-bibl.tex",
     "_content-pz-body.tex",
     "master-thesis-abstract.tex",
     "master-thesis-intro.tex",

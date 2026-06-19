@@ -4,9 +4,8 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
-$root = Split-Path -Parent $PSScriptRoot
 $latexDir = Join-Path $PSScriptRoot 'latex'
-$entrypoint = 'master-thesis-3-pz.tex'
+$entrypoint = 'master-thesis-pz-body.tex'
 
 if (-not (Test-Path -LiteralPath (Join-Path $latexDir $entrypoint))) {
   Write-Error "Missing LaTeX entrypoint: thesis/latex/$entrypoint"
@@ -24,7 +23,7 @@ if (-not $latexmk -or -not $xelatex) {
   Write-Host '- MiKTeX for Windows: https://miktex.org/download'
   Write-Host '- TeX Live: https://tug.org/texlive/'
   Write-Host ''
-  Write-Host 'CI is configured in .github/workflows/build-thesis.yml and uses the upstream template image.'
+  Write-Host 'Or build with Docker — see thesis/pz-latex-kit/README.md'
   exit 2
 }
 
@@ -36,7 +35,7 @@ try {
 
   latexmk -xelatex -interaction=nonstopmode -halt-on-error $entrypoint
 
-  $pdf = Join-Path $latexDir 'build\master-thesis-3-pz.pdf'
+  $pdf = Join-Path $latexDir 'build\master-thesis-pz-body.pdf'
   if (-not (Test-Path -LiteralPath $pdf)) {
     Write-Error "Build finished but expected PDF was not found: $pdf"
     exit 1
