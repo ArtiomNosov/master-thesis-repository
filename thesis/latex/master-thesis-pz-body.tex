@@ -1,0 +1,21 @@
+% arara: xelatex
+% arara: biber
+% arara: xelatex: { synctex: true }
+
+% Пояснительная записка без титульных листов и задания — только реферат и основной текст.
+
+\documentclass[12pt,a4paper,oneside,final]{report}
+
+\input{chapters/master-thesis-preamble.tex}
+
+\addto{\captionsrussian}{\renewcommand{\bibname}{Список литературы}}
+
+\begin{document}
+
+\input{chapters/_content-pz-body}
+
+\end{document}
+
+%%% Local Variables:
+%%% TeX-engine: xetex
+%%% End:
