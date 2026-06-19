@@ -23,11 +23,11 @@ function Test-RequiredFile($relativePath) {
 
 $requiredFiles = @(
   'thesis\latex\master-thesis-pz-body.tex',
+  'thesis\latex\chapters\master-thesis-preamble.tex',
   'thesis\latex\.latexmkrc',
-  'thesis\latex\UPSTREAM.md',
   'thesis\latex\figures\application_analysis_request_flow.pdf',
   'thesis\latex\figures\regex-section-headers.pdf',
-  'thesis\presentation\uir-nir-vkr-wide-template-v2.pptx'
+  'thesis\upstream-template\chapters\thesis-template-macro.tex'
 )
 
 foreach ($file in $requiredFiles) {
@@ -66,14 +66,14 @@ if (Get-Command latexmk -ErrorAction SilentlyContinue) {
   Add-Pass 'latexmk is available locally'
 }
 else {
-  Add-Warn 'latexmk is not available locally; use CI or install MiKTeX/TeX Live'
+  Add-Warn 'latexmk is not available locally; use Docker or install MiKTeX/TeX Live'
 }
 
 if (Get-Command xelatex -ErrorAction SilentlyContinue) {
   Add-Pass 'xelatex is available locally'
 }
 else {
-  Add-Warn 'xelatex is not available locally; use CI or install MiKTeX/TeX Live'
+  Add-Warn 'xelatex is not available locally; use Docker or install MiKTeX/TeX Live'
 }
 
 Write-Host 'Thesis checks'

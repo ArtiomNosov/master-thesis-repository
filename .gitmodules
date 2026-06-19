@@ -2,3 +2,6 @@
 	path = reqcore
 	url = https://github.com/ArtiomNosov/reqcore.git
 	branch = thesis/ru-localization
+[submodule "thesis/upstream-template"]
+	path = thesis/upstream-template
+	url = https://gitlab.com/skibcsit/thesis-template.git

@@ -1,14 +1,12 @@
-# LaTeX build (PZ body)
+# LaTeX PZ build
 
-Entrypoint: `master-thesis-pz-body.tex` — реферат, основной текст и список литературы без титульных листов.
+Entrypoint: `master-thesis-pz-body.tex`
 
 ```powershell
 # from repo root
 .\thesis\build.ps1
-
-# or Docker (see thesis/pz-latex-kit/README.md)
 ```
 
-Upstream department template (reference only): `thesis/_upstream-thesis-template/`.
+Upstream department template (submodule, reference only): `thesis/upstream-template/`
 
 Markdown → LaTeX: `thesis/scripts/md_to_latex_port.py`
