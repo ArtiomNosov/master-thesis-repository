@@ -25,11 +25,9 @@ $requiredFiles = @(
   'thesis\latex\master-thesis-pz-body.tex',
   'thesis\latex\.latexmkrc',
   'thesis\latex\UPSTREAM.md',
-  'thesis\presentation\uir-nir-vkr-wide-template-v2.pptx',
-  'thesis\latex\img\thesis\as-is.png',
-  'thesis\latex\img\thesis\to-be.png',
-  'thesis\latex\img\thesis\use-cases.png',
-  'thesis\latex\img\thesis\job-posting-entry.png'
+  'thesis\latex\figures\application_analysis_request_flow.pdf',
+  'thesis\latex\figures\regex-section-headers.pdf',
+  'thesis\presentation\uir-nir-vkr-wide-template-v2.pptx'
 )
 
 foreach ($file in $requiredFiles) {

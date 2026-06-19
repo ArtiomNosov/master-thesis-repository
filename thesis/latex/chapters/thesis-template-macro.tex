@@ -58,7 +58,6 @@
 \usepackage{array}
 \usepackage{ragged2e}
 \newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
-\usepackage{pdfpages}
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{float}
@@ -90,7 +89,6 @@
 \usepackage{xurl}
 \usepackage{color}
 \usepackage{pgf}
-\usepackage{pstheorems}
 
 \usepackage{titling}
 
@@ -152,8 +150,6 @@
 %\renewcommand{\appendixname}{Приложение}% Change "chapter name" for Appendix chapters
 %\renewcommand{\cftchapdotsep}{\cftdotsep}
 
-\usepackage{mathpartir}
-
 \makeatletter
 \let\ps@plain\ps@fancy              % Подчиняем первые страницы каждой главы общим правилам
 \makeatother
@@ -204,65 +200,7 @@
 \theoremstyle{plain}
 \newtheorem*{annotation}{Аннотация}
 
-\makeatletter
-\newcommand*{\projecttypefulldative}[1]{\gdef\@projecttypefulldative{#1}}
-\newcommand*{\theprojecttypefulldative}{\@projecttypefulldative}
-\newcommand*{\projecttypeshort}[1]{\gdef\@projecttypeshort{#1}}
-\newcommand*{\theprojecttypeshort}{\@projecttypeshort}
-\newcommand*{\authorfulldative}[1]{\gdef\@authorfulldative{#1}}
-\newcommand*{\theauthorfulldative}{\@authorfulldative}
-\newcommand*{\authorgroup}[1]{\gdef\@authorgroup{#1}}
-\newcommand*{\theauthorgroup}{\@authorgroup}
-\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
-\newcommand*{\thesupervisor}{\@supervisor}
-\newcommand*{\consultant}[1]{\gdef\@consultant{#1}}
-\newcommand*{\theconsultant}{\@consultant}
-\newcommand{\projecttasks}[1]{\gdef\@projecttasks{#1}}
-\newcommand{\theprojecttasks}{\@projecttasks}
-\newcommand{\projecttask}[5]{#1 & #2 & #3 & #4 & #5 \\\hline}
-\newcommand*{\taskliterature}[1]{\gdef\@taskliterature{#1}}
-\newcommand*{\thetaskliterature}{\@taskliterature}
-\newcommand*{\taskdate}[1]{\gdef\@taskdate{#1}}
-\newcommand*{\thetaskdate}{\@taskdate}
-\newcommand*{\supervisortaskapproval}[1]{\gdef\@supervisortaskapproval{#1}}
-\newcommand*{\thesupervisortaskapproval}{\@supervisortaskapproval}
-\newcommand*{\authortaskapproval}[1]{\gdef\@authortaskapproval{#1}}
-\newcommand*{\theauthortaskapproval}{\@authortaskapproval}
-\newcommand*{\authorrspzapproval}[1]{\gdef\@authorrspzapproval{#1}}
-\newcommand*{\theauthorrspzapproval}{\@authorrspzapproval}
-\newcommand*{\supervisorrspzapproval}[1]{\gdef\@supervisorrspzapproval{#1}}
-\newcommand*{\thesupervisorrspzapproval}{\@supervisorrspzapproval}
-\newcommand*{\consultantrspzapproval}[1]{\gdef\@consultantrspzapproval{#1}}
-\newcommand*{\theconsultantrspzapproval}{\@consultantrspzapproval}
-\newcommand*{\supervisorrspzgrade}[1]{\gdef\@supervisorrspzgrade{#1}}
-\newcommand*{\thesupervisorrspzgrade}{\@supervisorrspzgrade}
-\newcommand*{\authorpzapproval}[1]{\gdef\@authorpzapproval{#1}}
-\newcommand*{\theauthorpzapproval}{\@authorpzapproval}
-\newcommand*{\supervisorpzapproval}[1]{\gdef\@supervisorpzapproval{#1}}
-\newcommand*{\thesupervisorpzapproval}{\@supervisorpzapproval}
-\newcommand*{\consultantpzapproval}[1]{\gdef\@consultantpzapproval{#1}}
-\newcommand*{\theconsultantpzapproval}{\@consultantpzapproval}
-\newcommand*{\supervisorpzgrade}[1]{\gdef\@supervisorpzgrade{#1}}
-\newcommand*{\thesupervisorpzgrade}{\@supervisorpzgrade}
-\makeatother
-
-\newcommand{\sign}[3][0pt]{%
-  \tikz[overlay]{\node[yshift=#1]{\includegraphics[scale=#2]{img/signatures/#3.png}}}%
-}
-\newcommand{\signat}[4][0pt]{%
-  \begin{tikzpicture}[overlay]
-    \node[xshift=-10pt,yshift=#1](c){\includegraphics[scale=#2]{img/signatures/#3.png}};
-    \node[xshift=10pt,yshift=-10pt]{\scriptsize\textit{#4}};
-  \end{tikzpicture}
-}
-
-\newcommand{\emptyfield}{\tikz[overlay]{\draw[thin,yshift=-1.28ex](0,0)--(5,0)}}
-
-\newcounter{projecttasknumber}
-\newcommand{\projecttasknum}{\setcounter{projectsubtasknumber}{0}\stepcounter{projecttasknumber}\theprojecttasknumber.}
-
-\newcounter{projectsubtasknumber}
-\newcommand{\projectsubtasknum}{\stepcounter{projectsubtasknumber}\theprojecttasknumber.\theprojectsubtasknumber.}
+\headertext{}
 
 \usepackage{listings}
 
@@ -299,13 +237,10 @@
   {\ }{ }1
 }
 
-\headertext{}
-
 \newcounter{totalfigures}
 \newcounter{totaltables}
 \newcounter{totallistings}
 
 %%% Local Variables:
 %%% TeX-engine: xetex
-%%% eval: (setq-local TeX-master (concat "../" (seq-find (-cut string-match ".*-3-pz\.tex$" <>) (directory-files ".."))))
 %%% End:

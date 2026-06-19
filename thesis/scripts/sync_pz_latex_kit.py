@@ -25,23 +25,39 @@ CHAPTER_FILES = [
 ]
 
 
-def copy_tree(src: Path, dst: Path) -> None:
-    if dst.exists():
-        shutil.rmtree(dst)
-    shutil.copytree(src, dst)
+FIGURE_FILES = [
+    "application_analysis_request_flow.pdf",
+    "regex-section-headers.pdf",
+]
+
+
+def sync_chapters() -> None:
+    chapters = KIT / "chapters"
+    chapters.mkdir(parents=True, exist_ok=True)
+    for path in chapters.iterdir():
+        if path.is_file() and path.name not in CHAPTER_FILES:
+            path.unlink()
+    for name in CHAPTER_FILES:
+        shutil.copy2(SRC / "chapters" / name, chapters / name)
+
+
+def sync_figures() -> None:
+    figures = KIT / "figures"
+    figures.mkdir(parents=True, exist_ok=True)
+    for path in figures.iterdir():
+        if path.is_file() and path.name not in FIGURE_FILES:
+            path.unlink()
+    for name in FIGURE_FILES:
+        shutil.copy2(SRC / "figures" / name, figures / name)
 
 
 def main() -> None:
     KIT.mkdir(parents=True, exist_ok=True)
-    (KIT / "chapters").mkdir(exist_ok=True)
-    (KIT / "figures").mkdir(exist_ok=True)
     (KIT / "build").mkdir(exist_ok=True)
 
     shutil.copy2(SRC / "master-thesis-pz-body.tex", KIT / "master-thesis-pz-body.tex")
-    for name in CHAPTER_FILES:
-        shutil.copy2(SRC / "chapters" / name, KIT / "chapters" / name)
-
-    copy_tree(SRC / "figures", KIT / "figures")
+    sync_chapters()
+    sync_figures()
     print(f"Synced kit -> {KIT}")
 
 
