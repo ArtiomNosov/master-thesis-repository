@@ -3,24 +3,34 @@
 \usepackage{polyglossia}
 
 \usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
 
-\usepackage{ifplatform}
+\newcommand{\setmainthesisfont}[1]{%
+  \setmainfont{#1}[Ligatures=TeX]%
+  \newfontfamily\russianfont{#1}[Script=Cyrillic,Ligatures=TeX]%
+  \newfontfamily\cyrillicfont{#1}[Script=Cyrillic,Ligatures=TeX]%
+}
+\newcommand{\setsansthesisfont}[1]{%
+  \setsansfont{#1}[Ligatures=TeX,Scale=MatchLowercase]%
+  \newfontfamily\cyrillicfontsf{#1}[Script=Cyrillic,Ligatures=TeX,Scale=MatchLowercase]%
+}
+\newcommand{\setmonothesisfont}[1]{%
+  \setmonofont{#1}[Scale=MatchLowercase]%
+  \newfontfamily\cyrillicfonttt{#1}[Scale=MatchLowercase]%
+}
 
-\ifwindows
-  \newfontfamily{\cyrillicfont}{Times New Roman}
-  \setmainfont{Times New Roman}
-  \newfontfamily{\cyrillicfonttt}{Courier New}
-  \setmonofont{Courier New}
-  \newfontfamily{\cyrillicfontsf}{Microsoft Sans Serif}[Script=Cyrillic]
-  \setsansfont{Microsoft Sans Serif}
-\else
-  \newfontfamily\russianfont{Linux Libertine O}[Script=Cyrillic]
-  \newfontfamily\cyrillicfontsf{Linux Biolinum O}[Script=Cyrillic]
-  \newfontfamily\cyrillicfonttt{DejaVu Sans Mono}[Script=Cyrillic]
-  \setmainfont{Linux Libertine O}
-  \setsansfont{Linux Biolinum O}
-  \setmonofont{DejaVu Sans Mono}[Script=Cyrillic,Scale=MatchLowercase]
-\fi
+\IfFontExistsTF{Times New Roman}{%
+  \setmainthesisfont{Times New Roman}%
+  \setmonothesisfont{Times New Roman}%
+}{%
+  \setmainthesisfont{Tinos}%
+  \setmonothesisfont{Tinos}%
+}
+\IfFontExistsTF{Arial}{%
+  \setsansthesisfont{Arial}%
+}{%
+  \setsansthesisfont{Arimo}%
+}
 
 \setmainlanguage[numerals=cyrillic]{russian}
 \setotherlanguages{english}
@@ -29,7 +39,6 @@
 \usepackage{xunicode} % some extra unicode support
 %\usepackage[utf8x]{inputenc}
 \usepackage{xltxtra} % \XeLaTeX macro
-\defaultfontfeatures{Ligatures=TeX}
 
 %\setromanfont{Charis SIL}
 %\setsansfont{Liberation Sans}
@@ -45,6 +54,7 @@
 
 \usepackage[protrusion=true]{microtype}
 \emergencystretch 3em
+\hfuzz=0.5pt
 
 \usepackage{mathtools}
 \usepackage{amsfonts}
@@ -58,7 +68,7 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{ragged2e}
-\newcolumntype{P}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}\arraybackslash}p{#1}}
 \usepackage{longtable}
 \usepackage{multirow}
 \usepackage{float}
@@ -88,6 +98,8 @@
 
 \usepackage[unicode=true]{hyperref}
 \usepackage{xurl}
+\urlstyle{same}
+\Urlmuskip=0mu plus 2mu
 \usepackage{color}
 \usepackage{pgf}
 
@@ -217,7 +229,7 @@
   stepnumber=1,
   numberstyle=\tiny\color{gray},
   breaklines=true,
-  breakatwhitespace=true,
+  breakatwhitespace=false,
   framesep=6pt,
   aboveskip=0.5em,
   belowskip=0.5em,
