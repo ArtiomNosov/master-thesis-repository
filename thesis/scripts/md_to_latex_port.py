@@ -126,7 +126,7 @@ def protect_regex_patterns(text: str, slots: list[str]) -> str:
         return REGEX_SECTION_REF_SLOT + "@@REGEXFIG@@"
 
     return re.sub(
-        r'"\(\?i\)\\b\([^)]+\)\\b"',
+        r'"?\(\?i\)\\b\([^)]+\)\\b"?',
         repl,
         text,
     )
