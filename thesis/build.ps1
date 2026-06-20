@@ -16,16 +16,17 @@ if (-not (Test-Path -LiteralPath $entryPath)) {
 
 function Invoke-DockerBuild {
   $mount = (Resolve-Path -LiteralPath $latexDir).Path -replace '\\', '/'
-  if ($Clean) {
-    docker run --rm -v "${mount}:/work" -w /work aergus/latex:2022-01-02 bash -c "rm -rf build/master-thesis-pz-body.*"
+  $dockerArgs = @('run', '--rm', '-v', "${mount}:/work", '-w', '/work')
+  $windowsFonts = if ($env:SystemRoot) { Join-Path $env:SystemRoot 'Fonts' } else { $null }
+  if ($windowsFonts -and (Test-Path -LiteralPath $windowsFonts)) {
+    $fontMount = (Resolve-Path -LiteralPath $windowsFonts).Path -replace '\\', '/'
+    $dockerArgs += @('-v', "${fontMount}:/usr/share/fonts/windows:ro")
   }
-  docker run --rm -v "${mount}:/work" -w /work aergus/latex:2022-01-02 bash -c @"
-mkdir -p build &&
-xelatex -interaction=nonstopmode -output-directory=build master-thesis-pz-body.tex &&
-biber build/master-thesis-pz-body &&
-xelatex -interaction=nonstopmode -output-directory=build master-thesis-pz-body.tex &&
-xelatex -interaction=nonstopmode -output-directory=build master-thesis-pz-body.tex
-"@
+  if ($Clean) {
+    & docker @dockerArgs aergus/latex:2022-01-02 bash -lc "rm -rf build/master-thesis-pz-body.*"
+  }
+  $buildCommand = 'fc-cache -f /usr/share/fonts/windows >/dev/null 2>&1 || true; mkdir -p build && xelatex -interaction=nonstopmode -output-directory=build master-thesis-pz-body.tex && biber build/master-thesis-pz-body && xelatex -interaction=nonstopmode -output-directory=build master-thesis-pz-body.tex && xelatex -interaction=nonstopmode -output-directory=build master-thesis-pz-body.tex'
+  & docker @dockerArgs aergus/latex:2022-01-02 bash -lc $buildCommand
   $pdf = Join-Path $latexDir 'build\master-thesis-pz-body.pdf'
   if (-not (Test-Path -LiteralPath $pdf)) {
     Write-Error "Build finished but expected PDF was not found: $pdf"
