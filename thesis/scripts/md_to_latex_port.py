@@ -76,6 +76,23 @@ def json_to_latex_texttt(inner: str) -> str:
     return f"\\texttt{{{escaped}}}"
 
 
+def inline_code_to_latex(inner: str) -> str:
+    trailing_pct = ""
+    body = inner
+    if body.endswith("%"):
+        trailing_pct = r"\%"
+        body = body[:-1]
+
+    if re.search(r"\s", body) or any(ch in body for ch in "{}"):
+        escaped = escape_latex(body)
+        escaped = normalize_slashes_for_texttt(escaped)
+        escaped = escaped.replace("[", "{[}").replace("]", "{]}")
+        return f"\\texttt{{{escaped}}}{trailing_pct}"
+
+    delim = verb_delim(body)
+    return f"\\path{delim}{body}{delim}{trailing_pct}"
+
+
 def protect_json_in_quotes(text: str, slots: list[str]) -> str:
     out: list[str] = []
     i = 0
@@ -141,15 +158,8 @@ def md_quotes_to_texttt(text: str, slots: list[str] | None = None) -> str:
     def repl(m: re.Match[str]) -> str:
         inner = m.group(1)
         if should_use_texttt(inner):
-            trailing_pct = ""
-            body = inner
-            if body.endswith("%"):
-                trailing_pct = r"\%"
-                body = body[:-1]
-            escaped = escape_latex(body)
-            escaped = normalize_slashes_for_texttt(escaped)
-            escaped = escaped.replace("[", "{[}").replace("]", "{]}")
-            return f"\\texttt{{{escaped}}}{trailing_pct}"
+            slots.append(inline_code_to_latex(inner))
+            return f"@@P{len(slots) - 1}@@"
         return inner
 
     return re.sub(r'"([^"\n]+)"', repl, text)
@@ -159,6 +169,35 @@ def restore_protected_slots(text: str, slots: list[str]) -> str:
     for idx, slot in enumerate(slots):
         text = text.replace(f"@@P{idx}@@", slot)
     return text
+
+
+UNQUOTED_CODE_RE = re.compile(
+    r"(?<![@\\\w])("
+    r"/[A-Za-z0-9_.\[\]-]*[A-Za-z0-9_\]](?:/[A-Za-z0-9_.\[\]-]*[A-Za-z0-9_\]])*"
+    r"|--[A-Za-z0-9_-]+"
+    r"|(?:[A-Za-z0-9_.\[\]-]+/)+[A-Za-z0-9_.\[\]-]*[A-Za-z0-9\]]"
+    r"|[A-Za-z0-9_.-]+\.(?:py|ts|json|tsv|txt|md)"
+    r"|[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z][A-Za-z0-9_]*)+"
+    r"|[A-Za-z][A-Za-z0-9]*_[A-Za-z0-9_]+"
+    r"|[A-Za-z][A-Za-z0-9]{17,}"
+    r"|[A-Za-z][A-Za-z0-9_]{8,}\(\)"
+    r")(?![@\w])"
+)
+
+
+def protect_unquoted_code_tokens(text: str, slots: list[str]) -> str:
+    def repl(match: re.Match[str]) -> str:
+        token = match.group(1)
+        if token == "A/B":
+            return token
+        if "/" not in token and "." not in token and not token.startswith("--"):
+            return token
+        if len(token) < 12 and "/" not in token and "_" not in token:
+            return token
+        slots.append(inline_code_to_latex(token))
+        return f"@@P{len(slots) - 1}@@"
+
+    return UNQUOTED_CODE_RE.sub(repl, text)
 
 
 def escape_latex_except_cite(text: str) -> str:
@@ -223,6 +262,7 @@ def convert_inline(text: str) -> str:
     text = re.sub(r"@@EQREF:\w+@@", stash_eqref, text)
     text = md_guillemets(text)
     text = md_quotes_to_texttt(text, slots)
+    text = protect_unquoted_code_tokens(text, slots)
     text = md_citations_to_latex(text)
     text = normalize_dashes(text)
     escaped: list[str] = []
@@ -241,7 +281,8 @@ def convert_inline(text: str) -> str:
 
 def format_route_path(route: str) -> str:
     route = route.strip().strip('"')
-    return f"\\path{{{route}}}"
+    delim = verb_delim(route)
+    return f"\\path{delim}{route}{delim}"
 
 
 def format_table_cell(text: str, *, column: int | None = None, is_api_table: bool = False) -> str:
@@ -295,6 +336,8 @@ def table_to_longtable(header: list[str], body: list[list[str]], caption: str, l
         return " & ".join(content) + r" \\"
 
     lines = [
+        r"\begingroup",
+        r"\setlength{\tabcolsep}{3pt}",
         r"\begin{small}",
         r"\begin{longtable}{" + colspec + "}",
         rf"\caption{{{caption}}}\label{{{label}}}\\",
@@ -314,7 +357,7 @@ def table_to_longtable(header: list[str], body: list[list[str]], caption: str, l
         if idx < len(body) - 1:
             suffix += "\n\\hline"
         lines.append(suffix)
-    lines.extend([r"\end{longtable}", r"\end{small}"])
+    lines.extend([r"\end{longtable}", r"\end{small}", r"\endgroup"])
     return "\n".join(lines)
 
 
@@ -618,10 +661,11 @@ def convert_block(lines: list[str]) -> str:
                     item = item.replace("@@REGEXFIG@@", "")
                 items.append(item)
                 i += 1
-            out.append("\\begin{compactenum}")
+            enum_lines = ["\\begin{compactenum}"]
             for it in items:
-                out.append(f"  \\item {it}")
-            out.append("\\end{compactenum}")
+                enum_lines.append(f"  \\item {it}")
+            enum_lines.append("\\end{compactenum}")
+            out.append("\n".join(enum_lines))
             if needs_regex_fig:
                 out.append(REGEX_FIGURE_BLOCK)
             continue
