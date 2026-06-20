@@ -115,15 +115,9 @@ REGEX_FIGURE_BLOCK = textwrap.dedent(
 
 
 def normalize_slashes_for_texttt(body: str) -> str:
-    """HTTP routes keep slashes; repository file paths use hyphens."""
+    """Preserve repository/model path slashes; typeset route slashes explicitly."""
     if re.search(r"(?i)^(POST|GET)\s+/", body) or body.startswith("/"):
         return body.replace("/", "{\\slash}")
-    if re.search(r"\.(py|ts|json|md|tsv)\b", body, re.I):
-        return body.replace("/", "-")
-    if re.search(r"(?i)^(experiments|ats|data|cointegrated|models)/", body):
-        return body.replace("/", "-")
-    if body.count("/") >= 3:
-        return body.replace("/", "-")
     return body
 
 
