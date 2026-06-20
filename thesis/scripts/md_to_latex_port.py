@@ -338,7 +338,8 @@ def table_to_longtable(header: list[str], body: list[list[str]], caption: str, l
     lines = [
         r"\begingroup",
         r"\setlength{\tabcolsep}{3pt}",
-        r"\begin{small}",
+        r"\renewcommand{\arraystretch}{1}",
+        r"{\linespread{1}\selectfont",
         r"\begin{longtable}{" + colspec + "}",
         rf"\caption{{{caption}}}\label{{{label}}}\\",
         r"\hline",
@@ -357,7 +358,7 @@ def table_to_longtable(header: list[str], body: list[list[str]], caption: str, l
         if idx < len(body) - 1:
             suffix += "\n\\hline"
         lines.append(suffix)
-    lines.extend([r"\end{longtable}", r"\end{small}", r"\endgroup"])
+    lines.extend([r"\end{longtable}", r"}", r"\endgroup"])
     return "\n".join(lines)
 
 
@@ -691,6 +692,7 @@ CHAPTER1_SECTIONS = [
     "Системный анализ предметной области подбора персонала, процессов подбора персонала и систем автоматизированного подбора персонала",
     "Аналитический обзор методов обработки естественного языка (Natural Language Processing) и методов машинного обучения для построения ранжирующей функции (Learning to Rank)",
     "Обоснование выбора архитектуры двунаправленных кодировочных представлений (Bidirectional Encoder Representations from Transformers), модели векторных представлений предложений (Sentence Embeddings using Siamese Bidirectional Encoder Representations from Transformers Networks) и методов векторизации",
+    ("Выводы", "Выводы по первой главе"),
 ]
 
 CHAPTER2_SECTIONS = [
@@ -698,6 +700,7 @@ CHAPTER2_SECTIONS = [
     "Проектирование архитектуры конвейера предварительной обработки данных (preprocessing pipeline) и модуля вычисления семантической близости плотных векторных представлений текста",
     "Спецификация программного интерфейса приложения (Application Programming Interface) и программных модулей интеграции модуля ранжирования соискателей с ядром системы автоматизированного подбора персонала",
     "Интеграция системы автоматизированного подбора персонала под названием \"Reqcore\" с модулем семантического ранжирования цифровых профилей соискателей",
+    ("Выводы", "Выводы по второй главе"),
 ]
 
 CHAPTER3_SECTIONS = [
@@ -706,6 +709,7 @@ CHAPTER3_SECTIONS = [
         "Реализация и доменная тонкая настройка модели семантического сопоставления текст вакансии и текст резюме",
         "Реализация и доменная тонкая настройка модели семантического сопоставления текст вакансии и текст резюме",
     ),
+    ("Выводы", "Выводы по третьей главе"),
 
 ]
 
@@ -715,6 +719,7 @@ CHAPTER4_SECTIONS = [
     "Выполнение интеграции созданного модуля в целевую систему автоматизированного подбора персонала",
     "Экономическое обоснование внедрения модуля ранжирования",
     "Валидация трех стратегий ранжирования на отложенных данных",
+    ("Выводы", "Выводы по четвертой главе"),
 ]
 
 
@@ -765,7 +770,7 @@ def write_abstract() -> None:
     stats = body.pop(0).replace("–", "---").replace("—", "---")
     stats = re.sub(
         r"(\d+)\s+страниц,\s+(\d+)\s+рисунка,\s+(\d+)\s+таблиц",
-        r"\\pageref{end_of_main_text}~стр., 2~рис., \3~табл.",
+        r"\\pageref{end_of_document}~стр., 2~рис., \3~табл",
         stats,
     )
     tex = (

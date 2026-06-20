@@ -48,6 +48,8 @@
 %нумерация справа и колонтитулы справа вверху
 \usepackage{fancyhdr}
 \usepackage[a4paper,left=30mm,right=15mm,top=20mm,bottom=20mm,bindingoffset=0cm]{geometry}%
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
 
 \usepackage{indentfirst}
 
@@ -96,10 +98,10 @@
   \@gtempa}
 \makeatother
 
-\usepackage[unicode=true]{hyperref}
+\usepackage[unicode=true,hidelinks]{hyperref}
 \usepackage{xurl}
 \urlstyle{same}
-\Urlmuskip=0mu plus 2mu
+\Urlmuskip=0mu
 \usepackage{color}
 \usepackage{pgf}
 
@@ -127,20 +129,20 @@
 
 \usepackage[singlelinecheck=true,labelsep=endash]{caption}
 \usepackage{subcaption}
-\captionsetup[table]{justification=justified}
+\captionsetup[table]{justification=raggedright,singlelinecheck=false}
 \captionsetup[figure]{justification=justified,name=Рисунок,singlelinecheck=on,font=onehalfspacing}
 
 \usepackage{titlesec}
 %\titleformat{\sectionname}[runin]{начертание}{счетчик, например \thesubparagraph}{0pt}{}{}
 
-\titleformat{\chapter}[block]{\centering\normalfont\Large\bfseries}{\thechapter.}{1ex}{}{}
+\titleformat{\chapter}[block]{\centering\normalfont\fontsize{14pt}{17pt}\selectfont\bfseries}{\thechapter.}{1ex}{}{}
 \titlespacing{\chapter}{0pt}{0em}{2em}
 
-\titleformat{\section}[block]{\normalfont\large\bfseries}{\thesection}{1ex}{}{}
+\titleformat{\section}[block]{\normalfont\fontsize{13pt}{16pt}\selectfont\bfseries}{\thesection}{1ex}{}{}
 \titlespacing{\section}{0pt}{0em}{1ex}
 
-\titleformat{\subsection}[block]{\normalfont\normalsize\bfseries}{\thesubsection}{1ex}{}{}
-\titlespacing{\section}{0pt}{0em}{1ex}
+\titleformat{\subsection}[block]{\normalfont\fontsize{12pt}{15pt}\selectfont\bfseries}{\thesubsection}{1ex}{}{}
+\titlespacing{\subsection}{0pt}{0em}{1ex}
 
 	% paragraph и subparagraph -- в тексте, без отступов
 % \titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
