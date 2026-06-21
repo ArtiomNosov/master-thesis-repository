@@ -139,14 +139,18 @@
 \usepackage{titlesec}
 %\titleformat{\sectionname}[runin]{начертание}{счетчик, например \thesubparagraph}{0pt}{}{}
 
+\addto\captionsrussian{\renewcommand{\chaptername}{}}
 \titleformat{\chapter}[block]{\centering\normalfont\fontsize{14pt}{17pt}\selectfont\bfseries}{\thechapter.}{1ex}{}{}
 \titlespacing{\chapter}{0pt}{0em}{0pt}
 
-\titleformat{\section}[block]{\normalfont\fontsize{13pt}{16pt}\selectfont\bfseries}{\thesection}{1ex}{}{}
+\titleformat{\section}[block]{\normalfont\fontsize{13pt}{16pt}\selectfont\bfseries\justifying}{\thesection}{1ex}{}{}
 \titlespacing{\section}{0pt}{0em}{0pt}
 
-\titleformat{\subsection}[block]{\normalfont\fontsize{12pt}{15pt}\selectfont\bfseries}{\thesubsection}{1ex}{}{}
+\titleformat{\subsection}[block]{\normalfont\fontsize{12pt}{15pt}\selectfont\bfseries\justifying}{\thesubsection}{1ex}{}{}
 \titlespacing{\subsection}{0pt}{0em}{0pt}
+
+\titleformat{\subsubsection}[block]{\normalfont\normalsize\bfseries\justifying}{\thesubsubsection}{1ex}{}{}
+\titlespacing{\subsubsection}{0pt}{0em}{0pt}
 
 	% paragraph и subparagraph -- в тексте, без отступов
 % \titlespacing{command}{left spacing}{before spacing}{after spacing}[right]
@@ -200,6 +204,8 @@
   autolang=other
 ]{biblatex}
 \addbibresource{chapters/biblio.bib}
+\renewcommand*{\subtitlepunct}{\addcolondelim}
+\renewcommand*{\intitlepunct}{\addcolondelim}
 \renewcommand\multicitedelim{,\space}
 
 \usepackage{tikz}
