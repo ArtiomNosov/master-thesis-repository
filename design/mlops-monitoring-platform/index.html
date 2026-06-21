@@ -33,7 +33,7 @@
             </div>
             <div class="sidebar-card">
               <strong>Состояние промышленной среды</strong>
-              <span>1 критичное оповещение требует реакции в конвейере обнаружения мошенничества.</span>
+              <span>1 критичное оповещение требует реакции в конвейере ранжирования резюме.</span>
             </div>
           </aside>
 
@@ -56,7 +56,7 @@
                   <p class="subtle">Отслеживание качества, дрейфа данных, дрейфа модели, инцидентов и операционной готовности систем машинного обучения.</p>
                 </div>
                 <div class="filter-row">
-                  <button class="filter-chip primary">Проект: «Рост»</button>
+                  <button class="filter-chip primary">Проект: «Подбор ИТ»</button>
                   <button class="filter-chip">Модель: все</button>
                   <button class="filter-chip">Среда: промышленная</button>
                   <button class="filter-chip">Период: 7 дней</button>
@@ -115,30 +115,30 @@
 
                 <div class="card card-pad">
                   <div class="card-title-row">
-                    <h2>Дрейф и оповещения по моделям</h2>
+                    <h2>Дрейф и оповещения по ранжированию</h2>
                     <span class="link">Смотреть все</span>
                   </div>
                   <div class="alert-list">
                     <div class="incident">
                       <div class="incident-top">
-                        <span class="incident-title">Высокий дрейф данных в сумма_операции</span>
+                        <span class="incident-title">Высокий дрейф признака совпадение_навыков</span>
                         <span class="badge critical">Критично</span>
                       </div>
-                      <div class="incident-meta">обнаружение_мошенничества_2 — оценка дрейфа 0,81 — 12 мин назад</div>
+                      <div class="incident-meta">скоринг_соответствия_2 — оценка дрейфа 0,81 — 12 мин назад</div>
                     </div>
                     <div class="incident">
                       <div class="incident-top">
                         <span class="incident-title">Гармоническая мера ниже базового уровня</span>
                         <span class="badge warning">Предупреждение</span>
                       </div>
-                      <div class="incident-meta">прогноз_оттока_3 — текущий 0,872 против базового 0,914</div>
+                      <div class="incident-meta">ранжирование_резюме_3 — текущий 0,872 против базового 0,914</div>
                     </div>
                     <div class="incident">
                       <div class="incident-top">
                         <span class="incident-title">Рост задержки 95-го перцентиля</span>
                         <span class="badge warning">Предупреждение</span>
                       </div>
-                      <div class="incident-meta">прогноз_спроса_1 — 95-й перцентиль 184 мс — 34 мин назад</div>
+                      <div class="incident-meta">сортировка_откликов_1 — 95-й перцентиль 184 мс — 34 мин назад</div>
                     </div>
                   </div>
                 </div>
@@ -147,7 +147,7 @@
               <div class="grid grid-main" style="margin-top:18px">
                 <div class="card card-pad">
                   <div class="table-title-row">
-                    <h2>Активные модели</h2>
+                    <h2>Активные модели подбора</h2>
                     <span class="link">Табличная выгрузка</span>
                   </div>
                   <table class="table">
@@ -156,20 +156,20 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td><div class="model-name"><span class="model-icon">ПО</span>прогноз_оттока_3</div></td>
-                        <td>«Рост»</td><td><span class="badge warning">Предупреждение</span></td><td>0,872</td><td>0,43</td><td>96 мс</td><td>Н. Орлова</td>
+                        <td><div class="model-name"><span class="model-icon">РР</span>ранжирование_резюме_3</div></td>
+                        <td>«Подбор ИТ»</td><td><span class="badge warning">Предупреждение</span></td><td>0,872</td><td>0,43</td><td>96 мс</td><td>Н. Орлова</td>
                       </tr>
                       <tr>
-                        <td><div class="model-name"><span class="model-icon">ОМ</span>обнаружение_мошенничества_2</div></td>
-                        <td>Риск</td><td><span class="badge critical">Критично</span></td><td>0,781</td><td>0,81</td><td>142 мс</td><td>М. Петров</td>
+                        <td><div class="model-name"><span class="model-icon">СС</span>скоринг_соответствия_2</div></td>
+                        <td>Подбор</td><td><span class="badge critical">Критично</span></td><td>0,781</td><td>0,81</td><td>142 мс</td><td>М. Петров</td>
                       </tr>
                       <tr>
-                        <td><div class="model-name"><span class="model-icon">ПС</span>прогноз_спроса_1</div></td>
-                        <td>Снабжение</td><td><span class="badge healthy">Норма</span></td><td>0,914</td><td>0,18</td><td>184 мс</td><td>А. Ким</td>
+                        <td><div class="model-name"><span class="model-icon">СО</span>сортировка_откликов_1</div></td>
+                        <td>Подбор</td><td><span class="badge healthy">Норма</span></td><td>0,914</td><td>0,18</td><td>184 мс</td><td>А. Ким</td>
                       </tr>
                       <tr>
-                        <td><div class="model-name"><span class="model-icon">КР</span>кредитный_риск_4</div></td>
-                        <td>Риск</td><td><span class="badge healthy">Норма</span></td><td>0,928</td><td>0,12</td><td>88 мс</td><td>Д. Иванов</td>
+                        <td><div class="model-name"><span class="model-icon">ИН</span>извлечение_навыков_4</div></td>
+                        <td>Подбор</td><td><span class="badge healthy">Норма</span></td><td>0,928</td><td>0,12</td><td>88 мс</td><td>Д. Иванов</td>
                       </tr>
                     </tbody>
                   </table>
@@ -183,15 +183,15 @@
                   <div class="incident-list">
                     <div class="incident">
                       <div class="incident-top"><span class="incident-title">Несоответствие схемы признаков</span><span class="badge critical">Открыт</span></div>
-                      <div class="incident-meta">обнаружение_мошенничества_2 — назначена команда «Риск» — 14:02</div>
+                      <div class="incident-meta">скоринг_соответствия_2 — назначена команда «Подбор» — 14:02</div>
                     </div>
                     <div class="incident">
                       <div class="incident-top"><span class="incident-title">Подтверждена деградация относительно базы</span><span class="badge warning">Расследуется</span></div>
-                      <div class="incident-meta">прогноз_оттока_3 — выполняется проверка качества данных</div>
+                      <div class="incident-meta">ранжирование_резюме_3 — выполняется проверка качества данных</div>
                     </div>
                     <div class="incident">
                       <div class="incident-top"><span class="incident-title">Автомасштабирование восстановлено</span><span class="badge healthy">Решён</span></div>
-                      <div class="incident-meta">прогноз_спроса_1 — пропускная способность в норме</div>
+                      <div class="incident-meta">сортировка_откликов_1 — пропускная способность в норме</div>
                     </div>
                   </div>
                 </div>
@@ -227,16 +227,16 @@
               <div class="nav-item"><span class="nav-icon">Р</span>Реестр</div>
             </div>
             <div class="nav-section"><div class="nav-label">Рабочая область</div><div class="nav-item"><span class="nav-icon">Н</span>Настройки</div></div>
-            <div class="sidebar-card"><strong>Рекомендуемый следующий шаг</strong><span>Переобучить на последней 30-дневной размеченной выборке и проверить дрейф признака канал_привлечения.</span></div>
+            <div class="sidebar-card"><strong>Рекомендуемый следующий шаг</strong><span>Переобучить на последней 30-дневной разметке откликов и проверить дрейф признака источник_отклика.</span></div>
           </aside>
           <div class="content">
             <header class="topbar">
-              <div class="search">Поиск в прогноз_оттока_3...</div>
+              <div class="search">Поиск в ранжирование_резюме_3...</div>
               <div class="top-actions"><div class="select-pill">Последние 30 дней</div><div class="select-pill">Промышленная среда</div><div class="icon-button">О</div><div class="profile"><div class="avatar">НО</div><strong>Нина Орлова</strong></div></div>
             </header>
             <section class="page">
               <div class="page-header">
-                <div><p class="eyebrow">Карточка модели</p><h1>прогноз_оттока_3</h1><p class="subtle">Классификатор оттока клиентов для кампаний удержания, мониторится в промышленной среде.</p></div>
+                <div><p class="eyebrow">Карточка модели</p><h1>ранжирование_резюме_3</h1><p class="subtle">Модель ранжирования резюме по соответствию вакансии, мониторится в промышленной среде.</p></div>
                 <div class="filter-row"><button class="filter-chip primary">Версия 3.8.2</button><button class="filter-chip">База 3.7.0</button><button class="filter-chip">Пром</button></div>
               </div>
 
@@ -247,14 +247,14 @@
                     <div class="meta-box"><span>Версия</span><strong>3.8.2</strong></div>
                     <div class="meta-box"><span>Среда</span><strong>Промышленная</strong></div>
                     <div class="meta-box"><span>Последнее развёртывание</span><strong>21 мая 2026</strong></div>
-                    <div class="meta-box"><span>Набор данных</span><strong>удержание_2026_05</strong></div>
-                    <div class="meta-box"><span>Владелец</span><strong>Команда «Рост»</strong></div>
+                    <div class="meta-box"><span>Набор данных</span><strong>отклики_2026_05</strong></div>
+                    <div class="meta-box"><span>Владелец</span><strong>Команда «Подбор ИТ»</strong></div>
                   </div>
                 </div>
                 <div class="card card-pad">
                   <h2>Рекомендуемые действия</h2>
                   <div class="recommendation-list">
-                    <div class="recommendation"><strong>Переобучение</strong><p>Использовать последние размеченные исходы удержания и перебалансировать высокорисковый сегмент.</p><div class="button-row"><button class="button primary">Запустить переобучение</button><button class="button">Запланировать</button></div></div>
+                    <div class="recommendation"><strong>Переобучение</strong><p>Использовать последние размеченные пары вакансия-резюме и перебалансировать редкие ИТ-специализации.</p><div class="button-row"><button class="button primary">Запустить переобучение</button><button class="button">Запланировать</button></div></div>
                   </div>
                 </div>
               </div>
@@ -289,7 +289,7 @@
               </div>
 
               <div class="grid grid-3" style="margin-top:18px">
-                <div class="recommendation"><strong>Исследовать</strong><p>Проверить сдвиг распределений признаков канал_привлечения и тип_тарифа с 19 мая.</p><button class="button primary">Открыть анализ дрейфа</button></div>
+                <div class="recommendation"><strong>Исследовать</strong><p>Проверить сдвиг распределений признаков источник_отклика и формат_работы с 19 мая.</p><button class="button primary">Открыть анализ дрейфа</button></div>
                 <div class="recommendation"><strong>Откат</strong><p>Резервная версия 3.7.0 стабильна и готова к развёртыванию, если полнота упадёт ниже 0,82.</p><button class="button">Подготовить откат</button></div>
                 <div class="recommendation"><strong>Мониторинг</strong><p>Увеличить частоту оценки до почасовой, пока оценка дрейфа не вернётся ниже 0,30.</p><button class="button">Создать правило наблюдения</button></div>
               </div>
@@ -307,14 +307,14 @@
               <div class="nav-item"><span class="nav-icon">П</span>Панель мониторинга</div><div class="nav-item"><span class="nav-icon">М</span>Модели</div><div class="nav-item active"><span class="nav-icon">ДД</span>Дрейф данных</div><div class="nav-item"><span class="nav-icon">Пр</span>Производительность</div><div class="nav-item"><span class="nav-icon">О</span>Оповещения</div><div class="nav-item"><span class="nav-icon">Р</span>Реестр</div>
             </div>
             <div class="nav-section"><div class="nav-label">Рабочая область</div><div class="nav-item"><span class="nav-icon">Н</span>Настройки</div></div>
-            <div class="sidebar-card"><strong>Сравнение наборов данных</strong><span>Обучение: когорта 1-й квартал 2026. Промышленная среда: оценочный трафик за последние 24 ч.</span></div>
+            <div class="sidebar-card"><strong>Сравнение наборов данных</strong><span>Обучение: размеченные пары вакансия-резюме за 1-й квартал 2026. Промышленная среда: поток откликов за последние 24 ч.</span></div>
           </aside>
           <div class="content">
-            <header class="topbar"><div class="search">Поиск дрейфа признаков...</div><div class="top-actions"><div class="select-pill">Последние 24 часа</div><div class="select-pill">обнаружение_мошенничества_2</div><div class="icon-button">О</div><div class="profile"><div class="avatar">МП</div><strong>Макс Петров</strong></div></div></header>
+            <header class="topbar"><div class="search">Поиск дрейфа признаков...</div><div class="top-actions"><div class="select-pill">Последние 24 часа</div><div class="select-pill">скоринг_соответствия_2</div><div class="icon-button">О</div><div class="profile"><div class="avatar">МП</div><strong>Макс Петров</strong></div></div></header>
             <section class="page">
               <div class="page-header">
                 <div><p class="eyebrow">Мониторинг дрейфа данных</p><h1>Сдвиг распределений: обучение и промышленная среда</h1><p class="subtle">Оценка дрейфа по признакам с визуальной оценкой критичности и результатами последних проверок.</p></div>
-                <div class="filter-row"><button class="filter-chip primary">Модель: обнаружение_мошенничества_2</button><button class="filter-chip">Набор: пром. среда за 24 ч</button><button class="filter-chip">Метод: ИС + КС</button></div>
+                <div class="filter-row"><button class="filter-chip primary">Модель: скоринг_соответствия_2</button><button class="filter-chip">Набор: отклики за 24 ч</button><button class="filter-chip">Метод: ИС + КС</button></div>
               </div>
               <div class="grid grid-4">
                 <div class="card metric-card"><div class="metric-head"><span class="metric-label">Общий дрейф</span><span class="badge critical">Критично</span></div><div class="metric-value">0,62</div><div class="metric-delta">Порог 0,50</div></div>
@@ -327,19 +327,19 @@
                 <div class="card card-pad">
                   <h2>Признаки с наибольшим дрейфом</h2>
                   <div class="feature-list">
-                    <div class="feature-item"><strong>сумма_операции</strong><span class="badge critical">0,81</span><span>числовой — критерий КС</span><span>Критично</span></div>
-                    <div class="feature-item"><strong>категория_продавца</strong><span class="badge critical">0,74</span><span>категориальный — индекс стабильности</span><span>Критично</span></div>
-                    <div class="feature-item"><strong>риск_устройства</strong><span class="badge critical">0,66</span><span>числовой — критерий КС</span><span>Критично</span></div>
-                    <div class="feature-item"><strong>расстояние_км</strong><span class="badge warning">0,49</span><span>числовой — индекс стабильности</span><span>Предупреждение</span></div>
+                    <div class="feature-item"><strong>совпадение_навыков</strong><span class="badge critical">0,81</span><span>числовой — критерий КС</span><span>Критично</span></div>
+                    <div class="feature-item"><strong>источник_отклика</strong><span class="badge critical">0,74</span><span>категориальный — индекс стабильности</span><span>Критично</span></div>
+                    <div class="feature-item"><strong>опыт_лет</strong><span class="badge critical">0,66</span><span>числовой — критерий КС</span><span>Критично</span></div>
+                    <div class="feature-item"><strong>зарплатные_ожидания</strong><span class="badge warning">0,49</span><span>числовой — индекс стабильности</span><span>Предупреждение</span></div>
                   </div>
                 </div>
                 <div class="card card-pad">
                   <div class="card-title-row"><h2>Распределения признаков</h2><div class="legend"><span><i style="background:#b9c8dd"></i>Обучение</span><span><i style="background:#2563eb"></i>Промышленная среда</span></div></div>
                   <div class="dist-grid">
-                    <div class="dist-card"><h3>сумма_операции</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="34" y="88" width="24" height="48" rx="5"></rect><rect class="bar-prod" x="62" y="62" width="24" height="74" rx="5"></rect><rect class="bar-train" x="108" y="54" width="24" height="82" rx="5"></rect><rect class="bar-prod" x="136" y="38" width="24" height="98" rx="5"></rect><rect class="bar-train" x="182" y="82" width="24" height="54" rx="5"></rect><rect class="bar-critical" x="210" y="24" width="24" height="112" rx="5"></rect><rect class="bar-train" x="256" y="106" width="24" height="30" rx="5"></rect><rect class="bar-critical" x="284" y="70" width="24" height="66" rx="5"></rect></svg></div>
-                    <div class="dist-card"><h3>категория_продавца</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="34" y="42" width="26" height="94" rx="5"></rect><rect class="bar-prod" x="64" y="78" width="26" height="58" rx="5"></rect><rect class="bar-train" x="112" y="80" width="26" height="56" rx="5"></rect><rect class="bar-critical" x="142" y="28" width="26" height="108" rx="5"></rect><rect class="bar-train" x="190" y="96" width="26" height="40" rx="5"></rect><rect class="bar-prod" x="220" y="86" width="26" height="50" rx="5"></rect><rect class="bar-train" x="268" y="112" width="26" height="24" rx="5"></rect></svg></div>
-                    <div class="dist-card"><h3>риск_устройства</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><path class="line-blue" d="M28 118 C70 108 92 100 120 72 C154 38 188 34 220 66 C250 94 270 112 296 116"></path><path d="M28 126 C70 98 94 84 124 74 C162 62 192 64 222 78 C250 92 274 104 296 110" fill="none" stroke="#b9c8dd" stroke-width="3"></path></svg></div>
-                    <div class="dist-card"><h3>расстояние_км</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="46" y="54" width="32" height="82" rx="6"></rect><rect class="bar-prod" x="84" y="68" width="32" height="68" rx="6"></rect><rect class="bar-train" x="146" y="84" width="32" height="52" rx="6"></rect><rect class="bar-warn" x="184" y="44" width="32" height="92" rx="6"></rect><rect class="bar-train" x="246" y="104" width="32" height="32" rx="6"></rect></svg></div>
+                    <div class="dist-card"><h3>совпадение_навыков</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="34" y="88" width="24" height="48" rx="5"></rect><rect class="bar-prod" x="62" y="62" width="24" height="74" rx="5"></rect><rect class="bar-train" x="108" y="54" width="24" height="82" rx="5"></rect><rect class="bar-prod" x="136" y="38" width="24" height="98" rx="5"></rect><rect class="bar-train" x="182" y="82" width="24" height="54" rx="5"></rect><rect class="bar-critical" x="210" y="24" width="24" height="112" rx="5"></rect><rect class="bar-train" x="256" y="106" width="24" height="30" rx="5"></rect><rect class="bar-critical" x="284" y="70" width="24" height="66" rx="5"></rect></svg></div>
+                    <div class="dist-card"><h3>источник_отклика</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="34" y="42" width="26" height="94" rx="5"></rect><rect class="bar-prod" x="64" y="78" width="26" height="58" rx="5"></rect><rect class="bar-train" x="112" y="80" width="26" height="56" rx="5"></rect><rect class="bar-critical" x="142" y="28" width="26" height="108" rx="5"></rect><rect class="bar-train" x="190" y="96" width="26" height="40" rx="5"></rect><rect class="bar-prod" x="220" y="86" width="26" height="50" rx="5"></rect><rect class="bar-train" x="268" y="112" width="26" height="24" rx="5"></rect></svg></div>
+                    <div class="dist-card"><h3>опыт_лет</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><path class="line-blue" d="M28 118 C70 108 92 100 120 72 C154 38 188 34 220 66 C250 94 270 112 296 116"></path><path d="M28 126 C70 98 94 84 124 74 C162 62 192 64 222 78 C250 92 274 104 296 110" fill="none" stroke="#b9c8dd" stroke-width="3"></path></svg></div>
+                    <div class="dist-card"><h3>зарплатные_ожидания</h3><svg class="chart" viewBox="0 0 320 160"><rect class="chart-bg" width="320" height="160" rx="14"></rect><rect class="bar-train" x="46" y="54" width="32" height="82" rx="6"></rect><rect class="bar-prod" x="84" y="68" width="32" height="68" rx="6"></rect><rect class="bar-train" x="146" y="84" width="32" height="52" rx="6"></rect><rect class="bar-warn" x="184" y="44" width="32" height="92" rx="6"></rect><rect class="bar-train" x="246" y="104" width="32" height="32" rx="6"></rect></svg></div>
                   </div>
                 </div>
               </div>
@@ -349,11 +349,11 @@
                 <table class="table">
                   <thead><tr><th>Признак</th><th>Тип</th><th>Оценка дрейфа</th><th>Статус</th><th>Последняя проверка</th></tr></thead>
                   <tbody>
-                    <tr><td>сумма_операции</td><td>числовой</td><td>0,81</td><td><span class="badge critical">Критично</span></td><td>25 мая, 14:12</td></tr>
-                    <tr><td>категория_продавца</td><td>категориальный</td><td>0,74</td><td><span class="badge critical">Критично</span></td><td>25 мая, 14:12</td></tr>
-                    <tr><td>риск_устройства</td><td>числовой</td><td>0,66</td><td><span class="badge critical">Критично</span></td><td>25 мая, 14:12</td></tr>
-                    <tr><td>расстояние_км</td><td>числовой</td><td>0,49</td><td><span class="badge warning">Предупреждение</span></td><td>25 мая, 14:12</td></tr>
-                    <tr><td>возраст_клиента</td><td>числовой</td><td>0,18</td><td><span class="badge healthy">Норма</span></td><td>25 мая, 14:12</td></tr>
+                    <tr><td>совпадение_навыков</td><td>числовой</td><td>0,81</td><td><span class="badge critical">Критично</span></td><td>25 мая, 14:12</td></tr>
+                    <tr><td>источник_отклика</td><td>категориальный</td><td>0,74</td><td><span class="badge critical">Критично</span></td><td>25 мая, 14:12</td></tr>
+                    <tr><td>опыт_лет</td><td>числовой</td><td>0,66</td><td><span class="badge critical">Критично</span></td><td>25 мая, 14:12</td></tr>
+                    <tr><td>зарплатные_ожидания</td><td>числовой</td><td>0,49</td><td><span class="badge warning">Предупреждение</span></td><td>25 мая, 14:12</td></tr>
+                    <tr><td>число_релевантных_проектов</td><td>числовой</td><td>0,18</td><td><span class="badge healthy">Норма</span></td><td>25 мая, 14:12</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -371,10 +371,10 @@
             <div class="sidebar-card"><strong>Целевые показатели</strong><span>Задержка 95-го перцентиля ниже 150 мс и доля ошибок модели ниже 2,5%.</span></div>
           </aside>
           <div class="content">
-            <header class="topbar"><div class="search">Поиск метрик производительности...</div><div class="top-actions"><div class="select-pill">Последние 14 дней</div><div class="select-pill">обнаружение_мошенничества_2</div><div class="icon-button">О</div><div class="profile"><div class="avatar">МП</div><strong>Макс Петров</strong></div></div></header>
+            <header class="topbar"><div class="search">Поиск метрик производительности...</div><div class="top-actions"><div class="select-pill">Последние 14 дней</div><div class="select-pill">скоринг_соответствия_2</div><div class="icon-button">О</div><div class="profile"><div class="avatar">МП</div><strong>Макс Петров</strong></div></div></header>
             <section class="page">
               <div class="page-header">
-                <div><p class="eyebrow">Производительность модели</p><h1>обнаружение_мошенничества_2 — операционные и бизнес-метрики</h1><p class="subtle">Динамика метрик, сравнение версий, матрица ошибок, задержка, пропускная способность, доля ошибок и бизнес-эффект.</p></div>
+                <div><p class="eyebrow">Производительность модели</p><h1>скоринг_соответствия_2 — качество ранжирования и метрики подбора</h1><p class="subtle">Динамика качества, сравнение версий, матрица релевантности, задержка, пропускная способность, доля ошибок и эффект для рекрутера.</p></div>
                 <div class="filter-row"><button class="filter-chip primary">Промышленная среда</button><button class="filter-chip">Сравнение: вер. 2.4.1 и 2.3.8</button></div>
               </div>
               <div class="kpi-strip">
@@ -382,7 +382,7 @@
                 <div class="kpi"><span>Задержка 95-го перцентиля</span><strong>142 мс</strong></div>
                 <div class="kpi"><span>Пропускная способность</span><strong>1,8 тыс./мин</strong></div>
                 <div class="kpi"><span>Доля ошибок</span><strong>3,4%</strong></div>
-                <div class="kpi"><span>Бизнес-эффект</span><strong>−42 тыс. ₽</strong></div>
+                <div class="kpi"><span>Экономия проверки</span><strong>+205 мин</strong></div>
               </div>
               <div class="grid grid-main" style="margin-top:18px">
                 <div class="card card-pad">
@@ -398,9 +398,9 @@
                 <div class="card card-pad">
                   <h2>Матрица ошибок</h2>
                   <div class="matrix">
-                    <div class="head"></div><div class="head">Пред: не мошен.</div><div class="head">Пред: мошен.</div>
-                    <div class="head">Факт: не мошен.</div><div class="cell good">18 420<small>ИН</small></div><div class="cell mid">384<small>ЛП</small></div>
-                    <div class="head">Факт: мошен.</div><div class="cell danger">261<small>ЛН</small></div><div class="cell bad">1 942<small>ИП</small></div>
+                    <div class="head"></div><div class="head">Пред: нерелевантен</div><div class="head">Пред: релевантен</div>
+                    <div class="head">Факт: нерелевантен</div><div class="cell good">18 420<small>ИН</small></div><div class="cell mid">384<small>ЛП</small></div>
+                    <div class="head">Факт: релевантен</div><div class="cell danger">261<small>ЛН</small></div><div class="cell bad">1 942<small>ИП</small></div>
                   </div>
                 </div>
               </div>
@@ -415,10 +415,10 @@
                 </div>
                 <div class="card card-pad">
                   <h2>Влияние на бизнес-метрики</h2>
-                  <div class="baseline-row"><span>Заблокированное мошенничество</span><strong>318 тыс. ₽</strong></div>
-                  <div class="baseline-row"><span>Стоимость ложноположительных</span><strong class="delta-down">71 тыс. ₽</strong></div>
-                  <div class="baseline-row"><span>Оценка пропущенного мошенничества</span><strong class="delta-down">42 тыс. ₽</strong></div>
-                  <div class="baseline-row"><span>Чистый эффект к базе</span><span class="badge critical">−42 тыс. ₽</span></div>
+                  <div class="baseline-row"><span>Сэкономленное время рекрутера</span><strong>318 мин</strong></div>
+                  <div class="baseline-row"><span>Лишние проверки нерелевантных</span><strong class="delta-down">71 мин</strong></div>
+                  <div class="baseline-row"><span>Потеря релевантных кандидатов</span><strong class="delta-down">42 мин</strong></div>
+                  <div class="baseline-row"><span>Чистый эффект к базе</span><span class="badge healthy">+205 мин</span></div>
                 </div>
               </div>
             </section>
@@ -439,31 +439,31 @@
             <section class="page">
               <div class="page-header">
                 <div><p class="eyebrow">Оповещения и инциденты</p><h1>Очередь приоритетных реакций</h1><p class="subtle">Критичность, причина, затронутая модель, статус, временные метки и быстрые действия для операций с моделями.</p></div>
-                <div class="filter-row"><button class="filter-chip primary">Статус: новые + расследуются</button><button class="filter-chip">Владелец: все</button><button class="filter-chip">Риск по соглашению</button></div>
+                <div class="filter-row"><button class="filter-chip primary">Статус: новые + расследуются</button><button class="filter-chip">Владелец: все</button><button class="filter-chip">Риск качества подбора</button></div>
               </div>
               <div class="grid grid-4">
                 <div class="card metric-card"><div class="metric-head"><span class="metric-label">Новые</span><span class="badge info">Очередь</span></div><div class="metric-value">7</div><div class="metric-delta">3 требуют назначения</div></div>
                 <div class="card metric-card"><div class="metric-head"><span class="metric-label">Расследуются</span><span class="badge warning">Активные</span></div><div class="metric-value">5</div><div class="metric-delta">Средний возраст 38 мин</div></div>
-                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Критичные</span><span class="badge critical">Риск по соглашению</span></div><div class="metric-value">1</div><div class="metric-delta">обнаружение_мошенничества_2</div></div>
+                <div class="card metric-card"><div class="metric-head"><span class="metric-label">Критичные</span><span class="badge critical">Риск качества подбора</span></div><div class="metric-value">1</div><div class="metric-delta">скоринг_соответствия_2</div></div>
                 <div class="card metric-card"><div class="metric-head"><span class="metric-label">Решено сегодня</span><span class="badge healthy">Готово</span></div><div class="metric-value">12</div><div class="metric-delta">Среднее время восстановления 26 мин</div></div>
               </div>
               <div class="card card-pad" style="margin-top:18px">
                 <div class="table-title-row"><h2>Список оповещений</h2><span class="link">Создать правило</span></div>
                 <div class="alert-list">
                   <div class="alert-card">
-                    <div><div class="alert-top"><span class="alert-title">Высокий дрейф данных в сумма_операции</span><span class="badge severity-critical">Критично</span></div><div class="alert-meta">Причина: распределение в промышленной среде отклоняется от обучающей базы. Модель: обнаружение_мошенничества_2. Время: 25 мая, 14:00. Статус: новое.</div></div>
+                    <div><div class="alert-top"><span class="alert-title">Высокий дрейф признака совпадение_навыков</span><span class="badge severity-critical">Критично</span></div><div class="alert-meta">Причина: распределение в промышленной среде отклоняется от обучающей базы. Модель: скоринг_соответствия_2. Время: 25 мая, 14:00. Статус: новое.</div></div>
                     <div class="alert-actions"><button class="button">Назначить</button><button class="button primary">Исследовать</button><button class="button">Заглушить</button><button class="button">Закрыть</button></div>
                   </div>
                   <div class="alert-card">
-                    <div><div class="alert-top"><span class="alert-title">Полнота ниже контрольного порога</span><span class="badge severity-high">Высокий</span></div><div class="alert-meta">Причина: дрейф модели после изменения кампанийного трафика. Модель: прогноз_оттока_3. Время: 25 мая, 13:48. Статус: расследуется.</div></div>
+                    <div><div class="alert-top"><span class="alert-title">Полнота ниже контрольного порога</span><span class="badge severity-high">Высокий</span></div><div class="alert-meta">Причина: дрейф модели после изменения структуры входящих откликов. Модель: ранжирование_резюме_3. Время: 25 мая, 13:48. Статус: расследуется.</div></div>
                     <div class="alert-actions"><button class="button">Назначить</button><button class="button primary">Исследовать</button><button class="button">Заглушить</button><button class="button">Закрыть</button></div>
                   </div>
                   <div class="alert-card">
-                    <div><div class="alert-top"><span class="alert-title">Задержка 95-го перцентиля превысила порог</span><span class="badge severity-medium">Средний</span></div><div class="alert-meta">Причина: насыщение сервиса предсказаний при пакетной оценке. Модель: прогноз_спроса_1. Время: 25 мая, 13:21. Статус: расследуется.</div></div>
+                    <div><div class="alert-top"><span class="alert-title">Задержка 95-го перцентиля превысила порог</span><span class="badge severity-medium">Средний</span></div><div class="alert-meta">Причина: насыщение сервиса ранжирования при массовой оценке откликов. Модель: сортировка_откликов_1. Время: 25 мая, 13:21. Статус: расследуется.</div></div>
                     <div class="alert-actions"><button class="button">Назначить</button><button class="button primary">Исследовать</button><button class="button">Заглушить</button><button class="button">Закрыть</button></div>
                   </div>
                   <div class="alert-card">
-                    <div><div class="alert-top"><span class="alert-title">Задержка обновления набора данных</span><span class="badge severity-low">Низкий</span></div><div class="alert-meta">Причина: задержка исходного конвейера загрузки данных на 18 минут. Модель: кредитный_риск_4. Время: 25 мая, 12:44. Статус: закрыто.</div></div>
+                    <div><div class="alert-top"><span class="alert-title">Задержка обновления набора данных</span><span class="badge severity-low">Низкий</span></div><div class="alert-meta">Причина: задержка конвейера загрузки новых резюме на 18 минут. Модель: извлечение_навыков_4. Время: 25 мая, 12:44. Статус: закрыто.</div></div>
                     <div class="alert-actions"><button class="button">Назначить</button><button class="button">Исследовать</button><button class="button">Заглушить</button><button class="button primary">Закрыть</button></div>
                   </div>
                 </div>
@@ -472,7 +472,7 @@
                 <div class="table-title-row"><h2>Недавние инциденты</h2><span class="link">Отчёты разбора</span></div>
                 <table class="table">
                   <thead><tr><th>Инцидент</th><th>Модель</th><th>Критичность</th><th>Статус</th><th>Владелец</th><th>Обновлено</th></tr></thead>
-                  <tbody><tr><td>Несоответствие схемы признаков</td><td>обнаружение_мошенничества_2</td><td><span class="badge severity-critical">Критично</span></td><td>Новый</td><td>Не назначен</td><td>12 мин назад</td></tr><tr><td>Нарушение контрольного порога качества</td><td>прогноз_оттока_3</td><td><span class="badge severity-high">Высокий</span></td><td>Расследуется</td><td>Н. Орлова</td><td>21 мин назад</td></tr><tr><td>Насыщение сервиса предсказаний</td><td>прогноз_спроса_1</td><td><span class="badge severity-medium">Средний</span></td><td>Расследуется</td><td>А. Ким</td><td>34 мин назад</td></tr></tbody>
+                  <tbody><tr><td>Несоответствие схемы признаков</td><td>скоринг_соответствия_2</td><td><span class="badge severity-critical">Критично</span></td><td>Новый</td><td>Не назначен</td><td>12 мин назад</td></tr><tr><td>Нарушение контрольного порога качества</td><td>ранжирование_резюме_3</td><td><span class="badge severity-high">Высокий</span></td><td>Расследуется</td><td>Н. Орлова</td><td>21 мин назад</td></tr><tr><td>Насыщение сервиса ранжирования</td><td>сортировка_откликов_1</td><td><span class="badge severity-medium">Средний</span></td><td>Расследуется</td><td>А. Ким</td><td>34 мин назад</td></tr></tbody>
                 </table>
               </div>
             </section>
@@ -506,18 +506,18 @@
                 <table class="table">
                   <thead><tr><th>Модель и версия</th><th>Статус</th><th>Дата обучения</th><th>Дата развёртывания</th><th>Набор данных</th><th>Владелец</th><th>Действия</th></tr></thead>
                   <tbody>
-                    <tr><td><div class="model-name"><span class="model-icon">ПО</span>прогноз_оттока_3 / вер. 3.8.2</div></td><td><span class="badge warning">Пром: предупреждение</span></td><td>18 мая 2026</td><td>21 мая 2026</td><td>удержание_2026_05</td><td>Н. Орлова</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button">Развернуть</button><button class="button primary">Откат</button></div></td></tr>
-                    <tr><td><div class="model-name"><span class="model-icon">ОМ</span>обнаружение_мошенничества_2 / вер. 2.4.1</div></td><td><span class="badge critical">Пром: критично</span></td><td>12 мая 2026</td><td>19 мая 2026</td><td>мошенничество_операции_9</td><td>М. Петров</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button">Развернуть</button><button class="button primary">Откат</button></div></td></tr>
-                    <tr><td><div class="model-name"><span class="model-icon">ПС</span>прогноз_спроса_1 / вер. 1.9.0</div></td><td><span class="badge healthy">Пром: норма</span></td><td>3 мая 2026</td><td>9 мая 2026</td><td>спрос_недельный_14</td><td>А. Ким</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button primary">Развернуть</button><button class="button">Откат</button></div></td></tr>
-                    <tr><td><div class="model-name"><span class="model-icon">КР</span>кредитный_риск_4 / вер. 4.2.5</div></td><td><span class="badge healthy">Одобрено</span></td><td>22 мая 2026</td><td>Не развёрнуто</td><td>кредит_заявки_2026_2кв</td><td>Д. Иванов</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button primary">Развернуть</button><button class="button">Откат</button></div></td></tr>
-                    <tr><td><div class="model-name"><span class="model-icon">ЭЦ</span>эластичность_цены_1 / вер. 1.3.4</div></td><td><span class="badge neutral">Архив</span></td><td>12 мар 2026</td><td>1 апр 2026</td><td>цены_история_7</td><td>С. Ли</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button">Развернуть</button><button class="button">Откат</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">РР</span>ранжирование_резюме_3 / вер. 3.8.2</div></td><td><span class="badge warning">Пром: предупреждение</span></td><td>18 мая 2026</td><td>21 мая 2026</td><td>отклики_2026_05</td><td>Н. Орлова</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button">Развернуть</button><button class="button primary">Откат</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">СС</span>скоринг_соответствия_2 / вер. 2.4.1</div></td><td><span class="badge critical">Пром: критично</span></td><td>12 мая 2026</td><td>19 мая 2026</td><td>резюме_вакансии_9</td><td>М. Петров</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button">Развернуть</button><button class="button primary">Откат</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">СО</span>сортировка_откликов_1 / вер. 1.9.0</div></td><td><span class="badge healthy">Пром: норма</span></td><td>3 мая 2026</td><td>9 мая 2026</td><td>профили_кандидатов_14</td><td>А. Ким</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button primary">Развернуть</button><button class="button">Откат</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">ИН</span>извлечение_навыков_4 / вер. 4.2.5</div></td><td><span class="badge healthy">Одобрено</span></td><td>22 мая 2026</td><td>Не развёрнуто</td><td>вакансии_заявки_2026_2кв</td><td>Д. Иванов</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button primary">Развернуть</button><button class="button">Откат</button></div></td></tr>
+                    <tr><td><div class="model-name"><span class="model-icon">ПР</span>парсинг_резюме_1 / вер. 1.3.4</div></td><td><span class="badge neutral">Архив</span></td><td>12 мар 2026</td><td>1 апр 2026</td><td>резюме_архив_7</td><td>С. Ли</td><td><div class="registry-actions"><button class="button">Подробнее</button><button class="button">Сравнить версии</button><button class="button">Развернуть</button><button class="button">Откат</button></div></td></tr>
                   </tbody>
                 </table>
               </div>
               <div class="grid grid-3" style="margin-top:18px">
                 <div class="recommendation"><strong>Сравнение версий</strong><p>Результаты проверки, кривые качества, дрейф признаков и история одобрений в сравнении рядом.</p><button class="button primary">Открыть сравнение</button></div>
                 <div class="recommendation"><strong>Контроль развёртывания</strong><p>Требуются одобренный набор проверок, подпись владельца и целевая версия отката перед промышленной средой.</p><button class="button">Проверить контрольный список</button></div>
-                <div class="recommendation"><strong>План отката</strong><p>обнаружение_мошенничества_2 можно откатить на вер. 2.3.8 с проверенной совместимостью схемы.</p><button class="button">Открыть план</button></div>
+                <div class="recommendation"><strong>План отката</strong><p>скоринг_соответствия_2 можно откатить на вер. 2.3.8 с проверенной совместимостью схемы.</p><button class="button">Открыть план</button></div>
               </div>
             </section>
           </div>
