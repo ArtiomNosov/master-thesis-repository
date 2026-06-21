@@ -336,15 +336,17 @@ def table_to_longtable(header: list[str], body: list[list[str]], caption: str, l
         return " & ".join(content) + r" \\"
 
     lines = [
+        r"\Needspace{10\baselineskip}",
         r"\begingroup",
         r"\setlength{\tabcolsep}{3pt}",
         r"\renewcommand{\arraystretch}{1}",
         r"{\linespread{1}\selectfont",
         r"\begin{longtable}{" + colspec + "}",
-        rf"\caption{{{caption}}}\label{{{label}}}\\",
+        rf"\caption{{{caption}}}\label{{{label}}}\\*",
         r"\hline",
         row(header) + "\n\\hline",
         r"\endfirsthead",
+        rf"\caption[]{{{caption} (продолжение)}}\\*",
         r"\hline",
         row(header) + "\n\\hline",
         r"\endhead",
