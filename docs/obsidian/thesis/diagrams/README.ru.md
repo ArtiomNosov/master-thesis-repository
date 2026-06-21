@@ -34,6 +34,7 @@ py -3 scripts/validate_thesis_diagram_svgs.py
 ```powershell
 py -3 scripts/render_thesis_diagram.py application_analysis_request_flow
 py -3 scripts/render_thesis_diagram.py c4_container_architecture
+py -3 scripts/render_recruitment_screening_bottleneck.py
 ```
 
 ## Шаблон раскладки
@@ -53,6 +54,7 @@ py -3 scripts/render_thesis_diagram.py c4_container_architecture
 |------|------------|
 | `application_analysis_request_flow.dot` | Рис. 2 — flowchart Reqcore / bi-encoder / LLM |
 | `c4_container_architecture.dot` | Рис. 1 — C4 Container Reqcore + ML |
+| `recruitment_screening_bottleneck.json` | Схема этапов отбора и комментарий к узкому месту первичной оценки |
 | `sat_styles.inc` | Справочник SAT-цветов |
 
 BPMN (`archive/.../as_is.svg`, `to_be.svg`) пока не в Graphviz-пайплайне.

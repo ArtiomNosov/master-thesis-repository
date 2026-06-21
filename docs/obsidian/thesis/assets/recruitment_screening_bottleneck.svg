@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2110" height="560" viewBox="0 0 2110 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+<title id="title">Процесс обработки заявки соискателя</title>
+<desc id="desc">Схема этапов отбора с вынесенным в комментарий узким местом на этапе оценки соответствия требованиям.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<line x1="372.0" y1="108.0" x2="463.0" y2="108.0" stroke="#222222" stroke-width="3" stroke-linecap="round"/>
+<polygon points="463.0,108.0 447.4,117.0 447.4,99.0" fill="#222222"/>
+<line x1="1212.0" y1="107.0" x2="1318.0" y2="107.0" stroke="#222222" stroke-width="3" stroke-linecap="round"/>
+<polygon points="1318.0,107.0 1302.4,116.0 1302.4,98.0" fill="#222222"/>
+<line x1="1667.0" y1="108.0" x2="1798.0" y2="108.0" stroke="#222222" stroke-width="3" stroke-linecap="round"/>
+<polygon points="1798.0,108.0 1782.4,117.0 1782.4,99.0" fill="#222222"/>
+<rect x="40" y="62" width="330" height="92" rx="15" ry="15" fill="#f4f4f4" stroke="#a8a8a8" stroke-width="2.2"/>
+<text x="205.0" y="117.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="normal" fill="#222222">
+<tspan x="205.0" dy="0">Заявка соискателя</tspan>
+</text>
+<rect x="475" y="44" width="735" height="126" rx="15" ry="15" fill="#f4f4f4" stroke="#a8a8a8" stroke-width="2.2"/>
+<polygon points="519.0,92.9 535.0,121.1 503.0,121.1" fill="#f4f4f4" stroke="#222222" stroke-width="2"/>
+<text x="519.0" y="114.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="19.8" font-weight="700" fill="#222222">!</text>
+<text x="880.5" y="96.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="normal" fill="#222222">
+<tspan x="880.5" dy="0">Оценка соответствия</tspan>
+<tspan x="880.5" dy="38.4">соискателя требованиям</tspan>
+</text>
+<rect x="1330" y="62" width="335" height="92" rx="15" ry="15" fill="#f4f4f4" stroke="#a8a8a8" stroke-width="2.2"/>
+<text x="1497.5" y="117.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="normal" fill="#222222">
+<tspan x="1497.5" dy="0">Собеседование</tspan>
+</text>
+<rect x="1810" y="62" width="260" height="92" rx="15" ry="15" fill="#f4f4f4" stroke="#a8a8a8" stroke-width="2.2"/>
+<text x="1940.0" y="97.8" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="normal" fill="#222222">
+<tspan x="1940.0" dy="0">Приглашение</tspan>
+<tspan x="1940.0" dy="38.4">на работу</tspan>
+</text>
+<polygon points="914.0,260.0 946.0,260.0 842.5,172.0" fill="#fffecb" stroke="#a2a27a" stroke-width="2"/>
+<rect x="610" y="260" width="640" height="200" rx="14" ry="14" fill="#fffecb" stroke="#a2a27a" stroke-width="2.2"/>
+<polygon points="1222.0,260.0 1250.0,288.0 1222.0,288.0" fill="#f4f1a8" stroke="#a2a27a" stroke-width="1.5"/>
+<text x="930.0" y="299.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#222222">
+<tspan x="930.0" dy="0">Узкое место:</tspan>
+</text>
+<text x="930.0" y="332.2" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="normal" fill="#222222">
+<tspan x="930.0" dy="0">Много заявок соискателей</tspan>
+<tspan x="930.0" dy="31.2">и ручные затраты приводят</tspan>
+<tspan x="930.0" dy="31.2">к тому, что это самый</tspan>
+<tspan x="930.0" dy="31.2">трудоёмкий этап</tspan>
+</text>
+</svg>

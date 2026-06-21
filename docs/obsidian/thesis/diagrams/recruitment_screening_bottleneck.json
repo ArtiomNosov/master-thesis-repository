@@ -1,0 +1,78 @@
+{
+  "title": "Процесс обработки заявки соискателя",
+  "description": "Схема этапов отбора с вынесенным в комментарий узким местом на этапе оценки соответствия требованиям.",
+  "output_stem": "recruitment_screening_bottleneck",
+  "canvas": {
+    "width": 2110,
+    "height": 560,
+    "scale": 2.4
+  },
+  "style": {
+    "font_family": "Arial",
+    "background": "#ffffff",
+    "box_fill": "#f4f4f4",
+    "box_stroke": "#a8a8a8",
+    "text": "#222222",
+    "arrow": "#222222",
+    "note_fill": "#fffecb",
+    "note_stroke": "#a2a27a"
+  },
+  "stages": [
+    {
+      "id": "application",
+      "label": "Заявка соискателя",
+      "x": 40,
+      "y": 62,
+      "width": 330,
+      "height": 92
+    },
+    {
+      "id": "screening",
+      "label": "Оценка соответствия\nсоискателя требованиям",
+      "warning": true,
+      "x": 475,
+      "y": 44,
+      "width": 735,
+      "height": 126
+    },
+    {
+      "id": "interview",
+      "label": "Собеседование",
+      "x": 1330,
+      "y": 62,
+      "width": 335,
+      "height": 92
+    },
+    {
+      "id": "offer",
+      "label": "Приглашение\nна работу",
+      "x": 1810,
+      "y": 62,
+      "width": 260,
+      "height": 92
+    }
+  ],
+  "arrows": [
+    {
+      "from": "application",
+      "to": "screening"
+    },
+    {
+      "from": "screening",
+      "to": "interview"
+    },
+    {
+      "from": "interview",
+      "to": "offer"
+    }
+  ],
+  "comment": {
+    "target_stage": "screening",
+    "title": "Узкое место:",
+    "text": "Много заявок соискателей\nи ручные затраты приводят\nк тому, что это самый\nтрудоёмкий этап",
+    "x": 610,
+    "y": 260,
+    "width": 640,
+    "height": 200
+  }
+}
