@@ -18,16 +18,18 @@
 
 Сохраненный после повторного запуска артефакт оформлен как модель Sentence Transformer: сначала модуль Transformer на базе BertModel строит контекстные представления токенов, затем Pooling агрегирует их в один вектор текста, а Normalize нормирует итоговое векторное представление для устойчивого расчета косинусного сходства. Эта структура соответствует документации Sentence Transformers, где модель описывается как последовательность модулей и отдельно выделяется типовая комбинация Transformer и Pooling с возможным добавлением модуля Normalize; файл \path|modules.json| в артефакте фиксирует именно такую последовательность загрузки модулей \cite{src50}. Векторное сравнение задается через косинусное сходство (cosine similarity). Параметры, зафиксированные в файлах артефакта после повторного обучения 10.04.2026, приведены в таблице.
 
+\Needspace{10\baselineskip}
 \begingroup
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1}
 {\linespread{1}\selectfont
 \begin{longtable}{|P{0.30\textwidth}|P{0.34\textwidth}|P{0.28\textwidth}|}
-\caption{Параметры сохранённой модели cointegrated/rubert-tiny2}\label{tbl:model-params}\\
+\caption{Параметры сохранённой модели cointegrated/rubert-tiny2}\label{tbl:model-params}\\*
 \hline
 Параметр & Значение в реализации & Источник \\
 \hline
 \endfirsthead
+\caption[]{Параметры сохранённой модели cointegrated/rubert-tiny2 (продолжение)}\\*
 \hline
 Параметр & Значение в реализации & Источник \\
 \hline
@@ -75,16 +77,18 @@ Pooling & cls & \path|1_Pooling/config.json| \\
 
 Гиперпараметры и фактические числа повторного запуска обучения приведены в таблице.
 
+\Needspace{10\baselineskip}
 \begingroup
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1}
 {\linespread{1}\selectfont
 \begin{longtable}{|P{0.30\textwidth}|P{0.34\textwidth}|P{0.28\textwidth}|}
-\caption{Гиперпараметры и фактические показатели обучения}\label{tbl:hyperparams}\\
+\caption{Гиперпараметры и фактические показатели обучения}\label{tbl:hyperparams}\\*
 \hline
 Параметр запуска & Значение & Источник \\
 \hline
 \endfirsthead
+\caption[]{Гиперпараметры и фактические показатели обучения (продолжение)}\\*
 \hline
 Параметр запуска & Значение & Источник \\
 \hline
@@ -177,16 +181,18 @@ top_results = torch.topk(cos_scores, k=min(top_k, len(filtered_candidates)))
 
 Для проверки метрик ранжирования был выполнен отдельный полный прогон по файлу тестовой выборки \path|data/splits/test.tsv| с группировкой по идентификатору вакансии vacancy\_id: внутри каждой вакансии резюме ранжировались по косинусной оценке близости текущей модели после тонкой настройки (fine-tuning). Необработанный вывод сохранен в файл \path|experiments/results/full_test_ranking_metrics_stdout.txt|, агрегированные результаты и значения на уровне групп вакансий - в файл \path|experiments/results/full_test_ranking_metrics.json|. В файле test.tsv содержится 521 пара, 423 уникальные вакансии, 510 уникальных резюме, 177 пар, где кандидат был принят к рассмотрению или приглашен на следующий этап, и 344 пары, где по отклику был зафиксирован отказ. Пропущенных идентификаторов resume\_id и vacancy\_id относительно объединенных файлов нет. При этом тестовая выборка разрежена: для 304 вакансий нет ни одного кандидата, которого специалист по подбору персонала исторически продвинул на следующий этап, только 59 вакансий имеют минимум двух кандидатов, оставивших отклик, а нормализованная дисконтированная кумулятивная выгода (Normalized Discounted Cumulative Gain, NDCG) математически определена только для 33 вакансий, где есть хотя бы два кандидата и хотя бы один кандидат с зафиксированным продвижением.
 
+\Needspace{10\baselineskip}
 \begingroup
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1}
 {\linespread{1}\selectfont
 \begin{longtable}{|P{0.30\textwidth}|P{0.34\textwidth}|P{0.28\textwidth}|}
-\caption{Ranking-метрики на полном test split}\label{tbl:ranking}\\
+\caption{Ranking-метрики на полном test split}\label{tbl:ranking}\\*
 \hline
 Метрика на полном "test.tsv" & Значение & Область усреднения \\
 \hline
 \endfirsthead
+\caption[]{Ranking-метрики на полном test split (продолжение)}\\*
 \hline
 Метрика на полном "test.tsv" & Значение & Область усреднения \\
 \hline
