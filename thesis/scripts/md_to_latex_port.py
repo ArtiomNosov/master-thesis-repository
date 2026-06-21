@@ -522,6 +522,10 @@ def emit_python_listing(code_lines: list[str]) -> str:
     )
 
 
+def emit_paragraph(text: str) -> str:
+    return f"{text}\\par"
+
+
 def format_binding_equation(raw: str, registry: EquationRegistry) -> str:
     lhs, rhs = [part.strip() for part in raw.split("=", 1)]
     label = registry.add(lhs)
@@ -647,7 +651,7 @@ def convert_block(lines: list[str]) -> str:
             continue
         stripped = line.strip()
         if stripped.lower().startswith("где "):
-            out.append(convert_gde_line(stripped, registry))
+            out.append(emit_paragraph(convert_gde_line(stripped, registry)))
             i += 1
             continue
         if is_formula_line(stripped):
@@ -673,9 +677,9 @@ def convert_block(lines: list[str]) -> str:
                 out.append(REGEX_FIGURE_BLOCK)
             continue
         if line.strip():
-            out.append(convert_inline(line.strip()))
+            out.append(emit_paragraph(convert_inline(line.strip())))
         i += 1
-    return inject_eqrefs("\n\n".join(out), registry)
+    return inject_eqrefs("\n".join(out), registry)
 
 
 def split_sections(md: str) -> dict[str, str]:
@@ -751,9 +755,9 @@ def write_chapter(
     for entry in section_names:
         latex_title, md_key = section_entry(entry)
         chunks.append(f"\\section{{{latex_title}}}")
-        chunks.append("")
-        chunks.append(section_body(sections, md_key))
-        chunks.append("")
+        body = section_body(sections, md_key)
+        if body:
+            chunks.append(body)
     path.write_text("\n".join(chunks).strip() + "\n", encoding="utf-8")
 
 
@@ -773,15 +777,15 @@ def write_abstract() -> None:
         r"\\pageref{end_of_document}~стр., 2~рис., \3~табл",
         stats,
     )
-    tex = (
-        "\\chapter*{Реферат}\n"
-        "\\addcontentsline{toc}{chapter}{Реферат}\n\n"
-        f"{stats}\n\n"
-        f"{body[0]}\n\n"
-        f"\\textbf{{Ключевые слова:}} {keywords}\n\n"
-        + "\n\n".join(body[1:])
-        + "\n"
-    )
+    tex_lines = [
+        "\\chapter*{Реферат}",
+        "\\addcontentsline{toc}{chapter}{Реферат}",
+        emit_paragraph(stats),
+        emit_paragraph(body[0]),
+        emit_paragraph(f"\\textbf{{Ключевые слова:}} {keywords}"),
+    ]
+    tex_lines.extend(emit_paragraph(paragraph) for paragraph in body[1:])
+    tex = "\n".join(tex_lines) + "\n"
     (OUT_DIR / "master-thesis-abstract.tex").write_text(tex, encoding="utf-8")
 
 
@@ -793,7 +797,7 @@ def main() -> None:
     (OUT_DIR / "master-thesis-intro.tex").write_text(
         "\\chapter*{Введение}\n"
         "\\label{sec:intro}\n"
-        "\\addcontentsline{toc}{chapter}{Введение}\n\n"
+        "\\addcontentsline{toc}{chapter}{Введение}\n"
         + intro
         + "\n",
         encoding="utf-8",
@@ -833,13 +837,12 @@ def main() -> None:
 
     conclusion = section_body(sections, "Заключение")
     (OUT_DIR / "master-thesis-conclusion.tex").write_text(
-        textwrap.dedent(
-            f"""
-            \\chapter*{{Заключение}}
-            \\addcontentsline{{toc}}{{chapter}}{{Заключение}}
-
-            {conclusion}
-            """
+        "\n".join(
+            [
+                "\\chapter*{Заключение}",
+                "\\addcontentsline{toc}{chapter}{Заключение}",
+                conclusion,
+            ]
         ).strip()
         + "\n",
         encoding="utf-8",
