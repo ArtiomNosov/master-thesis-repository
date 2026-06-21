@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SVGS = [
     ROOT / "docs/obsidian/thesis/assets/application_analysis_request_flow_marked.svg",
     ROOT / "docs/obsidian/thesis/assets/c4_container_architecture_marked.svg",
+    ROOT / "docs/obsidian/thesis/assets/recruitment_screening_bottleneck.svg",
     ROOT
     / "archive/semester-3-and-previous/master-thesis-obsidian/thesis-draft/2/3/as_is.svg",
     ROOT
